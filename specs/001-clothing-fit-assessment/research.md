@@ -6,20 +6,52 @@
 
 ## R1: Body Measurement Extraction from Photos
 
-**Decision**: Azure AI Vision (Custom Model) + Azure AI Body Tracking
+**Decision**: Three-tier Microsoft AI pipeline — Azure AI Vision (validation) + Azure OpenAI GPT-4o Vision (measurement extraction) + Azure AI Content Safety (content moderation)
 
-**Rationale**: Azure AI Vision provides pre-built image analysis capabilities including person detection and segmentation. Combined with custom model training via Azure AI Custom Vision or Azure Machine Learning, we can fine-tune body landmark detection for measurement extraction. This aligns with the Microsoft stack requirement and integrates natively with Entra ID for authentication.
+**Rationale**: Azure AI Vision 4.0 provides people detection (bounding boxes, multi-person detection) but does NOT provide body landmark extraction or pose estimation. Azure OpenAI GPT-4o Vision (Microsoft's strategic multimodal model) can analyze a full-body photo and estimate body proportions relative to a known height reference, returning structured JSON output with measurement estimates. Azure AI Content Safety provides minor detection and inappropriate content filtering. All three are first-party Microsoft services integrated via Azure AI Foundry.
+
+**Why not Azure AI Vision alone**: Azure AI Vision 4.0 only returns people bounding boxes and confidence scores — it cannot extract body landmarks, skeleton joints, or anthropometric measurements. Azure Kinect Body Tracking (32-joint skeleton) requires physical depth-camera hardware and is not available as a cloud API. Azure AI Vision is also being deprecated (retiring September 2028).
 
 **Alternatives considered**:
-- **MediaPipe (Google)**: Open-source body pose estimation. Strong accuracy but requires self-hosting, GPU management, and doesn't integrate with Azure identity. Rejected due to operational complexity and stack misalignment.
-- **AWS Rekognition**: Competitive offering but violates Microsoft stack requirement.
-- **Custom PyTorch model on Azure ML**: Maximum flexibility but significantly higher development cost and time-to-market. Could be a v2 enhancement if Azure AI Vision accuracy is insufficient.
+- **Azure AI Vision Custom Model**: Only supports object detection/classification, not body measurement extraction. Cannot be trained to output centimeter measurements from 2D images. Rejected.
+- **MediaPipe Pose (Google, containerized)**: Open-source 33-landmark body pose estimation. Strong accuracy for 2D landmark detection but requires self-hosting, GPU management, and SMPL body model integration for 3D measurement derivation. Stack misalignment (Google library). Considered as v2 enhancement layer.
+- **Custom SMPL body model on Azure AI Foundry**: Maximum accuracy (±1-2cm) but requires 3-6 months development, training data collection, and ML expertise. Planned for v2 — hosted as Azure AI Foundry managed endpoint.
+- **Third-party API (3DLOOK, Bold Metrics)**: Proven commercial accuracy but adds external dependency, per-call cost, and data privacy concerns (sending shopper photos to third party). Rejected per constitution (VII. Data Minimization).
+
+**Architecture (three tiers)**:
+
+```text
+Tier 1 — Validation (Azure AI Vision 4.0):
+  Photo → People Detection → multi-person rejection, bounding box quality check
+  Photo → Azure AI Content Safety → minor detection, inappropriate content filter
+
+Tier 2 — Measurement Extraction (Azure OpenAI GPT-4o Vision):
+  Photo + Height (cm) → GPT-4o structured output (JSON mode) →
+    { shoulderWidth, chestCircumference, waistCircumference,
+      hipCircumference, inseam, armLength, confidence }
+  Height is the mandatory scale reference (no absolute measurements without it)
+
+Tier 3 — Future Enhancement (Azure AI Foundry, v2):
+  Custom SMPL body model trained on measurement datasets →
+    Higher accuracy (±1-2cm vs ±2-4cm from GPT-4o)
+    Deterministic output (vs non-deterministic LLM)
+    Deployed as Azure AI Foundry managed endpoint
+```
+
+**Key design decisions**:
+1. **Mandatory height input**: From a 2D photo alone, it is impossible to determine absolute body dimensions. Height (user-provided in cm) serves as the scale reference for all other measurements.
+2. **Structured output mode**: Azure OpenAI GPT-4o supports JSON mode with response format schema, ensuring consistent measurement output format.
+3. **Confidence calibration**: GPT-4o's self-reported confidence is calibrated against known measurement datasets during integration testing. Low-confidence results (< 70%) trigger the fallback path.
+4. **Model versioning**: Each GPT-4o model deployment is version-pinned (e.g., `gpt-4o-2024-08-06`) and tracked per assessment for audit traceability.
+5. **Prompt engineering**: The measurement extraction prompt is version-controlled, tested, and treated as a code artifact — not an ad-hoc string.
 
 **Implementation approach**:
-1. Use Azure AI Vision for image quality validation (lighting, completeness, person detection)
-2. Use Azure AI Custom Vision or Azure ML endpoint for body landmark extraction (17+ key points)
-3. Derive measurements from landmark positions using anthropometric scaling algorithms
-4. Confidence score derived from landmark detection confidence + image quality metrics
+1. Use Azure AI Vision 4.0 for image validation (people detection, multi-person rejection, bounding box quality)
+2. Use Azure AI Content Safety for minor/age detection and inappropriate content filtering
+3. Use Azure OpenAI GPT-4o Vision with structured output for body measurement extraction, using height as scale reference
+4. Derive confidence from GPT-4o's self-assessment + image quality metrics from Tier 1
+5. FitComparisonEngine compares extracted measurements against garment data (unchanged — deterministic delta calculation)
+6. v2 path: Deploy custom SMPL body model on Azure AI Foundry for improved accuracy
 
 ---
 
@@ -46,16 +78,16 @@
 
 **Decision**: Azure Blob Storage with lifecycle management (auto-delete after 60 seconds) + in-memory streaming
 
-**Rationale**: Images must be uploaded to a temporary location for the AI model to process (Azure AI Vision requires a URL or byte stream). Using Azure Blob Storage with a 1-minute lifecycle policy ensures automatic purging. For images under 4 MB, direct byte stream to the AI endpoint avoids blob storage entirely.
+**Rationale**: Images must be uploaded to a temporary location for AI processing. Both Azure AI Vision (people detection) and Azure OpenAI GPT-4o Vision (measurement extraction) accept image byte streams or URLs. Using Azure Blob Storage with a 1-minute lifecycle policy ensures automatic purging. For images under 4 MB, direct byte stream to the AI endpoints avoids blob storage entirely.
 
 **Alternatives considered**:
-- **In-memory only**: Ideal for privacy but Azure AI Vision SDK requires either a URL or a stream. Large images (up to 10 MB) risk memory pressure under concurrent load. Hybrid approach chosen.
+- **In-memory only**: Ideal for privacy but large images (up to 10 MB) risk memory pressure under concurrent load when streamed to multiple AI services (Vision + GPT-4o + Content Safety). Hybrid approach chosen.
 - **Azure Queue + background processing**: Adds latency and complexity. Rejected — synchronous processing meets the 5-second SLA.
 - **Disk-based temp files in container**: Ephemeral but harder to audit and purge reliably. Rejected.
 
 **Implementation approach**:
-1. Images ≤ 4 MB: Stream directly to Azure AI Vision (no blob storage)
-2. Images > 4 MB: Upload to transient blob container with 60-second TTL, pass SAS URL to AI endpoint, confirm deletion after processing
+1. Images ≤ 4 MB: Stream directly to AI services in-memory (no blob storage)
+2. Images > 4 MB: Upload to transient blob container with 60-second TTL, pass SAS URL to AI endpoints, confirm deletion after processing
 3. Blob container has immutable lifecycle policy preventing TTL modification
 4. Audit log entry written on upload and deletion for compliance
 
@@ -69,7 +101,7 @@
 
 **Alternatives considered**:
 - **API key-based auth**: Simpler but doesn't support token expiration, refresh, or fine-grained scopes. Rejected per constitution (II. Security First).
-- **Azure API Management with subscription keys**: Good for rate limiting but adds another layer. Decision: Use APIM as the gateway but authentication stays with Entra ID.
+- **Azure API Management with subscription keys**: Good for rate limiting but adds infrastructure complexity and cost for v1. Rejected for MVP — ASP.NET Core middleware handles rate limiting per tenant tier. Can be introduced in v2 if cross-cutting gateway concerns justify the cost.
 - **Third-party IdP (Auth0, Okta)**: Unnecessary cost and complexity when Entra ID is already the enterprise standard. Rejected.
 
 **Implementation approach**:
@@ -77,7 +109,7 @@
 2. Each tenant registered as a service principal with specific API permissions (scopes)
 3. JWT validation middleware in ASP.NET Core with tenant claim extraction
 4. Managed identity for all Azure resource access (zero secrets in config)
-5. Azure API Management as gateway for rate limiting, request correlation, and caching
+5. Rate limiting implemented via ASP.NET Core middleware per tenant tier (v1); Azure API Management gateway deferred to v2
 
 ---
 
@@ -138,7 +170,7 @@
 - **Terraform**: Well-known IaC but Bicep has better Azure-native type safety and no state file management. Rejected per Microsoft stack preference.
 
 **Implementation approach**:
-1. Bicep modules: Container App Environment, Container App, Cosmos DB account, Storage account, Key Vault, Entra ID app registrations, API Management
+1. Bicep modules: Container App Environment, Container App, Cosmos DB account, Storage account, Key Vault, Entra ID app registrations, Azure OpenAI, Azure AI Content Safety, Azure Service Bus
 2. Three environments: dev (Basic tier), staging (mirrors prod), prod (Standard tier with multi-zone)
 3. GitHub Actions workflow: build → test → scan → deploy-staging → smoke-test → deploy-prod
 4. Auto-scaling: 2 min replicas, 10 max, scaling on HTTP concurrent requests (threshold: 50)

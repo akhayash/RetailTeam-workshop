@@ -4,7 +4,7 @@ Auto-generated from all feature plans. Last updated: 2026-05-13
 
 ## Active Technologies
 
-- C# / .NET 8.0 (LTS) + ASP.NET Core Web API, Azure.AI.Vision.ImageAnalysis, Azure.Identity, Microsoft.Azure.Cosmos, Azure.Storage.Blobs, Swashbuckle (OpenAPI), Aspire (orchestration) (001-clothing-fit-assessment)
+- C# / .NET 8.0 (LTS) + ASP.NET Core Web API, Azure.AI.OpenAI, Azure.AI.Vision.ImageAnalysis, Azure.AI.ContentSafety, Azure.Identity, Microsoft.Azure.Cosmos, Azure.Storage.Blobs, Swashbuckle (OpenAPI), Aspire (orchestration) (001-clothing-fit-assessment)
 
 ## Project Structure
 

@@ -17,7 +17,7 @@ A shopper browsing an online clothing store wants to know whether a garment will
 
 **Acceptance Scenarios**:
 
-1. **Given** a shopper has uploaded a full-body photo and selected a garment, **When** they request a fit assessment, **Then** the system returns a fit recommendation (e.g., "Good Fit", "Too Tight at Waist", "Consider Size Up") with a confidence percentage within 5 seconds.
+1. **Given** a shopper has uploaded a full-body photo, provided their height, and selected a garment, **When** they request a fit assessment, **Then** the system returns a fit recommendation (e.g., "Good Fit", "Too Tight at Waist") with a confidence percentage within 5 seconds.
 2. **Given** a shopper uploads an image that does not meet quality requirements (too dark, partial body, wrong angle), **When** the system processes the image, **Then** the system provides specific guidance on how to retake the photo (e.g., "Please step back so your full body is visible").
 3. **Given** a shopper requests an assessment, **When** the AI model confidence is below the acceptable threshold, **Then** the system displays a clear disclaimer and suggests alternative sizing methods (e.g., standard size chart).
 
@@ -83,11 +83,11 @@ A retail operations team needs to onboard their garment catalog into the fit ass
 
 ### Functional Requirements
 
-- **FR-001**: System MUST accept full-body photos from shoppers in JPEG, PNG, or WebP format up to 10 MB
-- **FR-002**: System MUST extract body measurements from uploaded photos using computer vision without requiring manual input from the shopper
+- **FR-001**: System MUST accept full-body photos from shoppers in JPEG, PNG, or WebP format up to 10 MB, along with the shopper's height in centimeters (mandatory input for measurement scale reference)
+- **FR-002**: System MUST extract body measurements from uploaded photos using multimodal AI analysis (Azure OpenAI GPT-4o Vision with structured output), using the provided height as the absolute scale reference for deriving all other measurements
 - **FR-003**: System MUST compare derived body measurements against garment size data to produce a fit recommendation per body area using a discrete 5-point scale: Too Tight, Slightly Tight, Good Fit, Slightly Loose, Too Loose — plus an overall recommendation
 - **FR-004**: System MUST return fit assessments with a confidence score indicating prediction reliability
-- **FR-005**: System MUST validate uploaded images for quality (lighting, completeness, single person) before processing and provide actionable feedback for rejected images
+- **FR-005**: System MUST validate uploaded images for quality before processing and provide actionable feedback for rejected images. Validation criteria: (a) single person detected via Azure AI Vision people detection, (b) person bounding box covers ≥ 70% of frame height ("full body" = head-to-toe visible), (c) mean image luminance ≥ 40/255 (sufficient lighting), (d) supported format (JPEG, PNG, WebP) and size ≤ 10 MB, (e) MIME type validation beyond file extension, (f) malware scan passed
 - **FR-006**: System MUST allow shoppers to save and delete their body measurement profiles with explicit consent
 - **FR-007**: System MUST expose a RESTful API with OpenAPI 3.x documentation for frontend integration
 - **FR-008**: System MUST authenticate all API consumers using OAuth 2.0 / OpenID Connect
@@ -133,12 +133,13 @@ A retail operations team needs to onboard their garment catalog into the fit ass
 ## Assumptions
 
 - Shoppers have access to a device with a camera capable of taking full-body photos (smartphone or webcam)
+- Shoppers know their height in centimeters (or can convert from feet/inches via the frontend) — this is mandatory for accurate measurement extraction
 - The consuming frontend store handles its own user authentication; the fit assessment service authenticates the frontend system (B2B), not individual shoppers directly
 - The frontend is responsible for generating and passing a stable, opaque shopper reference (e.g., SHA-256 hash of internal user ID) on each request; the fit service uses this as a correlation key without knowledge of the shopper's real identity
 - Garment measurement data is provided by the retail partner in a structured format; the system does not extract measurements from garment images
 - The service is multi-tenant from day one; each retail partner (tenant) has isolated garment catalogs, shopper profiles, and API credentials; cross-tenant data access is prohibited by design
 - Initial deployment targets a single geographic region; multi-region is out of scope for v1 but architecture supports future expansion
-- The AI model for body measurement extraction will be developed/fine-tuned using Azure AI services; pre-trained foundation models are available as starting points
+- The AI model for body measurement extraction uses Azure OpenAI GPT-4o Vision with structured output for v1 (prompt-engineered, not fine-tuned); a custom fine-tuned model on Azure AI Foundry is planned for v2 to improve accuracy
 - Internet connectivity is stable — offline assessment is out of scope
 - The retail partner's existing product catalog system can provide garment IDs that map to the ingested measurement data
 - Microsoft Entra ID will be used for service-to-service authentication (OAuth 2.0 / OIDC)
