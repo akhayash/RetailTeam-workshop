@@ -77,7 +77,7 @@ A retail operations team needs to onboard their garment catalog into the fit ass
 - How does the system handle photos of children? The system MUST NOT process images detected as minors (under 16) and MUST display an age-appropriate message explaining the limitation.
 - What happens when a garment has no size/measurement data available? The system returns a clear message that fit assessment is unavailable for this item and falls back to generic size guidance.
 - How does the system handle extremely unusual body proportions that fall outside training data? The system indicates low confidence and suggests consulting the size chart or contacting customer support.
-- What happens during peak traffic (e.g., Black Friday)? The system queues requests gracefully and provides estimated wait times rather than failing.
+- What happens during peak traffic (e.g., Black Friday)? The system queues requests via Azure Service Bus when concurrent processing exceeds capacity (queue depth > 50 pending or p95 > 4 seconds) and returns HTTP 202 with estimated wait times rather than failing.
 
 ## Requirements *(mandatory)*
 
@@ -96,7 +96,7 @@ A retail operations team needs to onboard their garment catalog into the fit ass
 - **FR-011**: System MUST provide a health check endpoint for monitoring and load balancer integration
 - **FR-012**: System MUST gracefully degrade when the AI model is unavailable, returning fallback sizing guidance
 - **FR-013**: System MUST rate-limit API requests per consumer to prevent abuse
-- **FR-014**: System MUST purge uploaded photos from processing storage immediately after measurement extraction unless the shopper explicitly opts in to retention
+- **FR-014**: System MUST purge uploaded photos from processing storage within 60 seconds after measurement extraction unless the shopper explicitly opts in to retention
 - **FR-015**: System MUST inform users that they are interacting with an AI-powered assessment and display confidence levels
 
 ### Key Entities
@@ -105,20 +105,20 @@ A retail operations team needs to onboard their garment catalog into the fit ass
 - **Garment**: Represents a product SKU with its physical measurements per size. Key attributes: tenant ID, garment ID, brand, category, size label, measurement dimensions per area, fit type (slim/regular/relaxed). Scoped per tenant — each retail partner's catalog is isolated.
 - **Tenant**: Represents a retail partner consuming the service. Key attributes: tenant ID, display name, API credentials, rate limit tier, onboarding date, status (active/suspended).
 - **Fit Assessment**: Represents a single assessment result. Key attributes: assessment ID, shopper profile reference, garment reference, overall recommendation (5-point scale), per-area fit scores (Too Tight / Slightly Tight / Good Fit / Slightly Loose / Too Loose for each of: shoulders, chest, waist, hips, length), confidence percentage, model version used, timestamp.
-- **Assessment Request**: Represents an inbound API request. Key attributes: request ID, consumer ID, timestamp, processing duration, outcome status, correlation ID.
+- **Assessment Request**: Represents an inbound API request captured via OpenTelemetry spans (not a separately persisted entity). Key attributes: request ID, consumer ID, timestamp, processing duration, outcome status, correlation ID. Queryable via Azure Monitor / Log Analytics.
 
 ## Success Criteria *(mandatory)*
 
 ### Measurable Outcomes
 
-- **SC-001**: Shoppers receive a fit recommendation within 5 seconds of submitting their photo (p95 latency)
+- **SC-001**: Shoppers receive a fit recommendation within 5 seconds end-to-end from upload initiation (p95 latency). API processing time after image bytes are fully received targets p95 < 2 seconds per the constitutional SLO.
 - **SC-002**: The system achieves at least 85% accuracy in fit predictions when validated against actual return/keep decisions over the first 90 days
 - **SC-003**: Online return rate for clothing items where fit assessment was used decreases by at least 20% compared to baseline within 6 months of launch
 - **SC-004**: System supports at least 500 concurrent fit assessment requests without degradation
 - **SC-005**: 90% of shoppers who use the fit assessment complete the flow successfully on their first attempt (no photo re-upload required)
 - **SC-006**: Image quality rejection rate is below 30% (system guidance helps shoppers provide usable photos)
 - **SC-007**: System maintains 99.9% availability measured monthly
-- **SC-008**: Shopper data deletion requests are fulfilled within 24 hours of submission
+- **SC-008**: Shopper data deletion requests are fulfilled within 24 hours of submission (note: this exceeds the 30-day constitutional minimum — intentionally stricter for competitive differentiation)
 - **SC-009**: Zero instances of raw shopper photos persisted beyond the active processing window without explicit opt-in consent
 
 ## Clarifications
