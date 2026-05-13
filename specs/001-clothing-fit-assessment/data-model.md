@@ -34,9 +34,21 @@ Represents a retail partner consuming the fit assessment service.
 | status | enum | Required | Active, Suspended, Onboarding |
 | onboardingDate | datetime | Required | ISO 8601 UTC |
 | contactEmail | string | Required, email format | Primary contact for notifications |
-| toleranceBands | object | Optional | Custom fit tolerance overrides (defaults used if null) |
+| toleranceBands | object | Optional | Custom fit tolerance overrides per garment category (defaults used if null). See ToleranceBands sub-object below. |
 | createdAt | datetime | System-generated | ISO 8601 UTC |
 | updatedAt | datetime | System-generated | ISO 8601 UTC |
+
+**ToleranceBands sub-object** (per GarmentCategory):
+
+| Field | Type | Unit | Description |
+|-------|------|------|-------------|
+| category | enum (GarmentCategory) | — | Which garment category this band applies to |
+| tightThreshold | decimal | cm | Delta below which fit is "Too Tight" (negative delta magnitude) |
+| comfortThreshold | decimal | cm | Delta range for "Good Fit" (+/- this value) |
+| looseThreshold | decimal | cm | Delta above which fit is "Too Loose" |
+
+Example: `{ "category": "Top", "tightThreshold": 3.0, "comfortThreshold": 2.0, "looseThreshold": 4.0 }`
+When `toleranceBands` is null, system defaults apply (tightThreshold: 4cm, comfortThreshold: 2cm, looseThreshold: 5cm).
 
 **Partition key**: `/id`
 **Cosmos container**: `tenants`

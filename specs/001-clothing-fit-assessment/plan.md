@@ -85,7 +85,8 @@ src/
 │   ├── AzureAI/                      # Azure AI Vision client wrapper
 │   ├── Cosmos/                       # Cosmos DB repositories
 │   ├── BlobStorage/                  # Transient image storage
-│   └── Configuration/               # App Config, Key Vault
+│   ├── Messaging/                    # Azure Service Bus (async assessment queue)
+│   └── Configuration/               # App Config, Key Vault, Feature Flags
 └── FitAssess.AppHost/                # .NET Aspire orchestrator
 
 tests/

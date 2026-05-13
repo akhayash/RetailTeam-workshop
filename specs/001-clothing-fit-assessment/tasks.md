@@ -56,6 +56,8 @@
 - [ ] T028 [P] Define IBodyMeasurementExtractor interface at src/FitAssess.Core/Interfaces/IBodyMeasurementExtractor.cs
 - [ ] T029 [P] Define IFitComparisonEngine interface at src/FitAssess.Core/Interfaces/IFitComparisonEngine.cs
 - [ ] T030 [P] Define IBlobStorageService interface at src/FitAssess.Core/Interfaces/IBlobStorageService.cs
+- [ ] T030a [P] Define IAuditLogger interface for immutable audit trail at src/FitAssess.Core/Interfaces/IAuditLogger.cs
+- [ ] T030b [P] Define IAssessmentQueue interface for async request queuing at src/FitAssess.Core/Interfaces/IAssessmentQueue.cs
 - [ ] T031 Implement CosmosRepository<T> base class with tenant-scoped queries at src/FitAssess.Infrastructure/Cosmos/CosmosRepository.cs
 - [ ] T032 [P] Implement TenantContext middleware that extracts tenant ID from JWT claims at src/FitAssess.Api/Middleware/TenantContextMiddleware.cs
 - [ ] T033 [P] Implement CorrelationIdMiddleware for request tracing at src/FitAssess.Api/Middleware/CorrelationIdMiddleware.cs
@@ -64,6 +66,9 @@
 - [ ] T036 [P] Implement request validation filter using FluentValidation at src/FitAssess.Api/Filters/ValidationFilter.cs
 - [ ] T037 [P] Implement rate limiting middleware per tenant tier at src/FitAssess.Api/Middleware/RateLimitingMiddleware.cs
 - [ ] T038 Configure OpenTelemetry (traces, metrics, logs) export to Azure Monitor at src/FitAssess.Api/Program.cs
+- [ ] T038a Implement AuditLogger service writing immutable audit entries (model version, shopper ref, tenant, timestamp) to dedicated Cosmos container at src/FitAssess.Infrastructure/Cosmos/AuditLogger.cs
+- [ ] T038b Configure Azure App Configuration feature flag integration for progressive rollouts at src/FitAssess.Infrastructure/Configuration/FeatureFlagService.cs
+- [ ] T038c Implement AssessmentQueueService using Azure Service Bus for async request queuing under high load at src/FitAssess.Infrastructure/Messaging/AssessmentQueueService.cs
 - [ ] T039 [P] Implement BlobStorageService with transient upload and auto-purge at src/FitAssess.Infrastructure/BlobStorage/BlobStorageService.cs
 - [ ] T040 [P] Configure Aspire AppHost with Cosmos DB, Blob Storage, and API references at src/FitAssess.AppHost/Program.cs
 - [ ] T041 Implement health check endpoint with Cosmos DB, Blob, and AI model checks at src/FitAssess.Api/Controllers/HealthController.cs
@@ -78,7 +83,11 @@
 
 **Independent Test**: POST /api/v1/assessments with a photo and garment ID returns a structured fit response with confidence score
 
+**TDD Enforcement**: For each implementation task below, write the corresponding unit/integration test FIRST (Red), then implement to pass (Green), then refactor. Test tasks (T059–T062) define the expected behavior; write them before T042–T056.
+
 - [ ] T042 [US1] Implement ImageValidator service (format, size, quality checks) at src/FitAssess.Services/ImageProcessing/ImageValidator.cs
+- [ ] T042a [US1] Implement minor/age detection logic in ImageValidator — reject images detected as under-16 with age-appropriate message at src/FitAssess.Services/ImageProcessing/ImageValidator.cs
+- [ ] T042b [US1] Implement multi-person detection logic in ImageValidator — reject images with multiple people at src/FitAssess.Services/ImageProcessing/ImageValidator.cs
 - [ ] T043 [US1] Implement AzureAIVisionClient wrapper for body landmark extraction at src/FitAssess.Infrastructure/AzureAI/AzureAIVisionClient.cs
 - [ ] T044 [US1] Implement BodyMeasurementExtractor that converts AI landmarks to measurements at src/FitAssess.Services/ImageProcessing/BodyMeasurementExtractor.cs
 - [ ] T045 [US1] Implement FitComparisonEngine with tolerance band logic per fit type at src/FitAssess.Services/Assessment/FitComparisonEngine.cs
@@ -92,6 +101,8 @@
 - [ ] T053 [US1] Implement GarmentRepository (Cosmos DB) for garment lookups at src/FitAssess.Infrastructure/Cosmos/GarmentRepository.cs
 - [ ] T054 [US1] Add graceful degradation logic when AI model is unavailable in FitAssessmentService at src/FitAssess.Services/Assessment/FitAssessmentService.cs
 - [ ] T055 [US1] Add low-confidence threshold check (< 70%) with disclaimer in response at src/FitAssess.Services/Assessment/FitAssessmentService.cs
+- [ ] T055a [US1] Integrate AuditLogger into FitAssessmentService — log every assessment with model version, tenant, shopper ref, and correlation ID at src/FitAssess.Services/Assessment/FitAssessmentService.cs
+- [ ] T055b [US1] Implement queued assessment flow — when load exceeds threshold, enqueue via AssessmentQueueService and return HTTP 202 with poll URL at src/FitAssess.Services/Assessment/FitAssessmentService.cs
 - [ ] T056 [US1] Wire up dependency injection for US1 services in Program.cs at src/FitAssess.Api/Program.cs
 - [ ] T057 [US1] Create sample garment test fixture data for integration tests at tests/FitAssess.Api.Tests/Fixtures/SampleGarments.cs
 - [ ] T058 [US1] Create sample photo test fixture (valid full-body image) at tests/FitAssess.Api.Tests/Fixtures/sample-photo.jpg
@@ -107,6 +118,8 @@
 **Goal**: A returning shopper can save their body measurements and get fit recommendations without re-uploading a photo
 
 **Independent Test**: Complete assessment via US1 with saveProfile=true, then POST /api/v1/assessments/by-profile returns fit result using stored measurements
+
+**TDD Enforcement**: Write T072–T073 test expectations FIRST, then implement T063–T071.
 
 - [ ] T063 [US2] Implement ProfileRepository (Cosmos DB) for shopper profiles at src/FitAssess.Infrastructure/Cosmos/ProfileRepository.cs
 - [ ] T064 [US2] Implement ShopperProfileService with save, get, and delete operations at src/FitAssess.Services/Profiles/ShopperProfileService.cs
@@ -128,6 +141,8 @@
 
 **Independent Test**: API endpoints return correct OpenAPI schema; auth rejection returns 401 with no data leakage; rate limiting responds with 429 and Retry-After header
 
+**TDD Enforcement**: Write T079–T081 contract and integration tests FIRST, then implement T074–T078.
+
 - [ ] T074 [US3] Configure Swashbuckle for OpenAPI 3.x generation with Entra ID security scheme at src/FitAssess.Api/Program.cs
 - [ ] T075 [US3] Add XML documentation comments to all controller actions for OpenAPI descriptions at src/FitAssess.Api/Controllers/*.cs
 - [ ] T076 [US3] Implement API versioning (v1) using ASP.NET Core API Versioning package at src/FitAssess.Api/Program.cs
@@ -145,6 +160,8 @@
 
 **Independent Test**: POST /api/v1/garments creates a garment; POST /api/v1/garments/batch bulk-creates; GET /api/v1/garments lists with pagination
 
+**TDD Enforcement**: Write T089–T090 tests FIRST, then implement T082–T088.
+
 - [ ] T082 [US4] Implement GarmentService with upsert, batch upsert, and list operations at src/FitAssess.Services/Garments/GarmentService.cs
 - [ ] T083 [US4] Implement GarmentsController with POST, GET, and batch endpoints at src/FitAssess.Api/Controllers/GarmentsController.cs
 - [ ] T084 [US4] Implement GarmentUpsertRequest DTO with FluentValidation rules at src/FitAssess.Api/Models/GarmentUpsertRequest.cs
@@ -161,18 +178,22 @@
 
 **Purpose**: Infrastructure as Code, CI/CD, observability dashboards, and production readiness
 
+**Note**: Tasks T098 configures Program.cs-related settings (Swagger, versioning, CORS) that build incrementally on earlier Phase 2 work in T034/T038. These are additive registrations in the same file — not duplications.
+
 - [ ] T091 Create root Bicep template with module references at infra/main.bicep
 - [ ] T092 [P] Create Bicep module for Azure Container Apps environment at infra/modules/container-app.bicep
 - [ ] T093 [P] Create Bicep module for Cosmos DB account with hierarchical partition keys at infra/modules/cosmos-db.bicep
 - [ ] T094 [P] Create Bicep module for Storage account (blob lifecycle policy) at infra/modules/storage.bicep
 - [ ] T095 [P] Create Bicep module for Key Vault at infra/modules/key-vault.bicep
 - [ ] T096 [P] Create Bicep module for Entra ID app registration at infra/modules/entra-app.bicep
+- [ ] T096a [P] Create Bicep module for Azure Service Bus namespace and queue at infra/modules/service-bus.bicep
 - [ ] T097 Create dev/staging/prod parameter files at infra/parameters/dev.json, staging.json, prod.json
-- [ ] T098 Create GitHub Actions CI workflow (build, test, scan, deploy) at .github/workflows/ci.yml
+- [ ] T098 Create GitHub Actions CI workflow (build, test, scan, container sign, deploy) at .github/workflows/ci.yml — include container image scanning (Trivy) and signing (Notation/cosign) steps
 - [ ] T099 [P] Create Dockerfile for FitAssess.Api at src/FitAssess.Api/Dockerfile
 - [ ] T100 [P] Create .dockerignore at root .dockerignore
 - [ ] T101 [P] Configure Azure Monitor alert rules for SLO violations in Bicep at infra/modules/alerts.bicep
 - [ ] T102 Write NBomber load test simulating 500 concurrent assessments at tests/FitAssess.Load.Tests/ConcurrentAssessmentLoadTest.cs
+- [ ] T102a Write end-to-end smoke tests validating the full user journey (upload → assess → profile save → assess-by-profile) against staging environment at tests/FitAssess.Api.Tests/E2E/SmokeTests.cs
 - [ ] T103 Create README.md with project overview, setup instructions, and architecture diagram at README.md
 
 ---
