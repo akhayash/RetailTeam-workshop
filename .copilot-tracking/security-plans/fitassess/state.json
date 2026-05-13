@@ -1,0 +1,32 @@
+{
+  "projectSlug": "fitassess",
+  "securityPlanFile": ".copilot-tracking/security-plans/fitassess/security-plan.md",
+  "currentPhase": 2,
+  "entryMode": "capture",
+  "bucketsCompleted": ["infra", "devops/platform-ops", "build", "messaging", "data", "web/UI/reporting", "identity/auth", "ai-ml"],
+  "standardsMapped": [],
+  "riskSurfaceStarted": false,
+  "handoffGenerated": { "ado": false, "github": false },
+  "referencesProcessed": [
+    "specs/001-clothing-fit-assessment/spec.md",
+    "specs/001-clothing-fit-assessment/plan.md",
+    "specs/001-clothing-fit-assessment/data-model.md",
+    "specs/001-clothing-fit-assessment/research.md",
+    "specs/001-clothing-fit-assessment/contracts/openapi.yaml"
+  ],
+  "nextActions": [
+    "Collect answers to Phase 1 scoping questions (Q1-Q5)",
+    "Confirm scope summary with user",
+    "Advance to Phase 2 bucket analysis"
+  ],
+  "userPreferences": { "autonomyTier": "partial" },
+  "raiEnabled": true,
+  "raiScope": "standard",
+  "raiTier": "standard",
+  "raiPlannerDispatched": false,
+  "aiComponents": [
+    "Azure AI Vision (image quality validation, person detection)",
+    "Azure AI Custom Vision / Azure ML (body landmark extraction)",
+    "Anthropometric measurement derivation from ML landmarks"
+  ]
+}
