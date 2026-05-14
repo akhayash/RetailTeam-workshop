@@ -28,6 +28,14 @@ data/processed/**
 !data/raw/SOURCES.md
 !data/raw/front/.gitkeep
 !data/raw/side/.gitkeep
+
+# Snapshots from the Gesture Control demo — may contain real people
+output/snapshots/
+
+# Branding assets — third-party logos must not be committed (trademark)
+app/assets/*
+!app/assets/README.md
+!app/assets/.gitkeep
 !data/processed/.gitkeep
 # Garment measurement CSVs are OK to commit (no PII)
 !data/garment/**

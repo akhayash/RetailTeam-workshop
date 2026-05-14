@@ -123,9 +123,11 @@ Open the `.ipynb` files in VS Code and select the **fit-signal-poc** kernel.
 
 ---
 
-## 4. MediaPipe Pose Landmarker model
+## 4. MediaPipe models
 
-Download the *heavy* Pose Landmarker model into `models/` once:
+Download the MediaPipe `.task` model files into `models/` once.
+
+### 4.1 Pose Landmarker (required)
 
 - Reference: <https://ai.google.dev/edge/mediapipe/solutions/vision/pose_landmarker#models>
 - Direct download (heavy / float16):
@@ -138,16 +140,44 @@ Invoke-WebRequest `
   -OutFile "models/pose_landmarker_heavy.task"
 ```
 
+### 4.2 Gesture Recognizer (required for the Gesture Control demo)
+
+- Reference: <https://ai.google.dev/edge/mediapipe/solutions/vision/gesture_recognizer>
+- Direct download (float16):
+  <https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/latest/gesture_recognizer.task>
+
+```pwsh
+Invoke-WebRequest `
+  -Uri "https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/latest/gesture_recognizer.task" `
+  -OutFile "models/gesture_recognizer.task"
+```
+
+This model recognizes 7 built-in gestures:
+`Closed_Fist`, `Open_Palm`, `Pointing_Up`, `Thumb_Down`, `Thumb_Up`,
+`Victory`, `ILoveYou` (plus `None`).
+
 ---
 
-## 5. Streamlit live camera demo
+## 5. Streamlit live camera demo — *Virtual Mirror*
 
 A retail-style live demo that combines pose detection, fit signal
-estimation and rule-based size recommendation in real time.
+estimation and rule-based size recommendation in real time. Branded
+as **Virtual Mirror** for the Walmart customer demo.
 
 ```pwsh
 uv run streamlit run app/streamlit_app.py
 ```
+
+### Walmart branding (optional logo)
+
+The brand bar shows a Walmart logo when `app/assets/walmart_logo.png` is
+present and falls back to a styled "Walmart ✨" text mark otherwise.
+
+- Place an approved PNG (transparent background, ~512 px wide) at
+  `app/assets/walmart_logo.png`.
+- The file is **gitignored on purpose** — third-party trademarks must not
+  be committed. See [`app/assets/README.md`](./app/assets/README.md).
+- Walmart brand colors used in the UI: `#0071CE` (blue), `#FFC220` (yellow).
 
 - The browser opens at `http://localhost:8501`.
 - Click **START** on the left panel to enable the webcam (the browser will
@@ -167,6 +197,26 @@ uv run streamlit run app/streamlit_app.py
 > close-fitting clothes, plain background.
 > The output is a *fit signal* (medium confidence), not a tailor-grade
 > measurement.
+
+### 5.1 Hands-free gestures (built-in)
+
+The Virtual Mirror runs `Pose Landmarker` and `Gesture Recognizer` on the
+same webrtc stream. Hold a gesture for ~0.6 s (configurable from the
+sidebar) to trigger an action without touching the screen.
+
+| Gesture | Action |
+|---|---|
+| 👍 `Thumb_Up`    | Lock the current recommended size |
+| 👎 `Thumb_Down`  | Unlock |
+| ✋ `Open_Palm`    | Cycle to the next garment in the catalog |
+| ✊ `Closed_Fist`  | Save a snapshot to `output/snapshots/` |
+| ☝️ `Pointing_Up` | Rotate fit preference (tight → regular → loose) |
+| ✌️ `Victory`     | Clear pose history (reset smoothing) |
+
+A short cooldown (default 1.2 s) prevents accidental re-triggers when the
+same gesture is held continuously. The on-camera HUD shows the live
+gesture label and confidence; a toast above the recommendation card
+confirms each action.
 
 ---
 
