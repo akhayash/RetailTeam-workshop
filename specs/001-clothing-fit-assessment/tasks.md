@@ -24,7 +24,7 @@
 - [ ] T005 Create VirtualMirror.Api web project with ASP.NET Core 8.0 at src/VirtualMirror.Api/VirtualMirror.Api.csproj
 - [ ] T006 Create VirtualMirror.AppHost Aspire orchestrator project at src/VirtualMirror.AppHost/VirtualMirror.AppHost.csproj
 - [ ] T007 [P] Create test projects (xUnit) at tests/VirtualMirror.Core.Tests, tests/VirtualMirror.Services.Tests, tests/VirtualMirror.Api.Tests, tests/VirtualMirror.Infrastructure.Tests, tests/VirtualMirror.Contract.Tests, tests/VirtualMirror.Load.Tests
-- [ ] T008 [P] Add NuGet dependencies: Azure.AI.OpenAI, Azure.AI.Vision.ImageAnalysis, Azure.AI.ContentSafety, Azure.Identity, Microsoft.Azure.Cosmos, Azure.Storage.Blobs, Swashbuckle.AspNetCore to appropriate projects
+- [ ] T008 [P] Add NuGet dependencies: Azure.AI.OpenAI, Azure.AI.Inference, Azure.AI.ContentSafety, Azure.Identity, Microsoft.Azure.Cosmos, Azure.Storage.Blobs, Swashbuckle.AspNetCore to appropriate projects
 - [ ] T009 [P] Add test NuGet dependencies: xUnit, FluentAssertions, NSubstitute, Microsoft.AspNetCore.Mvc.Testing, Verify.Xunit, NBomber to test projects
 - [ ] T010 [P] Configure Directory.Build.props for shared build settings (nullable, implicit usings, TreatWarningsAsErrors) at src/Directory.Build.props
 - [ ] T011 [P] Create .editorconfig for C# coding conventions at root .editorconfig
@@ -89,9 +89,9 @@
 
 - [ ] T042 [US1] Implement ImageValidator service (format, size, MIME type validation, luminance check, bounding box coverage ≥ 70% frame height) at src/VirtualMirror.Services/ImageProcessing/ImageValidator.cs
 - [ ] T042a [US1] Implement minor/age detection using Azure AI Content Safety in ImageValidator — reject images detected as under-16 with age-appropriate message at src/VirtualMirror.Services/ImageProcessing/ImageValidator.cs
-- [ ] T042b [US1] Implement multi-person detection using Azure AI Vision 4.0 People Detection in ImageValidator — reject images with multiple people at src/VirtualMirror.Services/ImageProcessing/ImageValidator.cs
+- [ ] T042b [US1] Implement multi-person detection using Florence-2 on Azure AI Foundry in ImageValidator — reject images with multiple people at src/VirtualMirror.Services/ImageProcessing/ImageValidator.cs
 - [ ] T042c [US1] Integrate malware scanning for uploaded images (Microsoft Defender for Storage or ClamAV sidecar) before AI processing at src/VirtualMirror.Services/ImageProcessing/ImageValidator.cs
-- [ ] T043 [US1] Implement AzureAIVisionClient wrapper for people detection (bounding box, multi-person check) at src/VirtualMirror.Infrastructure/AzureAI/AzureAIVisionClient.cs
+- [ ] T043 [US1] Implement FlorenceVisionClient wrapper for people detection (bounding box, multi-person check) at src/VirtualMirror.Infrastructure/AzureAI/FlorenceVisionClient.cs
 - [ ] T043a [US1] Implement ContentSafetyClient wrapper for Azure AI Content Safety (minor detection, inappropriate content) at src/VirtualMirror.Infrastructure/AzureAI/ContentSafetyClient.cs
 - [ ] T043b [US1] Implement AzureOpenAIMeasurementClient wrapper for GPT-5.2 Vision native structured output — sends photo + height, receives body measurements JSON at src/VirtualMirror.Infrastructure/AzureAI/AzureOpenAIMeasurementClient.cs
 - [ ] T043c [US1] Create and version-control the measurement extraction prompt template (system + user prompt with structured output schema) at src/VirtualMirror.Infrastructure/AzureAI/Prompts/MeasurementExtractionPrompt.cs

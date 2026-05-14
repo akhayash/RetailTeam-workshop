@@ -67,7 +67,7 @@ graph TB
     end
 
     subgraph Infrastructure Layer - VirtualMirror.Infrastructure
-        VisionClient[AzureAIVisionClient<br/>people detection]
+        VisionClient[FlorenceVisionClient<br/>people detection]
         SafetyClient[ContentSafety Client]
         OpenAIClient[AzureOpenAI MeasurementClient]
         CosmosRepo[CosmosRepository T]
@@ -105,7 +105,7 @@ flowchart TB
     Input[Photo + HeightCm]
 
     subgraph "TIER 1 — Validation (parallel)"
-        Vision[Azure AI Vision 4.0<br/>people detection · bounding box · multi-person reject]
+        Vision[Florence-2 on Azure AI Foundry<br/>people detection · bounding box · multi-person reject]
         Safety[Azure AI Content Safety<br/>minor/age detection · inappropriate content]
         Defender[Defender for Storage<br/>malware scan]
         Local[Local Checks<br/>MIME type · size ≤10MB · luminance ≥40]

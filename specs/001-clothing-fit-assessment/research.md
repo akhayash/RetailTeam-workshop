@@ -38,9 +38,11 @@ Modern reference architectures and design patterns emerging in the retail indust
 
 ## R1: Body Measurement Extraction from Photos
 
-**Decision**: Three-tier Microsoft AI pipeline — Azure AI Vision (validation) + Azure OpenAI GPT-4o Vision (measurement extraction) + Azure AI Content Safety (content moderation)
+> **⚠️ SUPERSEDED**: This research informed [ADR-001](../../docs/architecture/decision-register.md#adr-001-body-measurement-extraction-approach). The final architecture uses **Florence-2 on Azure AI Foundry** (Tier 1, replacing Azure AI Vision 4.0) and **Azure OpenAI GPT-5.2 Vision** (Tier 2, replacing GPT-4o which retired March 2026). See the decision register and [solution-architecture.md](../../docs/architecture/solution-architecture.md) for the current design.
 
-**Rationale**: Azure AI Vision 4.0 provides people detection (bounding boxes, multi-person detection) but does NOT provide body landmark extraction or pose estimation **[Verified]** — confirmed via Azure AI Vision 4.0 API documentation (May 2026). Azure OpenAI GPT-4o Vision (Microsoft's strategic multimodal model) can analyze a full-body photo and estimate body proportions relative to a known height reference, returning structured JSON output with measurement estimates **[Hypothesis]** — accuracy (±2–4 cm) inferred from analogous multimodal tasks; requires validation with ground-truth measurement datasets. Azure AI Content Safety provides minor detection and inappropriate content filtering **[Verified]** — GA feature. All three are first-party Microsoft services integrated via Azure AI Foundry.
+**Decision**: Three-tier Microsoft AI pipeline — Florence-2 on Azure AI Foundry (validation) + Azure OpenAI GPT-5.2 Vision (measurement extraction) + Azure AI Content Safety (content moderation)
+
+**Rationale**: Azure AI Vision 4.0 provides people detection (bounding boxes, multi-person detection) but does NOT provide body landmark extraction or pose estimation **[Verified]** — confirmed via Azure AI Vision 4.0 API documentation (May 2026). This led to its replacement by Florence-2 on Azure AI Foundry (per ADR-001), which provides equivalent detection capabilities within the AI Foundry ecosystem without the September 2028 retirement risk. Azure OpenAI GPT-5.2 Vision (successor to GPT-4o, retired March 2026) provides native structured output with JSON schema validation for measurement extraction, using mandatory height input as scale reference **[Hypothesis]** — accuracy (±2–4 cm under validation, expected improvement with GPT-5.2) inferred from analogous multimodal tasks; requires validation with ground-truth measurement datasets. Azure AI Content Safety provides minor detection and inappropriate content filtering **[Verified]** — GA feature. All services are first-party Microsoft, integrated via Azure AI Foundry.
 
 **Why not Azure AI Vision alone**: Azure AI Vision 4.0 only returns people bounding boxes and confidence scores — it cannot extract body landmarks, skeleton joints, or anthropometric measurements. Azure Kinect Body Tracking (32-joint skeleton) requires physical depth-camera hardware and is not available as a cloud API. Azure AI Vision is also being deprecated (retiring September 2028).
 
@@ -53,35 +55,35 @@ Modern reference architectures and design patterns emerging in the retail indust
 **Architecture (three tiers)**:
 
 ```text
-Tier 1 — Validation (Azure AI Vision 4.0):
+Tier 1 — Validation (Florence-2 on Azure AI Foundry):
   Photo → People Detection → multi-person rejection, bounding box quality check
   Photo → Azure AI Content Safety → minor detection, inappropriate content filter
 
-Tier 2 — Measurement Extraction (Azure OpenAI GPT-4o Vision):
-  Photo + Height (cm) → GPT-4o structured output (JSON mode) →
+Tier 2 — Measurement Extraction (Azure OpenAI GPT-5.2 Vision):
+  Photo + Height (cm) → GPT-5.2 native structured output (JSON schema) →
     { shoulderWidth, chestCircumference, waistCircumference,
       hipCircumference, inseam, armLength, confidence }
   Height is the mandatory scale reference (no absolute measurements without it)
 
 Tier 3 — Future Enhancement (Azure AI Foundry, v2):
   Custom SMPL body model trained on measurement datasets →
-    Higher accuracy (±1-2cm vs ±2-4cm from GPT-4o)
+    Higher accuracy (±1-2cm vs ±2-4cm from GPT-5.2)
     Deterministic output (vs non-deterministic LLM)
     Deployed as Azure AI Foundry managed endpoint
 ```
 
 **Key design decisions**:
 1. **Mandatory height input** **[Verified]**: From a 2D photo alone, it is impossible to determine absolute body dimensions. Height (user-provided in cm) serves as the scale reference for all other measurements.
-2. **Structured output mode** **[Verified]**: Azure OpenAI GPT-4o supports JSON mode with response format schema, ensuring consistent measurement output format.
-3. **Confidence calibration** **[Hypothesis]**: GPT-4o's self-reported confidence is calibrated against known measurement datasets during integration testing. Low-confidence results (< 70%) trigger the fallback path. Calibration accuracy TBD.
-4. **Model versioning** **[Verified]**: Each GPT-4o model deployment is version-pinned (e.g., `gpt-4o-2024-08-06`) and tracked per assessment for audit traceability.
+2. **Structured output mode** **[Verified]**: Azure OpenAI GPT-5.2 supports native structured output with JSON schema validation, ensuring consistent measurement output format.
+3. **Confidence calibration** **[Hypothesis]**: GPT-5.2's self-reported confidence is calibrated against known measurement datasets during integration testing. Low-confidence results (< 70%) trigger the fallback path. Calibration accuracy TBD.
+4. **Model versioning** **[Verified]**: Each GPT-5.2 model deployment is version-pinned and tracked per assessment for audit traceability.
 5. **Prompt engineering** **[Verified]**: The measurement extraction prompt is version-controlled, tested, and treated as a code artifact — not an ad-hoc string.
 
 **Implementation approach**:
-1. Use Azure AI Vision 4.0 for image validation (people detection, multi-person rejection, bounding box quality)
+1. Use Florence-2 on Azure AI Foundry for image validation (people detection, multi-person rejection, bounding box quality)
 2. Use Azure AI Content Safety for minor/age detection and inappropriate content filtering
-3. Use Azure OpenAI GPT-4o Vision with structured output for body measurement extraction, using height as scale reference
-4. Derive confidence from GPT-4o's self-assessment + image quality metrics from Tier 1
+3. Use Azure OpenAI GPT-5.2 Vision with native structured output for body measurement extraction, using height as scale reference
+4. Derive confidence from GPT-5.2's self-assessment + image quality metrics from Tier 1
 5. FitComparisonEngine compares extracted measurements against garment data (unchanged — deterministic delta calculation)
 6. v2 path: Deploy custom SMPL body model on Azure AI Foundry for improved accuracy
 
@@ -110,10 +112,10 @@ Tier 3 — Future Enhancement (Azure AI Foundry, v2):
 
 **Decision**: Azure Blob Storage with lifecycle management (auto-delete after 60 seconds) + in-memory streaming
 
-**Rationale**: Images must be uploaded to a temporary location for AI processing. Both Azure AI Vision (people detection) and Azure OpenAI GPT-4o Vision (measurement extraction) accept image byte streams or URLs **[Verified]** — both services accept byte arrays. Using Azure Blob Storage with a 1-minute lifecycle policy ensures automatic purging **[Verified]** — Blob Storage lifecycle management is GA. For images under 4 MB, direct byte stream to the AI endpoints avoids blob storage entirely **[Hypothesis]** — 4 MB threshold based on estimated memory pressure; validate under load testing.
+**Rationale**: Images must be uploaded to a temporary location for AI processing. Both Florence-2 (people detection) and Azure OpenAI GPT-5.2 Vision (measurement extraction) accept image byte streams or URLs **[Verified]** — both services accept byte arrays. Using Azure Blob Storage with a 1-minute lifecycle policy ensures automatic purging **[Verified]** — Blob Storage lifecycle management is GA. For images under 4 MB, direct byte stream to the AI endpoints avoids blob storage entirely **[Hypothesis]** — 4 MB threshold based on estimated memory pressure; validate under load testing.
 
 **Alternatives considered**:
-- **In-memory only**: Ideal for privacy but large images (up to 10 MB) risk memory pressure under concurrent load when streamed to multiple AI services (Vision + GPT-4o + Content Safety). Hybrid approach chosen.
+- **In-memory only**: Ideal for privacy but large images (up to 10 MB) risk memory pressure under concurrent load when streamed to multiple AI services (Florence-2 + GPT-5.2 + Content Safety). Hybrid approach chosen.
 - **Azure Queue + background processing**: Adds latency and complexity. Rejected — synchronous processing meets the 5-second SLA.
 - **Disk-based temp files in container**: Ephemeral but harder to audit and purge reliably. Rejected.
 

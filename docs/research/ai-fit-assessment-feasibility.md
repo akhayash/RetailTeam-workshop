@@ -3,6 +3,8 @@
 **Date**: 2026-05-13
 **Purpose**: Evaluate the technical feasibility, industry success rates, and risks of using AI/ML for clothing fit assessment from shopper photos.
 
+> **⚠️ NOTE**: This feasibility study informed [ADR-001](../architecture/decision-register.md#adr-001-body-measurement-extraction-approach). The final architecture adopted **Florence-2 on Azure AI Foundry** (Tier 1 validation, replacing Azure AI Vision 4.0) and **Azure OpenAI GPT-5.2 Vision** (Tier 2 extraction, replacing GPT-4o which retired March 2026). See the [solution architecture](../architecture/solution-architecture.md) for the current design.
+
 ---
 
 ## Executive Summary

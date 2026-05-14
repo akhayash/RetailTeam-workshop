@@ -129,8 +129,8 @@ Logical layering inside the .NET 8 Web API following Clean Architecture.
 |  :--- Infrastructure Layer (VirtualMirror.Infrastructure) ---------:   |
 |  :                                                              :  |
 |  :  +--------------------+ +-------------------+               :   |
-|  :  | AzureAIVisionClient| | ContentSafety     |               :   |
-|  :  | (people detection) | | Client            |               :   |
+|  :  | FlorenceVision     | | ContentSafety     |               :   |
+|  :  | Client (Foundry)   | | Client            |               :   |
 |  :  +--------------------+ +-------------------+               :   |
 |  :  +--------------------+ +-------------------+               :   |
 |  :  | AzureOpenAI        | | CosmosRepository  |               :   |
@@ -170,7 +170,7 @@ The three tiers of AI processing with current (v1) and future (v2) services.
 |  TIER 1  ----  Validation (parallel)                            |
 |                                                                 |
 |  +----------------------+        +--------------------------+   |
-|  | Azure AI Vision 4.0  |        | Azure AI Content Safety  |   |
+|  | Florence-2 (Foundry) |        | Azure AI Content Safety  |   |
 |  | * people detection   |        | * minor/age detection    |   |
 |  | * bounding box check |        | * inappropriate content  |   |
 |  | * multi-person reject|        | * moderation             |   |
@@ -439,7 +439,7 @@ Zero-trust topology with private endpoints and managed identity.
 |           |         |          |          |                      |
 |  :--- Azure AI Plane (managed identity auth) ---------:          |
 |  :  +-----------+ +-------------+ +------------------+ :         |
-|  :  | OpenAI    | | AI Vision   | | Content Safety   | :         |
+|  :  | OpenAI    | | Florence-2  | | Content Safety   | :         |
 |  :  | (MI auth) | | (MI auth)   | | (MI auth)        | :         |
 |  :  +-----------+ +-------------+ +------------------+ :         |
 |  :-----------------------------------------------------:         |
@@ -650,7 +650,7 @@ Reference: this is the v1 implementation. See [solution-architecture.md](solutio
 |                             v          v          v              |
 |  +------------------+  +----------+ +-------+ +--------------+   |
 |  | Azure AI Plane   |  | Cosmos DB| | Blob  | | Service Bus  |   |
-|  | * Vision (T1)    |  | (multi-  | | (60s  | | (async queue)|   |
+|  | * Florence-2(T1) |  | (multi-  | | (60s  | | (async queue)|   |
 |  | * Content Safety |  | tenant)  | | TTL)  | |              |   |
 |  | * OpenAI GPT-5.2 |  +----------+ +-------+ +--------------+   |
 |  | * AI Foundry(v2) |                                            |
