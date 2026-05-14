@@ -1,14 +1,14 @@
 # Template Review — Virtual-Mirror-SOW.md Against SOW-Agile v1.3.2
 
-| Field | Value |
-|-------|-------|
-| **Document under review** | [docs/Virtual-Mirror-SOW.md](../../Virtual-Mirror-SOW.md) v0.2.0 (2026-05-14, Draft for internal review) |
-| **Template reference** | [docs/Inputs/SOW-Agile_v1.3.2.md](../../Inputs/SOW-Agile_v1.3.2.md), converted from `SOW-Agile_v1.3.2(WW)(English)(May2026).docx` |
-| **Review scope** | Structural fit to the Microsoft Agile Sprint Delivery SOW template, fixed-capacity / variable-scope language, delivery approach, testing and defect remediation, sprint and project completion, project organization, governance, exhibits, technology / environment requirements, customer responsibilities, project assumptions, and template hygiene. |
-| **Reviewer** | Microsoft ISD — SOW Template Review |
-| **Review date** | 2026-05-14 |
-| **Verdict** | **Conditional Pass.** The SOW is materially stronger than the base template in traceability, delivery planning, technical specificity, and risk articulation. However, several template-alignment issues should be corrected before signature, especially the work-products acceptance model, completion language, section mapping to the Agile template, technology / environment tables, and template-required AI usage assumptions. |
-| **Cross-references** | [technical-review.md](technical-review.md) · [compliance-and-security-review.md](compliance-and-security-review.md) |
+| Field                     | Value                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Document under review** | [docs/Virtual-Mirror-SOW.md](../../Virtual-Mirror-SOW.md) v0.2.0 (2026-05-14, Draft for internal review)                                                                                                                                                                                                                                                                                                                               |
+| **Template reference**    | [docs/Inputs/SOW-Agile_v1.3.2.md](../../Inputs/SOW-Agile_v1.3.2.md), converted from `SOW-Agile_v1.3.2(WW)(English)(May2026).docx`                                                                                                                                                                                                                                                                                                      |
+| **Review scope**          | Structural fit to the Microsoft Agile Sprint Delivery SOW template, fixed-capacity / variable-scope language, delivery approach, testing and defect remediation, sprint and project completion, project organization, governance, exhibits, technology / environment requirements, customer responsibilities, project assumptions, and template hygiene.                                                                               |
+| **Reviewer**              | Microsoft ISD — SOW Template Review                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **Review date**           | 2026-05-14                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **Verdict**               | **Conditional Pass.** The SOW is materially stronger than the base template in traceability, delivery planning, technical specificity, and risk articulation. However, several template-alignment issues should be corrected before signature, especially the work-products acceptance model, completion language, section mapping to the Agile template, technology / environment tables, and template-required AI usage assumptions. |
+| **Cross-references**      | [technical-review.md](technical-review.md) · [compliance-and-security-review.md](compliance-and-security-review.md)                                                                                                                                                                                                                                                                                                                    |
 
 ---
 
@@ -16,47 +16,47 @@
 
 **v0.2.0 delta**: The update improves several template-facing concerns: business objectives are prioritized, MVP cutline arbitration is explicit, plan risks have owners and validation steps, PM / CPdM capacity is reconciled, and a decision-rights RACI was added. The remaining blockers are now narrower but still signature-relevant: fixed-capacity / variable-scope wording, defect remediation over-commitment, formal acceptance language for Agile work products, template technology / environment tables, and May 2026 AI Usage assumptions.
 
-| Severity | Definition | Action |
-|:--------:|------------|--------|
-| **Critical** | Direct conflict with the Agile SOW template's commercial model or creates acceptance / delivery obligations inconsistent with fixed capacity and variable scope. | Must fix before signature. |
-| **High** | Important template requirement or deal-shaping guardrail is missing, ambiguous, or materially altered. | Fix before final-for-signature or obtain RMQA / legal approval. |
-| **Medium** | Template section exists but should be reworked for clearer alignment, cleaner customer expectations, or better reviewability. | Resolve in the next SOW draft. |
-| **Low** | Style, terminology, cross-reference, or template-hygiene issue. | Track for polishing before v1.0.0. |
-| **Informational** | Stronger-than-template practice or optional improvement. | No blocking action. |
+|     Severity      | Definition                                                                                                                                                       | Action                                                          |
+| :---------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+|   **Critical**    | Direct conflict with the Agile SOW template's commercial model or creates acceptance / delivery obligations inconsistent with fixed capacity and variable scope. | Must fix before signature.                                      |
+|     **High**      | Important template requirement or deal-shaping guardrail is missing, ambiguous, or materially altered.                                                           | Fix before final-for-signature or obtain RMQA / legal approval. |
+|    **Medium**     | Template section exists but should be reworked for clearer alignment, cleaner customer expectations, or better reviewability.                                    | Resolve in the next SOW draft.                                  |
+|      **Low**      | Style, terminology, cross-reference, or template-hygiene issue.                                                                                                  | Track for polishing before v1.0.0.                              |
+| **Informational** | Stronger-than-template practice or optional improvement.                                                                                                         | No blocking action.                                             |
 
 ---
 
 ## 2. Findings Summary
 
-| # | Template section | Finding | Severity | SOW section(s) |
-|:-:|------------------|---------|:--------:|----------------|
-| T-1 | Opening SOW / WO paragraph | The SOW does not include the template's standard Work Order anchoring paragraph and party shorthand definitions. | **High** | Header, §1 |
-| T-2 | §1 Project objectives and scope | The SOW uses a custom 23-section structure instead of preserving the template's master section order. | **Medium** | All sections |
-| T-3 | §1.2 Customer desired business objectives | The SOW is strong on business outcomes, but should more explicitly preserve the template's “desired objectives are not fixed scope” language. | **High** | §3.1, Worksheet A |
-| T-4 | §1.3 Targeted scope (Epics) | Work packages are detailed and useful, but they read closer to committed deliverables than variable epics. | **High** | §4, Worksheet B |
-| T-5 | §1.4 Areas out of scope | Out-of-scope coverage is strong, but some default exclusions should be mirrored or intentionally removed with rationale. | **Medium** | §5 |
-| T-6 | §2.1 Delivery overview | Delivery overview mostly aligns, but template key tenets such as automation strategy, zero-downtime deployment, DOR / DOD / ORC / BWBM should be explicitly tied to the SOW. | **Medium** | §6, §10, §11 |
-| T-7 | §2.2 Delivery approach | The SOW's sprint plan is stronger than the template, but customer activities / dependencies are split across sections rather than presented phase-by-phase. | **Medium** | §6, §7, §17 |
-| T-8 | §2.3 Testing and defect remediation | Defect remediation language conflicts with the template's default stance for Agile delivery: P3/P4 are logged, not automatically remediated. | **Critical** | §11.3 |
-| T-9 | §2.4 Sprint completion | The SOW introduces written sign-off for phase and gate deliverables; this conflicts with the template guidance that Agile work products should generally not require formal acceptance. | **Critical** | §15.2, Worksheet B |
-| T-10 | §2.5 Project completion | Completion criteria are close, but planned completion path may imply outcome / go-live acceptance beyond consumed capacity or term expiry. | **High** | §19 |
-| T-11 | §2.6 Timeline | Timeline is well specified, but should repeat the template's “estimate only; capacity drives timeline” language next to the sprint table. | **Medium** | §7 |
-| T-12 | §3.1 Project capacity | Capacity is detailed, but the SOW should state that capacity is defined in the Work Order and changes require change management. | **High** | §7, Worksheet B.2 |
-| T-13 | §3.2 Project staffing | Staffing is more specific than template, but several template roles are renamed or omitted without an explicit mapping. | **Medium** | §8 |
-| T-14 | §3.3 Executive steering committee | ESC exists but membership and authority should be mapped to the template role table. | **Low** | §8, §9, §20.1 |
-| T-15 | §3.4 Product council | Product Council is appropriate, but the base template says to remove it for smaller projects; retain with justification. | **Low** | §9 |
-| T-16 | §3.5 Feature team | Feature-team model is present, but the SOW should explicitly state the autonomous / empowered feature-team principle from the template. | **Low** | §8, §10 |
-| T-17 | §4 Project governance | Governance is strong, but weekly risk reassessment from the template should be reflected consistently. | **Low** | §9, §13 |
-| T-18 | §4.3 Change management process | Change process is concise but omits key template language: no obligation to start changed work until fee / schedule impact is signed. | **High** | §12 |
-| T-19 | §4.4 Escalation path | Escalation path is clear, but differs from the template escalation sequence; acceptable if intentional. | **Low** | §14 |
-| T-20 | §5.1 Initial targeted product backlog | The SOW references the full 147-task backlog; template guidance says stay at epic / feature level. | **High** | §4, §20, Worksheet B |
-| T-21 | §5.2 Customer-specific documentation | Supporting artifacts are listed well, but the SOW should identify which documents are attachments vs. repository references. | **Medium** | §20 |
-| T-22 | §6.1 Definitions and acronyms | Glossary is strong but should be scrubbed for only terms actually used. | **Low** | §20 Glossary |
-| T-23 | §6.2 Technology requirements | The SOW has a stack table but not the template's product / version / ready-by technology requirements table, including GitHub Copilot assumptions. | **High** | §16.1, §18 |
-| T-24 | §6.3 Environment requirements | Environment section lacks the template's columns for location, responsible party for configuration / maintenance, subscription ownership, and ready-by date. | **High** | §16.2 |
-| T-25 | §6.4 Customer responsibilities | Customer responsibilities are strong, but should include general template responsibilities and avoid duplicating project-specific items. | **Medium** | §17 |
-| T-26 | §6.5 Project assumptions | AI Usage assumptions from the May 2026 template are not included; for an AI engagement this is a signature-grade gap. | **Critical** | §18 |
-| T-27 | Template hygiene | The converted template includes instructional text; the final SOW is clean, but review should confirm no template placeholders remain. | **Low** | All sections |
+|  #   | Template section                          | Finding                                                                                                                                                                                 |   Severity   | SOW section(s)       |
+| :--: | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------: | -------------------- |
+| T-1  | Opening SOW / WO paragraph                | The SOW does not include the template's standard Work Order anchoring paragraph and party shorthand definitions.                                                                        |   **High**   | Header, §1           |
+| T-2  | §1 Project objectives and scope           | The SOW uses a custom 23-section structure instead of preserving the template's master section order.                                                                                   |  **Medium**  | All sections         |
+| T-3  | §1.2 Customer desired business objectives | The SOW is strong on business outcomes, but should more explicitly preserve the template's “desired objectives are not fixed scope” language.                                           |   **High**   | §3.1, Worksheet A    |
+| T-4  | §1.3 Targeted scope (Epics)               | Work packages are detailed and useful, but they read closer to committed deliverables than variable epics.                                                                              |   **High**   | §4, Worksheet B      |
+| T-5  | §1.4 Areas out of scope                   | Out-of-scope coverage is strong, but some default exclusions should be mirrored or intentionally removed with rationale.                                                                |  **Medium**  | §5                   |
+| T-6  | §2.1 Delivery overview                    | Delivery overview mostly aligns, but template key tenets such as automation strategy, zero-downtime deployment, DOR / DOD / ORC / BWBM should be explicitly tied to the SOW.            |  **Medium**  | §6, §10, §11         |
+| T-7  | §2.2 Delivery approach                    | The SOW's sprint plan is stronger than the template, but customer activities / dependencies are split across sections rather than presented phase-by-phase.                             |  **Medium**  | §6, §7, §17          |
+| T-8  | §2.3 Testing and defect remediation       | Defect remediation language conflicts with the template's default stance for Agile delivery: P3/P4 are logged, not automatically remediated.                                            | **Critical** | §11.3                |
+| T-9  | §2.4 Sprint completion                    | The SOW introduces written sign-off for phase and gate deliverables; this conflicts with the template guidance that Agile work products should generally not require formal acceptance. | **Critical** | §15.2, Worksheet B   |
+| T-10 | §2.5 Project completion                   | Completion criteria are close, but planned completion path may imply outcome / go-live acceptance beyond consumed capacity or term expiry.                                              |   **High**   | §19                  |
+| T-11 | §2.6 Timeline                             | Timeline is well specified, but should repeat the template's “estimate only; capacity drives timeline” language next to the sprint table.                                               |  **Medium**  | §7                   |
+| T-12 | §3.1 Project capacity                     | Capacity is detailed, but the SOW should state that capacity is defined in the Work Order and changes require change management.                                                        |   **High**   | §7, Worksheet B.2    |
+| T-13 | §3.2 Project staffing                     | Staffing is more specific than template, but several template roles are renamed or omitted without an explicit mapping.                                                                 |  **Medium**  | §8                   |
+| T-14 | §3.3 Executive steering committee         | ESC exists but membership and authority should be mapped to the template role table.                                                                                                    |   **Low**    | §8, §9, §20.1        |
+| T-15 | §3.4 Product council                      | Product Council is appropriate, but the base template says to remove it for smaller projects; retain with justification.                                                                |   **Low**    | §9                   |
+| T-16 | §3.5 Feature team                         | Feature-team model is present, but the SOW should explicitly state the autonomous / empowered feature-team principle from the template.                                                 |   **Low**    | §8, §10              |
+| T-17 | §4 Project governance                     | Governance is strong, but weekly risk reassessment from the template should be reflected consistently.                                                                                  |   **Low**    | §9, §13              |
+| T-18 | §4.3 Change management process            | Change process is concise but omits key template language: no obligation to start changed work until fee / schedule impact is signed.                                                   |   **High**   | §12                  |
+| T-19 | §4.4 Escalation path                      | Escalation path is clear, but differs from the template escalation sequence; acceptable if intentional.                                                                                 |   **Low**    | §14                  |
+| T-20 | §5.1 Initial targeted product backlog     | The SOW references the full 147-task backlog; template guidance says stay at epic / feature level.                                                                                      |   **High**   | §4, §20, Worksheet B |
+| T-21 | §5.2 Customer-specific documentation      | Supporting artifacts are listed well, but the SOW should identify which documents are attachments vs. repository references.                                                            |  **Medium**  | §20                  |
+| T-22 | §6.1 Definitions and acronyms             | Glossary is strong but should be scrubbed for only terms actually used.                                                                                                                 |   **Low**    | §20 Glossary         |
+| T-23 | §6.2 Technology requirements              | The SOW has a stack table but not the template's product / version / ready-by technology requirements table, including GitHub Copilot assumptions.                                      |   **High**   | §16.1, §18           |
+| T-24 | §6.3 Environment requirements             | Environment section lacks the template's columns for location, responsible party for configuration / maintenance, subscription ownership, and ready-by date.                            |   **High**   | §16.2                |
+| T-25 | §6.4 Customer responsibilities            | Customer responsibilities are strong, but should include general template responsibilities and avoid duplicating project-specific items.                                                |  **Medium**  | §17                  |
+| T-26 | §6.5 Project assumptions                  | AI Usage assumptions from the May 2026 template are not included; for an AI engagement this is a signature-grade gap.                                                                   | **Critical** | §18                  |
+| T-27 | Template hygiene                          | The converted template includes instructional text; the final SOW is clean, but review should confirm no template placeholders remain.                                                  |   **Low**    | All sections         |
 
 ---
 
@@ -121,12 +121,12 @@
 
 **Recommended fix**: Revise §11.3 to align with the template:
 
-| Priority | Remediation in scope? |
-|----------|------------------------|
-| P1 | Yes, within available capacity and release gate constraints. |
-| P2 | Yes, prior to production release where possible. |
-| P3 | Logged and prioritized; remediation only if capacity remains or via change request. |
-| P4 | Logged; remediation via backlog prioritization or change request. |
+| Priority | Remediation in scope?                                                               |
+| -------- | ----------------------------------------------------------------------------------- |
+| P1       | Yes, within available capacity and release gate constraints.                        |
+| P2       | Yes, prior to production release where possible.                                    |
+| P3       | Logged and prioritized; remediation only if capacity remains or via change request. |
+| P4       | Logged; remediation via backlog prioritization or change request.                   |
 
 Also clarify whether post-go-live defects are handled only during hypercare and only within business hours unless a managed-services SOW is signed.
 
@@ -209,12 +209,12 @@ The SOW should not remain halfway between both models.
 
 **Recommended fix**: Replace or supplement §16.2 with:
 
-| Environment | Location | Responsible for configuration and maintenance | Subscription ownership | Ready by |
-|-------------|----------|-----------------------------------------------|------------------------|----------|
-| Local dev | Developer workstation / containers | Microsoft | Microsoft | Sprint 1 |
-| dev | Microsoft Azure, East US 2 | Microsoft, with Walmart RBAC | Walmart | Sprint 1 / 2 |
-| staging | Microsoft Azure, East US 2 | Microsoft, with Walmart RBAC | Walmart | Sprint 7 |
-| prod | Microsoft Azure, East US 2 | Walmart owns operations; Microsoft deploys during engagement | Walmart | Sprint 9 |
+| Environment | Location                           | Responsible for configuration and maintenance                | Subscription ownership | Ready by     |
+| ----------- | ---------------------------------- | ------------------------------------------------------------ | ---------------------- | ------------ |
+| Local dev   | Developer workstation / containers | Microsoft                                                    | Microsoft              | Sprint 1     |
+| dev         | Microsoft Azure, East US 2         | Microsoft, with Walmart RBAC                                 | Walmart                | Sprint 1 / 2 |
+| staging     | Microsoft Azure, East US 2         | Microsoft, with Walmart RBAC                                 | Walmart                | Sprint 7     |
+| prod        | Microsoft Azure, East US 2         | Walmart owns operations; Microsoft deploys during engagement | Walmart                | Sprint 9     |
 
 ---
 
@@ -237,35 +237,35 @@ The SOW should not remain halfway between both models.
 
 ## 4. Template Section-by-Section Assessment
 
-| Template section | Fit assessment | Severity | Recommended action |
-|------------------|----------------|:--------:|--------------------|
-| Opening SOW / WO paragraph | Partially covered by Document Control; standard legal paragraph missing. | **High** | Add WO anchoring paragraph and party definitions. |
-| 1.1 Introduction | Strong and customer-specific. | Informational | Keep. |
-| 1.2 Customer desired business objectives | Strong, measurable, and prioritized; needs exact non-fixed-scope language. | **High** | Add template non-guarantee language for objectives and backlog. |
-| 1.3 Targeted scope (Epics) | Strong but too implementation-task oriented. | **High** | Keep WP1–WP8 as epics; demote 147 tasks to non-contractual planning artifact. |
-| 1.4 Areas out of scope | Strong project-specific exclusions. | **Medium** | Mirror key default exclusions or document why omitted. |
-| 2.1 Delivery overview | Mostly aligned. | **Medium** | Tie DOR, DOD, ORC, BWBM, automation, and zero-downtime strategy to SOW sections. |
-| 2.2 Delivery approach | Stronger than template; dependencies split across sections. | **Medium** | Add phase-by-phase Customer activities or cross-reference §17. |
-| 2.3 Testing and defect remediation | Testing is robust; defect commitments exceed template default. | **Critical** | Rework P3/P4 remediation and clarify post-go-live hypercare boundary. |
-| 2.4 Sprint completion | Formal sign-offs conflict with Agile template guidance. | **Critical** | Choose Agile work-product model or add formal acceptance language with RMQA review. |
-| 2.5 Project completion | Close but planned completion path may dominate capacity / term triggers. | **High** | Reorder and reinforce capacity / term completion triggers. |
-| 2.6 Timeline | Detailed and useful. | **Medium** | Repeat “estimate only; capacity drives timeline” immediately above timeline. |
-| 3.1 Project capacity | Detailed estimates; WO capacity link missing. | **High** | State capacity is specified in the WO. |
-| 3.2 Project staffing | Strong role table. | **Medium** | Add mapping for template roles / omitted roles. |
-| 3.3 Executive steering committee | Covered. | Low | Add template role table or cross-reference RACI. |
-| 3.4 Product council | Covered and justified by scope. | Low | State why Product Council is retained despite single feature team. |
-| 3.5 Feature team | Covered. | Low | Add autonomous / empowered feature-team wording. |
-| 4.1 Project communication | Covered. | Low | Keep. |
-| 4.2 Risk and issue management | Covered; monthly vs weekly cadence differs. | Low | Align cadence wording. |
-| 4.3 Change management process | Good but missing no-obligation-to-start changed work. | **High** | Add template clause. |
-| 4.4 Escalation path | Covered. | Low | Keep, or map to template sequence. |
-| 5.1 Initial targeted product backlog | Overly detailed if 147 tasks are treated as SOW backlog. | **High** | Keep only epic / feature level in SOW. |
-| 5.2 Customer-specific documentation | Covered through appendices. | **Medium** | Distinguish attachments from repository references. |
-| 6.1 Definitions and acronyms | Covered. | Low | Scrub unused terms. |
-| 6.2 Technology requirements | Stack present, template table missing. | **High** | Add Product / Version / Ready-by table and GitHub Copilot assumptions. |
-| 6.3 Environment requirements | Environment list present, template columns missing. | **High** | Add Location / Responsible / Subscription / Ready-by columns. |
-| 6.4 Customer responsibilities | Strong. | **Medium** | Add general template responsibilities and avoid duplication. |
-| 6.5 Project assumptions | Strong technical assumptions; template AI Usage missing. | **Critical** | Add AI Usage assumptions. |
+| Template section                         | Fit assessment                                                             |   Severity    | Recommended action                                                                  |
+| ---------------------------------------- | -------------------------------------------------------------------------- | :-----------: | ----------------------------------------------------------------------------------- |
+| Opening SOW / WO paragraph               | Partially covered by Document Control; standard legal paragraph missing.   |   **High**    | Add WO anchoring paragraph and party definitions.                                   |
+| 1.1 Introduction                         | Strong and customer-specific.                                              | Informational | Keep.                                                                               |
+| 1.2 Customer desired business objectives | Strong, measurable, and prioritized; needs exact non-fixed-scope language. |   **High**    | Add template non-guarantee language for objectives and backlog.                     |
+| 1.3 Targeted scope (Epics)               | Strong but too implementation-task oriented.                               |   **High**    | Keep WP1–WP8 as epics; demote 147 tasks to non-contractual planning artifact.       |
+| 1.4 Areas out of scope                   | Strong project-specific exclusions.                                        |  **Medium**   | Mirror key default exclusions or document why omitted.                              |
+| 2.1 Delivery overview                    | Mostly aligned.                                                            |  **Medium**   | Tie DOR, DOD, ORC, BWBM, automation, and zero-downtime strategy to SOW sections.    |
+| 2.2 Delivery approach                    | Stronger than template; dependencies split across sections.                |  **Medium**   | Add phase-by-phase Customer activities or cross-reference §17.                      |
+| 2.3 Testing and defect remediation       | Testing is robust; defect commitments exceed template default.             | **Critical**  | Rework P3/P4 remediation and clarify post-go-live hypercare boundary.               |
+| 2.4 Sprint completion                    | Formal sign-offs conflict with Agile template guidance.                    | **Critical**  | Choose Agile work-product model or add formal acceptance language with RMQA review. |
+| 2.5 Project completion                   | Close but planned completion path may dominate capacity / term triggers.   |   **High**    | Reorder and reinforce capacity / term completion triggers.                          |
+| 2.6 Timeline                             | Detailed and useful.                                                       |  **Medium**   | Repeat “estimate only; capacity drives timeline” immediately above timeline.        |
+| 3.1 Project capacity                     | Detailed estimates; WO capacity link missing.                              |   **High**    | State capacity is specified in the WO.                                              |
+| 3.2 Project staffing                     | Strong role table.                                                         |  **Medium**   | Add mapping for template roles / omitted roles.                                     |
+| 3.3 Executive steering committee         | Covered.                                                                   |      Low      | Add template role table or cross-reference RACI.                                    |
+| 3.4 Product council                      | Covered and justified by scope.                                            |      Low      | State why Product Council is retained despite single feature team.                  |
+| 3.5 Feature team                         | Covered.                                                                   |      Low      | Add autonomous / empowered feature-team wording.                                    |
+| 4.1 Project communication                | Covered.                                                                   |      Low      | Keep.                                                                               |
+| 4.2 Risk and issue management            | Covered; monthly vs weekly cadence differs.                                |      Low      | Align cadence wording.                                                              |
+| 4.3 Change management process            | Good but missing no-obligation-to-start changed work.                      |   **High**    | Add template clause.                                                                |
+| 4.4 Escalation path                      | Covered.                                                                   |      Low      | Keep, or map to template sequence.                                                  |
+| 5.1 Initial targeted product backlog     | Overly detailed if 147 tasks are treated as SOW backlog.                   |   **High**    | Keep only epic / feature level in SOW.                                              |
+| 5.2 Customer-specific documentation      | Covered through appendices.                                                |  **Medium**   | Distinguish attachments from repository references.                                 |
+| 6.1 Definitions and acronyms             | Covered.                                                                   |      Low      | Scrub unused terms.                                                                 |
+| 6.2 Technology requirements              | Stack present, template table missing.                                     |   **High**    | Add Product / Version / Ready-by table and GitHub Copilot assumptions.              |
+| 6.3 Environment requirements             | Environment list present, template columns missing.                        |   **High**    | Add Location / Responsible / Subscription / Ready-by columns.                       |
+| 6.4 Customer responsibilities            | Strong.                                                                    |  **Medium**   | Add general template responsibilities and avoid duplication.                        |
+| 6.5 Project assumptions                  | Strong technical assumptions; template AI Usage missing.                   | **Critical**  | Add AI Usage assumptions.                                                           |
 
 ---
 
@@ -273,49 +273,49 @@ The SOW should not remain halfway between both models.
 
 ### MUST-FIX
 
-| # | Change | Where |
-|:-:|--------|-------|
-| 1 | Add the standard Work Order anchoring paragraph and party shorthand definitions. | Header / §1 |
-| 2 | Add explicit template language that desired objectives and initial backlog are planning inputs, not fixed scope. | §3.1, Worksheet A |
-| 3 | Reframe WP1–WP8 as initial targeted epics / work packages and clarify they remain variable within contracted capacity. | §4, Worksheet B |
-| 4 | Rework defect remediation so P3/P4 are logged and prioritized, not automatically committed for remediation. | §11.3 |
-| 5 | Resolve the formal acceptance conflict: either remove formal deliverable sign-off language or add standard deliverable acceptance language and obtain RMQA / legal review. | §15.2, Worksheet B |
-| 6 | Reorder / clarify project completion criteria so capacity consumed, term expiry, backlog completion, and WO termination are equal completion triggers. | §19 |
-| 7 | State that binding resource capacity is specified in the Work Order and additional capacity requires change management. | §7, Worksheet B.2 |
-| 8 | Add the template no-obligation-to-start-changed-work clause. | §12 |
-| 9 | Treat `tasks.md` 147 tasks as non-contractual implementation planning detail, not SOW-level backlog commitment. | §4, §20, Worksheet B |
-| 10 | Add the template-format technology requirements table with Product / Version / Ready-by columns. | §16 |
-| 11 | Add the template-format environment requirements table with Location / Responsible / Subscription ownership / Ready-by columns. | §16.2 |
-| 12 | Add May 2026 AI Usage assumptions, including AI Tools, telemetry, confidentiality / ownership preservation, and tool removal at engagement conclusion. | §18 |
+|  #  | Change                                                                                                                                                                     | Where                |
+| :-: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+|  1  | Add the standard Work Order anchoring paragraph and party shorthand definitions.                                                                                           | Header / §1          |
+|  2  | Add explicit template language that desired objectives and initial backlog are planning inputs, not fixed scope.                                                           | §3.1, Worksheet A    |
+|  3  | Reframe WP1–WP8 as initial targeted epics / work packages and clarify they remain variable within contracted capacity.                                                     | §4, Worksheet B      |
+|  4  | Rework defect remediation so P3/P4 are logged and prioritized, not automatically committed for remediation.                                                                | §11.3                |
+|  5  | Resolve the formal acceptance conflict: either remove formal deliverable sign-off language or add standard deliverable acceptance language and obtain RMQA / legal review. | §15.2, Worksheet B   |
+|  6  | Reorder / clarify project completion criteria so capacity consumed, term expiry, backlog completion, and WO termination are equal completion triggers.                     | §19                  |
+|  7  | State that binding resource capacity is specified in the Work Order and additional capacity requires change management.                                                    | §7, Worksheet B.2    |
+|  8  | Add the template no-obligation-to-start-changed-work clause.                                                                                                               | §12                  |
+|  9  | Treat `tasks.md` 147 tasks as non-contractual implementation planning detail, not SOW-level backlog commitment.                                                            | §4, §20, Worksheet B |
+| 10  | Add the template-format technology requirements table with Product / Version / Ready-by columns.                                                                           | §16                  |
+| 11  | Add the template-format environment requirements table with Location / Responsible / Subscription ownership / Ready-by columns.                                            | §16.2                |
+| 12  | Add May 2026 AI Usage assumptions, including AI Tools, telemetry, confidentiality / ownership preservation, and tool removal at engagement conclusion.                     | §18                  |
 
 ### SHOULD-FIX
 
-| # | Change | Where |
-|:-:|--------|-------|
-| 1 | Add a template mapping table from the SOW's 23 custom sections to the 6 Agile template master sections. | §1 |
-| 2 | Mirror default out-of-scope categories where applicable or document why each is intentionally omitted. | §5 |
-| 3 | Add DOR, DOD, ORC, BWBM, automation, and zero-downtime deployment references in the delivery overview. | §6, §10, §11 |
-| 4 | Add a phase-by-phase table showing Microsoft activities and key Walmart activities, matching template Table 4. | §6 / §17 |
-| 5 | Add role mapping from template roles to the SOW's named roles, including CPdM / PM, DME, Service Delivery Manager if applicable, and feature-team roles. | §8 |
-| 6 | Align risk review cadence language: template says active issues and risks are monitored and reassessed every week. | §13 |
-| 7 | Identify appendix references that are actual SOW attachments vs. repository-only supporting material. | §20 |
-| 8 | Add general Customer responsibilities from the template without duplicating project-specific C-1 through C-12. | §17 |
+|  #  | Change                                                                                                                                                   | Where        |
+| :-: | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+|  1  | Add a template mapping table from the SOW's 23 custom sections to the 6 Agile template master sections.                                                  | §1           |
+|  2  | Mirror default out-of-scope categories where applicable or document why each is intentionally omitted.                                                   | §5           |
+|  3  | Add DOR, DOD, ORC, BWBM, automation, and zero-downtime deployment references in the delivery overview.                                                   | §6, §10, §11 |
+|  4  | Add a phase-by-phase table showing Microsoft activities and key Walmart activities, matching template Table 4.                                           | §6 / §17     |
+|  5  | Add role mapping from template roles to the SOW's named roles, including CPdM / PM, DME, Service Delivery Manager if applicable, and feature-team roles. | §8           |
+|  6  | Align risk review cadence language: template says active issues and risks are monitored and reassessed every week.                                       | §13          |
+|  7  | Identify appendix references that are actual SOW attachments vs. repository-only supporting material.                                                    | §20          |
+|  8  | Add general Customer responsibilities from the template without duplicating project-specific C-1 through C-12.                                           | §17          |
 
 ### NICE-TO-HAVE
 
-| # | Change | Where |
-|:-:|--------|-------|
-| 1 | Preserve current 23-section format but add parenthetical template section labels to headings. | All headings |
-| 2 | Add a short “Template deviations approved” table for reviewer traceability. | §1 or §20 |
-| 3 | Scrub glossary so it includes only acronyms used in the SOW. | §20 Glossary |
-| 4 | Convert Worksheet A and B into explicit exhibits under the template §5 heading. | Worksheet A / B |
-| 5 | Add final pre-send checklist: no placeholders, no instructional text, refreshed table of contents, spelling review, document properties updated. | Version History or appendix |
+|  #  | Change                                                                                                                                           | Where                       |
+| :-: | ------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------- |
+|  1  | Preserve current 23-section format but add parenthetical template section labels to headings.                                                    | All headings                |
+|  2  | Add a short “Template deviations approved” table for reviewer traceability.                                                                      | §1 or §20                   |
+|  3  | Scrub glossary so it includes only acronyms used in the SOW.                                                                                     | §20 Glossary                |
+|  4  | Convert Worksheet A and B into explicit exhibits under the template §5 heading.                                                                  | Worksheet A / B             |
+|  5  | Add final pre-send checklist: no placeholders, no instructional text, refreshed table of contents, spelling review, document properties updated. | Version History or appendix |
 
 ---
 
 ## 6. Version History
 
-| Version | Date | Author | Status | Summary of changes |
-|--------:|------|--------|--------|-------------------|
-| 0.1.0 | 2026-05-14 | Microsoft ISD — SOW Template Review | Draft | Initial template-alignment review using SOW-Agile v1.3.2 section order as the master structure. |
-| 0.2.0 | 2026-05-14 | Microsoft ISD — SOW Template Review | Draft | Re-ran template-alignment findings against Virtual-Mirror-SOW.md v0.2.0; acknowledged improvements to business objective priority, MVP cutline arbitration, risk ownership, capacity reconciliation, D-13 acceptance, and RACI while retaining remaining template blockers. |
+| Version | Date       | Author                              | Status | Summary of changes                                                                                                                                                                                                                                                          |
+| ------: | ---------- | ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|   0.1.0 | 2026-05-14 | Microsoft ISD — SOW Template Review | Draft  | Initial template-alignment review using SOW-Agile v1.3.2 section order as the master structure.                                                                                                                                                                             |
+|   0.2.0 | 2026-05-14 | Microsoft ISD — SOW Template Review | Draft  | Re-ran template-alignment findings against Virtual-Mirror-SOW.md v0.2.0; acknowledged improvements to business objective priority, MVP cutline arbitration, risk ownership, capacity reconciliation, D-13 acceptance, and RACI while retaining remaining template blockers. |

@@ -1,13 +1,12 @@
 ---
 name: sow-full-review
-description: "Run a comprehensive SOW review by producing SOW-specific compliance/security, Azure technical architecture, and Agile SOW template-alignment review files, then synthesize them into an SOW-specific executive full review package. USE WHEN the user asks for a full review, comprehensive review, all reviews, compliance plus technical plus template review, or one-pass SOW review. When independent review tracks can run in parallel, run them in parallel and synthesize after all are complete. Creates or updates docs/sow-review/<sow-slug>-<version>/compliance-and-security-review.md, docs/sow-review/<sow-slug>-<version>/technical-review.md, docs/sow-review/<sow-slug>-<version>/template-review.md, and docs/sow-review/<sow-slug>-<version>/full-review.md. DO NOT USE FOR a narrow compliance-only review (use sow-compliance-security-review), technical-only Azure review (use sow-technical-review), or template-only review (use sow-template-review)."
+description: "Run a comprehensive SOW review by producing SOW-specific compliance/security, Azure technical architecture, and Agile SOW template-alignment review files. USE WHEN the user asks for a full review, comprehensive review, all reviews, compliance plus technical plus template review, or one-pass SOW review. When independent review tracks can run in parallel, run them in parallel. Creates or updates docs/sow-review/<sow-slug>-<version>/compliance-and-security-review.md, docs/sow-review/<sow-slug>-<version>/technical-review.md, and docs/sow-review/<sow-slug>-<version>/template-review.md. Do not create full-review.md unless the user explicitly asks for an executive synthesis file. DO NOT USE FOR a narrow compliance-only review (use sow-compliance-security-review), technical-only Azure review (use sow-technical-review), or template-only review (use sow-template-review)."
 ---
 
 # SOW Full Review
 
 This skill orchestrates a comprehensive Statement of Work (SOW) review by
-running three review tracks and then synthesizing the results into a single
-executive package:
+running three review tracks and writing the three detailed review files:
 
 1. **Compliance & Security Review** — use the workflow in
    [`sow-compliance-security-review`](../sow-compliance-security-review/SKILL.md).
@@ -15,11 +14,9 @@ executive package:
    [`sow-technical-review`](../sow-technical-review/SKILL.md).
 3. **Agile SOW Template Review** — use the workflow in
    [`sow-template-review`](../sow-template-review/SKILL.md).
-4. **Full Review Synthesis** — write the SOW-specific full review output file.
-
-The full review is not a replacement for the three detailed reviews. It is the
-one-file package that a steering committee, legal reviewer, or executive sponsor
-can read first to understand the combined go / no-go posture.
+Do not create a separate `full-review.md` output by default. In this repository,
+"full review" means the complete three-track review package unless the user
+explicitly asks for an executive synthesis file.
 
 ## When to use
 
@@ -27,8 +24,7 @@ Trigger this skill when the user asks to:
 
 - Run compliance/security, technical/Azure, and Agile template reviews for an SOW.
 - Produce a full, comprehensive, end-to-end, or one-pass SOW review.
-- Generate `full-review.md` from the SOW-specific `compliance-and-security-review.md`,
-  `technical-review.md`, and `template-review.md` files.
+- Produce the three SOW-specific detailed review files in one pass.
 - Compare compliance blockers, technical blockers, and template-alignment blockers before SOW signature.
 - Create a single executive recommendation from multiple review tracks.
 
@@ -41,7 +37,7 @@ Do **not** use this skill for a narrow review. Use:
 
 ## Inputs you need
 
-Before producing the full review, confirm or discover:
+Before producing the full review package, confirm or discover:
 
 1. **The SOW under review** — file path, version, status.
 2. **Review artefacts**:
@@ -61,7 +57,7 @@ Before producing the full review, confirm or discover:
 4. **Reviewer identity** and review date.
 
 If any detailed review is missing or stale, produce or refresh it using the
-corresponding skill workflow before writing the full review synthesis.
+corresponding skill workflow.
 
 ## Output naming policy
 
@@ -89,7 +85,10 @@ The files inside that folder are:
 - `compliance-and-security-review.md`
 - `technical-review.md`
 - `template-review.md`
-- `full-review.md`
+
+Do not create `full-review.md` unless the user explicitly asks for a separate
+executive synthesis file. If the user says only "full review", "comprehensive
+review", or "all reviews", create the three detailed review files only.
 
 If the same SOW name and version are reviewed again, update / overwrite the
 same files in that folder. Do not create timestamped duplicates unless the user
@@ -125,9 +124,7 @@ tracks in parallel:
   work concurrently after the SOW and shared cross-reference artefacts are read.
 - Keep each track independent; do not let one track rewrite another track's
   findings.
-- Wait for all detailed reviews to complete before starting synthesis.
-- Do not parallelize the final synthesis step, because it depends on all source
-  review outputs.
+- Wait for all detailed reviews to complete before returning.
 
 ### Step 2 — Extract normalized findings
 
@@ -190,11 +187,12 @@ Look for issues that appear in both reviews or affect both tracks, for example:
 Promote cross-track blockers to the executive summary even if each detailed
 review treated the item differently.
 
-### Step 4 — Produce the synthesis document
+### Step 4 — Optional synthesis document
 
-Write `docs/sow-review/<sow-slug>-<version>/full-review.md` unless the user asks
-for a different filename. Create the folder if it does not exist. If the same
-SOW name and version are reviewed again, update the existing file in that folder.
+Only write `docs/sow-review/<sow-slug>-<version>/full-review.md` if the user
+explicitly asks for a separate executive synthesis file, a rollup file, or a
+specific `full-review.md` output. If the user does not explicitly request that
+file, stop after the three detailed reviews are complete.
 
 The first table at the top of the document MUST capture:
 
@@ -244,30 +242,24 @@ Use these top-level sections, in order:
 
 ### Step 6 — Self-check before returning
 
-Before declaring the full review complete, verify:
+Before declaring the full review package complete, verify:
 
 - [ ] All detailed reviews exist and are linked.
-- [ ] The full review uses the same SOW version as the detailed reviews.
-- [ ] Every compliance MUST-FIX appears in the Blockers section or is explicitly
-      marked as merged into another blocker.
-- [ ] Every technical Critical and High finding appears in the Blockers section
-      or is explicitly merged.
-- [ ] The technical review is Microsoft Learn MCP-backed, or the full review
-  explicitly states that MCP was unavailable and fallback evidence was used.
-- [ ] Every template Critical and High finding appears in the Blockers section
-      or is explicitly merged.
-- [ ] Cross-track dependencies are called out.
-- [ ] The Go / No-Go recommendation is unambiguous.
-- [ ] The remediation sequence is practical and not just a severity-sorted list.
+- [ ] The three detailed reviews use the same SOW version and SOW-specific output folder.
+- [ ] The compliance/security review includes its MUST-FIX items and approval blockers.
+- [ ] The technical review includes Critical and High findings and is Microsoft Learn MCP-backed, or explicitly states that MCP was unavailable and fallback evidence was used.
+- [ ] The template review includes Critical and High template-alignment blockers.
+- [ ] The package calls out cross-track dependencies either inside the detailed reviews or in a short response summary.
+- [ ] No `full-review.md` file was created unless the user explicitly requested a separate synthesis file.
 - [ ] No reviewer or approver name is fabricated.
 
-If any box is unchecked, fix the full review before returning.
+If any box is unchecked, fix the review package before returning.
 
 ## Style & tone
 
 - Write in clear executive-review English.
-- Keep the full review concise enough to be read first, but specific enough to
-  drive action.
+- Keep each detailed review concise enough to drive action, but specific enough
+  that reviewers can trace the finding to a SOW section.
 - Link to the detailed reviews for evidence; do not copy every long finding.
 - Use tables for rollups and decision records.
 - Preserve the severity terminology from the source reviews when referencing
@@ -275,8 +267,8 @@ If any box is unchecked, fix the full review before returning.
 
 ## Anti-patterns to avoid
 
-- **Do not create a superficial summary.** The full review must synthesize and
-  prioritize, not just list links.
+- **Do not create `full-review.md` by habit.** Only create it when the user
+  explicitly asks for a separate synthesis file.
 - **Do not drop blockers because they are duplicated.** Merge duplicates and
   cite both sources.
 - **Do not let technical findings and compliance findings contradict each
@@ -292,13 +284,13 @@ Detailed review examples:
 - [`docs/sow-review/virtual-mirror-sow-v0.2.0/technical-review.md`](../../../docs/sow-review/virtual-mirror-sow-v0.2.0/technical-review.md)
 - [`docs/sow-review/virtual-mirror-sow-v0.2.0/template-review.md`](../../../docs/sow-review/virtual-mirror-sow-v0.2.0/template-review.md)
 
-The full synthesis output should be written to:
-
-- `docs/sow-review/<sow-slug>-<version>/full-review.md`
-
 ## Output
 
-One synthesis Markdown file at
-`docs/sow-review/<sow-slug>-<version>/full-review.md`, plus any missing or
-refreshed SOW-specific detailed review files required to make the synthesis
-valid.
+Three Markdown files in the SOW-specific review folder:
+
+- `docs/sow-review/<sow-slug>-<version>/compliance-and-security-review.md`
+- `docs/sow-review/<sow-slug>-<version>/technical-review.md`
+- `docs/sow-review/<sow-slug>-<version>/template-review.md`
+
+Only add `docs/sow-review/<sow-slug>-<version>/full-review.md` when the user
+explicitly requests that separate file.
