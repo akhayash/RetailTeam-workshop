@@ -3,7 +3,7 @@
 | Field | Value |
 |-------|-------|
 | **Document** | Virtual-Mirror-SOW.md |
-| **Version** | 0.1.0 |
+| **Version** | 0.2.0 |
 | **Status** | Draft for internal review |
 | **Date** | 2026-05-14 |
 | **Prepared for** | Walmart Digital — Apparel & Marketplace |
@@ -51,7 +51,7 @@
 | Project / Program name | VirtualMirror AI — Clothing Fit Assessment Service (v1) |
 | Customer | Walmart Digital — Apparel & Marketplace |
 | Provider | Microsoft Industry Solutions Delivery (ISD) |
-| Version | 0.1.0 |
+| Version | 0.2.0 |
 | Status | Draft for internal review |
 | Date | 2026-05-14 |
 | Work Order reference | TBD upon countersignature |
@@ -90,19 +90,23 @@ The collaboration model is **joint delivery**: Microsoft executes within the agr
 
 ## 3. Objectives and Scope
 
-### 3.1 Business Objectives (customer-owned, measurable)
+### 3.1 Business Objectives (customer-owned, measurable, prioritized)
 
 These objectives **guide planning but are not contractually guaranteed within capacity**. Microsoft will instrument the service for measurement so Walmart can validate post-launch.
 
-| ID | Objective | Measure | Target |
-|----|-----------|---------|--------|
-| BO-1 | Reduce fit-driven apparel returns | Return rate for SKUs where VirtualMirror was used, vs. control | **≥ 20% reduction** within 6 months of launch (target 30%) |
-| BO-2 | Increase shopper conversion confidence on apparel PDPs | Add-to-cart and checkout conversion delta on enabled SKUs | **+3–5% conversion lift** within 6 months |
-| BO-3 | Establish a reusable, multi-tenant fit assessment platform | Number of tenants onboarded with isolated data planes | **≥ 1 (Walmart) at GA**, architected for 20+ at Scale tier |
+**Priority order: BO-1 (Primary) > BO-2 (Secondary) > BO-3 (Enabling).** BO-1 is the dollar-anchored mandate (returns reduction); BO-2 is the upside lever (conversion lift); BO-3 is the platform-enabler that protects future optionality.
+
+| Rank | ID | Objective | Measure | Target |
+|:----:|----|-----------|---------|--------|
+| **1 (Primary)** | BO-1 | Reduce fit-driven apparel returns | Return rate for SKUs where VirtualMirror was used, vs. control cohort | **≥ 20% reduction** within 6 months of launch (target 30%) |
+| **2 (Secondary)** | BO-2 | Increase shopper conversion confidence on apparel PDPs | Add-to-cart and checkout conversion delta on enabled SKUs | **+3–5% conversion lift** within 6 months |
+| **3 (Enabling)** | BO-3 | Establish a reusable, multi-tenant fit assessment platform | Number of tenants onboarded with isolated data planes | **≥ 1 (Walmart) at GA**, architected for 20+ at Scale tier |
 
 *Source: [Sessions/Product-definition.md](Sessions/Product-definition.md) — Success Metrics; [spec.md](../specs/001-clothing-fit-assessment/spec.md) — SC-002, SC-003.*
 
 **Non-guarantee clause**: Business outcomes BO-1 and BO-2 depend on factors outside Microsoft's control (shopper adoption, merchandising decisions, Walmart marketing of the feature, catalog data quality). Microsoft commits to **delivering the capability and the measurement framework** to track these outcomes.
+
+**Measurement-cohort ownership (BO-1 / BO-2)**: BO-1's "vs. control cohort" comparison and BO-2's conversion delta require an A/B experimentation harness on the Walmart storefront. Per §5 (Out of Scope) the A/B harness is **Walmart-owned**; Microsoft delivers the service-side measurement framework (assessment IDs, confidence scores, correlation IDs propagated end-to-end via D-9 Observability) that the harness consumes. Operating treatment / control cohorts and reporting on outcomes is a Walmart Frontend + Walmart Analytics responsibility (cross-reference §17 C-10 UAT executors and C-11 SMEs).
 
 ### 3.2 Value Themes
 
@@ -124,6 +128,7 @@ These objectives **guide planning but are not contractually guaranteed within ca
   - Walmart Product Owner prioritises the backlog.
   - Microsoft executes within capacity and flags items at risk of slipping the cutline.
 - **MVP cutline** is end of Sprint 4 (foundational platform + photo-based fit assessment); **GA cutline** is end of Sprint 9.
+- **MVP cutline arbitration rule**: If at any sprint planning the MVP cutline (end of Sprint 4) is forecast to slip due to backlog reprioritisation or capacity pressure, Microsoft will flag the risk in the Product Council and **recommend deferral of non-MVP backlog items** (US2 profile storage, US4 garment ingestion enhancements, optional polish) before MVP-critical work (WP1, WP2, WP3, US1). **Final arbitration sits with the Walmart Product Owner** via the Product Council; if PO decisions push MVP-critical work below the cutline, Microsoft will issue a Change Order under §12 to re-baseline the GA date.
 
 ---
 
@@ -425,14 +430,16 @@ A **RAID log** (Risks, Actions, Issues, Decisions) is maintained continuously in
 
 ### 13.1 Top Plan Risks (carried into this SOW)
 
-| ID | Risk | Severity | Mitigation |
-|----|------|:--------:|------------|
-| PR-1 | H1 (GPT-5.2 measurement accuracy) fails | **HIGH** | Pre-Sprint 3 prompt engineering spike + calibration dataset prepared in Sprint 2; contingency: 3DLOOK bridge (+2 weeks, Change Order) |
-| PR-2 | Walmart Azure tenant provisioning delayed | **HIGH** | Sprint 1 against Microsoft MSDN subscription; promote in Sprint 2 |
-| PR-3 | Single Tech Lead bottleneck on PR reviews | **HIGH** | Reserve 25% Tech Lead time for reviews; SDEs cross-review |
-| PR-4 | DPIA / Privacy review finds blockers late | MEDIUM | Sprint 4 mid-project privacy checkpoint; Sprint 8 final review |
-| PR-5 | Bicep IaC complexity higher than estimated | MEDIUM | Full DevOps FTE from Sprint 6; pair with Security Engineer |
-| PR-6 | Walmart catalog feed delayed beyond Sprint 5 | MEDIUM | Synthetic catalog covers US4 dev; defer real-feed integration to Sprint 8 |
+| ID | Risk | Severity | Owner | Mitigation | Validation step |
+|----|------|:--------:|-------|------------|-----------------|
+| PR-1 | H1 (GPT-5.2 measurement accuracy) fails | **HIGH** | ML Engineer (lead) · Tech Lead (review) | Pre-Sprint 3 prompt engineering spike + calibration dataset prepared in Sprint 2; contingency: 3DLOOK bridge (+2 weeks, Change Order) | H1 gate end of Sprint 3: ≤ 15% of calibration photos > ±4 cm vs. ground truth (D-2 acceptance) |
+| PR-2 | Walmart Azure tenant provisioning delayed | **HIGH** | Microsoft PM (escalation) · Walmart Cloud Platform (delivery) | Sprint 1 against Microsoft MSDN subscription; promote in Sprint 2 | C-1 deliverable received by end of Sprint 2 (RAG green in weekly status) |
+| PR-3 | Single Tech Lead bottleneck on PR reviews | **HIGH** | Microsoft PM (capacity) · Tech Lead (process) | Reserve 25% Tech Lead time for reviews; SDEs cross-review | Sprint retro PR-cycle-time metric < 24 h; escalate at 48 h sustained |
+| PR-4 | DPIA / Privacy review finds blockers late | MEDIUM | Security/Privacy Engineer (Microsoft) · Walmart Privacy Office (gate) | Sprint 4 mid-project privacy checkpoint; Sprint 8 final review | C-8 review slots completed Sprints 1, 4, 8 with no Open / High findings remaining at GA (D-13 acceptance) |
+| PR-5 | Bicep IaC complexity higher than estimated | MEDIUM | Cloud / DevOps Engineer (lead) · Security/Privacy Engineer (pair) | Full DevOps FTE from Sprint 6; pair with Security Engineer | D-7 acceptance: `az deployment group what-if` clean across dev / staging / prod by end of Sprint 7 |
+| PR-6 | Walmart catalog feed delayed beyond Sprint 5 | MEDIUM | Microsoft PM (tracking) · Walmart Catalog Engineering (delivery) | Synthetic catalog covers US4 dev; defer real-feed integration to Sprint 8 | C-5 RAG-tracked weekly; trigger fallback if not received by end of Sprint 6 |
+
+> Mitigations and validation steps trace to row IDs in [`docs/architecture/risk-register.md`](architecture/risk-register.md) and [`docs/project-plan.md`](project-plan.md) §10.
 
 ### 13.2 Top Technical Risks (carried into this SOW)
 
@@ -592,7 +599,7 @@ The estimates, timeline, and acceptance criteria in this SOW are **true if-and-o
 | A-6 | Azure OpenAI GPT-5.2 Vision **measurement accuracy lands within ±2–4 cm** on the calibration set (H1). Failure invokes 3DLOOK bridge contingency (+2 weeks, Change Order). |
 | A-7 | Azure OpenAI GPT-5.2 is generally available in East US 2 by Sprint 3. PTU pricing is finalisable before Scale tier. |
 | A-8 | Florence-2 on Azure AI Foundry is available in East US 2 with serverless billing for v1 volumes. |
-| A-9 | Shopper-provided height (cm) is **always present and accurate** in the API request — it is the scale reference for derived measurements. |
+| A-9 | Shopper-provided height (cm) is **present and within physical bounds** in the API request — it is the scale reference for derived measurements. **Guard**: API rejects requests with height outside **50–250 cm** (HTTP 400 with field-level error per OpenAPI contract); heights at the tail of the realistic distribution (< 140 cm or > 210 cm) are flagged in the response payload and reduce the assessment confidence score. Shopper-side input validation (e.g., picker UI, unit toggle) is a Walmart frontend responsibility (out of scope per §5). |
 | A-10 | v1 supports a **single Azure region** (East US 2) with multi-AZ replicas; ~99.9% availability SLO. |
 | A-11 | Photos are processed **in-memory and via a 60-second-TTL blob**; no permanent biometric storage by default. |
 
@@ -639,6 +646,30 @@ Hypercare period (30 calendar days post-go-live) is bounded and on-call response
 | J — Threat model | [`docs/architecture/threat-model.md`](architecture/threat-model.md) |
 | K — Resiliency review | [`docs/architecture/resiliency-review.md`](architecture/resiliency-review.md) |
 | L — Compliance mapping (PCI DSS, SOC 2, NIST CSF 2.0, OWASP ASVS L2, GDPR/CCPA) | [`docs/Sessions/Product-definition.md`](Sessions/Product-definition.md) — Compliance & Industry Baseline Alignment |
+| M — Decision-rights matrix (RACI) | See §20.1 below |
+
+### 20.1 Appendix M — Decision-Rights Matrix (RACI)
+
+This matrix consolidates §8 (Roles) and §17 (Customer Responsibilities) into a single decision-rights view for the major delivery activities. Use **R** = Responsible (does the work), **A** = Accountable (single owner who signs off), **C** = Consulted (two-way communication), **I** = Informed (one-way notification).
+
+| Activity | W-Exec Sponsor | W-PO | W-Privacy Office | W-DevSecOps | W-Platform Eng | W-Frontend | M-Engagement Lead | M-Tech Lead | M-PM / CPdM | M-Sec/Privacy Eng |
+|----------|:--------------:|:----:|:----------------:|:-----------:|:--------------:|:----------:|:-----------------:|:-----------:|:-----------:|:-----------------:|
+| Architecture sign-off (ADRs, solution architecture) | I | A | I | C | C | I | I | R | C | C |
+| Security sign-off (SAST/SCA/SBOM/Trivy/Notation, pen-test findings) | I | C | I | A | C | I | I | C | I | R |
+| Privacy sign-off (DPIA, consent, deletion SLA) | I | C | A | I | I | I | I | C | C | R |
+| Functional UAT (US1–US4 scenarios in `spec.md`) | I | A | I | I | C | C | I | C | R | I |
+| OpenAPI contract acceptance (D-4) | I | C | I | I | A | C | I | R | I | I |
+| H1 measurement-accuracy gate (Sprint 3) | I | A | I | I | I | I | I | C | R | I |
+| MVP demo acceptance (end of Sprint 4) | I | A | I | I | C | C | I | R | R | I |
+| Production go-live (canary 5% → 25% → 100%) | A | C | C | C | C | C | C | R | R | C |
+| Hypercare exit (end of +30 days) | I | A | I | I | C | C | I | R | R | C |
+| Change Order approval (§12) | C | A | C | C | C | C | A | C | R | C |
+| BO-1 / BO-2 outcome measurement (post-launch) | A | R | I | I | I | R | I | C | C | I |
+
+**Notes**:
+- The Walmart Product Owner is **Accountable** for all backlog-scoped acceptance; the Executive Sponsor is **Accountable** only for go-live cutover and outcome measurement.
+- Microsoft Tech Lead and PM frequently share the **Responsible** role on delivery activities (technical execution + program execution respectively); a single Microsoft sign-off is given by the Engagement Lead at major gates.
+- Change Order approval requires **dual Accountability** (Walmart PO and Microsoft Engagement Lead) per §12.3.
 
 ### Glossary (selected)
 
@@ -687,13 +718,15 @@ Hypercare period (30 calendar days post-go-live) is bounded and on-call response
 | Date | 2026-05-14 |
 | Engagement code | TBD upon countersignature |
 
-### Business Outcomes (customer-owned, measurable — 3)
+### Business Outcomes (customer-owned, measurable, prioritized — 3)
 
-| ID | Outcome | Measure | Target |
-|----|---------|---------|--------|
-| BO-1 | Reduce fit-driven apparel returns | Return rate on VirtualMirror-enabled SKUs vs. control | ≥ 20% reduction in 6 months (target 30%) |
-| BO-2 | Increase apparel PDP conversion | Add-to-cart + checkout conversion delta on enabled SKUs | +3–5% conversion lift in 6 months |
-| BO-3 | Establish reusable multi-tenant fit platform | Tenants onboardable on the same data plane | 1 at GA; architected for 20+ at Scale tier |
+| Rank | ID | Outcome | Measure | Target |
+|:----:|----|---------|---------|--------|
+| **1 (Primary)** | BO-1 | Reduce fit-driven apparel returns | Return rate on VirtualMirror-enabled SKUs vs. control cohort | ≥ 20% reduction in 6 months (target 30%) |
+| **2 (Secondary)** | BO-2 | Increase apparel PDP conversion | Add-to-cart + checkout conversion delta on enabled SKUs | +3–5% conversion lift in 6 months |
+| **3 (Enabling)** | BO-3 | Establish reusable multi-tenant fit platform | Tenants onboardable on the same data plane | 1 at GA; architected for 20+ at Scale tier |
+
+> Measurement-cohort ownership: A/B harness operating treatment vs. control cohorts is **Walmart-owned** (per §3.1 and §5). Microsoft delivers the service-side measurement framework only.
 
 ### In-Scope Boundaries — what Microsoft will deliver (3 anchors)
 
@@ -733,7 +766,7 @@ Hypercare period (30 calendar days post-go-live) is bounded and on-call response
 | D-10 | Load and chaos validation | NBomber 500-concurrent smoke + 30-minute soak; chaos / fault-injection on AI providers, Cosmos, Service Bus, Blob | **H3/H5: p95 < 5 s at 500 concurrent**; KEDA scales to 10 instances; no OOM; **H8: ≥ 90% success during chaos run** | BO-1, BO-3 | WP7.4, SC-004 |
 | D-11 | Model card & responsible AI | Model card documenting prompt, model version, training context, bias considerations, known limitations, confidence thresholds | Model card reviewed and signed by ML Eng + Tech Lead; published in repo; minor-detection refusal logic verified | BO-1 | WP7.5, FR-015 |
 | D-12 | DR plan & data classification | DR plan documenting RTO < 1 h, RPO < 15 min for tenant config; data classification labels (transient, ephemeral, opt-in, audit) | DR plan reviewed and signed by Security Eng; data classification matches `Sessions/Product-definition.md`; tabletop walkthrough recorded | BO-3 | WP7.5 |
-| D-13 | DPIA input package | Inputs to Walmart's DPIA: data flow, lawful basis, retention, deletion, transfers, sub-processors, breach notification | Walmart Privacy Office accepts DPIA package as complete; no Open / High findings remain at GA | BO-1, BO-2, BO-3 | WP8.4 |
+| D-13 | DPIA input package | Inputs to Walmart's DPIA: data flow, lawful basis, retention, deletion, transfers, sub-processors, breach notification | DPIA package contains all sections required by Walmart Privacy Office's DPIA template (data-flow diagram, Art. 6 lawful basis, Art. 9 special-category check, retention schedule, deletion-cascade evidence per US2, sub-processor list with DPAs, breach-notification runbook ref); Walmart Privacy Office signs the completeness checklist; no Open / High findings remain at GA | BO-1, BO-2, BO-3 | WP8.4 |
 | D-14 | Knowledge transfer & hypercare | 2 recorded enablement sessions for Walmart Platform Eng, runbooks signed, hypercare on-call schedule for 2 weeks post-go-live | Sessions delivered and signed; runbooks acknowledged; on-call rota agreed; no P1 unresolved at end of hypercare | BO-3 | WP7.5, WP8 |
 
 ### B.2 Work Package Estimate Table
@@ -754,17 +787,25 @@ Estimate by work package first, then allocate hours to roles. Hours assume **sen
 
 #### Hours by role (allocation across WP1–WP8)
 
-| Role | PD | Hours | % of total |
-|------|---:|------:|-----------:|
-| Tech Lead / Solution Architect | 65 | 520 | 24% |
-| Senior .NET Engineer #1 | 70 | 560 | 25% |
-| Senior .NET Engineer #2 | 65 | 520 | 24% |
-| Cloud / DevOps Engineer | 45 | 360 | 16% |
-| ML / AI Engineer | 18 | 144 | 7% |
-| QA / SDET | 25 | 200 | 9% |
+| Role | PD | Hours | % of allocation |
+|------|---:|------:|----------------:|
+| Tech Lead / Solution Architect | 65 | 520 | 20% |
+| Senior .NET Engineer #1 | 70 | 560 | 22% |
+| Senior .NET Engineer #2 | 65 | 520 | 20% |
+| Cloud / DevOps Engineer | 45 | 360 | 14% |
+| ML / AI Engineer | 18 | 144 | 6% |
+| QA / SDET | 25 | 200 | 8% |
 | Security / Privacy Engineer (PT) | 8 | 64 | 3% |
-| Product Manager / CPdM | (PM allocation absorbed in WP8) | — | — |
-| **Total build allocation** | **~296 PD** | **~2,368 h** | (slack ~22 PD covers vacation + ceremony float; actual chargeable build ~274 PD) |
+| Product Manager / CPdM (cross-cutting via WP8) | 22 | 176 | 7% |
+| **Total build + cross-cutting allocation** | **~318 PD** | **~2,544 h** | **100%** |
+| less ceremony / vacation slack absorbed across team | -44 | -352 | — |
+| **Chargeable effort (reconciles to §7 total)** | **~274 PD** | **~2,192 h** | — |
+
+**Out-of-envelope governance role** (not charged against WP1–WP8 capacity):
+
+| Role | FTE | Notes |
+|------|----:|-------|
+| Engagement Lead / Delivery Management Executive | 0.25 | Engagement-management envelope; covers customer relationship, executive escalation, contract stewardship. Billed under the engagement-management line, not against build capacity. |
 
 #### Summary
 
@@ -800,6 +841,7 @@ Estimate by work package first, then allocate hours to roles. Hours assume **sen
 | Version | Date | Author | Status | Summary of changes |
 |--------:|------|--------|--------|-------------------|
 | 0.1.0 | 2026-05-14 | Microsoft ISD draft | Draft for internal review | Initial draft grounded in discovery artifacts: spec.md (US1–US4, FR-001..015, SC-001..007), Product-definition.md, project-plan.md (WBS WP1–WP8, ~274 PD over 18 weeks), cost-estimate.md (3-tier consumption model), risk-register.md (R-001..004), threat-model.md, solution-architecture.md, and EX3 SOW template structure (19 required sections + Worksheets A & B). |
+| 0.2.0 | 2026-05-14 | Microsoft ISD draft | Draft for internal review | Pre-signature polish per Opus 4.7 SOW assessment (`Virtual-Mirror-SOW-Assessment-opus-47-high.md`): (1) §3.1 + Worksheet A — added explicit BO-1/BO-2/BO-3 priority ranking and A/B-cohort ownership note; (2) §3.3 — added MVP cutline arbitration rule (Walmart PO decides; non-MVP deferred first; Change Order if MVP-critical work slips); (3) §13.1 — added Owner and Validation-step columns to the 6 plan risks; (4) §18.2 A-9 — added height input-validation guard (50–250 cm range, confidence flag at tails) and clarified frontend ownership; (5) Worksheet B.2 — added explicit PM/CPdM line (22 PD); restructured "Hours by role" to reconcile to 274 PD chargeable; clarified Engagement Lead is out-of-envelope; (6) §20 — added Appendix M Decision-Rights Matrix (RACI) covering 11 major delivery activities; (7) Worksheet B.1 D-13 — referenced Walmart DPIA template checklist for objective acceptance. No contract envelope changes (scope, capacity, timeline, pricing model unchanged). |
 
 ### Versioning policy
 
