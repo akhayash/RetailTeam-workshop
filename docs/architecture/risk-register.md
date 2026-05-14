@@ -1,6 +1,6 @@
 # Risk Register: AI Clothing Fit Assessment Agent
 
-**Version**: 1.0.0 | **Date**: 2026-05-13 | **Status**: Active
+**Version**: 1.1.0 | **Date**: 2026-05-14 | **Status**: Active
 **Review cadence**: Monthly or after any severity change
 
 ## Risk Matrix
@@ -312,13 +312,13 @@
 | Severity | Count | IDs |
 |----------|-------|-----|
 | CRITICAL | 1 | R-001 |
-| HIGH | 6 | R-002, R-003, R-004, R-006, R-007, R-008 |
+| HIGH | 5 | R-003, R-004, R-006, R-007, R-008 |
 | MEDIUM | 4 | R-005, R-009, R-010, R-011 |
-| LOW | 0 | — |
+| LOW | 1 | R-002 |
 | **Total** | **11** | |
 
 ## Review History
 
 | Date | Reviewer | Changes |
 |------|----------|---------|
-| 2026-05-13 | Initial creation | 11 risks identified from architecture and feasibility analysis |
+| 2026-05-13 | Initial creation | 11 risks identified from architecture and feasibility analysis || 2026-05-14 | Architecture review | R-002 severity corrected to LOW (mitigated by Florence-2 adoption); verified alignment with updated solution-architecture.md mermaid diagrams |

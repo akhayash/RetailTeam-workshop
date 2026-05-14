@@ -143,3 +143,18 @@ A retail operations team needs to onboard their garment catalog into the fit ass
 - Internet connectivity is stable — offline assessment is out of scope
 - The retail partner's existing product catalog system can provide garment IDs that map to the ingested measurement data
 - Microsoft Entra ID will be used for service-to-service authentication (OAuth 2.0 / OIDC)
+
+## Hypothesis Register
+
+Key assumptions requiring validation during implementation. Each hypothesis maps to a specific validation method and identifies the risk if proven wrong.
+
+| ID | Hypothesis | Validation Method | Related SC/FR | Risk if Wrong |
+|----|-----------|-------------------|---------------|---------------|
+| H1 | GPT-5.2 Vision can extract body measurements within ±2–4 cm using height as scale | Ground-truth comparison with known measurements (T043b spike) | SC-002 | Core value proposition fails; escalate to Tier 3 |
+| H2 | 70% confidence threshold balances accuracy vs coverage | A/B testing with shopper feedback and return data | SC-005, SC-006 | Too high → low coverage; too low → inaccurate recommendations |
+| H3 | 4 MB in-memory streaming threshold avoids memory pressure | Load testing at 500 concurrent requests (NBomber) | SC-004 | OOM under load; lower threshold or always use Blob |
+| H4 | Tolerance band defaults (tight: 4, comfort: 2, loose: 5 cm) produce meaningful fit ratings | Comparison with industry size charts and supplier feedback | SC-002, SC-003 | Misaligned ratings lead to shopper distrust |
+| H5 | Auto-scaling threshold of 50 concurrent HTTP requests is optimal | Load testing with production-like traffic patterns | SC-004, SC-007 | Under-provisioned → latency; over-provisioned → cost |
+| H6 | Image rejection rate stays below 30% (SC-006) | Production monitoring in first 30 days | SC-005, SC-006 | UX friction; shoppers abandon the feature |
+
+Full detail: [solution-architecture.md § Hypothesis Register](../../docs/architecture/solution-architecture.md#hypothesis-register)

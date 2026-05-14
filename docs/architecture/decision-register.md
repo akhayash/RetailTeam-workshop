@@ -1,6 +1,6 @@
 # Decision Register: AI Clothing Fit Assessment Agent
 
-**Version**: 1.0.0 | **Date**: 2026-05-13 | **Status**: Active
+**Version**: 1.1.0 | **Date**: 2026-05-14 | **Status**: Active
 
 ## Decision Log
 

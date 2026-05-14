@@ -105,6 +105,21 @@ infra/
 
 **Structure Decision**: Clean Architecture with 4 projects (Api, Core, Services, Infrastructure) + Aspire host. This separates domain logic from infrastructure concerns, enables independent testing, and follows Microsoft's recommended .NET architecture patterns for enterprise services.
 
+## Hypothesis Validation Plan
+
+Key architectural assumptions from the [solution-architecture.md § Hypothesis Register](../../docs/architecture/solution-architecture.md#hypothesis-register) that require validation during implementation.
+
+| ID | Hypothesis | Validation Phase | Task Reference | Go/No-Go Gate |
+|----|-----------|-----------------|----------------|---------------|
+| H1 | GPT-5.2 body measurement accuracy ±2–4 cm | Phase 3 (US1 implementation) | T043b integration spike | > 15% outside ±4 cm → escalate to Tier 3 |
+| H2 | 70% confidence threshold | Phase 7 (Polish) | Load/accuracy testing | Evaluate after 30-day production data |
+| H3 | 4 MB in-memory threshold | Phase 7 (Polish) | NBomber load tests | OOM at 500 concurrent → lower threshold |
+| H4 | Tolerance band defaults | Phase 3 (US1 implementation) | T045 FitComparisonEngine | Compare against industry size charts |
+| H5 | Auto-scale threshold: 50 concurrent | Phase 7 (Polish) | NBomber load tests | p95 > 5s at 500 concurrent → tune threshold |
+| H6 | Image rejection rate < 30% | Post-launch (30 days) | Production monitoring | > 40% → relax thresholds with confidence penalty |
+
+**Gate**: H1 must pass before Phase 3 completion. If GPT-5.2 accuracy is insufficient, decision to accelerate Tier 3 custom model must be made before Phase 4.
+
 ## Complexity Tracking
 
 No constitution violations detected — no justifications required.
