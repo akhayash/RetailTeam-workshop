@@ -1,6 +1,6 @@
 {
   "source": "pptx-properties",
-  "slide_count": 15,
+  "slide_count": 22,
   "slides": [
     {
       "slide_number": 1,
@@ -74,6 +74,41 @@
     },
     {
       "slide_number": 15,
+      "issues": [],
+      "overall_quality": "good"
+    },
+    {
+      "slide_number": 16,
+      "issues": [],
+      "overall_quality": "good"
+    },
+    {
+      "slide_number": 17,
+      "issues": [],
+      "overall_quality": "good"
+    },
+    {
+      "slide_number": 18,
+      "issues": [],
+      "overall_quality": "good"
+    },
+    {
+      "slide_number": 19,
+      "issues": [],
+      "overall_quality": "good"
+    },
+    {
+      "slide_number": 20,
+      "issues": [],
+      "overall_quality": "good"
+    },
+    {
+      "slide_number": 21,
+      "issues": [],
+      "overall_quality": "good"
+    },
+    {
+      "slide_number": 22,
       "issues": [],
       "overall_quality": "good"
     }

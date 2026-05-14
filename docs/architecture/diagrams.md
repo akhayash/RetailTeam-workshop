@@ -721,7 +721,7 @@ Reference: long-term vision for unified retail intelligence. See [solution-archi
 |                                                                  |
 |  :--- Source Domains ----------------------------------------:   |
 |  :                                                            :  |
-|  :  +-----------+   +----------+   +---------------------+   :   |
+|  :  +-----------+   +----------+   +---------------------+   :   |V
 |  :  | Shopper   |   | Garment  |   | Return & Exchange   |   :   |
 |  :  | Measure-  |   | Catalog  |   | Transactions        |   :   |
 |  :  | ments     |   |          |   |                     |   :   |
