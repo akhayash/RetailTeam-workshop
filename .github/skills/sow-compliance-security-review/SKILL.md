@@ -1,6 +1,6 @@
 ---
 name: sow-compliance-security-review
-description: Perform a compliance and security review of a Statement of Work (SOW) document for AI / cloud / data-handling engagements. Produces a structured Markdown review covering compliance framework coverage (OWASP ASVS, SOC 2, NIST CSF, GDPR/CCPA, PCI, biometric privacy, EU AI Act), data protection, security architecture, AI/ML risk, resilience and incident response, testing and assurance, and contractual/legal completeness, then emits a categorized list of MUST-FIX / SHOULD-FIX / NICE-TO-HAVE changes. USE WHEN the user asks to review, audit, assess, or compliance-check an SOW, MSA addendum, or similar engagement contract; especially when the workload involves AI, biometric/PII data, or regulated industries. DO NOT USE FOR general code review, threat modelling from scratch (use a threat-modelling skill), or DPIA authoring (this skill only identifies DPIA gaps).
+description: "Perform a compliance and security review of a Statement of Work (SOW) document for AI / cloud / data-handling engagements. Produces a structured Markdown review at docs/sow-review/<sow-slug>-<version>/compliance-and-security-review.md covering OWASP ASVS, SOC 2, NIST CSF, GDPR/CCPA, PCI, biometric privacy, EU AI Act, data protection, security architecture, AI/ML risk, resilience and incident response, testing and assurance, and contractual/legal completeness. USE WHEN the user asks to review, audit, assess, or compliance-check an SOW, MSA addendum, or similar engagement contract; especially when the workload involves AI, biometric/PII data, or regulated industries. DO NOT USE FOR general code review, threat modelling from scratch (use a threat-modelling skill), or DPIA authoring (this skill only identifies DPIA gaps)."
 ---
 
 # SOW Compliance & Security Review
@@ -45,6 +45,27 @@ Before producing the review, confirm or discover:
 
 If any of these are unknown, ask the user **once** with a concise list — do not
 fabricate values for the document header.
+
+## Output naming policy
+
+Place review outputs in an SOW-specific folder so the reviewed SOW is clear from
+the path:
+
+1. Derive `<sow-slug>` from the SOW filename without extension:
+  - Lowercase.
+  - Replace spaces and underscores with hyphens.
+  - Remove characters other than `a-z`, `0-9`, and `-`.
+  - Collapse repeated hyphens.
+2. Derive `<version>` from the SOW header field named `Version`.
+  - Preserve the leading `v` if present; otherwise prefix `v`.
+  - Normalize dots as dots, e.g. `0.1.0` -> `v0.1.0`.
+  - If no version is present, use the SOW document date as `yyyy-mm-dd`.
+3. Write the output to:
+  - `docs/sow-review/<sow-slug>-<version>/compliance-and-security-review.md`
+
+If the same SOW name and version are reviewed again, update / overwrite the same
+file in that folder. Do not create timestamped duplicates unless the user asks
+for archival snapshots.
 
 ## Procedure
 
@@ -171,8 +192,9 @@ maps to a top-level section in the output document.
 
 ### Step 5 — Write the review document
 
-Write the review to `docs/sow-review/<short-name>-review.md` (create the
-folder if it does not exist). Use the structure of the reference example at
+Write the review to
+`docs/sow-review/<sow-slug>-<version>/compliance-and-security-review.md`
+(create the folder if it does not exist). Use the structure of the reference example at
 [`docs/sow-review/compliance-and-security-review.md`](../../../docs/sow-review/compliance-and-security-review.md).
 
 The first table at the top of the document MUST capture:
@@ -257,8 +279,9 @@ Mirror its section ordering, table styles, and the three-bucket
 
 ## Output
 
-A single Markdown file at `docs/sow-review/<short-name>-review.md`
-with the following top-level sections, in order:
+A single Markdown file at
+`docs/sow-review/<sow-slug>-<version>/compliance-and-security-review.md` with
+the following top-level sections, in order:
 
 1. Header table (document under review, scope, reviewer, date, verdict,
    cross-references)
