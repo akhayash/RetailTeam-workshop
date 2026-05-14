@@ -433,6 +433,8 @@ Tolerance bands are configurable per tenant and garment category. System default
 | Azure App Configuration | Feature flags for progressive rollouts | Standard |
 | Azure Monitor | OpenTelemetry traces, metrics, logs, alerts | Log Analytics workspace |
 
+For detailed monthly cost projections across pilot, growth, and scale tiers, see **[cost-estimate.md](./cost-estimate.md)**.
+
 ## Multi-Tenant Data Architecture
 
 ```mermaid
