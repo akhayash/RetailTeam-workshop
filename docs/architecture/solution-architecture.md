@@ -1,6 +1,34 @@
 # Solution Architecture: AI Clothing Fit Assessment Agent
 
-**Version**: 2.0.0 | **Date**: 2026-05-13 | **Status**: Approved for Implementation
+**Version**: 2.0.0 | **Date**: 2026-05-13 | **Status**: Draft
+
+## Table of Contents
+
+- [Executive Summary](#executive-summary)
+- [Problem Statement](#problem-statement)
+- [Walmart Context: Current State & Industry Realities](#walmart-context-current-state--industry-realities)
+- [Retail Industry Personas](#retail-industry-personas)
+- [Three Architecture Concept Diagrams](#three-architecture-concept-diagrams)
+- [Persona-Driven AI Scenarios](#persona-driven-ai-scenarios)
+- [C-Suite Relevance — "So What?"](#c-suite-relevance--so-what)
+- [Business Value Driver Mapping](#business-value-driver-mapping)
+- [System Context](#system-context)
+- [Three-Tier AI Pipeline (Concept A Detail)](#three-tier-ai-pipeline-concept-a-detail)
+- [Fit Comparison Engine](#fit-comparison-engine)
+- [Azure Service Map](#azure-service-map)
+- [Multi-Tenant Data Architecture](#multi-tenant-data-architecture)
+- [Assessment Request Flow](#assessment-request-flow)
+- [Network and Security Architecture](#network-and-security-architecture)
+- [Threat Model Summary](#threat-model-summary)
+- [API Contract Summary](#api-contract-summary)
+- [Project Structure](#project-structure)
+- [Deployment Pipeline](#deployment-pipeline)
+- [SLOs and Operational Targets](#slos-and-operational-targets)
+- [Key Constraints](#key-constraints)
+- [Key Tradeoffs](#key-tradeoffs)
+- [Hypothesis Register](#hypothesis-register)
+
+---
 
 ## Executive Summary
 
@@ -500,6 +528,24 @@ graph TD
 ```
 
 **Zero-trust model**: Every service call authenticated via managed identity. No shared secrets. Private endpoints for data services.
+
+## Threat Model Summary
+
+A full STRIDE/DREAD threat model is maintained separately: **[threat-model.md](./threat-model.md)**
+
+**Overall Risk Rating**: Medium-High (mitigated to Medium by existing controls)
+
+| Category | Threats Identified | Top Risk |
+|----------|-------------------|----------|
+| Spoofing | 4 | Stolen tenant JWT (DREAD 6.2) |
+| Tampering | 5 | Adversarial image perturbation |
+| Repudiation | 3 | Shopper disputes recommendation accuracy |
+| Information Disclosure | 6 | Body photo exfiltration during 60s processing window (DREAD 5.6) |
+| Denial of Service | 5 | API volumetric flood — highest-scoring threat (DREAD 9.0) |
+| Elevation of Privilege | 4 | Prompt injection via image metadata |
+| AI-Specific | 6 | Bias in measurement extraction across body types (DREAD 5.8) |
+
+**Critical pre-GA actions**: Azure DDoS Protection, Defender for Storage, distributed rate limiting, EXIF metadata stripping, physiological plausibility validation on AI output.
 
 ## API Contract Summary
 
