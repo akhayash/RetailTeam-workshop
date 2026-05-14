@@ -1,0 +1,42 @@
+{
+  "dimensions": {
+    "width_inches": 13.333,
+    "height_inches": 7.5,
+    "match_expected": true
+  },
+  "slide_count": 22,
+  "speaker_notes": {
+    "missing": []
+  },
+  "element_counts": {
+    "1": 7,
+    "2": 7,
+    "3": 14,
+    "4": 9,
+    "5": 21,
+    "6": 12,
+    "7": 15,
+    "8": 14,
+    "9": 12,
+    "10": 14,
+    "11": 10,
+    "12": 23,
+    "13": 9,
+    "14": 19,
+    "15": 12,
+    "16": 26,
+    "17": 21,
+    "18": 18,
+    "19": 14,
+    "20": 6,
+    "21": 30,
+    "22": 8
+  },
+  "color_samples": {
+    "unique_fill_colors_found": 5,
+    "palette_check": [
+      "  navy (#14366E): found \u2713",
+      "  olive (#9BBB59): found \u2713"
+    ]
+  }
+}
