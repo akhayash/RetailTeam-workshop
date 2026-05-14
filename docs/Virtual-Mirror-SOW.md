@@ -53,7 +53,7 @@
 | Customer | Walmart Digital — Apparel & Marketplace |
 | Provider | Microsoft Industry Solutions Delivery (ISD) |
 | Engagement type | Agentic AI / AI-ACAIAGILE-LED Work Order (capacity-based, Time & Materials) |
-| Version | 0.2.0 |
+| Version | 0.3.0 |
 | Status | Draft for internal review |
 | Date | 2026-05-14 |
 | Work Order reference | TBD upon countersignature |
