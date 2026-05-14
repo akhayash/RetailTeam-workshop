@@ -7,7 +7,7 @@
 - [Executive Summary](#executive-summary)
 - [Problem Statement](#problem-statement)
 - [Walmart Context: Current State & Industry Realities](#walmart-context-current-state--industry-realities)
-- [Retail Industry Personas](#retail-industry-personas)
+- [Walmart Executive Personas](#walmart-executive-personas)
 - [Three Architecture Concept Diagrams](#three-architecture-concept-diagrams)
 - [Persona-Driven AI Scenarios](#persona-driven-ai-scenarios)
 - [C-Suite Relevance — "So What?"](#c-suite-relevance--so-what)
@@ -132,42 +132,64 @@ Walmart is the **3rd-largest U.S. apparel e-commerce retailer** with $14.7B in o
 
 ---
 
-## Retail Industry Personas
+## Walmart Executive Personas
 
-Three personas represent the primary stakeholders affected by the architecture.
+Five personas represent the primary Walmart stakeholders affected by the architecture — mapped to real executive ownership.
 
 ### Persona 1: Online Shopper (Frontline / Operational)
 
 | Field | Detail |
 |-------|--------|
-| **Role** | Consumer browsing an e-commerce clothing store |
-| **Goal** | Buy clothes that fit without visiting a physical store |
-| **Constraints** | Limited technical knowledge; impatient (< 5s tolerance); privacy-conscious about body photos |
-| **Friction** | High return rates (25–40%); size chart confusion across brands; no way to try before buying |
-| **How technology helps** | AI copilot extracts body measurements from a single photo and provides per-area fit guidance — reducing guesswork and returns |
+| **Role** | Walmart.com apparel customer (240M+ weekly customers across channels) |
+| **Goal** | Buy clothes that fit without visiting a physical store; avoid the hassle of returns |
+| **Constraints** | Limited technical knowledge; impatient (< 5s tolerance); privacy-conscious about body photos; may be shopping from mobile (65%+ of Walmart digital traffic) |
+| **Friction** | Size inconsistency across Walmart's 1,100+ clothing brands; bracketing behavior (buying 2–3 sizes); no way to try before buying online |
+| **How technology helps** | VirtualMirror AI extracts body measurements from a single photo and provides per-area fit guidance — reducing guesswork and returns |
 | **How technology hinders** | Accuracy concerns erode trust; photo upload friction; privacy anxiety about body images |
 
-### Persona 2: Retail Digital Transformation Leader
+### Persona 2: Suresh Kumar — EVP, Global CTO & Chief Development Officer
 
 | Field | Detail |
 |-------|--------|
-| **Role** | VP of Digital / E-Commerce at a retail partner |
-| **Goal** | Reduce return rates (currently 25–40%), increase conversion, differentiate the online experience |
-| **Constraints** | Must integrate with existing e-commerce platform; limited AI/ML team; ROI must be demonstrable within 6 months |
-| **Friction** | Legacy catalog systems lack standardized measurement data; organizational resistance to AI-driven features |
-| **How technology helps** | API-first integration layer allows embedding fit assessment without rebuilding the storefront; multi-tenant model enables rapid onboarding |
-| **How technology hinders** | Measurement accuracy (±2–4 cm) may not satisfy premium/tailored segments; requires garment data standardization effort |
+| **Role** | Walmart's technology strategy owner; oversees Global Tech (25,000+ engineers), cloud infrastructure, AI/ML platforms, and developer experience |
+| **Goal** | Modernize the digital shopping experience with scalable AI; demonstrate Walmart's technology leadership; maximize ROI on Azure partnership ($500M+ annual spend) |
+| **Constraints** | Must align with Walmart's multi-hybrid cloud strategy (Azure + GCP + private); must integrate with internal developer platform (Kubernetes-native); Wallaby LLM precedent sets expectations for in-house AI capability |
+| **Friction** | Balancing build vs. buy for AI capabilities; managing model governance at enterprise scale; ensuring new AI features don't introduce latency or reliability risks to the core e-commerce platform |
+| **How technology helps** | API-first architecture integrates cleanly with Walmart's platform engineering model; Azure-native stack maximizes existing partnership investment; Florence-2 + GPT-5.2 pipeline leverages managed AI (no ML team required for v1) |
+| **How technology hinders** | Azure-native design creates vendor dependency within a multi-cloud strategy; GPT-5.2 accuracy (±2–4 cm) may require custom model investment (Tier 3) to meet premium standards |
 
-### Persona 3: Risk / Compliance / Privacy Officer
+### Persona 3: John David Rainey — EVP & Chief Financial Officer
 
 | Field | Detail |
 |-------|--------|
-| **Role** | Chief Privacy Officer or Data Protection Lead at a retail partner |
-| **Goal** | Ensure AI-powered features comply with GDPR, CCPA, and emerging EU AI Act; prevent biometric data exposure |
-| **Constraints** | Body photos are biometric-adjacent data; AI must be explainable and auditable; data residency requirements |
-| **Friction** | Unclear regulatory classification of body measurement extraction; vendor trust concerns for AI services |
-| **How technology helps** | Privacy by design — photos purged < 60s, opaque shopper IDs, no PII in telemetry, DPIA-ready architecture |
-| **How technology hinders** | Dependency on Azure OpenAI raises questions about data processing locations and third-party access |
+| **Role** | Walmart Inc. global CFO; owns P&L accountability, capital allocation, and operational efficiency metrics |
+| **Goal** | Reduce the $200–400M annual cost of fit-related returns; demonstrate measurable ROI within 6 months; improve operating margin on apparel e-commerce |
+| **Constraints** | Tight capital discipline — new investments must show clear path to payback; quarterly earnings visibility; cost per transaction must decrease at scale |
+| **Friction** | Returns are currently booked as a cost of doing business; attributing return reduction to a single AI feature requires rigorous A/B testing and hold-out groups |
+| **How technology helps** | At $0.011–0.018 per assessment vs. $10–30 per return processed, even 1% return reduction yields 80–240x ROI. Profile reuse and caching reduce per-assessment cost over time. Consumption-based Azure pricing means cost scales linearly with value delivered. |
+| **How technology hinders** | Year 1 TCO (~$500K including development) requires upfront investment before return reduction is measurable; AI accuracy must cross a trust threshold before shoppers change purchasing behavior |
+
+### Persona 4: Elisebeth B. Collins — EVP, Global Chief Ethics & Compliance Officer
+
+| Field | Detail |
+|-------|--------|
+| **Role** | Walmart's ethics, compliance, and data protection leader; oversees regulatory compliance across 19 countries; reports to CEO on AI governance |
+| **Goal** | Ensure AI-powered features comply with GDPR, CCPA, Illinois BIPA, and emerging EU AI Act; prevent biometric data exposure; maintain Walmart's trust reputation |
+| **Constraints** | Body photos are biometric-adjacent data; AI must be explainable and auditable; data residency requirements vary by market; regulatory classification of body measurement extraction is unsettled law |
+| **Friction** | Unclear whether derived measurements constitute "biometric information" under BIPA (no court precedent for AI-extracted measurements vs. direct scans); vendor trust concerns for Azure OpenAI data processing; EU AI Act classification pending |
+| **How technology helps** | Privacy by design — photos purged < 60s, opaque shopper IDs, no PII in telemetry, DPIA-ready architecture. Immutable audit trail for every assessment. Confidence scoring provides AI transparency. Concept B (on-device) eliminates cloud photo transmission entirely. |
+| **How technology hinders** | Dependency on Azure OpenAI raises questions about data processing locations and third-party access; "biometric-adjacent" classification may trigger consent requirements that add UX friction; AI bias across body types creates fairness risk |
+
+### Persona 5: Tom Ward — EVP & Chief E-Commerce Officer, Walmart U.S.
+
+| Field | Detail |
+|-------|--------|
+| **Role** | Owns Walmart U.S. e-commerce P&L, digital product experience, marketplace, and fulfillment; drives online conversion and customer satisfaction |
+| **Goal** | Reduce apparel return rate from 24–26% to below 18%; increase first-purchase conversion; differentiate Walmart.com's apparel experience vs. Amazon, ASOS, Nordstrom |
+| **Constraints** | Must integrate with existing Walmart.com storefront without disruption; feature must work across 1,100+ brands without per-brand onboarding friction; mobile-first (65%+ digital traffic) |
+| **Friction** | Legacy catalog systems lack standardized garment measurements; Zeekit acquisition (2021) provides visualization but not measurement-based confidence; competitive pressure from Amazon's AI sizing tools |
+| **How technology helps** | VirtualMirror + Zeekit creates a combined "see fit + know fit" experience no competitor offers. API-first integration embeds in PDP without storefront rebuild. Multi-tenant architecture enables marketplace seller adoption. |
+| **How technology hinders** | Requires garment measurement standardization across 1,100+ brands (data onboarding effort); accuracy must exceed shopper expectations to change bracketing behavior; initial measurement friction may reduce conversion for some segments |
 
 ---
 
@@ -296,29 +318,37 @@ graph TD
 
 ## C-Suite Relevance — "So What?"
 
-### CIO / VP of Technology
+### Suresh Kumar (CTO) — Technology Strategy
 
 | Concept | Value Proposition |
 |---------|-------------------|
-| **A. Cloud-Centric Platform** | Modernize the sizing experience with a scalable, API-first AI platform that integrates into any storefront without rebuilding infrastructure. Managed Azure services minimize operational overhead. |
-| **B. Edge + AI Agent** | Extend fit intelligence into retailer-owned native mobile apps. On-device inference preserves shopper privacy while reducing cloud dependency for latency-sensitive scenarios. |
-| **C. Data Fabric** | Unify fragmented retail data (fit, returns, inventory) into a governed intelligence layer that powers AI models across the entire business — not just one feature. |
+| **A. Cloud-Centric Platform** | Maximizes Walmart's Azure investment ($500M+/year) with managed AI services. API-first design fits Walmart's internal developer platform model. No new ML team required for v1 — Florence-2 and GPT-5.2 are fully managed. |
+| **B. Edge + AI Agent** | Extends Walmart's mobile-first strategy (65%+ digital traffic) with on-device AI. Demonstrates Global Tech's ability to ship differentiated AI experiences. Aligns with Wallaby LLM precedent for in-house AI capability. |
+| **C. Data Fabric** | Unifies fragmented retail data (fit, returns, inventory) into a governed intelligence layer. Positions VirtualMirror data as a reusable AI asset across Walmart's 25,000+ engineer ecosystem. |
 
-### Business / Operations Leader (VP of E-Commerce)
-
-| Concept | Value Proposition |
-|---------|-------------------|
-| **A. Cloud-Centric Platform** | Reduce return rates by 20–30% ($2–6M annual savings for mid-size retailer). Increase conversion through purchase confidence. Measurable ROI within 6 months. |
-| **B. Edge + AI Agent** | Elevate the at-home mobile experience — privacy-conscious shoppers get fit intelligence without uploading body photos, increasing trust and app engagement. |
-| **C. Data Fabric** | Turn return data from a cost center into a strategic asset. Fit-informed merchandising decisions reduce overstock and optimize size curve purchasing. |
-
-### Risk / Compliance / Sustainability Leader
+### Tom Ward (Chief E-Commerce Officer) — Revenue & Experience
 
 | Concept | Value Proposition |
 |---------|-------------------|
-| **A. Cloud-Centric Platform** | Privacy by design — photos purged in < 60s, opaque identities, DPIA-ready. AI transparency via confidence scores and escalation paths. Audit trail for every assessment. |
-| **B. Edge + AI Agent** | Local photo processing on the shopper's smartphone eliminates cloud transmission of body images. Strongest privacy posture. Compliant with strictest data residency requirements. |
-| **C. Data Fabric** | Full data lineage from measurement to outcome. PII classification labels. Retention policies enforced at the platform level. Supports regulatory reporting (GDPR Article 30). |
+| **A. Cloud-Centric Platform** | Reduce apparel return rate by 20–30% ($40–120M annual savings). Increase first-purchase conversion. VirtualMirror + Zeekit creates "see fit + know fit" — a combined experience no competitor offers. |
+| **B. Edge + AI Agent** | Elevate the Walmart app shopping experience — privacy-conscious shoppers get fit intelligence without uploading body photos, increasing trust and app engagement. Mobile-native aligns with 65%+ mobile traffic. |
+| **C. Data Fabric** | Turn return data from a cost center into a strategic asset. Fit-informed merchandising decisions reduce overstock and optimize size curve purchasing across 1,100+ brands. |
+
+### John David Rainey (CFO) — Financial Impact
+
+| Concept | Value Proposition |
+|---------|-------------------|
+| **A. Cloud-Centric Platform** | $0.011–0.018 per assessment vs. $10–30 per return processed. Year 1 TCO ~$500K against $40–120M savings opportunity = 80–240x ROI. Consumption-based pricing scales cost with revenue impact. |
+| **B. Edge + AI Agent** | On-device processing shifts compute cost to the shopper's hardware — cloud costs drop significantly for the highest-volume use case. Profile reuse further reduces per-assessment cost over time. |
+| **C. Data Fabric** | Quantifies return-to-fit correlation at SKU level, enabling data-driven markdown reduction and size-curve optimization. Reduces inventory write-offs by identifying poorly-sized garments before reorder. |
+
+### Elisebeth B. Collins (Chief Ethics & Compliance Officer) — Risk & Governance
+
+| Concept | Value Proposition |
+|---------|-------------------|
+| **A. Cloud-Centric Platform** | Privacy by design — photos purged in < 60s, opaque identities, DPIA-ready. AI transparency via confidence scores and escalation paths. Immutable audit trail for every assessment. Azure data processing agreement covers GDPR/CCPA. |
+| **B. Edge + AI Agent** | Local photo processing on the shopper's smartphone eliminates cloud transmission of body images. Strongest privacy posture. Likely avoids BIPA "biometric information" classification entirely (no server-side photo processing). Compliant with strictest data residency requirements. |
+| **C. Data Fabric** | Full data lineage from measurement to outcome. PII classification labels. Retention policies enforced at the platform level. Supports regulatory reporting (GDPR Article 30, EU AI Act transparency). |
 
 ---
 
