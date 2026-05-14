@@ -125,7 +125,7 @@ Represents a shopper's derived body measurements. No PII stored.
 
 ---
 
-### FitAssessment
+### VirtualMirrorment
 
 Represents a single assessment result.
 

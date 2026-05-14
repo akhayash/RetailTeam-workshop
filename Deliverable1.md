@@ -13,6 +13,8 @@
 
 Online apparel returns run at **25–40%**, and the dominant driver is fit uncertainty. Shoppers cannot judge how a garment will fit before purchasing, so they over-order, return, and lose trust. Returns are a margin killer (logistics, restocking, write-offs) and a sustainability problem (transport emissions, landfill apparel).
 
+**Walmart-specific reality**: Walmart is the 3rd-largest U.S. apparel e-commerce retailer ($14.7B online apparel revenue, 2024). With an estimated 24–26% online clothing return rate and 53% of those driven by fit/sizing issues, the annual cost of fit-related returns runs into hundreds of millions. Walmart already invested in **Zeekit** (virtual try-on / visualization) — VirtualMirror complements this with **measurement-based fit confidence** ("will it fit?" vs "how does it look?"). The architecture integrates with Walmart's multi-hybrid cloud (Azure is a strategic partner at $500M+ annual spend), their Kubernetes-native internal developer platform, and existing catalog/PIM systems managed by Walmart Global Tech's 25,000+ engineering organization.
+
 The three architecture concepts below show **how agentic AI transforms the retail value chain** — from the shopper's purchase decision, to the in-store associate's recommendation, to the merchandiser's catalog and inventory strategy — while keeping **humans accountable** for the final decision in every loop.
 
 | Dimension                  | Where agentic AI transforms it                                                                     |
@@ -39,7 +41,7 @@ This is the **primary v1 implementation concept** — a cloud-native, multi-tena
 |                                                                  |
 |  +--------------+        +---------------------------------+     |
 |  | Retail       |        |  Azure Container Apps           |     |
-|  | Frontend     |------->|  FitAssess API (.NET 8)         |     |
+|  | Frontend     |------->|  VirtualMirror API (.NET 8)         |     |
 |  | (B2B OAuth)  | HTTPS  |  * 2-10 replica auto-scale      |     |
 |  +--------------+        |  * managed identity             |     |
 |                          +--+----------+----------+--------+     |
@@ -47,10 +49,10 @@ This is the **primary v1 implementation concept** — a cloud-native, multi-tena
 |                             v          v          v              |
 |  +------------------+  +----------+ +-------+ +--------------+   |
 |  | Azure AI Plane   |  | Cosmos DB| | Blob  | | Service Bus  |   |
-|  | * Vision (T1)    |  | (multi-  | | (60s  | | (async queue)|   |
+|  | * Florence-2(T1) |  | (multi-  | | (60s  | | (async queue)|   |
 |  | * Content Safety |  | tenant)  | | TTL)  | |              |   |
-|  | * OpenAI GPT-4o  |  +----------+ +-------+ +--------------+   |
-|  | * AI Foundry(v2) |                                            |
+|  | * OpenAI GPT-5.2 |  +----------+ +-------+ +--------------+   |
+|  | * AI Foundry(v2) ||
 |  +------------------+  +----------+ +----------+                 |
 |                        | Key Vault| | Azure    |                 |
 |                        | (secrets)| | Monitor  |                 |
@@ -67,7 +69,7 @@ This is the **primary v1 implementation concept** — a cloud-native, multi-tena
 | **Workflow**     | Fit assessment embedded in the product detail page — no separate tool, no app install, no size chart hunting          |
 | **Decision**     | 5-point fit scale per body area (chest, waist, hips, inseam, shoulders) + overall recommendation + confidence score   |
 | **Safety**       | Photo purged within 60s (TTL + explicit delete); opaque `shopperRef`; Content Safety filter; no biometrics persisted  |
-| **Reliability**  | Three-tier AI pipeline (Vision → GPT-4o → Foundry) with confidence gating; degrades to size-chart fallback on failure |
+| **Reliability**  | Three-tier AI pipeline (Florence-2 → GPT-5.2 → Foundry) with confidence gating; degrades to size-chart fallback on failure |
 | **Optimization** | Target: 20–30% reduction in fit-driven returns; $2–6M annual savings for a mid-size retailer; < 5s p95 latency        |
 
 ### Tradeoffs
@@ -106,7 +108,7 @@ This concept extends the platform into **in-store and real-time scenarios** — 
 |               | (not raw images)       |                         |
 |               v                        v                         |
 |  +-------------------------------------------------+             |
-|  |          FitAssess API (Cloud Backend)          |             |
+|  |          VirtualMirror API (Cloud Backend)          |             |
 |  |  * fallback when edge confidence < threshold    |             |
 |  |  * model updates pushed to edge                 |             |
 |  |  * aggregated analytics for store ops           |             |
@@ -169,7 +171,7 @@ This concept positions fit assessment data as part of a **unified retail intelli
 |          |               |               |                       |
 |          v               v               v                       |
 |  +-------------+  +----------------+  +-----------------------+  |
-|  | FitAssess   |  | Return         |  | Merchandising         |  |
+|  | VirtualMirror   |  | Return         |  | Merchandising         |  |
 |  | API         |  | Prediction     |  | Intelligence          |  |
 |  | (real-time) |  | Model (batch)  |  | (size dist., trends)  |  |
 |  +-------------+  +----------------+  +-----------------------+  |

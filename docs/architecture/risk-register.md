@@ -160,7 +160,7 @@
 
 **Mitigations**:
 
-- Graceful degradation: FitAssessmentService returns fallback sizing guidance (size chart) when AI model is unavailable (FR-012)
+- Graceful degradation: VirtualMirrormentService returns fallback sizing guidance (size chart) when AI model is unavailable (FR-012)
 - Circuit breaker pattern isolates Azure OpenAI failures from cascading
 - Azure Service Bus queuing absorbs traffic spikes (ADR-010)
 - Provisioned throughput tier selected based on capacity planning (3x peak load per Constitution IX)

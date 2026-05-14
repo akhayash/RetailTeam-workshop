@@ -22,7 +22,7 @@ Sync Impact Report:
 - Follow-up TODOs: None
 -->
 
-# FitAssess AI Constitution
+# VirtualMirror AI Constitution
 
 ## Core Principles
 
@@ -272,7 +272,7 @@ Sync Impact Report:
 ## Governance
 
 - This constitution supersedes all other development practices for
-  the FitAssess AI project
+  the VirtualMirror AI project
 - Amendments require: (1) written proposal with business justification,
   (2) team review with minimum 3 business days comment period, and
   (3) documented rationale and impact analysis before merge

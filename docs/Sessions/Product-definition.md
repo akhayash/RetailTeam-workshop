@@ -167,7 +167,7 @@ Key style decisions:
 | API Gateway / WAF | TLS termination, rate limiting per tenant tier, OWASP rules | Azure Front Door / APIM |
 | Fit Assessment API | Stateless REST endpoints, auth, request orchestration | ASP.NET Core 8 on Azure Container Apps |
 | Image Pipeline | Photo validation (size, format, quality), upload to transient blob, body measurement extraction | Azure AI Vision (Image Analysis), Azure Blob Storage |
-| Assessment Engine | Maps measurements to garment size charts, applies fit-intent rules, computes per-area fit score and confidence | .NET domain services (FitAssess.Services) |
+| Assessment Engine | Maps measurements to garment size charts, applies fit-intent rules, computes per-area fit score and confidence | .NET domain services (VirtualMirror.Services) |
 | Catalog Service | CRUD for garment size data, normalization across brands, fit-intent metadata | Cosmos DB container `garments` (partition: tenantId) |
 | Shopper Profile Service | Optional opt-in profile storage (measurements only, never photos), pseudonymous shopper reference | Cosmos DB container `profiles` (partition: tenantId) |
 | Tenant Service | Tenant onboarding, API scopes, configuration overrides | Cosmos DB container `tenants` + Azure App Configuration |
