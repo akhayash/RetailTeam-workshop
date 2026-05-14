@@ -24,7 +24,7 @@
 - [ ] T005 Create FitAssess.Api web project with ASP.NET Core 8.0 at src/FitAssess.Api/FitAssess.Api.csproj
 - [ ] T006 Create FitAssess.AppHost Aspire orchestrator project at src/FitAssess.AppHost/FitAssess.AppHost.csproj
 - [ ] T007 [P] Create test projects (xUnit) at tests/FitAssess.Core.Tests, tests/FitAssess.Services.Tests, tests/FitAssess.Api.Tests, tests/FitAssess.Infrastructure.Tests, tests/FitAssess.Contract.Tests, tests/FitAssess.Load.Tests
-- [ ] T008 [P] Add NuGet dependencies: Azure.AI.Vision.ImageAnalysis, Azure.Identity, Microsoft.Azure.Cosmos, Azure.Storage.Blobs, Swashbuckle.AspNetCore to appropriate projects
+- [ ] T008 [P] Add NuGet dependencies: Azure.AI.OpenAI, Azure.AI.Vision.ImageAnalysis, Azure.AI.ContentSafety, Azure.Identity, Microsoft.Azure.Cosmos, Azure.Storage.Blobs, Swashbuckle.AspNetCore to appropriate projects
 - [ ] T009 [P] Add test NuGet dependencies: xUnit, FluentAssertions, NSubstitute, Microsoft.AspNetCore.Mvc.Testing, Verify.Xunit, NBomber to test projects
 - [ ] T010 [P] Configure Directory.Build.props for shared build settings (nullable, implicit usings, TreatWarningsAsErrors) at src/Directory.Build.props
 - [ ] T011 [P] Create .editorconfig for C# coding conventions at root .editorconfig
@@ -54,6 +54,8 @@
 - [ ] T026 [P] Define ICosmosRepository<T> generic repository interface at src/FitAssess.Core/Interfaces/ICosmosRepository.cs
 - [ ] T027 [P] Define IImageValidator interface at src/FitAssess.Core/Interfaces/IImageValidator.cs
 - [ ] T028 [P] Define IBodyMeasurementExtractor interface at src/FitAssess.Core/Interfaces/IBodyMeasurementExtractor.cs
+- [ ] T028a [P] Define IOpenAIMeasurementClient interface for GPT-4o Vision measurement extraction at src/FitAssess.Core/Interfaces/IOpenAIMeasurementClient.cs
+- [ ] T028b [P] Define IContentSafetyClient interface for Azure AI Content Safety at src/FitAssess.Core/Interfaces/IContentSafetyClient.cs
 - [ ] T029 [P] Define IFitComparisonEngine interface at src/FitAssess.Core/Interfaces/IFitComparisonEngine.cs
 - [ ] T030 [P] Define IBlobStorageService interface at src/FitAssess.Core/Interfaces/IBlobStorageService.cs
 - [ ] T030a [P] Define IAuditLogger interface for immutable audit trail at src/FitAssess.Core/Interfaces/IAuditLogger.cs
@@ -70,7 +72,7 @@
 - [ ] T038b Configure Azure App Configuration feature flag integration for progressive rollouts at src/FitAssess.Infrastructure/Configuration/FeatureFlagService.cs
 - [ ] T038c Implement AssessmentQueueService using Azure Service Bus for async request queuing under high load at src/FitAssess.Infrastructure/Messaging/AssessmentQueueService.cs
 - [ ] T039 [P] Implement BlobStorageService with transient upload and auto-purge at src/FitAssess.Infrastructure/BlobStorage/BlobStorageService.cs
-- [ ] T040 [P] Configure Aspire AppHost with Cosmos DB, Blob Storage, and API references at src/FitAssess.AppHost/Program.cs
+- [ ] T040 [P] Configure Aspire AppHost with Cosmos DB, Blob Storage, Azure OpenAI, Azure AI Content Safety, Azure Service Bus, and API references at src/FitAssess.AppHost/Program.cs
 - [ ] T041 Implement health check endpoint with Cosmos DB, Blob, and AI model checks at src/FitAssess.Api/Controllers/HealthController.cs
 
 **Checkpoint**: Foundation ready — user story implementation can now begin in parallel
@@ -81,26 +83,30 @@
 
 **Goal**: A shopper uploads a photo and receives a personalized 5-point fit recommendation per body area within 5 seconds
 
-**Independent Test**: POST /api/v1/assessments with a photo and garment ID returns a structured fit response with confidence score
+**Independent Test**: POST /api/v1/assessments with a photo, height, and garment ID returns a structured fit response with confidence score
 
 **TDD Enforcement**: For each implementation task below, write the corresponding unit/integration test FIRST (Red), then implement to pass (Green), then refactor. Test tasks (T059–T062) define the expected behavior; write them before T042–T056.
 
-- [ ] T042 [US1] Implement ImageValidator service (format, size, quality checks) at src/FitAssess.Services/ImageProcessing/ImageValidator.cs
-- [ ] T042a [US1] Implement minor/age detection logic in ImageValidator — reject images detected as under-16 with age-appropriate message at src/FitAssess.Services/ImageProcessing/ImageValidator.cs
-- [ ] T042b [US1] Implement multi-person detection logic in ImageValidator — reject images with multiple people at src/FitAssess.Services/ImageProcessing/ImageValidator.cs
-- [ ] T043 [US1] Implement AzureAIVisionClient wrapper for body landmark extraction at src/FitAssess.Infrastructure/AzureAI/AzureAIVisionClient.cs
-- [ ] T044 [US1] Implement BodyMeasurementExtractor that converts AI landmarks to measurements at src/FitAssess.Services/ImageProcessing/BodyMeasurementExtractor.cs
+- [ ] T042 [US1] Implement ImageValidator service (format, size, MIME type validation, luminance check, bounding box coverage ≥ 70% frame height) at src/FitAssess.Services/ImageProcessing/ImageValidator.cs
+- [ ] T042a [US1] Implement minor/age detection using Azure AI Content Safety in ImageValidator — reject images detected as under-16 with age-appropriate message at src/FitAssess.Services/ImageProcessing/ImageValidator.cs
+- [ ] T042b [US1] Implement multi-person detection using Azure AI Vision 4.0 People Detection in ImageValidator — reject images with multiple people at src/FitAssess.Services/ImageProcessing/ImageValidator.cs
+- [ ] T042c [US1] Integrate malware scanning for uploaded images (Microsoft Defender for Storage or ClamAV sidecar) before AI processing at src/FitAssess.Services/ImageProcessing/ImageValidator.cs
+- [ ] T043 [US1] Implement AzureAIVisionClient wrapper for people detection (bounding box, multi-person check) at src/FitAssess.Infrastructure/AzureAI/AzureAIVisionClient.cs
+- [ ] T043a [US1] Implement ContentSafetyClient wrapper for Azure AI Content Safety (minor detection, inappropriate content) at src/FitAssess.Infrastructure/AzureAI/ContentSafetyClient.cs
+- [ ] T043b [US1] Implement AzureOpenAIMeasurementClient wrapper for GPT-4o Vision structured output — sends photo + height, receives body measurements JSON at src/FitAssess.Infrastructure/AzureAI/AzureOpenAIMeasurementClient.cs
+- [ ] T043c [US1] Create and version-control the measurement extraction prompt template (system + user prompt with structured output schema) at src/FitAssess.Infrastructure/AzureAI/Prompts/MeasurementExtractionPrompt.cs
+- [ ] T044 [US1] Implement BodyMeasurementExtractor that orchestrates GPT-4o call with height normalization and confidence calibration at src/FitAssess.Services/ImageProcessing/BodyMeasurementExtractor.cs
 - [ ] T045 [US1] Implement FitComparisonEngine with tolerance band logic per fit type at src/FitAssess.Services/Assessment/FitComparisonEngine.cs
 - [ ] T046 [US1] Implement FitAssessmentService orchestrating the full assessment pipeline at src/FitAssess.Services/Assessment/FitAssessmentService.cs
-- [ ] T047 [US1] Implement AssessmentsController with POST /api/v1/assessments endpoint at src/FitAssess.Api/Controllers/AssessmentsController.cs
-- [ ] T048 [US1] Implement CreateAssessmentRequest DTO with validation at src/FitAssess.Api/Models/CreateAssessmentRequest.cs
+- [ ] T047 [US1] Implement AssessmentsController with POST /api/v1/assessments and GET /api/v1/assessments/{assessmentId} endpoints at src/FitAssess.Api/Controllers/AssessmentsController.cs
+- [ ] T048 [US1] Implement CreateAssessmentRequest DTO with validation (including mandatory heightCm: 100-250 cm) at src/FitAssess.Api/Models/CreateAssessmentRequest.cs
 - [ ] T049 [P] [US1] Implement FitAssessmentResponse DTO mapping at src/FitAssess.Api/Models/FitAssessmentResponse.cs
 - [ ] T050 [P] [US1] Implement ImageQualityError response model at src/FitAssess.Api/Models/ImageQualityError.cs
 - [ ] T051 [P] [US1] Implement FallbackResponse for graceful degradation at src/FitAssess.Api/Models/FallbackResponse.cs
 - [ ] T052 [US1] Implement AssessmentRepository (Cosmos DB) for storing results at src/FitAssess.Infrastructure/Cosmos/AssessmentRepository.cs
 - [ ] T053 [US1] Implement GarmentRepository (Cosmos DB) for garment lookups at src/FitAssess.Infrastructure/Cosmos/GarmentRepository.cs
 - [ ] T054 [US1] Add graceful degradation logic when AI model is unavailable in FitAssessmentService at src/FitAssess.Services/Assessment/FitAssessmentService.cs
-- [ ] T055 [US1] Add low-confidence threshold check (< 70%) with disclaimer in response at src/FitAssess.Services/Assessment/FitAssessmentService.cs
+- [ ] T055 [US1] Add low-confidence threshold check (< 70%) with disclaimer and escalation URI (e.g., tenant-configured support URL) in response at src/FitAssess.Services/Assessment/FitAssessmentService.cs
 - [ ] T055a [US1] Integrate AuditLogger into FitAssessmentService — log every assessment with model version, tenant, shopper ref, and correlation ID at src/FitAssess.Services/Assessment/FitAssessmentService.cs
 - [ ] T055b [US1] Implement queued assessment flow — when load exceeds threshold, enqueue via AssessmentQueueService and return HTTP 202 with poll URL at src/FitAssess.Services/Assessment/FitAssessmentService.cs
 - [ ] T056 [US1] Wire up dependency injection for US1 services in Program.cs at src/FitAssess.Api/Program.cs
@@ -187,14 +193,20 @@
 - [ ] T095 [P] Create Bicep module for Key Vault at infra/modules/key-vault.bicep
 - [ ] T096 [P] Create Bicep module for Entra ID app registration at infra/modules/entra-app.bicep
 - [ ] T096a [P] Create Bicep module for Azure Service Bus namespace and queue at infra/modules/service-bus.bicep
+- [ ] T096b [P] Create Bicep module for Azure OpenAI resource with GPT-4o deployment at infra/modules/openai.bicep
+- [ ] T096c [P] Create Bicep module for Azure AI Content Safety resource at infra/modules/content-safety.bicep
 - [ ] T097 Create dev/staging/prod parameter files at infra/parameters/dev.json, staging.json, prod.json
-- [ ] T098 Create GitHub Actions CI workflow (build, test, scan, container sign, deploy) at .github/workflows/ci.yml — include container image scanning (Trivy) and signing (Notation/cosign) steps
+- [ ] T098 Create GitHub Actions CI workflow (build, test, SAST/SCA scan, DAST scan against staging, code coverage gates ≥ 80%/90% critical paths, SBOM generation via CycloneDX, container image scanning via Trivy, container signing via Notation/cosign, deploy) at .github/workflows/ci.yml
 - [ ] T099 [P] Create Dockerfile for FitAssess.Api at src/FitAssess.Api/Dockerfile
 - [ ] T100 [P] Create .dockerignore at root .dockerignore
 - [ ] T101 [P] Configure Azure Monitor alert rules for SLO violations in Bicep at infra/modules/alerts.bicep
+- [ ] T101a [P] Create operational runbooks for each alert rule (p95 latency, error rate, confidence drift, availability SLO) at docs/runbooks/
 - [ ] T102 Write NBomber load test simulating 500 concurrent assessments at tests/FitAssess.Load.Tests/ConcurrentAssessmentLoadTest.cs
 - [ ] T102a Write end-to-end smoke tests validating the full user journey (upload → assess → profile save → assess-by-profile) against staging environment at tests/FitAssess.Api.Tests/E2E/SmokeTests.cs
 - [ ] T103 Create README.md with project overview, setup instructions, and architecture diagram at README.md
+- [ ] T104 [P] Create model card for GPT-4o Vision measurement extraction documenting intended use, accuracy bounds (±2-4cm), limitations, known biases, and training data provenance at docs/model-card.md
+- [ ] T105 [P] Apply data classification tags to all Azure resources in Bicep modules (Cosmos DB: Confidential, Blob Storage: Restricted, Logs: Internal, AI services: Confidential) at infra/modules/*.bicep
+- [ ] T106 [P] Create disaster recovery plan and test procedures documenting RPO/RTO validation at docs/dr-plan.md
 
 ---
 
@@ -237,4 +249,4 @@ Phase 7 (Polish) can start after Phase 2, runs in parallel with Phases 3-6
    - Sprint 2: Phase 3 (MVP — photo-based fit assessment)
    - Sprint 3: Phases 4 + 5 in parallel (profiles + integration polish)
    - Sprint 4: Phase 6 + Phase 7 (garment ingestion + production readiness)
-3. **Risk Mitigation**: Azure AI Vision accuracy is the highest technical risk — T043/T044 should be spiked early in Sprint 1 to validate feasibility
+3. **Risk Mitigation**: GPT-4o Vision measurement accuracy is the highest technical risk — T043b/T044 should be spiked early in Sprint 1 to validate feasibility with known-height test images

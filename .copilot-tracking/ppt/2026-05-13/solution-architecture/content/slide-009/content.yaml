@@ -1,0 +1,274 @@
+slide: 9
+title: Three-Tier AI Pipeline (Concept A Detail)
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: Three-Tier AI Pipeline (Concept A Detail)
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: Validate first, extract second, replace later. Every tier cites the ADR that decided it.
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.0
+  width: 3.2
+  height: 1.45
+  name: Tier 1 Header
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.2
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  paragraphs:
+  - text: Tier 1
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#95C7E7'
+    text_bold: true
+    space_after: 4.0
+  - text: Validation
+    text_font: Segoe Sans Display
+    text_size: 22
+    text_color: '#FFFFFF'
+    text_bold: true
+    space_after: 4.0
+  - text: ADR-001, ADR-012
+    text_font: Segoe Sans Display
+    text_size: 10
+    text_color: '#95C7E7'
+    italic: true
+    space_after: 4.0
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 3.8
+  top: 2.0
+  width: 9.03
+  height: 1.45
+  name: Tier 1 Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.35
+  margin_right: 0.3
+  margin_top: 0.2
+  margin_bottom: 0.1
+  vertical_anchor: top
+  paragraphs:
+  - text: Three safety checks in parallel
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 6.0
+  - text: 'Azure AI Vision — people detection · multi-person reject · bounding box.'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  - text: 'Azure AI Content Safety — minor detection · explicit-content moderation.'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  - text: 'Microsoft Defender for Storage — malware scan on uploaded blob.'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  z_order: 3
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 3.55
+  width: 3.2
+  height: 1.45
+  name: Tier 2 Header
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.2
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  paragraphs:
+  - text: Tier 2
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#95C7E7'
+    text_bold: true
+    space_after: 4.0
+  - text: Extraction
+    text_font: Segoe Sans Display
+    text_size: 22
+    text_color: '#FFFFFF'
+    text_bold: true
+    space_after: 4.0
+  - text: ADR-001, ADR-008
+    text_font: Segoe Sans Display
+    text_size: 10
+    text_color: '#95C7E7'
+    italic: true
+    space_after: 4.0
+  z_order: 4
+- type: shape
+  shape: rectangle
+  left: 3.8
+  top: 3.55
+  width: 9.03
+  height: 1.45
+  name: Tier 2 Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.35
+  margin_right: 0.3
+  margin_top: 0.2
+  margin_bottom: 0.1
+  vertical_anchor: top
+  paragraphs:
+  - text: Azure OpenAI GPT-4o Vision — structured JSON output
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 6.0
+  - text: 'Height is the mandatory scale reference — without it, accuracy collapses.'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  - text: 'Prompts are versioned in source · model decisions are auditable.'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  - text: '[H] H-1 GPT-4o + height delivers ±2–4 cm — under integration test.'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#0B5594'
+    italic: true
+    space_after: 4.0
+  z_order: 5
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 5.1
+  width: 3.2
+  height: 1.45
+  name: Tier 3 Header
+  fill: '#000000'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.2
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  paragraphs:
+  - text: Tier 3
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#95C7E7'
+    text_bold: true
+    space_after: 4.0
+  - text: v2 Replacement
+    text_font: Segoe Sans Display
+    text_size: 20
+    text_color: '#FFFFFF'
+    text_bold: true
+    space_after: 4.0
+  - text: Hypothesis · pending v1 data
+    text_font: Segoe Sans Display
+    text_size: 10
+    text_color: '#95C7E7'
+    italic: true
+    space_after: 4.0
+  z_order: 6
+- type: shape
+  shape: rectangle
+  left: 3.8
+  top: 5.1
+  width: 9.03
+  height: 1.45
+  name: Tier 3 Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 47.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.35
+  margin_right: 0.3
+  margin_top: 0.2
+  margin_bottom: 0.1
+  vertical_anchor: top
+  paragraphs:
+  - text: Custom SMPL body model on Azure AI Foundry — deterministic, ±1–2 cm
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 6.0
+  - text: 'Replaces Tier 2 only if H-1 fails integration testing or accuracy plateau persists in production.'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  - text: '[H] Cost and latency are open questions; pilot must answer both.'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#0B5594'
+    italic: true
+    space_after: 4.0
+  z_order: 7
+- type: textbox
+  left: 0.5
+  top: 6.7
+  width: 12.0
+  height: 0.337
+  text: Source — solution-architecture.md §6.1 (3-Tier AI Pipeline) · ADR-001, ADR-008, ADR-012
+  name: Source Footer
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 11
+  font_color: '#6B6B6B'
+  italic: true
+  alignment: left
+  z_order: 8
+layout: 4_Title and Content
+speaker_notes: |
+  This is the Concept A engine. Tier 1 is three safety checks in parallel — Azure AI Vision rejects multi-person or no-person images, Content Safety blocks minors and explicit content, Defender for Storage screens for malware. Tier 2 is the GPT-4o Vision extraction — structured JSON, height as the mandatory scale reference, prompts versioned in source so every decision is auditable. Tier 3 is the deterministic SMPL body model we will swap in if H-1 fails integration testing. Each tier cites its ADR so the room can audit the decision trail. Source: solution-architecture.md §6.1, ADR-001, ADR-008, ADR-012.

@@ -36,7 +36,7 @@ paths:
           multipart/form-data:
             schema:
               type: object
-              required: [shopperRef, garmentId, sizeLabel, image]
+              required: [shopperRef, garmentId, sizeLabel, heightCm, image]
               properties:
                 shopperRef:
                   type: string
@@ -51,6 +51,12 @@ paths:
                   type: string
                   maxLength: 20
                   description: Size to assess (e.g., "M", "10", "32W")
+                heightCm:
+                  type: number
+                  format: double
+                  minimum: 100
+                  maximum: 250
+                  description: Shopper height in centimeters (mandatory scale reference for measurement extraction)
                 image:
                   type: string
                   format: binary
@@ -394,6 +400,11 @@ components:
         disclaimer:
           type: string
           description: Present when isLowConfidence is true
+        escalationUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: Tenant-configured support URL for disputed or low-confidence results. Present when isLowConfidence is true.
         modelVersion:
           type: string
         processingDurationMs:

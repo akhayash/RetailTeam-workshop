@@ -1,0 +1,58 @@
+dimensions:
+  width_inches: 13.333
+  height_inches: 7.5
+  format: '16:9'
+defaults:
+  speaker_notes_required: true
+typography:
+  body_font: Segoe Sans Display
+  code_font: Cascadia Code
+  heading_size: 34
+  body_size: 20
+colors:
+  bg_card: '#14366E'
+  text_dark: '#1F1F1F'
+  text_white: '#FFFFFF'
+  text_gray: '#95C7E7'
+themes:
+- name: light
+  slides:
+  - 2
+  - 6
+  - 9
+  colors:
+    text_primary: '#1F1F1F'
+    bg_card: '#14366E'
+- name: dark
+  slides:
+  - 1
+  - 3
+  - 4
+  - 5
+  - 7
+  - 8
+  - 10
+  - 11
+  colors:
+    text_secondary: '#95C7E7'
+    text_primary: '#FFFFFF'
+    bg_card: '#14366E'
+metadata:
+  author: Robert Potocnik
+theme_colors:
+  dark_1: '#000000'
+  text_1: '#000000'
+  light_1: '#FFFFFF'
+  background_1: '#FFFFFF'
+  dark_2: '#1F497D'
+  text_2: '#1F497D'
+  light_2: '#EEECE1'
+  background_2: '#EEECE1'
+  accent_1: '#4F81BD'
+  accent_2: '#C0504D'
+  accent_3: '#9BBB59'
+  accent_4: '#8064A2'
+  accent_5: '#4BACC6'
+  accent_6: '#F79646'
+  hyperlink: '#0000FF'
+  followed_hyperlink: '#800080'

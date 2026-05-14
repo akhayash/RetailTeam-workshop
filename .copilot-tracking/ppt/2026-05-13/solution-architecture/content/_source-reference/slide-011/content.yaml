@@ -1,0 +1,104 @@
+slide: 11
+title: ''
+elements:
+- type: textbox
+  left: 1.218
+  top: 3.238
+  width: 4.414
+  height: 2.611
+  text: What this means for ISD Architects
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: shrink
+  vertical_anchor: top
+  font: +mj-lt
+  font_size: 50
+  _placeholder: true
+  z_order: 0
+- type: table
+  left: 6.633
+  top: 0.729
+  width: 5.743
+  height: 5.977
+  name: Table 5
+  columns:
+  - width: 2.669
+  - width: 3.074
+  rows:
+  - cells:
+    - text: Behavior
+      vertical_anchor: middle
+      font_bold: true
+      font_size: 17
+    - text: Who we aspire to be
+      vertical_anchor: middle
+      font_bold: true
+      font_size: 17
+  - cells:
+    - text: Business‑Outcome Orientation
+      vertical_anchor: middle
+      font_bold: true
+      font_size: 17
+    - text: Architects anchor AI decisions to value drivers, not features
+      vertical_anchor: middle
+      font_size: 17
+  - cells:
+    - text: End‑to‑End Thinking
+      vertical_anchor: middle
+      font_bold: true
+      font_size: 17
+    - text: Work IQ, Foundry IQ, and Fabric IQ are positioned as a system, not silos
+      vertical_anchor: middle
+      font_size: 17
+  - cells:
+    - text: Judgment Over Execution
+      vertical_anchor: middle
+      font_bold: true
+      font_size: 17
+    - text: Emphasis shifts from “can we build it?” to “should we?”
+      vertical_anchor: middle
+      font_size: 17
+  - cells:
+    - text: Customer Co‑Creation
+      vertical_anchor: middle
+      font_bold: true
+      font_size: 17
+    - text: Value drivers frame collaborative decision‑making, not one‑way delivery
+      vertical_anchor: middle
+      font_size: 17
+  - cells:
+    - text: Speed with Safety
+      vertical_anchor: middle
+      font_bold: true
+      font_size: 17
+    - text: AI acceleration is paired with governance and risk awareness
+      vertical_anchor: middle
+      font_size: 17
+  z_order: 1
+layout: Title Only
+speaker_notes: 'Listen for and coach toward the following behaviors after this slide
+  is introduced:
+
+  Strong Signals
+
+  Architect explains why a Work IQ / Foundry IQ / Fabric IQ decision matters to the
+  business
+
+  Tradeoffs are discussed in terms of risk, cost, speed, or adoption
+
+  AI is positioned as a means, not the outcome
+
+  Recommendations are framed around value drivers, not architecture diagrams
+
+  Coaching Opportunities
+
+  Architect leads with features or tools instead of business impact
+
+  “AI will help” statements without clarity on how work or decisions change
+
+  Limited discussion of risk, governance, or adoption implications
+
+  Over‑optimization for technical elegance at the expense of business clarity'

@@ -1,0 +1,166 @@
+slide: 1
+title: ARCHITECT TRANSFORMATION  •  FACILITATOR EDITION
+elements:
+- type: image
+  path: images/image-01.png
+  left: 0.0
+  top: -0.0
+  width: 13.333
+  height: 7.5
+  name: Picture 6
+  crop:
+    l: 15562
+    r: 11767
+    b: 20161
+  z_order: 0
+- type: shape
+  shape: rectangle
+  left: -0.0
+  top: 0.0
+  width: 13.333
+  height: 7.5
+  name: Rectangle 9
+  fill:
+    type: solid
+    color: '#000000'
+    alpha: 27.0
+  z_order: 1
+- type: textbox
+  left: 0.7
+  top: 1.2
+  width: 4.411
+  height: 0.32
+  text: ARCHITECT TRANSFORMATION  •  FACILITATOR EDITION
+  name: TextBox 2
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Calibri
+  font_size: 13
+  font_color: '#95C7E7'
+  font_bold: true
+  char_spacing: 0.0
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  line_spacing: 1.0
+  bullet_none: true
+  z_order: 2
+- type: textbox
+  left: 0.7
+  top: 1.95
+  width: 12.0
+  height: 1.98
+  text: 'Technical Architecture Research
+
+    & Future-State Design
+
+    Multi-Industry  |  Same Muscle, Same Structure'
+  name: TextBox 3
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  paragraphs:
+  - text: Technical Architecture Research
+    font: Segoe Sans Text Semibold
+    font_size: 50
+    font_color: '#14366E'
+    font_bold: true
+    char_spacing: 0.0
+    alignment: left
+    space_before: 0.0
+    space_after: 10.0
+    line_spacing: 1.0
+    bullet_none: true
+  - text: '& Future-State Design'
+    font: Segoe Sans Text Semibold
+    font_size: 32
+    font_color: '#8DC8E8'
+    font_bold: true
+    char_spacing: 0.0
+    alignment: left
+    space_before: 0.0
+    space_after: 4.0
+    line_spacing: 1.0
+    bullet_none: true
+  - text: Multi-Industry  |  Same Muscle, Same Structure
+    font: Segoe Sans Text Semibold
+    font_size: 18
+    font_color: '#6B6B6B'
+    italic: true
+    char_spacing: 0.0
+    alignment: left
+    space_before: 0.0
+    space_after: 6.0
+    line_spacing: 1.0
+    bullet_none: true
+  font: Segoe Sans Text Semibold
+  font_size: 50
+  font_color: '#14366E'
+  font_bold: true
+  alignment: left
+  char_spacing: 0.0
+  z_order: 3
+- type: textbox
+  left: 0.7
+  top: 5.2
+  width: 9.933
+  height: 0.337
+  text: Practice architectural synthesis, hypothesis-building, and future-state design
+    — with AI as accelerator, not crutch.
+  name: TextBox 4
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#FFFFFF'
+  italic: true
+  char_spacing: 0.0
+  alignment: left
+  space_before: 0.0
+  space_after: 4.0
+  line_spacing: 1.0
+  bullet_none: true
+  z_order: 4
+- type: textbox
+  left: 0.4
+  top: 7.15
+  width: 4.876
+  height: 0.252
+  text: AI-First Architecting Value with AI  |  Technical Architecture Research &
+    Future-State Design
+  name: TextBox 5
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Calibri
+  font_size: 9
+  font_color: '#6B6B6B'
+  italic: true
+  char_spacing: 0.0
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  line_spacing: 1.0
+  bullet_none: true
+  z_order: 5
+- type: shape
+  shape: rectangle
+  left: 0.0
+  top: -0.0
+  width: 0.18
+  height: 7.5
+  name: Rectangle 13
+  fill: '#4F81BD'
+  z_order: 6
+layout: Blank
+speaker_notes: ''

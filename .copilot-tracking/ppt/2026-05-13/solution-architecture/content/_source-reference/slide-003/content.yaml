@@ -1,0 +1,437 @@
+slide: 3
+title: Current state  —  use Copilot to research and synthesize a probable architecture
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.606
+  text: Phase A  |  Technical Architecture Research
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.061
+  width: 2.409
+  height: 2.803
+  name: Rectangle 54
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: 'Uncover the Tech Stack
+
+    Core platforms, cloud strategy, ERP, domain systems, data platforms, current AI/ML.'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.5
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: ''
+    text_font: Calibri
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 6.0
+  - text: Uncover the Tech Stack
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 6.0
+  - text: Core platforms, cloud strategy, ERP, domain systems, data platforms, current
+      AI/ML.
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#14366E'
+    text_bold: true
+    char_spacing: 0.0
+    space_after: 6.0
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#14366E'
+  text_bold: true
+  z_order: 1
+- type: shape
+  shape: oval
+  left: 0.755
+  top: 2.209
+  width: 0.55
+  height: 0.55
+  name: Oval 58
+  fill: '#14366E'
+  text: '1'
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Calibri
+  text_size: 22
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 3.023
+  top: 2.061
+  width: 2.409
+  height: 2.803
+  name: Rectangle 76
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: 'Identify Limitations
+
+    What modernization or AI operationalization challenges has the company faced?'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.5
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: ''
+    text_font: Calibri
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 6.0
+  - text: Identify Limitations
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 6.0
+  - text: What modernization or AI operationalization challenges has the company faced?
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#14366E'
+    text_bold: true
+    char_spacing: 0.0
+    space_after: 6.0
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#14366E'
+  text_bold: true
+  z_order: 3
+- type: shape
+  shape: oval
+  left: 3.277
+  top: 2.209
+  width: 0.55
+  height: 0.55
+  name: Oval 78
+  fill: '#14366E'
+  text: '2'
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Calibri
+  text_size: 22
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 4
+- type: shape
+  shape: rectangle
+  left: 5.545
+  top: 2.061
+  width: 2.409
+  height: 2.803
+  name: Rectangle 80
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "Emerging Patterns\v\nModern reference architectures and design patterns rising\
+    \ in this industry."
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.5
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: ''
+    text_font: Calibri
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 6.0
+  - text: "Emerging Patterns\v"
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 6.0
+  - text: Modern reference architectures and design patterns rising in this industry.
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#14366E'
+    text_bold: true
+    char_spacing: 0.0
+    space_after: 6.0
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#14366E'
+  text_bold: true
+  z_order: 5
+- type: shape
+  shape: oval
+  left: 5.8
+  top: 2.209
+  width: 0.55
+  height: 0.55
+  name: Oval 82
+  fill: '#14366E'
+  text: '3'
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Calibri
+  text_size: 22
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 6
+- type: shape
+  shape: rectangle
+  left: 8.068
+  top: 2.061
+  width: 2.409
+  height: 2.803
+  name: Rectangle 88
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: 'Owners → Domains
+
+    Map executive/leadership roles to their architectural areas of focus.'
+  margin_left: 0.3
+  margin_right: 0.2
+  margin_top: 0.5
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: ''
+    text_font: Calibri
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 6.0
+  - text: Owners → Domains
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 6.0
+  - text: Map executive/leadership roles to their architectural areas of focus.
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#14366E'
+    text_bold: true
+    char_spacing: 0.0
+    space_after: 6.0
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#14366E'
+  text_bold: true
+  z_order: 7
+- type: shape
+  shape: oval
+  left: 8.323
+  top: 2.209
+  width: 0.55
+  height: 0.55
+  name: Oval 90
+  fill: '#14366E'
+  text: '4'
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Calibri
+  text_size: 22
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 8
+- type: shape
+  shape: rectangle
+  left: 10.591
+  top: 2.061
+  width: 2.409
+  height: 2.803
+  name: Rectangle 92
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "Persona Profiles\v\nFrontline, transformation leader, risk/compliance — goals,\
+    \ constraints, friction."
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.5
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: ''
+    text_font: Calibri
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 6.0
+  - text: "Persona Profiles\v"
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 6.0
+  - text: Frontline, transformation leader, risk/compliance — goals, constraints,
+      friction.
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#14366E'
+    text_bold: true
+    char_spacing: 0.0
+    space_after: 6.0
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#14366E'
+  text_bold: true
+  z_order: 9
+- type: shape
+  shape: oval
+  left: 10.845
+  top: 2.209
+  width: 0.55
+  height: 0.55
+  name: Oval 94
+  fill: '#14366E'
+  text: '5'
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Calibri
+  text_size: 22
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 10
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 7.095
+  height: 0.337
+  text: Current state  —  use Copilot to research and synthesize a probable architecture
+  name: TextBox 96
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 11
+- type: textbox
+  left: 2.814
+  top: 5.186
+  width: 7.872
+  height: 0.337
+  text: Treat outputs as hypotheses. Separate likely from confirmed. Cite sources
+    where possible.
+  name: TextBox 98
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: center
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 12
+- type: textbox
+  left: 0.5
+  top: 5.714
+  width: 12.5
+  height: 1.339
+  text: 'Quality bar for Phase A
+
+    •  Every claim labeled as Hypothesis or Verified     •  Sources cited where they
+    exist     •  Persona insights tied to actual workflows — not job titles'
+  name: TextBox 100
+  margin_left: 0.3
+  margin_right: 0.2
+  margin_top: 0.1
+  margin_bottom: 0.1
+  auto_size: none
+  vertical_anchor: middle
+  paragraphs:
+  - text: Quality bar for Phase A
+    font: Segoe Sans Display
+    font_size: 16
+    font_color: '#0B5594'
+    font_bold: true
+    alignment: left
+    space_before: 0.0
+    space_after: 6.0
+  - text: •  Every claim labeled as Hypothesis or Verified     •  Sources cited where
+      they exist     •  Persona insights tied to actual workflows — not job titles
+    font: Segoe Sans Display
+    font_size: 13
+    font_color: '#1F1F1F'
+    alignment: left
+    space_before: 0.0
+    space_after: 6.0
+  font: Segoe Sans Display
+  font_size: 16
+  font_color: '#0B5594'
+  font_bold: true
+  alignment: left
+  z_order: 13
+layout: 4_Title and Content

@@ -5,12 +5,12 @@
 
 ## Summary
 
-Build a multi-tenant AI-powered clothing fit assessment service that accepts shopper photos, extracts body measurements using Azure AI Vision, compares them against garment size data, and returns a 5-point fit recommendation per body area. Deployed as a standalone .NET 8 Web API on Azure Container Apps with Azure Cosmos DB for multi-tenant data isolation, Azure Blob Storage for transient image processing, and Microsoft Entra ID for B2B authentication.
+Build a multi-tenant AI-powered clothing fit assessment service that accepts shopper photos, extracts body measurements using Azure OpenAI GPT-4o Vision (with mandatory height input as scale reference), compares them against garment size data, and returns a 5-point fit recommendation per body area. Azure AI Vision handles image validation (people detection, multi-person rejection) and Azure AI Content Safety provides content moderation. Deployed as a standalone .NET 8 Web API on Azure Container Apps with Azure Cosmos DB for multi-tenant data isolation, Azure Blob Storage for transient image processing, and Microsoft Entra ID for B2B authentication.
 
 ## Technical Context
 
 **Language/Version**: C# / .NET 8.0 (LTS)
-**Primary Dependencies**: ASP.NET Core Web API, Azure.AI.Vision.ImageAnalysis, Azure.Identity, Microsoft.Azure.Cosmos, Azure.Storage.Blobs, Swashbuckle (OpenAPI), Aspire (orchestration)
+**Primary Dependencies**: ASP.NET Core Web API, Azure.AI.OpenAI (GPT-4o Vision), Azure.AI.Vision.ImageAnalysis (people detection), Azure.AI.ContentSafety, Azure.Identity, Microsoft.Azure.Cosmos, Azure.Storage.Blobs, Swashbuckle (OpenAPI), Aspire (orchestration)
 **Storage**: Azure Cosmos DB (multi-tenant document store with partition keys per tenant), Azure Blob Storage (transient image processing only)
 **Testing**: xUnit, FluentAssertions, NSubstitute, Microsoft.AspNetCore.Mvc.Testing, NBomber (load), Verify (snapshot)
 **Target Platform**: Linux containers on Azure Container Apps (ACA)
@@ -28,7 +28,7 @@ Build a multi-tenant AI-powered clothing fit assessment service that accepts sho
 | I | Privacy by Design | ✅ PASS | Images processed in-memory/transient blob only; opaque shopper IDs; deletion within 24h; no PII in telemetry |
 | II | Security First | ✅ PASS | Entra ID OAuth 2.0; input validation at boundary; Key Vault for secrets; TLS 1.2+; container scanning in CI |
 | III | AI Responsibility | ✅ PASS | 70% confidence threshold with fallback; model versioning; transparency disclaimer; bias evaluation plan |
-| IV | API-First Architecture | ✅ PASS | OpenAPI 3.x spec-first; stateless service; versioned endpoints; health checks; rate limiting via API gateway |
+| IV | API-First Architecture | ✅ PASS | OpenAPI 3.x spec-first; stateless service; versioned endpoints; health checks; rate limiting via ASP.NET Core middleware per tenant tier |
 | V | Test-Driven Development | ✅ PASS | xUnit TDD; contract tests; integration tests; SAST/SCA in CI; NBomber load tests |
 | VI | Observability | ✅ PASS | OpenTelemetry + Azure Monitor; structured logging; SLO dashboards; drift alerting |
 | VII | Data Minimization | ✅ PASS | Transient blob storage auto-purge; tenant-scoped data; audit logs; no raw images to third parties |
@@ -82,7 +82,7 @@ src/
 │   ├── Garments/                     # Catalog management
 │   └── Profiles/                     # Shopper profile CRUD
 ├── FitAssess.Infrastructure/         # External integrations
-│   ├── AzureAI/                      # Azure AI Vision client wrapper
+│   ├── AzureAI/                      # Azure OpenAI GPT-4o Vision (measurement extraction) + Azure AI Vision (validation) + Content Safety
 │   ├── Cosmos/                       # Cosmos DB repositories
 │   ├── BlobStorage/                  # Transient image storage
 │   ├── Messaging/                    # Azure Service Bus (async assessment queue)

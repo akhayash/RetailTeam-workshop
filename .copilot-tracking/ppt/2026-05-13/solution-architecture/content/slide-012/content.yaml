@@ -1,0 +1,223 @@
+slide: 12
+title: Business Value · Four Drivers + the Microsoft IQs
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: Business Value · Four Drivers + the Microsoft IQs
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: Tie technology to outcomes. Map each capability to a value driver and a Microsoft IQ.
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.05
+  width: 6.083
+  height: 0.65
+  name: Drivers Header
+  fill: '#14366E'
+  text: Four Value Drivers
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.7
+  width: 6.083
+  height: 3.95
+  name: Drivers Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.35
+  margin_right: 0.25
+  margin_top: 0.3
+  margin_bottom: 0.15
+  vertical_anchor: top
+  paragraphs:
+  - text: Decision Velocity & Confidence
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: Confident size recommendations at the point of purchase. Target — 30% reduction in size-driven returns within 12 months.
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: Workforce Productivity & Focus
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: Associate copilot (v2) cuts size look-up and conversion friction; analyst copilot (v3) cuts catalog-correction lead time.
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: Operational Resilience & Risk
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: Multi-tenant safety enforced in storage · 60s blob TTL · auditable prompt versions · minor and explicit-content gates.
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: Growth Enablement & Innovation
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: Fit data becomes a strategic asset — return prediction, merchandising correction, retailer benchmarks (Concept C path).
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  z_order: 3
+- type: shape
+  shape: rectangle
+  left: 6.75
+  top: 2.05
+  width: 6.083
+  height: 0.65
+  name: IQ Header
+  fill: '#000000'
+  text: Three Microsoft IQs — Where Each Shows Up
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 4
+- type: table
+  left: 6.75
+  top: 2.7
+  width: 6.083
+  height: 3.95
+  name: IQ Table
+  first_row: true
+  horz_banding: true
+  columns:
+  - width: 1.683
+  - width: 4.4
+  rows:
+  - cells:
+    - text: Microsoft IQ
+      fill: '#14366E'
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 13
+      font_bold: true
+      font_color: '#FFFFFF'
+    - text: Where it shows up in this architecture
+      fill: '#14366E'
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 13
+      font_bold: true
+      font_color: '#FFFFFF'
+  - cells:
+    - text: Work IQ
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 13
+      font_bold: true
+      font_color: '#0B5594'
+    - text: In-workflow recommendations — the shopper-facing fit recommendation today; the associate copilot (Concept B) tomorrow.
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_color: '#1F1F1F'
+  - cells:
+    - text: Foundry IQ
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 13
+      font_bold: true
+      font_color: '#0B5594'
+    - text: The three-tier AI pipeline — Vision + Content Safety + GPT-4o, and the future SMPL body model on Azure AI Foundry.
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_color: '#1F1F1F'
+  - cells:
+    - text: Fabric IQ
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 13
+      font_bold: true
+      font_color: '#0B5594'
+    - text: Governed data foundation — Concept C path; semantic layer over fit, returns, profiles, and catalog.
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_color: '#1F1F1F'
+  z_order: 5
+- type: textbox
+  left: 0.5
+  top: 6.7
+  width: 12.0
+  height: 0.337
+  text: Source — solution-architecture.md §8 (Business Value) · Microsoft ISD value-driver framework
+  name: Source Footer
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 11
+  font_color: '#6B6B6B'
+  italic: true
+  alignment: left
+  z_order: 6
+layout: 4_Title and Content
+speaker_notes: |
+  Pair the technology with the outcome it earns. On the left, four value drivers — decision velocity (confident size recommendations, 30% returns reduction target), workforce productivity (associate and analyst copilots), operational resilience (multi-tenant safety, 60s TTL, audit trail), and growth enablement (fit data as a strategic asset). On the right, the Microsoft IQ framing — Work IQ is the in-workflow recommendation, Foundry IQ is the three-tier pipeline, Fabric IQ is the Concept C semantic layer. The IQs are enablers, not headlines — the drivers are what the business pays for. Source: solution-architecture.md §8.

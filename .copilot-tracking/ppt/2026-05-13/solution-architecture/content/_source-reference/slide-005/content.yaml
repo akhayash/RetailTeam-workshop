@@ -1,0 +1,218 @@
+slide: 5
+title: Synthesize your research into a cohesive future-state, grounded in your industry’s
+  realities
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.606
+  text: Phase B  |  Design Future-State Architecture
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 7.804
+  height: 0.337
+  text: Synthesize your research into a cohesive future-state, grounded in your industry’s
+    realities
+  name: TextBox 4
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 1
+- type: textbox
+  left: 0.5
+  top: 2.03
+  width: 12.47
+  height: 1.432
+  text: 'Three Architecture Concept Diagrams
+
+    Cloud-centric platform  ·  Edge + AI Agent operations  ·  Data fabric / intelligence
+    layer
+
+    Show how agentic AI could transform workflows, decisions, safety, reliability,
+    or optimization — appropriate to the industry.'
+  name: TextBox 6
+  margin_left: 1.4
+  margin_right: 0.1
+  margin_top: 0.0
+  margin_bottom: 0.0
+  vertical_anchor: middle
+  paragraphs:
+  - text: Three Architecture Concept Diagrams
+    font: Segoe Sans Display
+    font_size: 18
+  - text: Cloud-centric platform  ·  Edge + AI Agent operations  ·  Data fabric /
+      intelligence layer
+    font: Segoe Sans Display
+    font_size: 14
+  - text: Show how agentic AI could transform workflows, decisions, safety, reliability,
+      or optimization — appropriate to the industry.
+    font: Segoe Sans Display
+    font_size: 12
+    italic: true
+  font: Segoe Sans Display
+  font_size: 18
+  z_order: 2
+- type: shape
+  shape: oval
+  left: 0.735
+  top: 2.322
+  width: 0.871
+  height: 0.848
+  name: Oval 13
+  effect:
+    type: outer_shadow
+    blurRad: '50800'
+    dist: '38100'
+    dir: '2700000'
+    algn: tl
+    rotWithShape: '0'
+    color: black
+    color_type: preset
+    alpha: 40.0
+  text: '1'
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_size: 40
+  alignment: center
+  z_order: 3
+- type: textbox
+  left: 0.5
+  top: 3.637
+  width: 12.47
+  height: 1.432
+  text: 'Persona-Driven Scenarios
+
+    What the AI agent does  ·  Decisions it supports (not replaces)  ·  Human + AI
+    collaboration  ·  New roles / hybrid interfaces
+
+    “An AI copilot that assists <persona> by synthesizing <data>, flagging <risks>,
+    and recommending <actions> — while the human retains accountability.”'
+  name: TextBox 15
+  margin_left: 1.4
+  margin_right: 0.1
+  margin_top: 0.0
+  margin_bottom: 0.0
+  vertical_anchor: middle
+  paragraphs:
+  - text: Persona-Driven Scenarios
+    font: Segoe Sans Display
+    font_size: 18
+  - text: What the AI agent does  ·  Decisions it supports (not replaces)  ·  Human
+      + AI collaboration  ·  New roles / hybrid interfaces
+    font: Segoe Sans Display
+    font_size: 14
+  - text: “An AI copilot that assists <persona> by synthesizing <data>, flagging <risks>,
+      and recommending <actions> — while the human retains accountability.”
+    font: Segoe Sans Display
+    font_size: 12
+    italic: true
+  font: Segoe Sans Display
+  font_size: 18
+  z_order: 4
+- type: shape
+  shape: oval
+  left: 0.735
+  top: 3.929
+  width: 0.871
+  height: 0.848
+  name: Oval 17
+  effect:
+    type: outer_shadow
+    blurRad: '50800'
+    dist: '38100'
+    dir: '2700000'
+    algn: tl
+    rotWithShape: '0'
+    color: black
+    color_type: preset
+    alpha: 40.0
+  text: '2'
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_size: 40
+  alignment: center
+  z_order: 5
+- type: textbox
+  left: 0.5
+  top: 5.244
+  width: 12.47
+  height: 1.432
+  text: 'C-Suite Relevance  (“So What?”)
+
+    CIO  ·  Business / Operations Leader  ·  Risk / Compliance / Sustainability Leader
+
+    Articulate the value of each architecture concept for each executive lens — in
+    their language.'
+  name: TextBox 19
+  margin_left: 1.4
+  margin_right: 0.1
+  margin_top: 0.0
+  margin_bottom: 0.0
+  vertical_anchor: middle
+  paragraphs:
+  - text: C-Suite Relevance  (“So What?”)
+    font: Segoe Sans Display
+    font_size: 18
+  - text: CIO  ·  Business / Operations Leader  ·  Risk / Compliance / Sustainability
+      Leader
+    font: Segoe Sans Display
+    font_size: 14
+  - text: Articulate the value of each architecture concept for each executive lens
+      — in their language.
+    font: Segoe Sans Display
+    font_size: 12
+    italic: true
+  font: Segoe Sans Display
+  font_size: 18
+  z_order: 6
+- type: shape
+  shape: oval
+  left: 0.735
+  top: 5.535
+  width: 0.871
+  height: 0.848
+  name: Oval 21
+  effect:
+    type: outer_shadow
+    blurRad: '50800'
+    dist: '38100'
+    dir: '2700000'
+    algn: tl
+    rotWithShape: '0'
+    color: black
+    color_type: preset
+    alpha: 40.0
+  text: '3'
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_size: 40
+  alignment: center
+  z_order: 7
+layout: 4_Title and Content

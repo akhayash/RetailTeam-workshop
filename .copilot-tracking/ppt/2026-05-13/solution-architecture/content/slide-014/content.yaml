@@ -1,0 +1,243 @@
+slide: 14
+title: Hypotheses · What We'd Need to See to Change Course
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: Hypotheses · What We'd Need to See to Change Course
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: Six hypotheses. Each carries the test that settles it.
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+- type: table
+  left: 0.5
+  top: 2.05
+  width: 12.333
+  height: 4.55
+  name: Hypotheses Table
+  first_row: true
+  horz_banding: true
+  columns:
+  - width: 0.7
+  - width: 5.5
+  - width: 1.333
+  - width: 4.8
+  rows:
+  - cells:
+    - text: ID
+      fill: '#000000'
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 13
+      font_bold: true
+      font_color: '#FFFFFF'
+    - text: Hypothesis
+      fill: '#000000'
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 13
+      font_bold: true
+      font_color: '#FFFFFF'
+    - text: Status
+      fill: '#000000'
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 13
+      font_bold: true
+      font_color: '#FFFFFF'
+    - text: Validation Method
+      fill: '#000000'
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 13
+      font_bold: true
+      font_color: '#FFFFFF'
+  - cells:
+    - text: H-1
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 13
+      font_bold: true
+      font_color: '#14366E'
+    - text: GPT-4o Vision + mandatory height delivers ±2–4 cm measurement accuracy good enough for size recommendation.
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_color: '#1F1F1F'
+    - text: Hypothesis
+      fill: '#FFFFFF'
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_bold: true
+      font_color: '#0B5594'
+    - text: Integration testing on a labeled measurement set; spot-check against tape-measured ground truth.
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_color: '#1F1F1F'
+  - cells:
+    - text: H-2
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 13
+      font_bold: true
+      font_color: '#14366E'
+    - text: A 70% confidence threshold is the right shopper-trust line for showing or hiding the size recommendation.
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_color: '#1F1F1F'
+    - text: Hypothesis
+      fill: '#FFFFFF'
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_bold: true
+      font_color: '#0B5594'
+    - text: A/B test threshold variants vs return rate and shopper conversion in pilot tenant.
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_color: '#1F1F1F'
+  - cells:
+    - text: H-3
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 13
+      font_bold: true
+      font_color: '#14366E'
+    - text: Cosmos hierarchical partition keys (tenant + body + assessment) prevent cross-tenant queries at the engine level.
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_color: '#1F1F1F'
+    - text: Verified
+      fill: '#9BBB59'
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_bold: true
+      font_color: '#FFFFFF'
+    - text: Schema compile-time validation + integration tests confirming query-pattern enforcement.
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_color: '#1F1F1F'
+  - cells:
+    - text: H-4
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 13
+      font_bold: true
+      font_color: '#14366E'
+    - text: 60-second blob TTL meets the privacy and regulatory bar for biometric-adjacent image data.
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_color: '#1F1F1F'
+    - text: Hypothesis
+      fill: '#FFFFFF'
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_bold: true
+      font_color: '#0B5594'
+    - text: DPIA review and external counsel sign-off before pilot expansion beyond first tenant.
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_color: '#1F1F1F'
+  - cells:
+    - text: H-5
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 13
+      font_bold: true
+      font_color: '#14366E'
+    - text: ASP.NET Core middleware rate limiting absorbs 2× expected peak load without breaching p95.
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_color: '#1F1F1F'
+    - text: Hypothesis
+      fill: '#FFFFFF'
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_bold: true
+      font_color: '#0B5594'
+    - text: Load test at 2× projected peak; verify Service Bus overflow trigger fires before SLA breach.
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_color: '#1F1F1F'
+  - cells:
+    - text: H-6
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 13
+      font_bold: true
+      font_color: '#14366E'
+    - text: Edge inference (Concept B) is cost-justified vs cloud-only once in-store volume crosses a per-store threshold.
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_color: '#1F1F1F'
+    - text: Hypothesis
+      fill: '#FFFFFF'
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_bold: true
+      font_color: '#0B5594'
+    - text: Per-store TCO model + 2-store pilot comparing edge vs cloud cost per assessment.
+      vertical_anchor: middle
+      font: Segoe Sans Display
+      font_size: 12
+      font_color: '#1F1F1F'
+  z_order: 2
+- type: textbox
+  left: 0.5
+  top: 6.7
+  width: 12.0
+  height: 0.337
+  text: Source — solution-architecture.md §10 (Hypotheses) · research.md (R1) · risk-register.md
+  name: Source Footer
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 11
+  font_color: '#6B6B6B'
+  italic: true
+  alignment: left
+  z_order: 3
+layout: 4_Title and Content
+speaker_notes: |
+  The architecture is honest about what is verified and what is still a hypothesis. H-3 (multi-tenant safety via hierarchical PK) is Verified at compile time. H-1 (GPT-4o accuracy) and H-2 (the 70% confidence threshold) drive the riskiest behavior in the system and must be settled in integration and A/B testing before pilot. H-4 (60s TTL) and H-5 (rate limiting) are operational hypotheses with named tests. H-6 (edge cost) is the gate for Concept B. The status column is the asymmetry — we ship on H-1 verified by test, but production data is what truly settles it. Source: solution-architecture.md §10.

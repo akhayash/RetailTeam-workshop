@@ -1,0 +1,180 @@
+slide: 2
+title: What it is — and what it is not
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: Executive Summary
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: What it is — and what it is not
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.301
+  width: 6.083
+  height: 0.65
+  name: Problem Header
+  fill: '#000000'
+  text: The Problem
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 20
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 6.933
+  top: 2.301
+  width: 6.083
+  height: 0.65
+  name: Solution Header
+  fill: '#14366E'
+  text: The Solution
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 20
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 3
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.951
+  width: 6.083
+  height: 3.5
+  name: Problem Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.4
+  margin_right: 0.3
+  margin_top: 0.4
+  margin_bottom: 0.2
+  vertical_anchor: top
+  paragraphs:
+  - text: 25–40% online clothing return rate.
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: No way for shoppers to "try before you buy".
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: Sizing chaos across brands and regions.
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: Privacy concerns block easy biometric fixes.
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  z_order: 4
+- type: shape
+  shape: rectangle
+  left: 6.933
+  top: 2.951
+  width: 6.083
+  height: 3.5
+  name: Solution Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.4
+  margin_right: 0.3
+  margin_top: 0.4
+  margin_bottom: 0.2
+  vertical_anchor: top
+  paragraphs:
+  - text: Multi-tenant .NET 8 API on Azure Container Apps.
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: 3-tier AI pipeline — Microsoft stack only.
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: 5-point fit scale per body area.
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: Photos purged in < 60s.
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: Humans decide — AI recommends.
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  z_order: 5
+- type: textbox
+  left: 0.5
+  top: 6.7
+  width: 12.0
+  height: 0.337
+  text: Source — docs/architecture/solution-architecture.md §1 (Executive Summary)
+  name: Source Footer
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 11
+  font_color: '#6B6B6B'
+  italic: true
+  alignment: left
+  z_order: 6
+layout: 4_Title and Content
+speaker_notes: |
+  Frame the problem first: clothing returns drive 25–40% of online apparel revenue back through the warehouse, and the obvious biometric fixes hit privacy walls. Then present the solution: a multi-tenant .NET 8 service on Azure Container Apps with a three-tier Microsoft-only AI pipeline that purges photos in under 60 seconds and keeps the human in the decision loop. The point of this slide is to set the boundary — what we are building and what we are not (we are not replacing human judgment, we are not building biometrics). Source: solution-architecture.md §1.

@@ -1,0 +1,138 @@
+slide: 15
+title: Defending the Choice
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: Defending the Choice
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: Closing — workshop discussion.
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+- type: textbox
+  left: 0.5
+  top: 2.1
+  width: 12.333
+  height: 1.4
+  text: Why this architecture, why now, what would change our mind?
+  name: Big Question
+  margin_left: 0.2
+  margin_right: 0.2
+  margin_top: 0.1
+  margin_bottom: 0.1
+  auto_size: none
+  vertical_anchor: middle
+  font: Segoe Sans Display
+  font_size: 32
+  font_color: '#14366E'
+  font_bold: true
+  alignment: center
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 3.7
+  width: 12.333
+  height: 0.55
+  name: Commitments Header
+  fill: '#14366E'
+  text: Our Commitments
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 3
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 4.25
+  width: 12.333
+  height: 2.4
+  name: Commitments Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.45
+  margin_right: 0.35
+  margin_top: 0.25
+  margin_bottom: 0.15
+  vertical_anchor: top
+  paragraphs:
+  - text: We will ship Concept A as v1 because measurable ROI in 6 months is the contract.
+    text_font: Segoe Sans Display
+    text_size: 15
+    text_color: '#1F1F1F'
+    text_bold: true
+    space_after: 8.0
+  - text: We will reopen Tier 2 (swap to SMPL) if H-1 fails integration testing or accuracy plateaus persist in production.
+    text_font: Segoe Sans Display
+    text_size: 15
+    text_color: '#1F1F1F'
+    text_bold: true
+    space_after: 8.0
+  - text: We will pilot Concept B in 12–18 months once shopper trust data and store-fleet maturity exist.
+    text_font: Segoe Sans Display
+    text_size: 15
+    text_color: '#1F1F1F'
+    text_bold: true
+    space_after: 8.0
+  - text: We will deepen into Concept C when fit data has demonstrated business value beyond returns reduction.
+    text_font: Segoe Sans Display
+    text_size: 15
+    text_color: '#1F1F1F'
+    text_bold: true
+    space_after: 4.0
+  z_order: 4
+- type: textbox
+  left: 0.5
+  top: 6.75
+  width: 12.0
+  height: 0.337
+  text: Source — solution-architecture.md §9 (Sequencing) · §11 (Open Questions for the Room)
+  name: Source Footer
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 11
+  font_color: '#6B6B6B'
+  italic: true
+  alignment: left
+  z_order: 5
+layout: 4_Title and Content
+speaker_notes: |
+  Close on the question and the commitments. Read the question aloud — Why this architecture, why now, what would change our mind? Then walk through the four commitments. Concept A ships because we owe the business a measurable return inside six months. Tier 2 will be reopened the moment H-1 fails — that is the contract, not a hope. Concept B is a v2 pilot in 12–18 months, gated on shopper trust data and store-fleet readiness. Concept C is the v3 strategic deepening, gated on Concept A producing the data that justifies the Fabric investment. The commitments are how we hold ourselves accountable. Source: solution-architecture.md §9 and §11.
