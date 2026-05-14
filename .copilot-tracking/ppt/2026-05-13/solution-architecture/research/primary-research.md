@@ -63,25 +63,32 @@ The workshop quality bar:
 - **Tone**: Confident but humble — facts are cited, hypotheses are flagged, tradeoffs are explicit.
 - **Outcome**: Reviewers can defend the v1 selection of Concept A, see the v2/v3 evolution path through Concepts B and C, and understand the risk and decision posture.
 
-## 5. Deck Outline (15 slides)
+## 5. Deck Outline (22 slides — revised 2026-05-14)
 
-| # | Slide | Layout pattern | Purpose |
-|---|-------|---------------|---------|
-| 1 | Cover | Hero cover with overlay | Title, subtitle, byline, brand framing |
-| 2 | Executive Summary | Two-up "Setup / Real Goal" cards | What it is and what it is not |
-| 3 | Phase A — 5 Research Lenses | 5-up step cards with numbered ovals | Tech Stack / Limitations / Patterns / Owners / Personas |
-| 4 | Retail Industry Personas | 3-up column cards | Online Shopper / Digital Leader / Risk-Compliance |
-| 5 | Phase B — Three Architecture Concepts (overview) | 3-up column header row | Introduce Concepts A, B, C |
-| 6 | Concept A — Cloud-Centric Platform | Card + tradeoffs box | v1 implementation, named tradeoffs |
-| 7 | Concept B — Edge + AI Agent | Card + tradeoffs box | Future expansion, named tradeoffs |
-| 8 | Concept C — Data Fabric / Intelligence Layer | Card + tradeoffs box | Long-term, named tradeoffs |
-| 9 | Three-Tier AI Pipeline (Concept A detail) | 3 stacked tier panels | Tier 1 Validation / Tier 2 Extraction / Tier 3 v2 |
-| 10 | Assessment Request Flow | Numbered step ribbon | End-to-end happy path |
-| 11 | C-Suite "So What?" | Wide table (black header + blue first column) | Each concept × CIO / Ops / Risk |
-| 12 | Business Value & IQ Framework | Two-pane: 4 value drivers + IQ table | Work IQ / Foundry IQ / Fabric IQ alignment |
-| 13 | Key Decisions and Top Risks | Two-up cards | 5 ADRs + 5 risks with severity |
-| 14 | Tradeoffs and Hypotheses | Wide table with `[H]` / `[V]` badges | Hypothesis register named, validation method per row |
-| 15 | Closing — Defending the Choice | Closing question + behaviors table | Workshop close with discussion prompts |
+| # | Slide | Layout pattern | Purpose | Status |
+|---|-------|---------------|---------|--------|
+| 1 | Cover | Hero cover with overlay | Title, subtitle, byline, brand framing | EXISTING (was slide-001) |
+| 2 | Executive Summary | Two-up "Setup / Real Goal" cards | What it is and what it is not | EXISTING (was slide-002) |
+| 3 | Phase A — 5 Research Lenses | 5-up step cards with numbered ovals | Tech Stack / Limitations / Patterns / Owners / Personas | EXISTING (was slide-003) |
+| 4 | Retail Industry Personas | 3-up column cards | Online Shopper / Digital Leader / Risk-Compliance | EXISTING (was slide-004) |
+| 5 | System Context Diagram | Structured boxes + arrows | External actors and FitAssess API boundary | **NEW** |
+| 6 | Container View / Clean Architecture | Four-layer stacked blocks | .NET 8 internal layering (Presentation → Service → Core → Infrastructure) | **NEW** |
+| 7 | Phase B — Three Architecture Concepts (overview) | 3-up column header row + enriched body | Introduce Concepts A, B, C with timeline visual | ENRICHED (was slide-005) |
+| 8 | Concept A — Cloud-Centric Platform | Card + tradeoffs + diagram | v1 implementation, named tradeoffs, topology diagram | ENRICHED (was slide-006) |
+| 9 | Concept B — Edge + AI Agent | Card + tradeoffs + diagram | Future expansion, named tradeoffs, edge topology | ENRICHED (was slide-007) |
+| 10 | Concept C — Data Fabric / Intelligence Layer | Card + tradeoffs + diagram | Long-term, named tradeoffs, fabric data flow | ENRICHED (was slide-008) |
+| 11 | Three-Tier AI Pipeline (Concept A detail) | 3 stacked tier panels | Tier 1 Validation / Tier 2 Extraction / Tier 3 v2 | EXISTING (was slide-009) |
+| 12 | Assessment Request Flow | Numbered step ribbon | End-to-end happy path | EXISTING (was slide-010) |
+| 13 | Multi-Tenant Data Architecture | Cosmos container diagram | Hierarchical PK, 5 containers, tenant isolation | **NEW** |
+| 14 | Network & Security Topology | Layered network diagram | Zero-trust, private endpoints, managed identity | **NEW** |
+| 15 | Deployment Topology | Environment promotion flow | Dev → Staging → Production (multi-AZ) | **NEW** |
+| 16 | CI/CD Pipeline | 17-stage pipeline flow | Build, test, scan, deploy stages | **NEW** |
+| 17 | Entity Relationship Model | ER diagram with boxes + arrows | Tenant → Garment → ShopperProfile → FitAssessment → AuditLog | **NEW** |
+| 18 | C-Suite "So What?" | Wide table (black header + blue first column) | Each concept × CIO / Ops / Risk | EXISTING (was slide-011) |
+| 19 | Business Value & IQ Framework | Two-pane: 4 value drivers + IQ table | Work IQ / Foundry IQ / Fabric IQ alignment | EXISTING (was slide-012) |
+| 20 | Key Decisions and Top Risks | Two-up cards | 5 ADRs + 5 risks with severity | EXISTING (was slide-013) |
+| 21 | Tradeoffs and Hypotheses | Wide table with `[H]` / `[V]` badges | Hypothesis register named, validation method per row | EXISTING (was slide-014) |
+| 22 | Closing — Defending the Choice | Closing question + behaviors table | Workshop close with discussion prompts | EXISTING (was slide-015) |
 
 ## 6. Per-Slide Content Brief
 
@@ -213,12 +220,13 @@ Wide table — named hypotheses, status, validation method, owner:
 
 ## 7. Build Strategy
 
-- **Mode**: Full rebuild (new deck from scratch) — we are not modifying the workshop guidance PPTX.
+- **Mode**: Full rebuild (new deck from scratch) — we are creating all 22 slides from content YAML.
 - **Template**: Use `--template` pointing to `docs/Inputs/EX2_Technical_Architecture_Research.pptx` to inherit the master/layout names (`4_Title and Content`, `Title Only`, `Blank`) so title placeholders work.
-- **Output**: `slide-deck/solution-architecture.pptx` (15 slides).
+- **Output**: `slide-deck/solution-architecture.pptx` (22 slides).
 - **Speaker notes**: Mandatory on every slide (style.yaml has `speaker_notes_required: true`).
 - **Title placeholders**: Keep `_placeholder: true` on title boxes for slides 2+ to inherit master styling; slide 1 cover uses plain textboxes (matches source slide 1).
 - **Fonts**: Replace any `+mj-lt` / `+mn-lt` placeholder tokens with `Segoe Sans Display` in content YAMLs.
+- **Renumbering**: Existing slides renumbered to new positions. Content directories named slide-001 through slide-022.
 
 ## 8. Detected Gaps and Open Questions
 

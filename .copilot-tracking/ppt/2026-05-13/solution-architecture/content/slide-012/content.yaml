@@ -1,12 +1,12 @@
 slide: 12
-title: Business Value · Four Drivers + the Microsoft IQs
+title: "Assessment Request Flow"
 elements:
 - type: textbox
   left: 0.5
   top: 0.735
   width: 12.185
   height: 0.572
-  text: Business Value · Four Drivers + the Microsoft IQs
+  text: "Assessment Request Flow"
   name: Title 1
   margin_left: 0.1
   margin_right: 0.1
@@ -19,7 +19,7 @@ elements:
   top: 1.472
   width: 12.0
   height: 0.337
-  text: Tie technology to outcomes. Map each capability to a value driver and a Microsoft IQ.
+  text: "End-to-end happy path from POST to fit result."
   name: Subtitle
   margin_left: 0.0
   margin_right: 0.1
@@ -32,192 +32,376 @@ elements:
   italic: true
   alignment: left
   z_order: 1
+# Step 1
 - type: shape
-  shape: rectangle
+  shape: oval
   left: 0.5
-  top: 2.05
-  width: 6.083
-  height: 0.65
-  name: Drivers Header
+  top: 2.2
+  width: 0.5
+  height: 0.5
+  name: Step 1 Oval
   fill: '#14366E'
-  text: Four Value Drivers
-  margin_left: 0.3
-  margin_right: 0.1
-  margin_top: 0.05
-  margin_bottom: 0.05
+  text: '1'
   vertical_anchor: middle
   text_font: Segoe Sans Display
   text_size: 16
   text_color: '#FFFFFF'
   text_bold: true
-  alignment: left
+  alignment: center
   z_order: 2
 - type: shape
   shape: rectangle
   left: 0.5
-  top: 2.7
-  width: 6.083
-  height: 3.95
-  name: Drivers Body
+  top: 2.8
+  width: 1.6
+  height: 1.0
+  name: Step 1 Card
   fill:
     type: solid
     color: '#9BBB59'
     alpha: 68.0
   line_color: '#DCE3EC'
   line_width: 0.5
-  margin_left: 0.35
-  margin_right: 0.25
-  margin_top: 0.3
-  margin_bottom: 0.15
-  vertical_anchor: top
-  paragraphs:
-  - text: Decision Velocity & Confidence
-    text_font: Segoe Sans Display
-    text_size: 14
-    text_color: '#0B5594'
-    text_bold: true
-    space_after: 4.0
-  - text: Confident size recommendations at the point of purchase. Target — 30% reduction in size-driven returns within 12 months.
-    text_font: Segoe Sans Display
-    text_size: 12
-    text_color: '#1F1F1F'
-    space_after: 12.0
-  - text: Workforce Productivity & Focus
-    text_font: Segoe Sans Display
-    text_size: 14
-    text_color: '#0B5594'
-    text_bold: true
-    space_after: 4.0
-  - text: Associate copilot (v2) cuts size look-up and conversion friction; analyst copilot (v3) cuts catalog-correction lead time.
-    text_font: Segoe Sans Display
-    text_size: 12
-    text_color: '#1F1F1F'
-    space_after: 12.0
-  - text: Operational Resilience & Risk
-    text_font: Segoe Sans Display
-    text_size: 14
-    text_color: '#0B5594'
-    text_bold: true
-    space_after: 4.0
-  - text: Multi-tenant safety enforced in storage · 60s blob TTL · auditable prompt versions · minor and explicit-content gates.
-    text_font: Segoe Sans Display
-    text_size: 12
-    text_color: '#1F1F1F'
-    space_after: 12.0
-  - text: Growth Enablement & Innovation
-    text_font: Segoe Sans Display
-    text_size: 14
-    text_color: '#0B5594'
-    text_bold: true
-    space_after: 4.0
-  - text: Fit data becomes a strategic asset — return prediction, merchandising correction, retailer benchmarks (Concept C path).
-    text_font: Segoe Sans Display
-    text_size: 12
-    text_color: '#1F1F1F'
-    space_after: 4.0
-  z_order: 3
-- type: shape
-  shape: rectangle
-  left: 6.75
-  top: 2.05
-  width: 6.083
-  height: 0.65
-  name: IQ Header
-  fill: '#000000'
-  text: Three Microsoft IQs — Where Each Shows Up
-  margin_left: 0.3
+  margin_left: 0.1
   margin_right: 0.1
-  margin_top: 0.05
-  margin_bottom: 0.05
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Frontend POST /assessments"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  z_order: 3
+# Arrow 1-2
+- type: shape
+  shape: right_arrow
+  left: 2.15
+  top: 3.2
+  width: 0.25
+  height: 0.15
+  name: Arrow 1 2
+  fill: '#14366E'
+  z_order: 4
+# Step 2
+- type: shape
+  shape: oval
+  left: 2.45
+  top: 2.2
+  width: 0.5
+  height: 0.5
+  name: Step 2 Oval
+  fill: '#14366E'
+  text: '2'
   vertical_anchor: middle
   text_font: Segoe Sans Display
   text_size: 16
   text_color: '#FFFFFF'
   text_bold: true
-  alignment: left
-  z_order: 4
-- type: table
-  left: 6.75
-  top: 2.7
-  width: 6.083
-  height: 3.95
-  name: IQ Table
-  first_row: true
-  horz_banding: true
-  columns:
-  - width: 1.683
-  - width: 4.4
-  rows:
-  - cells:
-    - text: Microsoft IQ
-      fill: '#14366E'
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 13
-      font_bold: true
-      font_color: '#FFFFFF'
-    - text: Where it shows up in this architecture
-      fill: '#14366E'
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 13
-      font_bold: true
-      font_color: '#FFFFFF'
-  - cells:
-    - text: Work IQ
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 13
-      font_bold: true
-      font_color: '#0B5594'
-    - text: In-workflow recommendations — the shopper-facing fit recommendation today; the associate copilot (Concept B) tomorrow.
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 12
-      font_color: '#1F1F1F'
-  - cells:
-    - text: Foundry IQ
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 13
-      font_bold: true
-      font_color: '#0B5594'
-    - text: The three-tier AI pipeline — Vision + Content Safety + GPT-4o, and the future SMPL body model on Azure AI Foundry.
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 12
-      font_color: '#1F1F1F'
-  - cells:
-    - text: Fabric IQ
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 13
-      font_bold: true
-      font_color: '#0B5594'
-    - text: Governed data foundation — Concept C path; semantic layer over fit, returns, profiles, and catalog.
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 12
-      font_color: '#1F1F1F'
+  alignment: center
   z_order: 5
-- type: textbox
-  left: 0.5
-  top: 6.7
-  width: 12.0
-  height: 0.337
-  text: Source — solution-architecture.md §8 (Business Value) · Microsoft ISD value-driver framework
-  name: Source Footer
+- type: shape
+  shape: rectangle
+  left: 2.45
+  top: 2.8
+  width: 1.6
+  height: 1.0
+  name: Step 2 Card
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
   margin_left: 0.1
   margin_right: 0.1
-  margin_top: 0.05
-  margin_bottom: 0.05
-  auto_size: fit
-  font: Segoe Sans Display
-  font_size: 11
-  font_color: '#6B6B6B'
-  italic: true
-  alignment: left
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Auth (JWT) + rate limit"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
   z_order: 6
-layout: 4_Title and Content
-speaker_notes: |
-  Pair the technology with the outcome it earns. On the left, four value drivers — decision velocity (confident size recommendations, 30% returns reduction target), workforce productivity (associate and analyst copilots), operational resilience (multi-tenant safety, 60s TTL, audit trail), and growth enablement (fit data as a strategic asset). On the right, the Microsoft IQ framing — Work IQ is the in-workflow recommendation, Foundry IQ is the three-tier pipeline, Fabric IQ is the Concept C semantic layer. The IQs are enablers, not headlines — the drivers are what the business pays for. Source: solution-architecture.md §8.
+# Arrow 2-3
+- type: shape
+  shape: right_arrow
+  left: 4.1
+  top: 3.2
+  width: 0.25
+  height: 0.15
+  name: Arrow 2 3
+  fill: '#14366E'
+  z_order: 7
+# Step 3
+- type: shape
+  shape: oval
+  left: 4.4
+  top: 2.2
+  width: 0.5
+  height: 0.5
+  name: Step 3 Oval
+  fill: '#14366E'
+  text: '3'
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 8
+- type: shape
+  shape: rectangle
+  left: 4.4
+  top: 2.8
+  width: 1.6
+  height: 1.0
+  name: Step 3 Card
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Image upload (in-memory or Blob if > 4 MB)"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  z_order: 9
+# Arrow 3-4
+- type: shape
+  shape: right_arrow
+  left: 6.05
+  top: 3.2
+  width: 0.25
+  height: 0.15
+  name: Arrow 3 4
+  fill: '#14366E'
+  z_order: 10
+# Step 4
+- type: shape
+  shape: oval
+  left: 6.35
+  top: 2.2
+  width: 0.5
+  height: 0.5
+  name: Step 4 Oval
+  fill: '#14366E'
+  text: '4'
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 11
+- type: shape
+  shape: rectangle
+  left: 6.35
+  top: 2.8
+  width: 1.6
+  height: 1.0
+  name: Step 4 Card
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Tier 1: Validate (Vision + Content Safety + Defender)"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  z_order: 12
+# Arrow 4-5
+- type: shape
+  shape: right_arrow
+  left: 8.0
+  top: 3.2
+  width: 0.25
+  height: 0.15
+  name: Arrow 4 5
+  fill: '#14366E'
+  z_order: 13
+# Step 5
+- type: shape
+  shape: oval
+  left: 8.3
+  top: 2.2
+  width: 0.5
+  height: 0.5
+  name: Step 5 Oval
+  fill: '#14366E'
+  text: '5'
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 14
+- type: shape
+  shape: rectangle
+  left: 8.3
+  top: 2.8
+  width: 1.6
+  height: 1.0
+  name: Step 5 Card
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Tier 2: Extract measurements (GPT-4o + height)"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  z_order: 15
+# Arrow 5-6
+- type: shape
+  shape: right_arrow
+  left: 9.95
+  top: 3.2
+  width: 0.25
+  height: 0.15
+  name: Arrow 5 6
+  fill: '#14366E'
+  z_order: 16
+# Step 6
+- type: shape
+  shape: oval
+  left: 10.25
+  top: 2.2
+  width: 0.5
+  height: 0.5
+  name: Step 6 Oval
+  fill: '#14366E'
+  text: '6'
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 17
+- type: shape
+  shape: rectangle
+  left: 10.25
+  top: 2.8
+  width: 1.6
+  height: 1.0
+  name: Step 6 Card
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Compare vs garment data (FitComparisonEngine)"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  z_order: 18
+# Arrow 6-7 (wraps down)
+- type: shape
+  shape: down_arrow
+  left: 11.0
+  top: 3.85
+  width: 0.25
+  height: 0.3
+  name: Arrow 6 7
+  fill: '#14366E'
+  z_order: 19
+# Step 7
+- type: shape
+  shape: oval
+  left: 10.25
+  top: 4.3
+  width: 0.5
+  height: 0.5
+  name: Step 7 Oval
+  fill: '#14366E'
+  text: '7'
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 20
+- type: shape
+  shape: rectangle
+  left: 8.3
+  top: 4.3
+  width: 1.9
+  height: 1.0
+  name: Step 7 Card
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Return result + audit + purge image"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  z_order: 21
+# Bottom info strip
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 5.8
+  width: 12.333
+  height: 0.7
+  name: Bottom Strip
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.3
+  margin_right: 0.2
+  margin_top: 0.15
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "p95 latency target: < 5 s · Async queue triggers above 50 depth or 4 s p95 · Failures return size chart fallback"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#1F1F1F'
+  alignment: center
+  z_order: 22
+speaker_notes: "This is the happy-path sequence. Three alternate flows: image rejected at Tier 1 returns 422; low confidence returns 200 with disclaimer and escalation URL; queue overflow returns 202 with poll URL. Source: solution-architecture.md Section 6, OpenAPI contract."

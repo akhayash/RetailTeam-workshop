@@ -1,23 +1,24 @@
 {
   "projectSlug": "fitassess",
   "securityPlanFile": ".copilot-tracking/security-plans/fitassess/security-plan.md",
-  "currentPhase": 2,
+  "currentPhase": 5,
   "entryMode": "capture",
   "bucketsCompleted": ["infra", "devops/platform-ops", "build", "messaging", "data", "web/UI/reporting", "identity/auth", "ai-ml"],
-  "standardsMapped": [],
-  "riskSurfaceStarted": false,
-  "handoffGenerated": { "ado": false, "github": false },
+  "standardsMapped": ["infra", "devops/platform-ops", "build", "messaging", "data", "web/UI/reporting", "identity/auth", "ai-ml"],
+  "riskSurfaceStarted": true,
+  "handoffGenerated": { "ado": false, "github": true },
   "referencesProcessed": [
     "specs/001-clothing-fit-assessment/spec.md",
     "specs/001-clothing-fit-assessment/plan.md",
     "specs/001-clothing-fit-assessment/data-model.md",
     "specs/001-clothing-fit-assessment/research.md",
-    "specs/001-clothing-fit-assessment/contracts/openapi.yaml"
+    "specs/001-clothing-fit-assessment/contracts/openapi.yaml",
+    ".copilot-tracking/research/subagents/2026-05-14/fitassess-waf-caf-cis.md"
   ],
   "nextActions": [
-    "Collect answers to Phase 1 scoping questions (Q1-Q5)",
-    "Confirm scope summary with user",
-    "Advance to Phase 2 bucket analysis"
+    "Phase 6: Review and validate completeness",
+    "User approval to create GitHub issues from backlog-handoff.md",
+    "RAI Planner recommendation (raiEnabled=true)"
   ],
   "userPreferences": { "autonomyTier": "partial" },
   "raiEnabled": true,

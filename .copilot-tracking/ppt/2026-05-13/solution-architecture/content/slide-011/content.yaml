@@ -1,12 +1,12 @@
 slide: 11
-title: So What? — Concepts Mapped to Stakeholders
+title: "Three-Tier AI Pipeline"
 elements:
 - type: textbox
   left: 0.5
   top: 0.735
   width: 12.185
   height: 0.572
-  text: So What? — Concepts Mapped to Stakeholders
+  text: "Three-Tier AI Pipeline"
   name: Title 1
   margin_left: 0.1
   margin_right: 0.1
@@ -19,7 +19,7 @@ elements:
   top: 1.472
   width: 12.0
   height: 0.337
-  text: One line per concept per stakeholder. The room should leave knowing why A goes first.
+  text: "Concept A detail. Validation → Extraction → Future custom model."
   name: Subtitle
   margin_left: 0.0
   margin_right: 0.1
@@ -32,147 +32,177 @@ elements:
   italic: true
   alignment: left
   z_order: 1
-- type: table
+# Tier 1 header
+- type: shape
+  shape: rectangle
   left: 0.5
-  top: 2.05
+  top: 2.0
   width: 12.333
-  height: 4.3
-  name: SoWhat Table
-  first_row: true
-  horz_banding: true
-  columns:
-  - width: 1.833
-  - width: 3.5
-  - width: 3.5
-  - width: 3.5
-  rows:
-  - cells:
-    - text: Concept
-      fill: '#000000'
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 13
-      font_bold: true
-      font_color: '#FFFFFF'
-    - text: CIO · VP Tech
-      fill: '#000000'
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 13
-      font_bold: true
-      font_color: '#FFFFFF'
-    - text: Business · Ops
-      fill: '#000000'
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 13
-      font_bold: true
-      font_color: '#FFFFFF'
-    - text: Risk · Compliance
-      fill: '#000000'
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 13
-      font_bold: true
-      font_color: '#FFFFFF'
-  - cells:
-    - text: A · Cloud-Centric Platform
-      fill: '#14366E'
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 13
-      font_bold: true
-      font_color: '#FFFFFF'
-    - text: Microsoft-only managed services — ships v1 in months, not quarters; engineering effort stays on the fit feature, not on infra plumbing.
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 12
-    - text: Online shoppers get a confident size recommendation; the associate-facing copilot lands in v2 on the same backbone.
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 12
-    - text: Multi-tenant safety enforced at the engine level (Cosmos hierarchical PK); 60s blob TTL keeps the privacy posture defensible.
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 12
-  - cells:
-    - text: B · Edge + AI Agent Operations
-      fill: '#14366E'
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 13
-      font_bold: true
-      font_color: '#FFFFFF'
-    - text: v2 expansion — requires device-fleet management and model-distribution maturity; reuses Concept A's APIs.
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 12
-    - text: Extends reach into the store; the AI copilot augments the associate but accountability for advice stays human.
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 12
-    - text: Strongest privacy posture (processing stays local); hardware capex and patching cadence are the new risks.
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 12
-  - cells:
-    - text: C · Data Fabric / Intelligence Layer
-      fill: '#14366E'
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 13
-      font_bold: true
-      font_color: '#FFFFFF'
-    - text: v3 strategic — Fabric capex and longer time-to-insight; opens only after Concept A produces 12+ months of fit data.
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 12
-    - text: Joins fit, returns, profiles, and catalog for merchandising correction and return-rate intervention.
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 12
-    - text: Governed lineage; the copilot supports the merchandising analyst's catalog accountability rather than replacing it.
-      vertical_anchor: middle
-      font: Segoe Sans Display
-      font_size: 12
-  z_order: 2
-- type: textbox
-  left: 0.5
-  top: 6.475
-  width: 12.0
-  height: 0.581
-  text: A ships v1.   B is the v2 expansion path.   C is the v3 strategic move — gated on A's data.
-  name: Eyebrow Footer
-  margin_left: 0.1
+  height: 0.5
+  name: Tier 1 Header
+  fill: '#14366E'
+  margin_left: 0.3
   margin_right: 0.1
   margin_top: 0.05
   margin_bottom: 0.05
-  auto_size: fit
-  font: Segoe Sans Display
-  font_size: 13
-  font_color: '#B7410E'
-  font_bold: true
-  italic: true
-  alignment: center
-  z_order: 3
-- type: textbox
-  left: 0.5
-  top: 7.05
-  width: 12.0
-  height: 0.337
-  text: Source — solution-architecture.md §6, §9 (sequencing) · risk-register.md
-  name: Source Footer
-  margin_left: 0.1
-  margin_right: 0.1
-  margin_top: 0.05
-  margin_bottom: 0.05
-  auto_size: fit
-  font: Segoe Sans Display
-  font_size: 11
-  font_color: '#6B6B6B'
-  italic: true
+  vertical_anchor: middle
+  text: "Tier 1 · Validation (parallel)"
+  text_font: Segoe Sans Display
+  text_size: 15
+  text_color: '#FFFFFF'
+  text_bold: true
   alignment: left
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.5
+  width: 12.333
+  height: 1.05
+  name: Tier 1 Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.3
+  margin_right: 0.2
+  margin_top: 0.12
+  margin_bottom: 0.08
+  vertical_anchor: top
+  paragraphs:
+  - text: "Azure AI Vision 4.0 (people detection, bounding box, multi-person reject) · Azure AI Content Safety (minor/age detection, moderation) · Defender for Storage (malware scan) · Local checks: MIME type, 10 MB size, luminance ≥ 40. All must PASS to advance."
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 6.0
+  - text: "[Verified] — ADR-001, ADR-012"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#0B5594'
+    italic: true
+  z_order: 3
+# Arrow Tier 1 to Tier 2
+- type: shape
+  shape: down_arrow
+  left: 6.417
+  top: 3.6
+  width: 0.3
+  height: 0.25
+  name: Arrow T1 T2
+  fill: '#14366E'
   z_order: 4
-layout: 4_Title and Content
-speaker_notes: |
-  This is the slide where the room aligns. Read across each row: Concept A is the v1 because it ships fast, lets engineering focus on the fit feature, and enforces multi-tenant safety at the engine level. Concept B is the v2 because it extends in-store reach and gives the strongest privacy posture — but it adds device fleet and capex risk. Concept C is the v3 because it is the strategic move that only pays off after Concept A has produced 12+ months of fit data. Close on the eyebrow at the bottom — the sequencing is the architecture decision. Source: solution-architecture.md §6 and §9.
+# Tier 2 header
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 3.9
+  width: 12.333
+  height: 0.5
+  name: Tier 2 Header
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Tier 2 · Measurement Extraction (v1)"
+  text_font: Segoe Sans Display
+  text_size: 15
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 5
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 4.4
+  width: 12.333
+  height: 1.05
+  name: Tier 2 Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.3
+  margin_right: 0.2
+  margin_top: 0.12
+  margin_bottom: 0.08
+  vertical_anchor: top
+  paragraphs:
+  - text: "Azure OpenAI GPT-4o Vision. Input: photo + heightCm + versioned prompt. Structured JSON output: shoulderWidth, chestCircumference, waistCircumference, hipCircumference, inseam, armLength, confidence, modelVersion."
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 6.0
+  - text: "[Verified] — ADR-001, ADR-008"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#0B5594'
+    italic: true
+  z_order: 6
+# Arrow Tier 2 to Tier 3
+- type: shape
+  shape: down_arrow
+  left: 6.417
+  top: 5.5
+  width: 0.3
+  height: 0.25
+  name: Arrow T2 T3
+  fill: '#14366E'
+  z_order: 7
+# Tier 3 header
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 5.8
+  width: 12.333
+  height: 0.5
+  name: Tier 3 Header
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Tier 3 · Custom Model (v2 planned)"
+  text_font: Segoe Sans Display
+  text_size: 15
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 8
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 6.3
+  width: 12.333
+  height: 0.6
+  name: Tier 3 Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.3
+  margin_right: 0.2
+  margin_top: 0.1
+  margin_bottom: 0.08
+  vertical_anchor: top
+  paragraphs:
+  - text: "Custom SMPL body model on Azure AI Foundry. Target: ±1–2 cm (vs ±2–4 cm GPT-4o). Deterministic output. Trained on balanced demographic dataset."
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  - text: "[Hypothesis] — pending v1 production data"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#0B5594'
+    italic: true
+  z_order: 9
+speaker_notes: "The three-tier pipeline is the core of Concept A. Tier 1 runs in parallel — all services must pass. Tier 2 uses GPT-4o Vision with mandatory height as scale reference. Tier 3 is a planned drop-in replacement via the IAIClient interface. Source: ADR-001, solution-architecture.md Section 6."

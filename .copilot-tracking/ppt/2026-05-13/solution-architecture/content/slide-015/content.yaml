@@ -1,12 +1,12 @@
 slide: 15
-title: Defending the Choice
+title: "Deployment Topology"
 elements:
 - type: textbox
   left: 0.5
   top: 0.735
   width: 12.185
   height: 0.572
-  text: Defending the Choice
+  text: "Deployment Topology"
   name: Title 1
   margin_left: 0.1
   margin_right: 0.1
@@ -19,7 +19,7 @@ elements:
   top: 1.472
   width: 12.0
   height: 0.337
-  text: Closing — workshop discussion.
+  text: "Environment promotion: Dev → Staging → Production (multi-AZ)."
   name: Subtitle
   margin_left: 0.0
   margin_right: 0.1
@@ -32,107 +32,197 @@ elements:
   italic: true
   alignment: left
   z_order: 1
-- type: textbox
-  left: 0.5
-  top: 2.1
-  width: 12.333
-  height: 1.4
-  text: Why this architecture, why now, what would change our mind?
-  name: Big Question
-  margin_left: 0.2
-  margin_right: 0.2
-  margin_top: 0.1
-  margin_bottom: 0.1
-  auto_size: none
-  vertical_anchor: middle
-  font: Segoe Sans Display
-  font_size: 32
-  font_color: '#14366E'
-  font_bold: true
-  alignment: center
-  z_order: 2
+# GitHub box at top
 - type: shape
   shape: rectangle
-  left: 0.5
-  top: 3.7
-  width: 12.333
+  left: 3.5
+  top: 2.0
+  width: 6.333
   height: 0.55
-  name: Commitments Header
+  name: GitHub Repo
   fill: '#14366E'
-  text: Our Commitments
-  margin_left: 0.3
-  margin_right: 0.1
+  margin_left: 0.2
+  margin_right: 0.2
   margin_top: 0.05
   margin_bottom: 0.05
   vertical_anchor: middle
+  text: "GitHub Repository (main / feature branches) → GitHub Actions"
   text_font: Segoe Sans Display
-  text_size: 16
+  text_size: 12
   text_color: '#FFFFFF'
   text_bold: true
-  alignment: left
+  alignment: center
+  z_order: 2
+# Arrow to Dev
+- type: shape
+  shape: down_arrow
+  left: 6.55
+  top: 2.6
+  width: 0.25
+  height: 0.25
+  name: Arrow GH Dev
+  fill: '#14366E'
   z_order: 3
+# Dev Environment
 - type: shape
   shape: rectangle
-  left: 0.5
-  top: 4.25
-  width: 12.333
-  height: 2.4
-  name: Commitments Body
+  left: 1.5
+  top: 2.95
+  width: 10.333
+  height: 0.75
+  name: Env Dev
   fill:
     type: solid
     color: '#9BBB59'
     alpha: 68.0
   line_color: '#DCE3EC'
   line_width: 0.5
-  margin_left: 0.45
-  margin_right: 0.35
-  margin_top: 0.25
-  margin_bottom: 0.15
-  vertical_anchor: top
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
   paragraphs:
-  - text: We will ship Concept A as v1 because measurable ROI in 6 months is the contract.
+  - text: "Dev Environment"
     text_font: Segoe Sans Display
-    text_size: 15
-    text_color: '#1F1F1F'
+    text_size: 13
+    text_color: '#14366E'
     text_bold: true
-    space_after: 8.0
-  - text: We will reopen Tier 2 (swap to SMPL) if H-1 fails integration testing or accuracy plateaus persist in production.
+    space_after: 3.0
+  - text: "ACA (1 replica, Basic) · Cosmos DB (Free/Std) · Blob Storage — Purpose: fast feedback"
     text_font: Segoe Sans Display
-    text_size: 15
+    text_size: 11
     text_color: '#1F1F1F'
-    text_bold: true
-    space_after: 8.0
-  - text: We will pilot Concept B in 12–18 months once shopper trust data and store-fleet maturity exist.
-    text_font: Segoe Sans Display
-    text_size: 15
-    text_color: '#1F1F1F'
-    text_bold: true
-    space_after: 8.0
-  - text: We will deepen into Concept C when fit data has demonstrated business value beyond returns reduction.
-    text_font: Segoe Sans Display
-    text_size: 15
-    text_color: '#1F1F1F'
-    text_bold: true
-    space_after: 4.0
   z_order: 4
+# Arrow + gate label
+- type: shape
+  shape: down_arrow
+  left: 6.55
+  top: 3.78
+  width: 0.25
+  height: 0.25
+  name: Arrow Dev Stg
+  fill: '#14366E'
+  z_order: 5
 - type: textbox
-  left: 0.5
-  top: 6.75
-  width: 12.0
-  height: 0.337
-  text: Source — solution-architecture.md §9 (Sequencing) · §11 (Open Questions for the Room)
-  name: Source Footer
-  margin_left: 0.1
-  margin_right: 0.1
-  margin_top: 0.05
-  margin_bottom: 0.05
-  auto_size: fit
+  left: 7.0
+  top: 3.78
+  width: 2.5
+  height: 0.25
+  text: "manual gate / smoke tests"
   font: Segoe Sans Display
-  font_size: 11
+  font_size: 9
   font_color: '#6B6B6B'
   italic: true
   alignment: left
-  z_order: 5
-layout: 4_Title and Content
-speaker_notes: |
-  Close on the question and the commitments. Read the question aloud — Why this architecture, why now, what would change our mind? Then walk through the four commitments. Concept A ships because we owe the business a measurable return inside six months. Tier 2 will be reopened the moment H-1 fails — that is the contract, not a hope. Concept B is a v2 pilot in 12–18 months, gated on shopper trust data and store-fleet readiness. Concept C is the v3 strategic deepening, gated on Concept A producing the data that justifies the Fabric investment. The commitments are how we hold ourselves accountable. Source: solution-architecture.md §9 and §11.
+  z_order: 6
+# Staging Environment
+- type: shape
+  shape: rectangle
+  left: 1.5
+  top: 4.15
+  width: 10.333
+  height: 0.75
+  name: Env Staging
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  paragraphs:
+  - text: "Staging Environment"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 3.0
+  - text: "ACA (2 replicas, Standard) · Cosmos DB (Standard) · Blob Storage — Purpose: prod-parity, DAST, E2E, load testing"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+  z_order: 7
+# Arrow + gate label
+- type: shape
+  shape: down_arrow
+  left: 6.55
+  top: 4.98
+  width: 0.25
+  height: 0.25
+  name: Arrow Stg Prod
+  fill: '#14366E'
+  z_order: 8
+- type: textbox
+  left: 7.0
+  top: 4.98
+  width: 2.0
+  height: 0.25
+  text: "manual prod gate"
+  font: Segoe Sans Display
+  font_size: 9
+  font_color: '#6B6B6B'
+  italic: true
+  alignment: left
+  z_order: 9
+# Production Environment
+- type: shape
+  shape: rectangle
+  left: 1.5
+  top: 5.35
+  width: 10.333
+  height: 0.5
+  name: Env Prod Header
+  fill: '#14366E'
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Production Environment — Region: West Europe"
+  text_font: Segoe Sans Display
+  text_size: 13
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 10
+- type: shape
+  shape: rectangle
+  left: 1.5
+  top: 5.85
+  width: 10.333
+  height: 1.0
+  name: Env Prod Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.12
+  margin_bottom: 0.08
+  vertical_anchor: top
+  paragraphs:
+  - text: "AZ 1 · AZ 2 · AZ 3 — ACA replicas (auto 2-10)"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  - text: "Cosmos DB (Autoscale 400-4k, continuous backup) · Blob Storage (LRS, 60 s lifecycle) · Service Bus (Standard) · Key Vault (Standard)"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  - text: "RPO: < 1 h (Cosmos continuous backup) · RTO: < 30 min (multi-AZ failover)"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#0B5594'
+    italic: true
+  z_order: 11
+speaker_notes: "Each environment is an isolated Azure subscription with identical Bicep templates. Promotion is unidirectional with manual gates. Production runs across three availability zones. Cosmos continuous backup provides point-in-time restore within 30 days. Source: solution-architecture.md Section 9."

@@ -1,12 +1,12 @@
 slide: 10
-title: Assessment Request Flow
+title: "Concept C — Data Fabric / Intelligence Layer"
 elements:
 - type: textbox
   left: 0.5
   top: 0.735
   width: 12.185
   height: 0.572
-  text: Assessment Request Flow
+  text: "Concept C — Data Fabric / Intelligence Layer"
   name: Title 1
   margin_left: 0.1
   margin_right: 0.1
@@ -19,7 +19,7 @@ elements:
   top: 1.472
   width: 12.0
   height: 0.337
-  text: End-to-end happy path — Concept A · seven steps · synchronous under SLA.
+  text: "Long-term v3. Unified semantic layer for retail intelligence."
   name: Subtitle
   margin_left: 0.0
   margin_right: 0.1
@@ -32,372 +32,262 @@ elements:
   italic: true
   alignment: left
   z_order: 1
+# LEFT - Diagram
+# Source domain boxes - top row
 - type: shape
   shape: rectangle
-  left: 1.4
-  top: 4.025
-  width: 1.172
-  height: 0.05
-  name: Connector 1
-  fill: '#14366E'
+  left: 0.5
+  top: 2.1
+  width: 2.1
+  height: 0.6
+  name: Source Shopper
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "Shopper Measurements"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
   z_order: 2
 - type: shape
   shape: rectangle
-  left: 3.272
-  top: 4.025
-  width: 1.172
-  height: 0.05
-  name: Connector 2
-  fill: '#14366E'
+  left: 2.8
+  top: 2.1
+  width: 2.1
+  height: 0.6
+  name: Source Garment
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "Garment Catalog"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
   z_order: 3
 - type: shape
   shape: rectangle
-  left: 5.144
-  top: 4.025
-  width: 1.172
-  height: 0.05
-  name: Connector 3
-  fill: '#14366E'
+  left: 5.1
+  top: 2.1
+  width: 2.4
+  height: 0.6
+  name: Source Returns
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "Return & Exchange Transactions"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
   z_order: 4
+# Arrows down
 - type: shape
-  shape: rectangle
-  left: 7.016
-  top: 4.025
-  width: 1.172
-  height: 0.05
-  name: Connector 4
+  shape: down_arrow
+  left: 3.7
+  top: 2.8
+  width: 0.25
+  height: 0.3
+  name: Arrow Sources Down
   fill: '#14366E'
   z_order: 5
+# Fabric box
 - type: shape
   shape: rectangle
-  left: 8.888
-  top: 4.025
-  width: 1.172
-  height: 0.05
-  name: Connector 5
+  left: 0.5
+  top: 3.2
+  width: 7.0
+  height: 0.5
+  name: Fabric Header
   fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Microsoft Fabric — Unified Semantic Layer"
+  text_font: Segoe Sans Display
+  text_size: 13
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
   z_order: 6
 - type: shape
   shape: rectangle
-  left: 10.76
-  top: 4.025
-  width: 1.172
-  height: 0.05
-  name: Connector 6
-  fill: '#14366E'
+  left: 0.5
+  top: 3.7
+  width: 7.0
+  height: 1.4
+  name: Fabric Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.15
+  margin_bottom: 0.1
+  vertical_anchor: top
+  paragraphs:
+  - text: "Lineage: measurement → assessment → outcome"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  - text: "Governance: PII classification, retention"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  - text: "AI-ready data products"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  - text: "Cross-domain joins"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
   z_order: 7
+# Arrow down from Fabric to outputs
 - type: shape
-  shape: oval
-  left: 0.7
-  top: 3.7
-  width: 0.7
-  height: 0.7
-  name: Step 1 Oval
+  shape: down_arrow
+  left: 3.7
+  top: 5.2
+  width: 0.25
+  height: 0.3
+  name: Arrow Fabric Down
   fill: '#14366E'
-  text: '1'
-  margin_left: 0.1
-  margin_right: 0.1
-  margin_top: 0.05
-  margin_bottom: 0.05
-  vertical_anchor: middle
-  text_font: Segoe Sans Display
-  text_size: 24
-  text_color: '#FFFFFF'
-  text_bold: true
-  alignment: center
   z_order: 8
-- type: shape
-  shape: oval
-  left: 2.572
-  top: 3.7
-  width: 0.7
-  height: 0.7
-  name: Step 2 Oval
-  fill: '#14366E'
-  text: '2'
-  margin_left: 0.1
-  margin_right: 0.1
-  margin_top: 0.05
-  margin_bottom: 0.05
-  vertical_anchor: middle
-  text_font: Segoe Sans Display
-  text_size: 24
-  text_color: '#FFFFFF'
-  text_bold: true
-  alignment: center
-  z_order: 9
-- type: shape
-  shape: oval
-  left: 4.444
-  top: 3.7
-  width: 0.7
-  height: 0.7
-  name: Step 3 Oval
-  fill: '#14366E'
-  text: '3'
-  margin_left: 0.1
-  margin_right: 0.1
-  margin_top: 0.05
-  margin_bottom: 0.05
-  vertical_anchor: middle
-  text_font: Segoe Sans Display
-  text_size: 24
-  text_color: '#FFFFFF'
-  text_bold: true
-  alignment: center
-  z_order: 10
-- type: shape
-  shape: oval
-  left: 6.316
-  top: 3.7
-  width: 0.7
-  height: 0.7
-  name: Step 4 Oval
-  fill: '#14366E'
-  text: '4'
-  margin_left: 0.1
-  margin_right: 0.1
-  margin_top: 0.05
-  margin_bottom: 0.05
-  vertical_anchor: middle
-  text_font: Segoe Sans Display
-  text_size: 24
-  text_color: '#FFFFFF'
-  text_bold: true
-  alignment: center
-  z_order: 11
-- type: shape
-  shape: oval
-  left: 8.188
-  top: 3.7
-  width: 0.7
-  height: 0.7
-  name: Step 5 Oval
-  fill: '#14366E'
-  text: '5'
-  margin_left: 0.1
-  margin_right: 0.1
-  margin_top: 0.05
-  margin_bottom: 0.05
-  vertical_anchor: middle
-  text_font: Segoe Sans Display
-  text_size: 24
-  text_color: '#FFFFFF'
-  text_bold: true
-  alignment: center
-  z_order: 12
-- type: shape
-  shape: oval
-  left: 10.06
-  top: 3.7
-  width: 0.7
-  height: 0.7
-  name: Step 6 Oval
-  fill: '#14366E'
-  text: '6'
-  margin_left: 0.1
-  margin_right: 0.1
-  margin_top: 0.05
-  margin_bottom: 0.05
-  vertical_anchor: middle
-  text_font: Segoe Sans Display
-  text_size: 24
-  text_color: '#FFFFFF'
-  text_bold: true
-  alignment: center
-  z_order: 13
-- type: shape
-  shape: oval
-  left: 11.932
-  top: 3.7
-  width: 0.7
-  height: 0.7
-  name: Step 7 Oval
-  fill: '#14366E'
-  text: '7'
-  margin_left: 0.1
-  margin_right: 0.1
-  margin_top: 0.05
-  margin_bottom: 0.05
-  vertical_anchor: middle
-  text_font: Segoe Sans Display
-  text_size: 24
-  text_color: '#FFFFFF'
-  text_bold: true
-  alignment: center
-  z_order: 14
-- type: textbox
-  left: 0.2
-  top: 2.75
-  width: 1.7
-  height: 0.9
-  text: Frontend POST
-  name: Label 1
-  margin_left: 0.05
-  margin_right: 0.05
-  margin_top: 0.05
-  margin_bottom: 0.05
-  auto_size: none
-  vertical_anchor: bottom
-  font: Segoe Sans Display
-  font_size: 13
-  font_color: '#1F1F1F'
-  font_bold: true
-  alignment: center
-  z_order: 15
-- type: textbox
-  left: 2.072
-  top: 2.75
-  width: 1.7
-  height: 0.9
-  text: Auth + rate limit
-  name: Label 2
-  margin_left: 0.05
-  margin_right: 0.05
-  margin_top: 0.05
-  margin_bottom: 0.05
-  auto_size: none
-  vertical_anchor: bottom
-  font: Segoe Sans Display
-  font_size: 13
-  font_color: '#1F1F1F'
-  font_bold: true
-  alignment: center
-  z_order: 16
-- type: textbox
-  left: 3.944
-  top: 2.75
-  width: 1.7
-  height: 0.9
-  text: Image upload (in-memory or Blob)
-  name: Label 3
-  margin_left: 0.05
-  margin_right: 0.05
-  margin_top: 0.05
-  margin_bottom: 0.05
-  auto_size: none
-  vertical_anchor: bottom
-  font: Segoe Sans Display
-  font_size: 13
-  font_color: '#1F1F1F'
-  font_bold: true
-  alignment: center
-  z_order: 17
-- type: textbox
-  left: 5.816
-  top: 2.75
-  width: 1.7
-  height: 0.9
-  text: Tier 1 Validate
-  name: Label 4
-  margin_left: 0.05
-  margin_right: 0.05
-  margin_top: 0.05
-  margin_bottom: 0.05
-  auto_size: none
-  vertical_anchor: bottom
-  font: Segoe Sans Display
-  font_size: 13
-  font_color: '#1F1F1F'
-  font_bold: true
-  alignment: center
-  z_order: 18
-- type: textbox
-  left: 7.688
-  top: 2.75
-  width: 1.7
-  height: 0.9
-  text: Tier 2 Extract
-  name: Label 5
-  margin_left: 0.05
-  margin_right: 0.05
-  margin_top: 0.05
-  margin_bottom: 0.05
-  auto_size: none
-  vertical_anchor: bottom
-  font: Segoe Sans Display
-  font_size: 13
-  font_color: '#1F1F1F'
-  font_bold: true
-  alignment: center
-  z_order: 19
-- type: textbox
-  left: 9.56
-  top: 2.75
-  width: 1.7
-  height: 0.9
-  text: Compare vs garment data
-  name: Label 6
-  margin_left: 0.05
-  margin_right: 0.05
-  margin_top: 0.05
-  margin_bottom: 0.05
-  auto_size: none
-  vertical_anchor: bottom
-  font: Segoe Sans Display
-  font_size: 13
-  font_color: '#1F1F1F'
-  font_bold: true
-  alignment: center
-  z_order: 20
-- type: textbox
-  left: 11.432
-  top: 2.75
-  width: 1.7
-  height: 0.9
-  text: Return + audit + purge image
-  name: Label 7
-  margin_left: 0.05
-  margin_right: 0.05
-  margin_top: 0.05
-  margin_bottom: 0.05
-  auto_size: none
-  vertical_anchor: bottom
-  font: Segoe Sans Display
-  font_size: 13
-  font_color: '#1F1F1F'
-  font_bold: true
-  alignment: center
-  z_order: 21
+# Output boxes - bottom row
 - type: shape
   shape: rectangle
   left: 0.5
-  top: 5.5
-  width: 12.333
-  height: 0.7
-  name: Latency Strip
-  fill: '#F5F7FA'
-  line_color: '#DCE3EC'
+  top: 5.6
+  width: 2.1
+  height: 0.6
+  name: Output API
+  fill: '#FFFFFF'
+  line_color: '#14366E'
   line_width: 0.5
-  text: 'p95 latency target:  < 5s synchronous   ·   async overflow queue triggers above depth 50 or p95 > 4s.'
-  margin_left: 0.4
-  margin_right: 0.4
-  margin_top: 0.1
-  margin_bottom: 0.1
-  vertical_anchor: middle
+  text: "FitAssess API (real-time)"
   text_font: Segoe Sans Display
-  text_size: 14
+  text_size: 10
   text_color: '#1F1F1F'
   alignment: center
-  z_order: 22
-- type: textbox
-  left: 0.5
-  top: 6.7
-  width: 12.0
-  height: 0.337
-  text: Source — solution-architecture.md §7 (Request Flow) · openapi.yaml · ADR-006 (overflow queue)
-  name: Source Footer
-  margin_left: 0.1
+  vertical_anchor: middle
+  z_order: 9
+- type: shape
+  shape: rectangle
+  left: 2.8
+  top: 5.6
+  width: 2.3
+  height: 0.6
+  name: Output Return Model
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "Return Prediction Model (batch)"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 10
+- type: shape
+  shape: rectangle
+  left: 5.3
+  top: 5.6
+  width: 2.2
+  height: 0.6
+  name: Output Merch
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "Merchandising Intelligence (trends)"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 11
+# RIGHT - Tradeoffs card
+- type: shape
+  shape: rectangle
+  left: 8.0
+  top: 2.1
+  width: 4.833
+  height: 0.6
+  name: Tradeoffs Header
+  fill: '#14366E'
+  margin_left: 0.3
   margin_right: 0.1
   margin_top: 0.05
   margin_bottom: 0.05
-  auto_size: fit
-  font: Segoe Sans Display
-  font_size: 11
-  font_color: '#6B6B6B'
-  italic: true
+  vertical_anchor: middle
+  text: "Tradeoffs"
+  text_font: Segoe Sans Display
+  text_size: 18
+  text_color: '#FFFFFF'
+  text_bold: true
   alignment: left
-  z_order: 23
-layout: 4_Title and Content
-speaker_notes: |
-  Walk left to right. A POST from the frontend hits auth and rate limiting, the image lands in-memory or in a short-lived blob, Tier 1 runs three safety checks in parallel, Tier 2 extracts measurements with GPT-4o, the result is compared against the garment's size data, and the response is returned with a full audit trail while the image is purged. Anchor on the latency strip: p95 must stay under 5 seconds; when depth crosses 50 or the synchronous path slips past 4 seconds, the request goes async via Service Bus. Source: solution-architecture.md §7, openapi.yaml, ADR-006.
+  z_order: 12
+- type: shape
+  shape: rectangle
+  left: 8.0
+  top: 2.7
+  width: 4.833
+  height: 3.5
+  name: Tradeoffs Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.25
+  margin_bottom: 0.15
+  vertical_anchor: top
+  paragraphs:
+  - text: "✓ Strategic data asset"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#548235'
+    text_bold: true
+    space_after: 8.0
+  - text: "✓ Cross-domain insights"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#548235'
+    text_bold: true
+    space_after: 8.0
+  - text: "✓ AI/BI on same governed data"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#548235'
+    text_bold: true
+    space_after: 14.0
+  - text: "△ Significant Fabric investment"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#BF8F00'
+    space_after: 8.0
+  - text: "△ Data engineering effort beyond fit"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#BF8F00'
+    space_after: 8.0
+  - text: "△ Longer time-to-value"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#BF8F00'
+  z_order: 13
+speaker_notes: "Concept C builds a unified retail intelligence layer. Fit assessment data joins with return transactions and garment catalogs to enable prediction and merchandising intelligence. AI copilot assists the merchandising analyst — the analyst retains accountability. Source: solution-architecture.md Section 8.3."
