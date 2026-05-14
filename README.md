@@ -8,7 +8,7 @@ Online clothing returns cost retailers $10–30 per return, with "wrong fit" cit
 
 ## Solution
 
-FitAssess AI is a multi-tenant, standalone service that accepts a shopper's full-body photo and height, extracts body measurements using Azure OpenAI GPT-4o Vision, compares them against garment size data, and returns a **5-point fit recommendation** (Too Tight → Too Loose) per body area — all within 5 seconds.
+FitAssess AI is a multi-tenant, standalone service that accepts a shopper's full-body photo and height, extracts body measurements using Azure OpenAI GPT-5.2 Vision, compares them against garment size data, and returns a **5-point fit recommendation** (Too Tight → Too Loose) per body area — all within 5 seconds.
 
 ### Key Capabilities
 
@@ -24,7 +24,7 @@ FitAssess AI is a multi-tenant, standalone service that accepts a shopper's full
 | Layer | Technology |
 |-------|-----------|
 | **Runtime** | .NET 8.0 (LTS), ASP.NET Core Web API |
-| **AI/ML** | Azure OpenAI GPT-4o Vision (measurement extraction), Azure AI Vision (image validation), Azure AI Content Safety |
+| **AI/ML** | Azure OpenAI GPT-5.2 Vision (measurement extraction), Florence-2 on Azure AI Foundry (image validation), Azure AI Content Safety |
 | **Data** | Azure Cosmos DB (multi-tenant document store), Azure Blob Storage (transient images) |
 | **Auth** | Microsoft Entra ID (OAuth 2.0 / OpenID Connect) |
 | **Orchestration** | .NET Aspire |

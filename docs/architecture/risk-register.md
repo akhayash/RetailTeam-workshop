@@ -13,7 +13,7 @@
 
 ## Active Risks
 
-### R-001: GPT-4o Vision Measurement Accuracy
+### R-001: GPT-5.2 Vision Measurement Accuracy
 
 | Field | Value |
 |-------|-------|
@@ -24,7 +24,7 @@
 | **Owner** | Engineering Lead |
 | **Related ADR** | [ADR-001](decision-register.md#adr-001-body-measurement-extraction-approach) |
 
-**Description**: Azure OpenAI GPT-4o Vision is a general-purpose multimodal LLM, not a body measurement specialist. Estimated accuracy is ±2–4 cm, which may be insufficient for tight-fitting garments. The model is non-deterministic — identical inputs can produce different measurements across calls.
+**Description**: Azure OpenAI GPT-5.2 Vision is a general-purpose multimodal LLM, not a body measurement specialist. Estimated accuracy is ±2–4 cm (under validation, expected improvement with GPT-5.2), which may be insufficient for tight-fitting garments. The model is non-deterministic — identical inputs can produce different measurements across calls. Migration to GPT-5.2 eliminates the prior GPT-4o retirement risk, but accuracy validation remains required.
 
 **Mitigations**:
 
@@ -40,32 +40,32 @@
 
 ---
 
-### R-002: Azure AI Vision 4.0 Deprecation
+### R-002: Azure AI Vision 4.0 Deprecation (MITIGATED)
 
 | Field | Value |
 |-------|-------|
 | **Category** | Technical / Vendor |
-| **Impact** | Medium |
-| **Likelihood** | High |
-| **Severity** | HIGH |
+| **Impact** | Low |
+| **Likelihood** | Low |
+| **Severity** | LOW |
 | **Owner** | Engineering Lead |
 | **Related ADR** | [ADR-001](decision-register.md#adr-001-body-measurement-extraction-approach) |
 
-**Description**: Azure AI Vision 4.0 is retiring September 2028. The service is used for Tier 1 validation (people detection, bounding box quality check). Migration to a successor service will be required.
+**Description**: This risk is mitigated. Tier 1 image validation has been moved from Azure AI Vision 4.0 to Florence-2 on Azure AI Foundry managed endpoints, eliminating the retirement-driven migration risk for people detection and bounding box quality checks.
 
 **Mitigations**:
 
-- Azure AI Vision is used only for people detection (bounding boxes) — limited integration surface
-- `IImageValidator` interface abstracts the Vision client; migration requires only infrastructure layer change
-- Monitor Azure deprecation announcements and preview successor APIs
+- Florence-2 on Azure AI Foundry now handles Tier 1 person detection, multi-person rejection, and bounding box validation
+- `IImageValidator` interface continues to abstract the underlying vision client, minimizing future model-swap effort
+- Ongoing monitoring shifts to Azure AI Foundry model lifecycle and deployment guidance rather than Azure AI Vision retirement notices
 
-**Trigger**: Microsoft announces final deprecation timeline or removes features before September 2028.
+**Trigger**: N/A — original Azure AI Vision deprecation exposure removed by Florence-2 adoption.
 
-**Contingency**: Replace Azure AI Vision people detection with GPT-4o Vision multi-person detection (add to existing Tier 2 prompt) or adopt successor Florence model.
+**Contingency**: Monitor Florence model catalog updates and switch between Florence-2-large and Florence-2-base, or another Foundry-hosted successor, if endpoint cost/latency or lifecycle guidance changes.
 
 ---
 
-### R-003: GPT-4o Non-Deterministic Output
+### R-003: GPT-5.2 Non-Deterministic Output
 
 | Field | Value |
 |-------|-------|
@@ -82,13 +82,13 @@
 
 - Structured JSON output mode constrains response format
 - Temperature set to 0 for maximum determinism
-- Model version pinned per deployment (e.g., `gpt-4o-2024-08-06`)
+- Model version pinned per deployment (for example, a specific `gpt-5.2` release)
 - Each assessment records the model version for audit traceability
 - Snapshot testing (Verify.Xunit) captures expected output ranges, not exact values
 
 **Trigger**: Assessment reproducibility drops below 90% (same photo + height produces different fit recommendation > 10% of calls).
 
-**Contingency**: Introduce averaging across multiple GPT-4o calls (consensus mechanism) or accelerate Tier 3 custom model development.
+**Contingency**: Introduce averaging across multiple GPT-5.2 calls (consensus mechanism) or accelerate Tier 3 custom model development.
 
 ---
 
@@ -211,7 +211,7 @@
 | **Owner** | AI Ethics Lead |
 | **Related ADR** | [ADR-001](decision-register.md#adr-001-body-measurement-extraction-approach) |
 
-**Description**: GPT-4o Vision may perform differently across body types, skin tones, genders, and age groups. Accuracy disparity across demographic segments would violate Constitution III (AI Responsibility) and could cause reputational harm.
+**Description**: GPT-5.2 Vision may perform differently across body types, skin tones, genders, and age groups. Accuracy disparity across demographic segments would violate Constitution III (AI Responsibility) and could cause reputational harm.
 
 **Mitigations**:
 

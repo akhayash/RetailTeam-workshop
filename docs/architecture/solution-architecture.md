@@ -71,9 +71,9 @@ This is the **primary v1 implementation concept** — a cloud-native API service
 │                               │          │          │              │
 │  ┌────────────────────────────▼──┐  ┌────▼────┐  ┌─▼────────────┐│
 │  │  Azure AI Services (Managed)  │  │Cosmos DB│  │ Blob Storage ││
-│  │  ├── AI Vision (Tier 1)       │  │(multi-  │  │ (60s TTL     ││
+│  │  ├── Florence-2 (Tier 1)      │  │(multi-  │  │ (60s TTL     ││
 │  │  ├── Content Safety (Tier 1)  │  │ tenant) │  │  auto-purge) ││
-│  │  ├── OpenAI GPT-4o (Tier 2)   │  │         │  │              ││
+│  │  ├── OpenAI GPT-5.2 (Tier 2)  │  │         │  │              ││
 │  │  └── AI Foundry (Tier 3, v2)  │  └─────────┘  └──────────────┘│
 │  └───────────────────────────────┘                                 │
 │                                                                     │
@@ -238,7 +238,7 @@ This concept positions the fit assessment data as part of a **unified retail int
 
 | Value Driver | Technology Capability | Alignment |
 |-------------|----------------------|-----------|
-| **Decision Velocity & Confidence** | GPT-4o Vision structured output; 5-point fit scale; confidence scoring; < 5s assessment | Shoppers make faster, more confident purchase decisions. Retailers see fewer returns and higher conversion. |
+| **Decision Velocity & Confidence** | GPT-5.2 native structured output; 5-point fit scale; confidence scoring; < 5s assessment | Shoppers make faster, more confident purchase decisions. Retailers see fewer returns and higher conversion. |
 | **Workforce Productivity & Focus** | API-first integration; profile reuse; batch garment ingestion; async queuing | Retail ops teams onboard faster. Shoppers skip repeat photo uploads. Store associates focus on selling, not size guessing. |
 | **Operational Resilience & Risk** | Multi-AZ deployment; circuit breakers; graceful degradation; 60s image purge; audit trail | 99.9% availability SLO. Regulatory compliance built-in. AI failures degrade gracefully to size chart fallback. |
 | **Growth Enablement & Innovation** | Multi-tenant architecture; v2 custom model path; Data Fabric integration; edge expansion | New retail partners onboard via API. Architecture supports evolution from single feature to retail intelligence platform. |
@@ -248,7 +248,7 @@ This concept positions the fit assessment data as part of a **unified retail int
 | IQ Layer | How It Manifests |
 |----------|-----------------|
 | **Work IQ** | Intelligence embedded in the shopper's daily workflow — fit recommendations appear at the point of purchase decision, not in a separate tool. Store associates receive AI suggestions in their mobile workflow. |
-| **Foundry IQ** | Azure OpenAI GPT-4o Vision and the three-tier AI pipeline create insights (body measurements, fit scores, confidence) from raw inputs (photos, height). Prompt engineering and model versioning enable continuous refinement. |
+| **Foundry IQ** | Azure OpenAI GPT-5.2 Vision and the three-tier AI pipeline create insights (body measurements, fit scores, confidence) from raw inputs (photos, height). Prompt engineering, schema validation, and model versioning enable continuous refinement. |
 | **Fabric IQ** | Cosmos DB with hierarchical partition keys, Blob Storage lifecycle policies, and audit trails form the governed data foundation. Concept C extends this into Microsoft Fabric for cross-domain analytics. |
 
 ---
@@ -280,7 +280,7 @@ This concept positions the fit assessment data as part of a **unified retail int
 │        │                                                            │
 │  ┌─────▼───────────────────────────────────────────────────────┐   │
 │  │                  Infrastructure Layer                        │   │
-│  │  AzureAIVisionClient · ContentSafetyClient · AzureOpenAI-  │   │
+│  │  FlorenceVisionClient · ContentSafetyClient · AzureOpenAI- │   │
 │  │  MeasurementClient · CosmosRepository<T> · BlobStorage-     │   │
 │  │  Service · AssessmentQueueService · AuditLogger             │   │
 │  └─────────────────────────────────────────────────────────────┘   │
@@ -301,10 +301,10 @@ This concept positions the fit assessment data as part of a **unified retail int
 │  TIER 1 — Validation                                             │
 │                                                                  │
 │  ┌─────────────────────┐    ┌──────────────────────────────┐    │
-│  │ Azure AI Vision 4.0 │    │ Azure AI Content Safety      │    │
-│  │ • People detection   │    │ • Minor/age detection        │    │
-│  │ • Multi-person reject│    │ • Inappropriate content      │    │
-│  │ • Bounding box check │    │ • Malware scan (Defender)    │    │
+│  │ Florence-2 Foundry  │    │ Azure AI Content Safety      │    │
+│  │ • Person detection  │    │ • Minor/age detection        │    │
+│  │ • Multi-person reject│   │ • Inappropriate content      │    │
+│  │ • Bounding box check│    │ • Malware scan (Defender)    │    │
 │  └─────────┬───────────┘    └──────────────┬───────────────┘    │
 │            │ PASS                           │ PASS               │
 │            └───────────────┬────────────────┘                    │
@@ -313,7 +313,7 @@ This concept positions the fit assessment data as part of a **unified retail int
 │  TIER 2 — Measurement Extraction                                 │
 │                                                                  │
 │  ┌──────────────────────────────────────────────────────┐       │
-│  │ Azure OpenAI GPT-4o Vision (Structured Output)       │       │
+│  │ Azure OpenAI GPT-5.2 Vision (Native Structured Output)│       │
 │  │ Input: Photo (bytes) + Height (cm)                   │       │
 │  │ Output: { shoulderWidth, chestCircumference,         │       │
 │  │           waistCircumference, hipCircumference,      │       │
@@ -326,7 +326,7 @@ This concept positions the fit assessment data as part of a **unified retail int
 │                                                                  │
 │  ┌──────────────────────────────────────────────────────┐       │
 │  │ Custom SMPL Body Model on Azure AI Foundry            │       │
-│  │ • ±1-2cm accuracy (vs ±2-4cm from GPT-4o)           │       │
+│  │ • ±1-2cm accuracy (vs ±2-4cm under validation in GPT-5.2) │       │
 │  │ • Deterministic output                               │       │
 │  │ • Managed endpoint deployment                        │       │
 │  └──────────────────────────────────────────────────────┘       │
@@ -358,8 +358,8 @@ Tolerance bands are configurable per tenant and garment category. System default
 | Azure Container Apps | API host (2–10 replicas, multi-AZ) | Consumption |
 | Azure Cosmos DB | Multi-tenant document store (hierarchical partition keys) | Autoscale 400–4000 RU/s |
 | Azure Blob Storage | Transient image processing (60s TTL auto-purge) | Standard LRS |
-| Azure OpenAI | GPT-4o Vision for body measurement extraction | Standard S0 |
-| Azure AI Vision 4.0 | People detection and bounding box validation | Standard S1 |
+| Azure OpenAI | GPT-5.2 Vision for body measurement extraction with JSON schema validation | Standard S0 |
+| Azure AI Foundry managed endpoint (Florence-2-large) | Tier 1 person detection, multi-person rejection, bounding box validation | Managed online endpoint |
 | Azure AI Content Safety | Minor detection, inappropriate content filter | Standard S0 |
 | Azure Service Bus | Async assessment queuing under high load | Standard |
 | Microsoft Entra ID | OAuth 2.0 / OIDC (B2B tenant auth + managed identity) | — |
@@ -421,14 +421,14 @@ Cosmos DB Account
    ├── Upload image to Blob (if > 4 MB) or stream in-memory
    │
    ├── TIER 1: Validate image
-   │   ├── Azure AI Vision: people detection, multi-person reject,
-   │   │   bounding box ≥ 70% frame height
+   │   ├── Florence-2 on Azure AI Foundry: person detection,
+   │   │   multi-person reject, bounding box ≥ 70% frame height
    │   ├── Content Safety: minor detection, inappropriate content
    │   ├── Malware scan (Defender for Storage)
    │   └── Local checks: format, size, MIME type, luminance ≥ 40
    │
    ├── TIER 2: Extract measurements
-   │   ├── Azure OpenAI GPT-4o Vision (structured JSON output)
+   │   ├── Azure OpenAI GPT-5.2 Vision (native structured output + JSON schema validation)
    │   ├── Input: photo bytes + heightCm as scale reference
    │   └── Output: body measurements + confidence score
    │
@@ -569,7 +569,7 @@ Push to feature branch
 - **No PII storage**: Service stores measurements only; raw photos purged within 60 seconds
 - **Opaque shopper identity**: Frontend owns shopper auth; service receives only hashed reference
 - **Mandatory height input**: Required for absolute measurement derivation from 2D photos (100–250 cm)
-- **GPT-4o accuracy**: ±2–4 cm estimated; v2 custom model targets ±1–2 cm
+- **GPT-5.2 accuracy**: ±2–4 cm (under validation, expected improvement with GPT-5.2); v2 custom model targets ±1–2 cm
 - **70% confidence threshold**: Below this, system returns disclaimer + escalation URL + size chart fallback
 
 ## Key Tradeoffs
@@ -578,7 +578,7 @@ Tradeoffs are named explicitly per the workshop quality bar — not hidden behin
 
 | Tradeoff | Choice Made | What We Gain | What We Accept |
 |----------|-------------|-------------|----------------|
-| GPT-4o Vision vs custom model | GPT-4o for v1; custom SMPL for v2 | Rapid time-to-market; no ML team required for v1 | ±2–4 cm accuracy (vs ±1–2 cm); non-deterministic output |
+| GPT-5.2 Vision vs custom model | GPT-5.2 for v1; custom SMPL for v2 | Rapid time-to-market; no ML team required for v1; same SDK/API shape with native structured output | ±2–4 cm accuracy (under validation, expected improvement with GPT-5.2, vs ±1–2 cm in v2); non-deterministic output |
 | Mandatory height input vs reference object | Require shopper-reported height | Reliable scale reference for all measurements | Added UX friction; accuracy depends on self-reported honesty |
 | Cloud-only vs edge processing | Cloud-only for v1; edge exploration for v2 | Simpler architecture; no device management | Cannot serve in-store scenarios; requires network connectivity |
 | Single-region vs multi-region | Single-region v1 | Lower cost and complexity | Geo-redundancy deferred; higher latency for distant shoppers |
@@ -592,7 +592,7 @@ Key assumptions that must be validated during implementation. Per workshop quali
 
 | ID | Hypothesis | Validation Method | Risk if Wrong |
 |----|-----------|-------------------|---------------|
-| H1 | GPT-4o Vision can extract body measurements within ±2–4 cm using height as scale | Ground-truth comparison with known measurements (T043b spike) | Core value proposition fails; escalate to Tier 3 or third-party API |
+| H1 | GPT-5.2 Vision can extract body measurements within ±2–4 cm using height as scale (under validation, expected improvement with GPT-5.2) | Ground-truth comparison with known measurements (T043b spike) | Core value proposition fails; escalate to Tier 3 or third-party API |
 | H2 | 70% confidence threshold balances accuracy vs coverage | A/B testing with shopper feedback and return data | Too high → low coverage; too low → inaccurate recommendations |
 | H3 | 4 MB in-memory streaming threshold avoids memory pressure | Load testing at 500 concurrent requests (NBomber) | OOM under load; lower threshold or always use Blob Storage |
 | H4 | Tolerance band defaults (tight: 4, comfort: 2, loose: 5 cm) produce meaningful fit ratings | Comparison with industry size charts and garment supplier feedback | Misaligned ratings lead to shopper distrust |

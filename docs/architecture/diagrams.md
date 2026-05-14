@@ -197,7 +197,7 @@ The three tiers of AI processing with current (v1) and future (v2) services.
 |  TIER 2  ----  Measurement Extraction (v1)                      |
 |                                                                 |
 |  +-----------------------------------------------------------+  |
-|  |     Azure OpenAI  GPT-4o Vision (structured JSON)         |  |
+|  |     Azure OpenAI  GPT-5.2 Vision (native structured output)|  |
 |  |                                                           |  |
 |  |  Input  : photo bytes  +  heightCm  +  versioned prompt   |  |
 |  |  Output : {                                               |  |
@@ -215,7 +215,7 @@ The three tiers of AI processing with current (v1) and future (v2) services.
 |                                                                 |
 |  +-----------------------------------------------------------+  |
 |  | Custom SMPL Body Model  -  Azure AI Foundry Endpoint     |  |
-|  |   * +/- 1-2 cm target accuracy (vs +/- 2-4 cm GPT-4o)    |  |
+|  |   * +/- 1-2 cm target accuracy (vs +/- 2-4 cm GPT-5.2)   |  |
 |  |   * deterministic output                                  |  |
 |  |   * trained on balanced demographic dataset              |  |
 |  +-----------------------------------------------------------+  |
@@ -652,7 +652,7 @@ Reference: this is the v1 implementation. See [solution-architecture.md](solutio
 |  | Azure AI Plane   |  | Cosmos DB| | Blob  | | Service Bus  |   |
 |  | * Vision (T1)    |  | (multi-  | | (60s  | | (async queue)|   |
 |  | * Content Safety |  | tenant)  | | TTL)  | |              |   |
-|  | * OpenAI GPT-4o  |  +----------+ +-------+ +--------------+   |
+|  | * OpenAI GPT-5.2 |  +----------+ +-------+ +--------------+   |
 |  | * AI Foundry(v2) |                                            |
 |  +------------------+  +----------+ +----------+                 |
 |                        | Key Vault| | Azure    |                 |

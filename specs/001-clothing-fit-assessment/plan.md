@@ -5,12 +5,12 @@
 
 ## Summary
 
-Build a multi-tenant AI-powered clothing fit assessment service that accepts shopper photos, extracts body measurements using Azure OpenAI GPT-4o Vision (with mandatory height input as scale reference), compares them against garment size data, and returns a 5-point fit recommendation per body area. Azure AI Vision handles image validation (people detection, multi-person rejection) and Azure AI Content Safety provides content moderation. Deployed as a standalone .NET 8 Web API on Azure Container Apps with Azure Cosmos DB for multi-tenant data isolation, Azure Blob Storage for transient image processing, and Microsoft Entra ID for B2B authentication.
+Build a multi-tenant AI-powered clothing fit assessment service that accepts shopper photos, extracts body measurements using Azure OpenAI GPT-5.2 Vision (with mandatory height input as scale reference), compares them against garment size data, and returns a 5-point fit recommendation per body area. Florence-2 on Azure AI Foundry handles image validation (people detection, multi-person rejection, bounding box quality checks) and Azure AI Content Safety provides content moderation. Deployed as a standalone .NET 8 Web API on Azure Container Apps with Azure Cosmos DB for multi-tenant data isolation, Azure Blob Storage for transient image processing, and Microsoft Entra ID for B2B authentication.
 
 ## Technical Context
 
 **Language/Version**: C# / .NET 8.0 (LTS)
-**Primary Dependencies**: ASP.NET Core Web API, Azure.AI.OpenAI (GPT-4o Vision), Azure.AI.Vision.ImageAnalysis (people detection), Azure.AI.ContentSafety, Azure.Identity, Microsoft.Azure.Cosmos, Azure.Storage.Blobs, Swashbuckle (OpenAPI), Aspire (orchestration)
+**Primary Dependencies**: ASP.NET Core Web API, Azure.AI.OpenAI (GPT-5.2 Vision), Florence-2 on Azure AI Foundry (people detection, bounding box validation), Azure.AI.Inference, Azure.AI.ContentSafety, Azure.Identity, Microsoft.Azure.Cosmos, Azure.Storage.Blobs, Swashbuckle (OpenAPI), Aspire (orchestration)
 **Storage**: Azure Cosmos DB (multi-tenant document store with partition keys per tenant), Azure Blob Storage (transient image processing only)
 **Testing**: xUnit, FluentAssertions, NSubstitute, Microsoft.AspNetCore.Mvc.Testing, NBomber (load), Verify (snapshot)
 **Target Platform**: Linux containers on Azure Container Apps (ACA)
@@ -82,7 +82,7 @@ src/
 │   ├── Garments/                     # Catalog management
 │   └── Profiles/                     # Shopper profile CRUD
 ├── FitAssess.Infrastructure/         # External integrations
-│   ├── AzureAI/                      # Azure OpenAI GPT-4o Vision (measurement extraction) + Azure AI Vision (validation) + Content Safety
+│   ├── AzureAI/                      # Azure OpenAI GPT-5.2 Vision (measurement extraction) + Florence-2 Foundry endpoint (validation) + Content Safety
 │   ├── Cosmos/                       # Cosmos DB repositories
 │   ├── BlobStorage/                  # Transient image storage
 │   ├── Messaging/                    # Azure Service Bus (async assessment queue)
