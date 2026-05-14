@@ -1,83 +1,136 @@
-# RetailTeam Workshop — AI Clothing Fit Assessment
+# FitAssess AI — Clothing Fit Assessment Service
 
-An AI-powered clothing fit assessment service that reduces online return rates by giving shoppers personalized fit recommendations based on their photos. Built on the Microsoft tech stack (.NET 8, Azure AI Services, Cosmos DB).
+> Reducing online clothing returns through AI-powered fit recommendations.
 
 ## Problem
 
-Online clothing returns (25–40%) are driven by fit uncertainty. Shoppers cannot judge how a garment will fit before purchasing, leading to high logistics costs and poor customer experience.
+Online clothing returns cost retailers $10–30 per return, with "wrong fit" cited in 52% of cases. Return rates for online clothing sit between 25–40% industry-wide — costing billions annually and eroding customer confidence.
 
 ## Solution
 
-A standalone API service that accepts a shopper photo with height input, extracts body measurements using Azure AI Vision + GPT-4o, compares them against garment sizing data, and returns a per-area fit recommendation with confidence scores — all within 5 seconds.
+FitAssess AI is a multi-tenant, standalone service that accepts a shopper's full-body photo and height, extracts body measurements using Azure OpenAI GPT-4o Vision, compares them against garment size data, and returns a **5-point fit recommendation** (Too Tight → Too Loose) per body area — all within 5 seconds.
 
-## Repository Structure
+### Key Capabilities
 
-```text
-├── docs/
-│   ├── architecture/          # Solution architecture, diagrams, ADRs, risk register
-│   ├── research/              # Feasibility research and analysis
-│   └── Sessions/              # Problem statement, product definition, journal
-├── specs/
-│   └── 001-clothing-fit-assessment/
-│       ├── spec.md            # Feature specification with user stories
-│       ├── plan.md            # Implementation plan
-│       ├── tasks.md           # Task breakdown
-│       ├── quickstart.md      # Developer setup guide
-│       ├── data-model.md      # Entity schemas
-│       ├── research.md        # Technical research
-│       ├── contracts/
-│       │   └── openapi.yaml   # API contract (OpenAPI 3.x)
-│       └── checklists/
-│           └── requirements.md
-└── README.md
-```
-
-## Quick Navigation
-
-| Looking for... | Go to |
-|----------------|-------|
-| How to run locally | [specs/001-clothing-fit-assessment/quickstart.md](specs/001-clothing-fit-assessment/quickstart.md) |
-| API contract | [specs/001-clothing-fit-assessment/contracts/openapi.yaml](specs/001-clothing-fit-assessment/contracts/openapi.yaml) |
-| Feature spec & user stories | [specs/001-clothing-fit-assessment/spec.md](specs/001-clothing-fit-assessment/spec.md) |
-| Solution architecture | [docs/architecture/solution-architecture.md](docs/architecture/solution-architecture.md) |
-| Architecture diagrams | [docs/architecture/diagrams.md](docs/architecture/diagrams.md) |
-| Data model | [specs/001-clothing-fit-assessment/data-model.md](specs/001-clothing-fit-assessment/data-model.md) |
-| Risk register | [docs/architecture/risk-register.md](docs/architecture/risk-register.md) |
-| Problem statement | [docs/Sessions/Problem-statement.md](docs/Sessions/Problem-statement.md) |
-| Product definition | [docs/Sessions/Product-definition.md](docs/Sessions/Product-definition.md) |
-| AI feasibility research | [docs/research/ai-fit-assessment-feasibility.md](docs/research/ai-fit-assessment-feasibility.md) |
+- 📷 **Photo-based body measurement extraction** — single photo + height → derived measurements
+- 👕 **Per-area fit scoring** — shoulders, chest, waist, hips, length on a 5-point scale
+- 🔒 **Privacy by design** — photos purged within 60 seconds; only anonymized measurements stored
+- 🏢 **Multi-tenant** — isolated garment catalogs and shopper profiles per retail partner
+- 🔌 **API-first** — RESTful API with OpenAPI 3.x documentation for seamless frontend integration
+- ⚡ **Scalable** — 500 concurrent assessments, auto-scaling 2–10 instances on Azure Container Apps
 
 ## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
-| API | ASP.NET Core Web API (.NET 8) |
-| Orchestration | .NET Aspire |
-| Body measurement | Azure AI Vision + Azure OpenAI GPT-4o |
-| Content safety | Azure AI Content Safety |
-| Data store | Azure Cosmos DB (multi-tenant) |
-| Image storage | Azure Blob Storage (60s TTL auto-purge) |
-| Identity | Microsoft Entra ID (OAuth 2.0) |
-| Hosting | Azure Container Apps |
-| Observability | OpenTelemetry + Application Insights |
+| **Runtime** | .NET 8.0 (LTS), ASP.NET Core Web API |
+| **AI/ML** | Azure OpenAI GPT-4o Vision (measurement extraction), Azure AI Vision (image validation), Azure AI Content Safety |
+| **Data** | Azure Cosmos DB (multi-tenant document store), Azure Blob Storage (transient images) |
+| **Auth** | Microsoft Entra ID (OAuth 2.0 / OpenID Connect) |
+| **Orchestration** | .NET Aspire |
+| **Infrastructure** | Azure Container Apps, Bicep (IaC), Azure Service Bus (async queue) |
+| **Testing** | xUnit, FluentAssertions, NSubstitute, NBomber (load), Verify (snapshot) |
+
+## Project Structure
+
+```
+specs/001-clothing-fit-assessment/    # Feature spec, plan, API contracts, data model
+docs/
+├── architecture/                     # Solution architecture, decision register, diagrams
+├── research/                         # AI feasibility study
+└── Inputs/                           # Reference materials
+
+src/                                  # (planned)
+├── FitAssess.Api/                    # ASP.NET Core Web API host
+├── FitAssess.Core/                   # Domain models & interfaces
+├── FitAssess.Services/               # Business logic (assessment, image processing)
+├── FitAssess.Infrastructure/         # Azure integrations (Cosmos, Blob, AI, Identity)
+└── FitAssess.AppHost/                # .NET Aspire orchestrator
+
+tests/                                # (planned)
+├── FitAssess.Api.Tests/              # Integration tests
+├── FitAssess.Services.Tests/         # Unit tests
+├── FitAssess.Contract.Tests/         # API contract validation
+└── FitAssess.Load.Tests/             # Performance tests (NBomber)
+
+infra/                                # (planned)
+├── main.bicep                        # Root deployment
+├── modules/                          # Bicep modules
+└── parameters/                       # Per-environment configs
+```
 
 ## Getting Started
 
+### Prerequisites
+
+- .NET 8.0 SDK
+- Azure CLI (`az`) authenticated
+- Docker Desktop (for local Cosmos DB emulator + Azurite)
+- Visual Studio 2022 or VS Code with C# Dev Kit
+
+### Local Development
+
 ```powershell
-git checkout 001-clothing-fit-assessment
+# Restore dependencies
 dotnet restore src/FitAssess.sln
+
+# Start infrastructure (Cosmos DB emulator + Azurite)
 docker compose up -d
+
+# Run the Aspire AppHost
 dotnet run --project src/FitAssess.AppHost
 ```
 
-See the full [Quickstart Guide](specs/001-clothing-fit-assessment/quickstart.md) for prerequisites and detailed instructions.
+API available at `https://localhost:7001/api/v1` · Aspire dashboard at `https://localhost:15888`
 
-## Key Design Decisions
+### Quick Verification
 
-- **Privacy by design** — photos purged within 60 seconds; no raw images stored; opaque shopper IDs only.
-- **Three-tier AI pipeline** — Azure AI Vision (fast, cheap) → GPT-4o (reasoning) → AI Foundry (future custom models).
-- **Multi-tenant isolation** — Cosmos DB partition key per tenant; tenant-scoped rate limiting.
-- **API-first** — OpenAPI contract drives frontend integration; stateless request model.
+```powershell
+# Health check
+curl https://localhost:7001/api/v1/health
+
+# Run all tests
+dotnet test src/FitAssess.sln
+```
+
+## Architecture Overview
+
+The service follows **Clean Architecture** with four projects separating concerns:
+
+```
+API (Controllers, Middleware) → Services (Business Logic) → Core (Domain Models)
+                                       ↓
+                              Infrastructure (Azure AI, Cosmos, Blob)
+```
+
+Key design decisions:
+- **Stateless service** — horizontally scalable, no session affinity required
+- **Tenant isolation** — Cosmos DB partition keys enforce data boundaries
+- **Graceful degradation** — falls back to size chart guidance when AI is unavailable
+- **Confidence scoring** — assessments below 70% confidence trigger disclaimers and alternative guidance
+
+## Documentation
+
+| Document | Description |
+|----------|-------------|
+| [Feature Spec](specs/001-clothing-fit-assessment/spec.md) | Full requirements, user stories, acceptance criteria |
+| [Implementation Plan](specs/001-clothing-fit-assessment/plan.md) | Technical design, project structure, constitution checks |
+| [Solution Architecture](docs/architecture/solution-architecture.md) | Architecture diagrams, personas, deployment model |
+| [Data Model](specs/001-clothing-fit-assessment/data-model.md) | Entity schemas and relationships |
+| [API Contracts](specs/001-clothing-fit-assessment/contracts/) | OpenAPI 3.x specification |
+| [Research](docs/research/ai-fit-assessment-feasibility.md) | AI feasibility study, industry benchmarks |
+| [Quickstart](specs/001-clothing-fit-assessment/quickstart.md) | Detailed setup and commands |
+
+## Success Metrics
+
+| Metric | Target |
+|--------|--------|
+| End-to-end latency (p95) | < 5 seconds |
+| Fit prediction accuracy | ≥ 85% (validated against return data) |
+| Return rate reduction | ≥ 20% within 6 months |
+| Concurrent capacity | 500 assessments |
+| Availability | 99.9% monthly |
+| Data deletion SLA | < 24 hours |
 
 ## License
 
