@@ -501,6 +501,24 @@ graph TD
 
 **Zero-trust model**: Every service call authenticated via managed identity. No shared secrets. Private endpoints for data services.
 
+## Threat Model Summary
+
+A full STRIDE/DREAD threat model is maintained separately: **[threat-model.md](./threat-model.md)**
+
+**Overall Risk Rating**: Medium-High (mitigated to Medium by existing controls)
+
+| Category | Threats Identified | Top Risk |
+|----------|-------------------|----------|
+| Spoofing | 4 | Stolen tenant JWT (DREAD 6.2) |
+| Tampering | 5 | Adversarial image perturbation |
+| Repudiation | 3 | Shopper disputes recommendation accuracy |
+| Information Disclosure | 6 | Body photo exfiltration during 60s processing window (DREAD 5.6) |
+| Denial of Service | 5 | API volumetric flood — highest-scoring threat (DREAD 9.0) |
+| Elevation of Privilege | 4 | Prompt injection via image metadata |
+| AI-Specific | 6 | Bias in measurement extraction across body types (DREAD 5.8) |
+
+**Critical pre-GA actions**: Azure DDoS Protection, Defender for Storage, distributed rate limiting, EXIF metadata stripping, physiological plausibility validation on AI output.
+
 ## API Contract Summary
 
 | Endpoint | Method | Purpose | Auth |
