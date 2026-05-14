@@ -4,7 +4,11 @@
 
 ## Problem
 
-Online clothing returns cost retailers $10–30 per return, with "wrong fit" cited in 52% of cases. Return rates for online clothing sit between 25–40% industry-wide — costing billions annually and eroding customer confidence.
+Walmart is the **3rd-largest U.S. apparel e-commerce retailer** with $14.7B in online clothing revenue (2024). Like the broader industry, online apparel returns run at **24–26%**, with **53% driven by fit and sizing issues** — translating to an estimated **$200–400M in annual avoidable cost** from fit-related returns alone (processing, reverse logistics, restocking, markdowns, and write-offs).
+
+The root cause: shoppers cannot judge how a garment will fit before purchasing. They resort to **"bracketing"** (buying multiple sizes, returning extras), eroding margins and generating unnecessary transport emissions. Traditional size charts fail because a "Medium" from one brand has different measurements than a "Medium" from another — and shoppers have no way to map their own body to those inconsistent charts.
+
+Walmart already invested in **Zeekit** for virtual try-on visualization ("how does it look on me?"), but shoppers still lack **measurement-based fit confidence** ("will it actually fit my body?"). This gap between visual appeal and physical fit remains the primary driver of returns.
 
 ## Solution
 

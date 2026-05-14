@@ -10,6 +10,38 @@ AI augments shopper decision-making; **humans retain accountability** for purcha
 
 ---
 
+## Problem Statement
+
+### The Business Problem
+
+Walmart is the **3rd-largest U.S. apparel e-commerce retailer** with $14.7B in online clothing revenue (2024). Online apparel returns run at **24–26%**, with **53% driven by fit and sizing issues** — representing an estimated **$200–400M in annual avoidable cost** from fit-related returns (processing at $10–30 per return, reverse logistics, restocking, markdowns, and write-offs).
+
+### Root Causes
+
+| Root Cause | Impact | Current Mitigation |
+|-----------|--------|-------------------|
+| **Size inconsistency across brands** | A "Medium" from Brand A ≠ "Medium" from Brand B. Shoppers cannot trust size labels. | Static size charts — but shoppers don't use them (< 15% engagement rate) |
+| **No body-to-garment mapping** | Shoppers have no way to compare their measurements against actual garment dimensions | None — purely guesswork for online purchases |
+| **Bracketing behavior** | Shoppers buy 2–3 sizes intending to return extras. Increasingly normalized. | Free returns policies (which further incentivize bracketing) |
+| **Visual ≠ Physical fit** | Zeekit shows how a garment *looks* on a model with similar proportions, but not whether it will physically *fit* the shopper's body | Zeekit virtual try-on (visualization only, not measurement-based) |
+
+### Why Now
+
+- **Walmart's Azure partnership** ($500M+ annual spend) provides access to GPT-5.2 Vision and Azure AI Foundry — the first time measurement-grade body extraction is feasible from a single 2D photo without dedicated hardware
+- **Zeekit integration opportunity** — VirtualMirror measurements can feed Zeekit's model selection, creating a combined "see fit + know fit" experience that neither tool achieves alone
+- **Regulatory tailwinds** — EU AI Act and state-level U.S. privacy laws are pushing retailers toward privacy-by-design AI; building it now avoids costly retrofits
+- **Competitive pressure** — Amazon, ASOS, and Nordstrom are deploying sizing AI; Walmart risks losing apparel market share without a differentiated digital fit experience
+
+### Quantified Opportunity
+
+| Metric | Current State | With VirtualMirror (Target) |
+|--------|--------------|---------------------------|
+| Fit-related return rate | 24–26% | **≥ 20% reduction** (target: 30%) |
+| Annual fit-return cost | $200–400M est. | **$40–120M savings** |
+| Shopper sizing confidence | Low (size chart engagement < 15%) | High (85%+ report satisfactory fit) |
+| Bracketing behavior | Increasing | Reduced (single-size purchases increase) |
+| Sustainability impact | ~500M return shipments/year (industry) | Proportional reduction in transport emissions |
+
 ## Walmart Context: Current State & Industry Realities
 
 ### Walmart at a Glance
