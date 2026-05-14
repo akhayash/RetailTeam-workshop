@@ -35,29 +35,17 @@ Anchoring artifacts: [Problem statement](docs/Sessions/Problem-statement.md) · 
 
 This is the **primary v1 implementation concept** — a cloud-native, multi-tenant API service on Azure with managed AI services, serverless container hosting, and zero-secret access via Managed Identity. The shopper's storefront calls a single API and gets back a confidence-scored fit recommendation in under five seconds.
 
-```text
-+=================================================================+
-|                  Concept A: Cloud-Centric Platform               |
-|                                                                  |
-|  +--------------+        +---------------------------------+     |
-|  | Retail       |        |  Azure Container Apps           |     |
-|  | Frontend     |------->|  VirtualMirror API (.NET 8)         |     |
-|  | (B2B OAuth)  | HTTPS  |  * 2-10 replica auto-scale      |     |
-|  +--------------+        |  * managed identity             |     |
-|                          +--+----------+----------+--------+     |
-|                             |          |          |              |
-|                             v          v          v              |
-|  +------------------+  +----------+ +-------+ +--------------+   |
-|  | Azure AI Plane   |  | Cosmos DB| | Blob  | | Service Bus  |   |
-|  | * Florence-2(T1) |  | (multi-  | | (60s  | | (async queue)|   |
-|  | * Content Safety |  | tenant)  | | TTL)  | |              |   |
-|  | * OpenAI GPT-5.2 |  +----------+ +-------+ +--------------+   |
-|  | * AI Foundry(v2) ||
-|  +------------------+  +----------+ +----------+                 |
-|                        | Key Vault| | Azure    |                 |
-|                        | (secrets)| | Monitor  |                 |
-|                        +----------+ +----------+                 |
-+=================================================================+
+```mermaid
+graph TD
+    subgraph "Concept A: Cloud-Centric Platform"
+        Frontend["Retail Frontend<br/>(B2B OAuth)"] -->|HTTPS| API["Azure Container Apps<br/>VirtualMirror API (.NET 8)<br/>2-10 replica auto-scale<br/>managed identity"]
+        API --> AI["Azure AI Plane<br/>• Florence-2 (T1)<br/>• Content Safety<br/>• OpenAI GPT-5.2<br/>• AI Foundry (v2)"]
+        API --> Cosmos["Cosmos DB<br/>(multi-tenant)"]
+        API --> Blob["Blob Storage<br/>(60s TTL)"]
+        API --> Bus["Service Bus<br/>(async queue)"]
+        API --> KV["Key Vault<br/>(secrets)"]
+        API --> Monitor["Azure Monitor"]
+    end
 ```
 
 ### How agentic AI transforms the shopper's workflow
@@ -87,36 +75,17 @@ Full detail: [solution-architecture.md § Concept A](docs/architecture/solution-
 
 This concept extends the platform into **in-store and real-time scenarios** — fitting rooms, kiosks, and associate-mobile apps. Pose detection and measurement extraction run on the edge device so raw body images never traverse the network. The cloud backend is invoked only when edge confidence drops below threshold, and a **store associate stays in the loop** before any recommendation reaches the shopper.
 
-```text
-+=================================================================+
-|              Concept B: Edge + AI Agent Operations               |
-|                                                                  |
-|  :--- In-Store Edge -----------------------------------:         |
-|  :                                                     :         |
-|  :  +-------------------+   +----------------------+   :         |
-|  :  | Fitting Room      |   | Store Associate      |   :         |
-|  :  | Camera / Kiosk    |   | Mobile AI Copilot    |   :         |
-|  :  | * local pose      |   | * "size M slim"      |   :         |
-|  :  |   detection       |   | * inventory check    |   :         |
-|  :  | * edge cache      |   | * alternatives       |   :         |
-|  :  | * privacy: local  |   | * human decides      |   :         |
-|  :  +---------+---------+   +----------+-----------+   :         |
-|  :            |                        |               :         |
-|  :------------|------------------------|---------------:         |
-|               |                        |                         |
-|               | measurements only      | API call                |
-|               | (not raw images)       |                         |
-|               v                        v                         |
-|  +-------------------------------------------------+             |
-|  |          VirtualMirror API (Cloud Backend)          |             |
-|  |  * fallback when edge confidence < threshold    |             |
-|  |  * model updates pushed to edge                 |             |
-|  |  * aggregated analytics for store ops           |             |
-|  +-------------------------------------------------+             |
-|                                                                  |
-|  Human-in-the-loop:  AI recommends  -  associate decides  -      |
-|                      shopper accepts or asks for alternatives    |
-+=================================================================+
+```mermaid
+graph TD
+    subgraph "Concept B: Edge + AI Agent Operations"
+        subgraph "In-Store Edge"
+            Kiosk["Fitting Room<br/>Camera / Kiosk<br/>• local pose detection<br/>• edge cache<br/>• privacy: local"]
+            Associate["Store Associate<br/>Mobile AI Copilot<br/>• 'size M slim'<br/>• inventory check<br/>• alternatives<br/>• human decides"]
+        end
+        Kiosk -->|"measurements only<br/>(not raw images)"| Backend["VirtualMirror API (Cloud Backend)<br/>• fallback when edge confidence < threshold<br/>• model updates pushed to edge<br/>• aggregated analytics for store ops"]
+        Associate -->|"API call"| Backend
+    end
+    Note["Human-in-the-loop: AI recommends → associate decides → shopper accepts or asks for alternatives"]
 ```
 
 ### How agentic AI transforms the store associate's workflow
@@ -146,36 +115,21 @@ Full detail: [solution-architecture.md § Concept B](docs/architecture/solution-
 
 This concept positions fit assessment data as part of a **unified retail intelligence layer** in Microsoft Fabric. Measurement profiles, garment catalog, and return/exchange transactions are joined under a governed semantic model with full lineage, so the same trusted dataset powers the real-time API, batch return-prediction models, and merchandiser dashboards.
 
-```text
-+=================================================================+
-|         Concept C: Data Fabric / Intelligence Layer              |
-|                                                                  |
-|  :--- Source Domains ----------------------------------------:   |
-|  :                                                            :  |
-|  :  +-----------+   +----------+   +---------------------+   :   |
-|  :  | Shopper   |   | Garment  |   | Return & Exchange   |   :   |
-|  :  | Measure-  |   | Catalog  |   | Transactions        |   :   |
-|  :  | ments     |   |          |   |                     |   :   |
-|  :  +-----+-----+   +----+-----+   +----------+----------+   :   |
-|  :        |              |                    |              :   |
-|  :--------|--------------|--------------------|--------------:   |
-|           |              |                    |                  |
-|           v              v                    v                  |
-|  +-------------------------------------------------------+       |
-|  |   Microsoft Fabric  -  Unified Semantic Layer         |       |
-|  |   * lineage: measurement -> assessment -> outcome     |       |
-|  |   * governance: PII classification, retention         |       |
-|  |   * AI-ready data products (curated, cataloged)       |       |
-|  |   * cross-domain joins: fit score <-> return rate     |       |
-|  +-------+---------------+---------------+---------------+       |
-|          |               |               |                       |
-|          v               v               v                       |
-|  +-------------+  +----------------+  +-----------------------+  |
-|  | VirtualMirror   |  | Return         |  | Merchandising         |  |
-|  | API         |  | Prediction     |  | Intelligence          |  |
-|  | (real-time) |  | Model (batch)  |  | (size dist., trends)  |  |
-|  +-------------+  +----------------+  +-----------------------+  |
-+=================================================================+
+```mermaid
+graph TD
+    subgraph "Concept C: Data Fabric / Intelligence Layer"
+        subgraph "Source Domains"
+            Shopper["Shopper<br/>Measurements<br/>(anonymized)"]
+            Garment["Garment<br/>Catalog<br/>(sizes, materials)"]
+            Returns["Return & Exchange<br/>Transactions<br/>(outcomes, reasons, costs)"]
+        end
+        Shopper --> Fabric["Microsoft Fabric — Unified Semantic Layer<br/>• lineage: measurement → assessment → outcome<br/>• governance: PII classification, retention<br/>• AI-ready data products (curated, cataloged)<br/>• cross-domain joins: fit score ↔ return rate"]
+        Garment --> Fabric
+        Returns --> Fabric
+        Fabric --> API["VirtualMirror API<br/>(real-time assessment)"]
+        Fabric --> ReturnModel["Return Prediction<br/>Model (batch/ML)"]
+        Fabric --> Merch["Merchandising Intelligence<br/>(size dist., trends)"]
+    end
 ```
 
 ### How agentic AI transforms the merchandiser's workflow
