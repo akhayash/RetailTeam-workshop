@@ -515,14 +515,16 @@ A **RAID log** (Risks, Actions, Issues, Decisions) is maintained continuously in
 
 ### 13.1 Top Plan Risks (carried into this SOW)
 
-| ID | Risk | Severity | Owner | Mitigation | Validation |
-|----|------|:--------:|-------|------------|------------|
-| PR-1 | H1 (GPT-5.2 measurement accuracy) fails | **HIGH** | Microsoft ML Eng + Tech Lead | Pre-Sprint 3 prompt engineering spike + calibration dataset prepared in Sprint 2; contingency: 3DLOOK bridge (+2 weeks, Change Order) | H1 calibration test at end of Sprint 3 |
-| PR-2 | Walmart Azure tenant provisioning delayed | **HIGH** | Customer Cloud Platform (with Microsoft PM escalation) | Sprint 1 against Microsoft MSDN subscription; promote in Sprint 2 | Subscription handover signed in Product Council |
-| PR-3 | Single Tech Lead bottleneck on PR reviews | **HIGH** | Microsoft Tech Lead | Reserve 25% Tech Lead time for reviews; SDEs cross-review | Weekly review-throughput metric in status report |
-| PR-4 | DPIA / Privacy review finds blockers late | MEDIUM | Customer Privacy + Microsoft Security Eng | Sprint 4 mid-project privacy checkpoint; Sprint 8 final review | Privacy sign-off recorded per gate |
-| PR-5 | Bicep IaC complexity higher than estimated | MEDIUM | Microsoft DevOps + Security Eng | Full DevOps FTE from Sprint 6; pair with Security Engineer | `az deployment group what-if` clean against all 3 environments |
-| PR-6 | Walmart catalog feed delayed beyond Sprint 5 | MEDIUM | Customer Catalog Eng | Synthetic catalog covers US4 dev; defer real-feed integration to Sprint 8 | Catalog-feed integration test at end of Sprint 8 |
+| ID | Risk | Severity | Owner | Mitigation | Validation step |
+|----|------|:--------:|-------|------------|-----------------|
+| PR-1 | H1 (GPT-5.2 measurement accuracy) fails | **HIGH** | ML Engineer (lead) · Tech Lead (review) | Pre-Sprint 3 prompt engineering spike + calibration dataset prepared in Sprint 2; contingency: 3DLOOK bridge (+2 weeks, Change Order) | H1 gate end of Sprint 3: ≤ 15% of calibration photos > ±4 cm vs. ground truth (D-2 acceptance) |
+| PR-2 | Walmart Azure tenant provisioning delayed | **HIGH** | Microsoft PM (escalation) · Walmart Cloud Platform (delivery) | Sprint 1 against Microsoft MSDN subscription; promote in Sprint 2 | C-1 deliverable received by end of Sprint 2 (RAG green in weekly status) |
+| PR-3 | Single Tech Lead bottleneck on PR reviews | **HIGH** | Microsoft PM (capacity) · Tech Lead (process) | Reserve 25% Tech Lead time for reviews; SDEs cross-review | Sprint retro PR-cycle-time metric < 24 h; escalate at 48 h sustained |
+| PR-4 | DPIA / Privacy review finds blockers late | MEDIUM | Security/Privacy Engineer (Microsoft) · Walmart Privacy Office (gate) | Sprint 4 mid-project privacy checkpoint; Sprint 8 final review | C-8 review slots completed Sprints 1, 4, 8 with no Open / High findings remaining at GA (D-13 acceptance) |
+| PR-5 | Bicep IaC complexity higher than estimated | MEDIUM | Cloud / DevOps Engineer (lead) · Security/Privacy Engineer (pair) | Full DevOps FTE from Sprint 6; pair with Security Engineer | D-7 acceptance: `az deployment group what-if` clean across dev / staging / prod by end of Sprint 7 |
+| PR-6 | Walmart catalog feed delayed beyond Sprint 5 | MEDIUM | Microsoft PM (tracking) · Walmart Catalog Engineering (delivery) | Synthetic catalog covers US4 dev; defer real-feed integration to Sprint 8 | C-5 RAG-tracked weekly; trigger fallback if not received by end of Sprint 6 |
+
+> Mitigations and validation steps trace to row IDs in [`docs/architecture/risk-register.md`](architecture/risk-register.md) and [`docs/project-plan.md`](project-plan.md) §10.
 
 ### 13.2 Top Technical Risks (carried into this SOW)
 
@@ -710,7 +712,7 @@ The estimates, timeline, and acceptance criteria in this SOW are **true if-and-o
 | A-6 | Azure OpenAI GPT-5.2 Vision **measurement accuracy lands within ±2–4 cm** on the calibration set (H1). Failure invokes 3DLOOK bridge contingency (+2 weeks, Change Order). |
 | A-7 | **Non-GA product disclosure**: If the Customer approves a solution design that uses a product, service, model, or SKU that is **not generally available** (preview, limited preview, private preview, gated GA, or otherwise not under the standard Microsoft Online Services Terms / Product Terms), the Customer acknowledges that the product may be subject to additional terms, may not be production-ready, and that its availability and pricing may change. This may affect project cost, schedule, and quality, and triggers re-planning via §12 Change Management. Specifically, Azure OpenAI **GPT-5.2 Vision** is assumed to be generally available in East US 2 by Sprint 3; if its GA slips, the parties will jointly select a substitute (e.g., previous GA model version) and a Change Order will reflect the resulting impact. |
 | A-8 | Florence-2 on Azure AI Foundry is available in East US 2 with serverless billing for v1 volumes. |
-| A-9 | Shopper-provided height (cm) is **always present and within plausible bounds**. The API rejects height values outside **50–250 cm** at the boundary; out-of-band-but-in-bound values flagged in the confidence score; an upstream UX guard is the Customer's storefront responsibility. |
+| A-9 | Shopper-provided height (cm) is **present and within physical bounds** in the API request — it is the scale reference for derived measurements. **Guard**: API rejects requests with height outside **50–250 cm** (HTTP 400 with field-level error per OpenAPI contract); heights at the tail of the realistic distribution (< 140 cm or > 210 cm) are flagged in the response payload and reduce the assessment confidence score. Shopper-side input validation (e.g., picker UI, unit toggle) is a Walmart frontend responsibility (out of scope per §5). |
 | A-10 | v1 supports a **single Azure region** (East US 2) with multi-AZ replicas; ~99.9% availability SLO. |
 | A-11 | Photos are processed **in-memory and via a 60-second-TTL blob**; no permanent biometric storage by default (see A-22). |
 | A-24 | **Responsible AI sensitive-use review**: This engagement develops and deploys an AI system that may be considered a *sensitive use* under Microsoft's Responsible AI Standard (impacts on consequential decisions about people; processing of personal/biometric data; physical-or-psychological-harm potential through inaccurate fit recommendations). Microsoft will conduct an **internal Responsible AI review** in accordance with its Responsible AI principles (<https://aka.ms/RAI>) and will act in compliance with them throughout delivery. Customer cooperation in the review (data, use cases, intended audience) is recorded in §17 as C-13. |
@@ -875,13 +877,15 @@ Key-activity accountability matrix. **R**esponsible · **A**ccountable · **C**o
 | Date | 2026-05-14 |
 | Engagement code | TBD upon countersignature |
 
-### Business Outcomes (customer-owned, measurable — 3)
+### Business Outcomes (customer-owned, measurable, prioritized — 3)
 
-| ID | Outcome | Measure | Target |
-|----|---------|---------|--------|
-| BO-1 | Reduce fit-driven apparel returns | Return rate on VirtualMirror-enabled SKUs vs. control | ≥ 20% reduction in 6 months (target 30%) |
-| BO-2 | Increase apparel PDP conversion | Add-to-cart + checkout conversion delta on enabled SKUs | +3–5% conversion lift in 6 months |
-| BO-3 | Establish reusable multi-tenant fit platform | Tenants onboardable on the same data plane | 1 at GA; architected for 20+ at Scale tier |
+| Rank | ID | Outcome | Measure | Target |
+|:----:|----|---------|---------|--------|
+| **1 (Primary)** | BO-1 | Reduce fit-driven apparel returns | Return rate on VirtualMirror-enabled SKUs vs. control cohort | ≥ 20% reduction in 6 months (target 30%) |
+| **2 (Secondary)** | BO-2 | Increase apparel PDP conversion | Add-to-cart + checkout conversion delta on enabled SKUs | +3–5% conversion lift in 6 months |
+| **3 (Enabling)** | BO-3 | Establish reusable multi-tenant fit platform | Tenants onboardable on the same data plane | 1 at GA; architected for 20+ at Scale tier |
+
+> Measurement-cohort ownership: A/B harness operating treatment vs. control cohorts is **Walmart-owned** (per §3.1 and §5). Microsoft delivers the service-side measurement framework only.
 
 ### In-Scope Boundaries — what Microsoft will deliver (3 anchors)
 
@@ -921,7 +925,7 @@ Key-activity accountability matrix. **R**esponsible · **A**ccountable · **C**o
 | D-10 | Load and chaos validation | NBomber 500-concurrent smoke + 30-minute soak; chaos / fault-injection on AI providers, Cosmos, Service Bus, Blob | **H3/H5: p95 < 5 s at 500 concurrent**; KEDA scales to 10 instances; no OOM; **H8: ≥ 90% success during chaos run** | BO-1, BO-3 | WP7.4, SC-004 |
 | D-11 | Model card & responsible AI | Model card documenting prompt, model version, training context, bias considerations, known limitations, confidence thresholds | Model card reviewed and signed by ML Eng + Tech Lead; published in repo; minor-detection refusal logic verified | BO-1 | WP7.5, FR-015 |
 | D-12 | DR plan & data classification | DR plan documenting RTO < 1 h, RPO < 15 min for tenant config; data classification labels (transient, ephemeral, opt-in, audit) | DR plan reviewed and signed by Security Eng; data classification matches `Sessions/Product-definition.md`; tabletop walkthrough recorded | BO-3 | WP7.5 |
-| D-13 | DPIA input package | Inputs to Walmart's DPIA: data flow, lawful basis, retention, deletion, transfers, sub-processors, breach notification | Walmart Privacy Office accepts DPIA package as complete; no Open / High findings remain at GA | BO-1, BO-2, BO-3 | WP8.4 |
+| D-13 | DPIA input package | Inputs to Walmart's DPIA: data flow, lawful basis, retention, deletion, transfers, sub-processors, breach notification | DPIA package contains all sections required by Walmart Privacy Office's DPIA template (data-flow diagram, Art. 6 lawful basis, Art. 9 special-category check, retention schedule, deletion-cascade evidence per US2, sub-processor list with DPAs, breach-notification runbook ref); Walmart Privacy Office signs the completeness checklist; no Open / High findings remain at GA | BO-1, BO-2, BO-3 | WP8.4 |
 | D-14 | Knowledge transfer & hypercare | 2 recorded enablement sessions for Walmart Platform Eng, runbooks signed, hypercare on-call schedule for 2 weeks post-go-live | Sessions delivered and signed; runbooks acknowledged; on-call rota agreed; no P1 unresolved at end of hypercare | BO-3 | WP7.5, WP8 |
 
 ### B.2 Work Package Estimate Table
@@ -942,14 +946,14 @@ Estimate by work package first, then allocate hours to roles. Hours assume **sen
 
 #### Hours by role (allocation across WP1–WP8)
 
-| Role | PD | Hours | % of total |
-|------|---:|------:|-----------:|
-| Tech Lead / Solution Architect | 65 | 520 | 24% |
-| Senior .NET Engineer #1 | 70 | 560 | 25% |
-| Senior .NET Engineer #2 | 65 | 520 | 24% |
-| Cloud / DevOps Engineer | 45 | 360 | 16% |
-| ML / AI Engineer | 18 | 144 | 7% |
-| QA / SDET | 25 | 200 | 9% |
+| Role | PD | Hours | % of allocation |
+|------|---:|------:|----------------:|
+| Tech Lead / Solution Architect | 65 | 520 | 20% |
+| Senior .NET Engineer #1 | 70 | 560 | 22% |
+| Senior .NET Engineer #2 | 65 | 520 | 20% |
+| Cloud / DevOps Engineer | 45 | 360 | 14% |
+| ML / AI Engineer | 18 | 144 | 6% |
+| QA / SDET | 25 | 200 | 8% |
 | Security / Privacy Engineer (PT) | 8 | 64 | 3% |
 | **Product Manager / CPdM (Scrum Master function within this allocation)** | **22** | **176** | **8%** |
 | **Total build allocation** | **~318 PD** | **~2,544 h** | (slack ~44 PD covers vacation + ceremony float + PM allocation; actual chargeable build envelope **~274 PD**) |
@@ -992,7 +996,7 @@ Estimate by work package first, then allocate hours to roles. Hours assume **sen
 | Version | Date | Author | Status | Summary of changes |
 |--------:|------|--------|--------|-------------------|
 | 0.1.0 | 2026-05-14 | Microsoft ISD draft | Draft for internal review | Initial draft grounded in discovery artifacts: spec.md (US1–US4, FR-001..015, SC-001..007), Product-definition.md, project-plan.md (WBS WP1–WP8, ~274 PD over 18 weeks), cost-estimate.md (3-tier consumption model), risk-register.md (R-001..004), threat-model.md, solution-architecture.md, and EX3 SOW template structure (19 required sections + Worksheets A & B). |
-| **0.2.0** | **2026-05-14** | **Microsoft ISD draft** | **Draft for internal review** | **Microsoft Paper alignment pass** \u2014 retains EX3-rubric 21/21 (per `Virtual-Mirror-SOW-Assessment-opus-47-high.md`) while converging to the AI-ACAIAGILE-LED v2.1 contract template. Mandatory clauses added (C-A..C-G): Responsible AI sensitive-use review (A-24), non-GA product disclosure (A-7 rewrite), GitHub Consulting Services DPA notice (A-25), capacity-cap language (\u00a77), holidays/contiguous schedule/4-week breaks notice (A-2 + A-16), compliance-training / badging / browser-compat / translation / doc-conversion exclusions (\u00a75), workday + remote work + language + mobilization + MS delivery IP + delivery-insights access + PII-biometric caveat + U.S. public-sector amendment alternative (A-17..A-23, A-26). Structural realignment (S-1..S-8): \u00a71 renamed to Engagement Identification and Validity with master-agreement reference; \u00a73 split into Customer Goals (BO-1/2/3, prioritised, Customer-owned) and Project Objectives (PO-1..PO-6); \u00a78 split into three governance tables (Executive Steering Committee, Product Council, Feature Team) with Scrum Master function made visible; new \u00a710.1 Project Initiation, \u00a710.2 Baseline Planning, \u00a710.3 Delivery Sprint activities (template Tables 7\u20139); \u00a711 reshaped to canonical testing types (template Table 10); \u00a715 renamed to Outputs and Acceptance with Tier-1 (sprint-validated, no formal sign-off) / Tier-2 (formal acceptance gates) split (template Table 11); \u00a716 split into Technology Requirements (with version + ready-by columns) and Environment Requirements (with config-owner + subscription-owner columns); \u00a719 rephrased to 4 template-standard completion bullets; \u00a720 renamed to Exhibits with new Exhibit L (Initial Product Backlog at epic level \u2014 template Table 15) and Exhibit M (RACI matrix). Polish (V-1..V-10): \u00a73.4 capacity caveat + MVP arbitration rule; \u00a712.3 \"no decision in 3 business days = no change\" default; \u00a713.1\u201313.2 Owner + Validation columns; A-9 input-validation guard for height (50\u2013250 cm); A/B-cohort ownership cross-reference (C-14); Worksheet B.2 PM/CPdM row (22 PD, 176 h, 8%) + Engagement Lead in-envelope clarification; \"Walmart\"\u2192\"the Customer\" in legal-voice sentences; Microsoft-delivery-default source footers on \u00a79, \u00a710, \u00a714. |
+| **0.2.0** | **2026-05-14** | **Microsoft ISD draft** | **Draft for internal review** | **Microsoft Paper alignment pass** — retains EX3-rubric 21/21 (per `Virtual-Mirror-SOW-Assessment-opus-47-high.md`) while converging to the AI-ACAIAGILE-LED v2.1 contract template. Mandatory clauses added (C-A..C-G): Responsible AI sensitive-use review (A-24), non-GA product disclosure (A-7 rewrite), GitHub Consulting Services DPA notice (A-25), capacity-cap language (§7), holidays/contiguous schedule/4-week breaks notice (A-2 + A-16), compliance-training / badging / browser-compat / translation / doc-conversion exclusions (§5), workday + remote work + language + mobilization + MS delivery IP + delivery-insights access + PII-biometric caveat + U.S. public-sector amendment alternative (A-17..A-23, A-26). Structural realignment (S-1..S-8): §1 renamed to Engagement Identification and Validity with master-agreement reference; §3 split into Customer Goals (BO-1/2/3, prioritised, Customer-owned) and Project Objectives (PO-1..PO-6); §8 split into three governance tables (Executive Steering Committee, Product Council, Feature Team) with Scrum Master function made visible; new §10.1 Project Initiation, §10.2 Baseline Planning, §10.3 Delivery Sprint activities (template Tables 7–9); §11 reshaped to canonical testing types (template Table 10); §15 renamed to Outputs and Acceptance with Tier-1 (sprint-validated, no formal sign-off) / Tier-2 (formal acceptance gates) split (template Table 11); §16 split into Technology Requirements (with version + ready-by columns) and Environment Requirements (with config-owner + subscription-owner columns); §19 rephrased to 4 template-standard completion bullets; §20 renamed to Exhibits with new Exhibit L (Initial Product Backlog at epic level — template Table 15) and Exhibit M (RACI matrix). Polish (V-1..V-10): §3.4 capacity caveat + MVP arbitration rule; §12.3 "no decision in 3 business days = no change" default; §13.1–13.2 Owner + Validation columns; A-9 input-validation guard for height (50–250 cm); A/B-cohort ownership cross-reference (C-14); Worksheet B.2 PM/CPdM row (22 PD, 176 h, 8%) + Engagement Lead in-envelope clarification; "Walmart"→"the Customer" in legal-voice sentences; Microsoft-delivery-default source footers on §9, §10, §14. |
 
 ### Versioning policy
 
