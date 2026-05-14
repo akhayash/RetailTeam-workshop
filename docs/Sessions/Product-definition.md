@@ -4,6 +4,21 @@
 
 Online clothing returns remain one of the highest-cost challenges in e-commerce retail. A significant portion of returns in the clothing category stem from fit issues — customers cannot accurately judge how a garment will fit before purchasing. This drives up logistics costs, erodes margins, and creates a poor customer experience.
 
+### Market Sizing & Addressable Savings
+
+| Metric | Value | Source / Basis |
+|--------|-------|----------------|
+| Current annual apparel sales (addressable book of business) | **$14.7B** | Current state baseline |
+| Industry return rate on apparel | **25–40%** | Industry benchmark for online clothing |
+| Returns volume (gross) | **$3.7B – $5.9B** | $14.7B × 25–40% |
+| Fit-related share of returns | **~70%** | Fit is the dominant return driver in apparel |
+| Fit-driven returns (addressable surface) | **$2.6B – $4.1B** | Returns volume × 70% |
+| Target return-rate reduction (see Success Metrics) | **30%** | 6-month post-launch target |
+| **Addressable annual savings opportunity** | **~$0.8B – $1.2B** | Fit-driven returns × 30% reduction |
+| **Market share reclaim potential** | **+300–500 bps** | Conversion lift + retained shoppers from higher fit confidence and lower return friction |
+
+Even a conservative 10% reduction in fit-driven returns represents **$260M–$410M** in annual recoverable margin — establishing a clear ROI envelope for the AI Fit Assessment investment. A 300–500 bps share reclaim against the $14.7B baseline equates to **~$440M–$735M** in incremental top-line revenue, compounding the return-cost savings.
+
 ## Vision
 
 Provide shoppers with a real-time, AI-powered fit assessment that uses their own photos to predict garment fit — reducing uncertainty at purchase time and cutting return rates.
