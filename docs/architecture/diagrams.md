@@ -670,44 +670,40 @@ Reference: this is the v1 implementation. See [solution-architecture.md](solutio
 
 ## 10. Concept B — Edge + AI Agent Operations
 
-Reference: future-state for in-store scenarios. See [solution-architecture.md](solution-architecture.md#concept-b-edge--ai-agent-enabled-operations).
+Reference: future-state for at-home, smartphone-native scenarios. See [solution-architecture.md](solution-architecture.md#concept-b-edge--ai-agent-enabled-operations).
 
 ```text
 +=================================================================+
 |              Concept B: Edge + AI Agent Operations               |
 |                                                                  |
-|  :--- In-Store Edge -----------------------------------:         |
-|  :                                                     :         |
-|  :  +-------------------+   +----------------------+   :         |
-|  :  | Fitting Room      |   | Store Associate      |   :         |
-|  :  | Camera / Kiosk    |   | Mobile AI Copilot    |   :         |
-|  :  | * local pose      |   | * "size M slim"      |   :         |
-|  :  |   detection       |   | * inventory check    |   :         |
-|  :  | * edge cache      |   | * alternatives       |   :         |
-|  :  | * privacy: local  |   | * human decides      |   :         |
-|  :  +---------+---------+   +----------+-----------+   :         |
-|  :            |                        |               :         |
-|  :------------|------------------------|---------------:         |
-|               |                        |                         |
-|               | measurements only      | API call                |
-|               | (not raw images)       |                         |
-|               v                        v                         |
-|  +-------------------------------------------------+             |
-|  |          VirtualMirror API (Cloud Backend)          |             |
-|  |  * fallback when edge confidence < threshold    |             |
-|  |  * model updates pushed to edge                 |             |
-|  |  * aggregated analytics for store ops           |             |
-|  +-------------------------------------------------+             |
+|  :--- Shopper Smartphone --------------------------------:       |
+|  :                                                        :      |
+|  :  +-----------------------------------------------+     :      |
+|  :  | Native Shopping App + Measurement SDK         |     :      |
+|  :  | * on-device pose detection                    |     :      |
+|  :  | * local measurement extraction                |     :      |
+|  :  | * raw images never leave phone                |     :      |
+|  :  | * shopper decides whether to trust            |     :      |
+|  :  +----------------------+------------------------+     :      |
+|  :                         | derived measurements only     :      |
+|  :-------------------------|-------------------------------:      |
+|                            v                                      |
+|  +---------------------------------------------------------+      |
+|  |     VirtualMirror API (Cloud Comparison Plane)          |      |
+|  |  * garment fit comparison                               |      |
+|  |  * model distribution metadata for mobile SDK           |      |
+|  |  * aggregated mobile analytics                          |      |
+|  +---------------------------------------------------------+      |
 |                                                                  |
-|  Human-in-the-loop:  AI recommends  -  associate decides  -      |
-|                      shopper accepts or asks for alternatives    |
+|  Human-in-the-loop: AI recommends - shopper decides whether      |
+|  to trust, buy, retake locally, or fall back to the size chart   |
 +=================================================================+
 ```
 
 ### Tradeoffs
 
-- **Gain**: Strongest privacy (local processing), lower cloud cost per assessment, in-store applicability
-- **Accept**: Device fleet management, model distribution complexity, hardware investment
+- **Gain**: Strongest privacy (local processing), sub-second measurement extraction, offline measurement step
+- **Accept**: Native mobile SDK requirement, model distribution complexity, device hardware variability
 
 ---
 

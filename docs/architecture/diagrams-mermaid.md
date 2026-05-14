@@ -426,17 +426,13 @@ graph TB
 
 ```mermaid
 graph TB
-    subgraph In-Store Edge
-        Kiosk[Fitting Room Camera / Kiosk<br/>local pose detection<br/>edge cache<br/>privacy: process locally]
-        Associate[Store Associate Mobile<br/>AI Copilot<br/>size recommendation<br/>inventory check<br/>suggest alternatives]
-    end
+    Phone[Shopper Smartphone<br/>Native shopping app + SDK<br/>on-device pose detection<br/>local measurement extraction<br/>privacy: raw images stay local]
 
-    API[VirtualMirror API<br/>Cloud Backend<br/>fallback when edge confidence < threshold<br/>model updates pushed to edge<br/>aggregated analytics]
+    API[VirtualMirror API<br/>Cloud comparison plane<br/>garment fit comparison<br/>model distribution metadata<br/>aggregated mobile analytics]
 
-    Kiosk -->|measurements only<br/>not raw images| API
-    Associate -->|API call| API
+    Phone -->|derived measurements only<br/>not raw images| API
 
-    Note[Human-in-the-loop:<br/>AI recommends → associate decides → shopper accepts]
+    Note[Human-in-the-loop:<br/>AI recommends → shopper decides whether to trust, buy, or retake locally]
 
     style Note fill:#fff3cd,stroke:#856404
 ```

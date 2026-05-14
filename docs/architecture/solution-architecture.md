@@ -170,24 +170,36 @@ graph TD
 
 **Focus**: Decisioning at the edge, agentic workflows, human-in-the-loop control, latency- and safety-aware patterns.
 
-This concept extends the platform into **in-store and real-time scenarios** where an AI agent assists shoppers and store associates at the point of decision — fitting rooms, kiosks, and mobile devices.
+This concept extends the platform into an **at-home, smartphone-native scenario** where an AI agent assists a privacy-conscious shopper inside the retailer's native mobile app. The smartphone camera captures the photo, **on-device AI performs pose detection and measurement extraction locally**, and only derived measurements are sent to the cloud for fit comparison.
 
-```mermaid
-graph TD
-    subgraph "Concept B: Edge + AI Agent Operations"
-        subgraph "In-Store Edge"
-            Kiosk["Fitting Room Camera / Kiosk<br/>• Local inference (pose detection)<br/>• Edge caching (garment data)<br/>• Privacy: process locally,<br/>  send only measurements"]
-            Associate["Store Associate<br/>Mobile AI Copilot<br/>• 'Size M slim'<br/>• Inventory check<br/>• Suggest alternatives"]
-        end
-        Kiosk -->|"measurements only<br/>(not raw images)"| Backend["VirtualMirror API (Cloud Backend)<br/>• Full AI pipeline (when edge confidence < threshold)<br/>• Model updates pushed to edge devices<br/>• Aggregated analytics for store operations"]
-        Associate -->|"API call"| Backend
-    end
-    Note["Human-in-the-Loop: Store associate reviews AI suggestion<br/>before advising shopper. AI recommends — human decides."]
+```text
+┌──────────────────────────────────────────────────────────────┐
+│                  EDGE + AI AGENT OPERATIONS                 │
+│                                                              │
+│  ┌────────────────────────────────────────────────────────┐ │
+│  │ Shopper Smartphone + Native Shopping App              │ │
+│  │ ├── On-device pose detection                          │ │
+│  │ ├── Local measurement extraction                      │ │
+│  │ ├── Raw images never leave the phone                  │ │
+│  │ └── Human-in-the-loop: shopper decides to trust       │ │
+│  └──────────────────────────────┬─────────────────────────┘ │
+│                                 │ derived measurements only │
+│                                 ▼                           │
+│  ┌────────────────────────────────────────────────────────┐ │
+│  │        VirtualMirror API (Cloud Comparison Plane)     │ │
+│  │  ├── Garment fit comparison                           │ │
+│  │  ├── Model distribution metadata for mobile SDK       │ │
+│  │  └── Aggregated mobile analytics                      │ │
+│  └────────────────────────────────────────────────────────┘ │
+│                                                              │
+│  Measurement extraction works offline on-device; cloud        │
+│  connectivity is only required for garment comparison.        │
+└──────────────────────────────────────────────────────────────┘
 ```
 
-**Agentic AI scenario**: An AI copilot assists the *store associate* by synthesizing *shopper body measurements and garment fit data*, flagging *poor fit areas and low-confidence predictions*, and recommending *alternative sizes or garments* — while the **human associate retains accountability** for the advice given to the shopper.
+**Agentic AI scenario**: An AI copilot assists the *privacy-conscious home shopper* by synthesizing *on-device body measurements and cloud garment fit data*, flagging *poor fit areas and low-confidence predictions*, and recommending *alternative sizes or garments* — while the **shopper retains accountability** for whether to trust the recommendation and complete the purchase.
 
-**Tradeoffs**: Edge inference requires device management and model distribution. Privacy benefits (local processing) offset by hardware investment and synchronization complexity.
+**Tradeoffs**: Edge inference requires a native mobile SDK, model distribution to millions of devices, and performance tuning across heterogeneous smartphone hardware. Privacy benefits (local processing) and sub-second measurement extraction offset the added app footprint and mobile-release complexity.
 
 ### Concept C: Data Fabric / Intelligence Layer
 
@@ -230,16 +242,16 @@ graph TD
 | **Human-AI collaboration** | AI provides confidence-scored recommendation; shopper decides whether to trust it or consult size chart |
 | **New interfaces** | Fit assessment widget embedded in product page; visual per-area fit overlay |
 
-### Scenario 2: Store Associate + AI Copilot (Concept B)
+### Scenario 2: Privacy-Conscious Home Shopper + On-Device AI (Concept B)
 
-> "An AI copilot that assists the **store associate** by synthesizing **real-time shopper measurements and inventory data**, flagging **fit issues before the shopper tries the garment on**, and recommending **alternative sizes and similar-fit items in stock** — while the **associate retains accountability** for styling advice."
+> "An AI copilot that assists the **privacy-conscious home shopper** by synthesizing **on-device body measurements and cloud garment fit data**, flagging **poor fit areas and low-confidence predictions**, and recommending **alternative sizes and similar-fit items** — while the **shopper retains accountability** for whether to trust the advice."
 
 | Element | Detail |
 |---------|--------|
-| **What the AI agent does** | Captures measurements via fitting room camera; cross-references in-store inventory; suggests alternatives |
-| **Decisions it supports** | Which sizes to pull for try-on; which alternative garments to suggest |
-| **Human-AI collaboration** | AI pre-filters options; associate uses judgment and shopper preferences to make final recommendation |
-| **New roles** | "AI-Assisted Stylist" — store associate armed with real-time fit intelligence |
+| **What the AI agent does** | Captures measurements via smartphone camera; extracts them on-device; sends only derived measurements to cloud comparison |
+| **Decisions it supports** | Whether to trust the recommendation; whether to retake locally; which size or alternative garment to choose |
+| **Human-AI collaboration** | AI provides explainable fit guidance; shopper decides whether to act, retry, or fall back to the size chart |
+| **New roles** | "Mobile SDK & Model Distribution Engineer" — owns SDK rollout, model packaging, and device-class performance |
 
 ### Scenario 3: Merchandising Analyst + Intelligence Layer (Concept C)
 
@@ -261,7 +273,7 @@ graph TD
 | Concept | Value Proposition |
 |---------|-------------------|
 | **A. Cloud-Centric Platform** | Modernize the sizing experience with a scalable, API-first AI platform that integrates into any storefront without rebuilding infrastructure. Managed Azure services minimize operational overhead. |
-| **B. Edge + AI Agent** | Extend digital capabilities into physical stores. Edge inference preserves shopper privacy while reducing cloud dependency for latency-sensitive scenarios. |
+| **B. Edge + AI Agent** | Extend fit intelligence into retailer-owned native mobile apps. On-device inference preserves shopper privacy while reducing cloud dependency for latency-sensitive scenarios. |
 | **C. Data Fabric** | Unify fragmented retail data (fit, returns, inventory) into a governed intelligence layer that powers AI models across the entire business — not just one feature. |
 
 ### Business / Operations Leader (VP of E-Commerce)
@@ -269,7 +281,7 @@ graph TD
 | Concept | Value Proposition |
 |---------|-------------------|
 | **A. Cloud-Centric Platform** | Reduce return rates by 20–30% ($2–6M annual savings for mid-size retailer). Increase conversion through purchase confidence. Measurable ROI within 6 months. |
-| **B. Edge + AI Agent** | Elevate the in-store experience — associates armed with AI-driven fit intelligence spend less time on size runs and more time on relationship selling. |
+| **B. Edge + AI Agent** | Elevate the at-home mobile experience — privacy-conscious shoppers get fit intelligence without uploading body photos, increasing trust and app engagement. |
 | **C. Data Fabric** | Turn return data from a cost center into a strategic asset. Fit-informed merchandising decisions reduce overstock and optimize size curve purchasing. |
 
 ### Risk / Compliance / Sustainability Leader
@@ -277,7 +289,7 @@ graph TD
 | Concept | Value Proposition |
 |---------|-------------------|
 | **A. Cloud-Centric Platform** | Privacy by design — photos purged in < 60s, opaque identities, DPIA-ready. AI transparency via confidence scores and escalation paths. Audit trail for every assessment. |
-| **B. Edge + AI Agent** | Local photo processing eliminates cloud transmission of body images. Strongest privacy posture. Compliant with strictest data residency requirements. |
+| **B. Edge + AI Agent** | Local photo processing on the shopper's smartphone eliminates cloud transmission of body images. Strongest privacy posture. Compliant with strictest data residency requirements. |
 | **C. Data Fabric** | Full data lineage from measurement to outcome. PII classification labels. Retention policies enforced at the platform level. Supports regulatory reporting (GDPR Article 30). |
 
 ---
@@ -287,7 +299,7 @@ graph TD
 | Value Driver | Technology Capability | Alignment |
 |-------------|----------------------|-----------|
 | **Decision Velocity & Confidence** | GPT-5.2 native structured output; 5-point fit scale; confidence scoring; < 5s assessment | Shoppers make faster, more confident purchase decisions. Retailers see fewer returns and higher conversion. |
-| **Workforce Productivity & Focus** | API-first integration; profile reuse; batch garment ingestion; async queuing | Retail ops teams onboard faster. Shoppers skip repeat photo uploads. Store associates focus on selling, not size guessing. |
+| **Workforce Productivity & Focus** | API-first integration; profile reuse; batch garment ingestion; async queuing | Retail teams onboard faster. Shoppers skip repeat photo uploads, and privacy-conscious buyers can self-serve from their phones without cloud photo transfer. |
 | **Operational Resilience & Risk** | Multi-AZ deployment; circuit breakers; graceful degradation; 60s image purge; audit trail | 99.9% availability SLO. Regulatory compliance built-in. AI failures degrade gracefully to size chart fallback. |
 | **Growth Enablement & Innovation** | Multi-tenant architecture; v2 custom model path; Data Fabric integration; edge expansion | New retail partners onboard via API. Architecture supports evolution from single feature to retail intelligence platform. |
 
@@ -295,7 +307,7 @@ graph TD
 
 | IQ Layer | How It Manifests |
 |----------|-----------------|
-| **Work IQ** | Intelligence embedded in the shopper's daily workflow — fit recommendations appear at the point of purchase decision, not in a separate tool. Store associates receive AI suggestions in their mobile workflow. |
+| **Work IQ** | Intelligence embedded in the shopper's daily workflow — fit recommendations appear at the point of purchase decision in both the PDP and the retailer's native shopping app, not in a separate tool. |
 | **Foundry IQ** | Azure OpenAI GPT-5.2 Vision and the three-tier AI pipeline create insights (body measurements, fit scores, confidence) from raw inputs (photos, height). Prompt engineering, schema validation, and model versioning enable continuous refinement. |
 | **Fabric IQ** | Cosmos DB with hierarchical partition keys, Blob Storage lifecycle policies, and audit trails form the governed data foundation. Concept C extends this into Microsoft Fabric for cross-domain analytics. |
 
@@ -585,7 +597,7 @@ Tradeoffs are named explicitly per the workshop quality bar — not hidden behin
 |----------|-------------|-------------|----------------|
 | GPT-5.2 Vision vs custom model | GPT-5.2 for v1; custom SMPL for v2 | Rapid time-to-market; no ML team required for v1; same SDK/API shape with native structured output | ±2–4 cm accuracy (under validation, expected improvement with GPT-5.2, vs ±1–2 cm in v2); non-deterministic output |
 | Mandatory height input vs reference object | Require shopper-reported height | Reliable scale reference for all measurements | Added UX friction; accuracy depends on self-reported honesty |
-| Cloud-only vs edge processing | Cloud-only for v1; edge exploration for v2 | Simpler architecture; no device management | Cannot serve in-store scenarios; requires network connectivity |
+| Cloud-only vs edge processing | Cloud-only for v1; on-device smartphone processing for v2 | Simpler v1 architecture; strongest privacy posture and sub-second local extraction in v2 | Native mobile SDK required; device variability; cloud still needed for garment comparison |
 | Single-region vs multi-region | Single-region v1 | Lower cost and complexity | Geo-redundancy deferred; higher latency for distant shoppers |
 | Middleware rate limiting vs APIM | ASP.NET Core middleware for v1 | No additional infrastructure cost | Per-instance state (not distributed); limited gateway analytics |
 | Worst-area scoring vs weighted average | Conservative worst-area approach | Fewer false "good fit" recommendations; builds trust | More "too tight/loose" results; may reduce conversion initially |

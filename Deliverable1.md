@@ -15,15 +15,15 @@ Online apparel returns run at **25–40%**, and the dominant driver is fit uncer
 
 **Walmart-specific reality**: Walmart is the 3rd-largest U.S. apparel e-commerce retailer ($14.7B online apparel revenue, 2024). With an estimated 24–26% online clothing return rate and 53% of those driven by fit/sizing issues, the annual cost of fit-related returns runs into hundreds of millions. Walmart already invested in **Zeekit** (virtual try-on / visualization) — VirtualMirror complements this with **measurement-based fit confidence** ("will it fit?" vs "how does it look?"). The architecture integrates with Walmart's multi-hybrid cloud (Azure is a strategic partner at $500M+ annual spend), their Kubernetes-native internal developer platform, and existing catalog/PIM systems managed by Walmart Global Tech's 25,000+ engineering organization.
 
-The three architecture concepts below show **how agentic AI transforms the retail value chain** — from the shopper's purchase decision, to the in-store associate's recommendation, to the merchandiser's catalog and inventory strategy — while keeping **humans accountable** for the final decision in every loop.
+The three architecture concepts below show **how agentic AI transforms the retail value chain** — from the shopper's purchase decision, to the privacy-conscious home shopper's on-device recommendation, to the merchandiser's catalog and inventory strategy — while keeping **humans accountable** for the final decision in every loop.
 
-| Dimension                  | Where agentic AI transforms it                                                                     |
-|----------------------------|----------------------------------------------------------------------------------------------------|
-| **Workflows**              | Shoppers stop hunting size charts; associates stop chasing size runs; merchandisers stop guessing  |
-| **Decisions**              | Fit recommendations are confidence-scored, per-area, and explainable — not a single number         |
-| **Safety**                 | Photos purged in < 60s; opaque IDs; content safety filtering; biometric data never leaves the edge |
-| **Reliability**            | Three-tier AI pipeline with graceful degradation; circuit breakers; 99.9% availability SLO         |
-| **Optimization**           | 20–30% reduction in fit-driven returns; better size curves; less overstock; lower emissions        |
+| Dimension                  | Where agentic AI transforms it                                                                                 |
+|----------------------------|----------------------------------------------------------------------------------------------------------------|
+| **Workflows**              | Shoppers stop hunting size charts; privacy-conscious buyers get fit guidance without uploading photos; merchandisers stop guessing |
+| **Decisions**              | Fit recommendations are confidence-scored, per-area, and explainable — not a single number                     |
+| **Safety**                 | Photos purged in < 60s for cloud paths; opaque IDs; content safety filtering; Concept B images never leave the smartphone |
+| **Reliability**            | Three-tier AI pipeline with graceful degradation; circuit breakers; 99.9% availability SLO                     |
+| **Optimization**           | 20–30% reduction in fit-driven returns; better size curves; less overstock; lower emissions                    |
 
 Anchoring artifacts: [Problem statement](docs/Sessions/Problem-statement.md) · [Product definition](docs/Sessions/Product-definition.md) · [Solution architecture](docs/architecture/solution-architecture.md) · [Risk register](docs/architecture/risk-register.md)
 
@@ -73,37 +73,34 @@ Full detail: [solution-architecture.md § Concept A](docs/architecture/solution-
 
 > Decisioning at the edge, agentic workflows, human-in-the-loop control, latency- and safety-aware patterns.
 
-This concept extends the platform into **in-store and real-time scenarios** — fitting rooms, kiosks, and associate-mobile apps. Pose detection and measurement extraction run on the edge device so raw body images never traverse the network. The cloud backend is invoked only when edge confidence drops below threshold, and a **store associate stays in the loop** before any recommendation reaches the shopper.
+This concept extends the platform into an **at-home, smartphone-native experience** embedded in the retailer's shopping app. Pose detection and measurement extraction run **on the shopper's phone** so raw body images never traverse the network. Only **derived measurements** are sent to the cloud VirtualMirror API for garment comparison, and the **shopper stays in the loop** by deciding whether to trust the recommendation.
 
 ```mermaid
 graph TD
     subgraph "Concept B: Edge + AI Agent Operations"
-        subgraph "In-Store Edge"
-            Kiosk["Fitting Room<br/>Camera / Kiosk<br/>• local pose detection<br/>• edge cache<br/>• privacy: local"]
-            Associate["Store Associate<br/>Mobile AI Copilot<br/>• 'size M slim'<br/>• inventory check<br/>• alternatives<br/>• human decides"]
-        end
-        Kiosk -->|"measurements only<br/>(not raw images)"| Backend["VirtualMirror API (Cloud Backend)<br/>• fallback when edge confidence < threshold<br/>• model updates pushed to edge<br/>• aggregated analytics for store ops"]
-        Associate -->|"API call"| Backend
+        Phone["Shopper Smartphone<br/>Native shopping app + SDK<br/>• on-device pose detection<br/>• local measurement extraction<br/>• privacy: raw images stay local"]
+        Backend["VirtualMirror API (Cloud Backend)<br/>• garment fit comparison<br/>• model distribution metadata<br/>• aggregated mobile analytics"]
+        Phone -->|"derived measurements only<br/>(not raw images)"| Backend
     end
-    Note["Human-in-the-loop: AI recommends → associate decides → shopper accepts or asks for alternatives"]
+    Note["Human-in-the-loop: AI recommends → shopper decides whether to trust, buy, or retake locally"]
 ```
 
-### How agentic AI transforms the store associate's workflow
+### How agentic AI transforms the home shopper's workflow
 
-> "An AI copilot that assists the **store associate** by synthesizing **real-time shopper measurements and inventory data**, flagging **fit issues before the shopper tries the garment on**, and recommending **alternative sizes and similar-fit items in stock** — while the **associate retains accountability** for styling advice."
+> "An AI copilot that assists the **privacy-conscious home shopper** by synthesizing **on-device body measurements and cloud garment fit data**, flagging **poor fit areas and low-confidence predictions**, and recommending **the best size with explainable alternatives** — while the **shopper retains accountability** for whether to trust the recommendation and complete the purchase."
 
-| Dimension        | Concept B capability                                                                                                            |
-|------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| **Workflow**     | Associate sees "this shopper needs a Size M slim — try also style #245 in M and #312 in L" on a mobile device before try-on     |
-| **Decision**     | Pre-filtered try-on set + alternatives; associate uses judgment, shopper preference, and brand fit knowledge to finalize advice |
-| **Safety**       | **Strongest privacy posture**: raw images never leave the kiosk; only derived measurements are transmitted; HITL gate on advice |
-| **Reliability**  | Edge-first inference reduces cloud dependency; offline mode keeps fitting rooms working through WAN outages                     |
-| **Optimization** | Less time on size runs, more time on relationship selling; lower per-assessment cloud cost; faster fitting-room turn time       |
+| Dimension        | Concept B capability                                                                                                           |
+|------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| **Workflow**     | Shopper opens the retailer's native app at home, captures a photo with the smartphone camera, and gets a fit recommendation without uploading the raw image |
+| **Decision**     | Recommended size + alternatives are presented with confidence; shopper decides whether to trust it, retake locally, or use the size chart |
+| **Safety**       | **Strongest privacy posture**: raw images never leave the smartphone; only derived measurements are transmitted to the cloud |
+| **Reliability**  | On-device measurement extraction works offline; only the garment comparison step requires cloud connectivity                  |
+| **Optimization** | Sub-second measurement extraction on-device; lower upstream data transfer; broader adoption from shoppers who refuse cloud photo upload |
 
 ### Tradeoffs
 
-- **Gain**: Strongest privacy (local processing), lower cloud cost per assessment, in-store applicability, offline resilience
-- **Accept**: Device fleet management; model distribution and version drift complexity; hardware capex per store
+- **Gain**: Strongest privacy (local processing), sub-second measurement extraction, offline measurement step, lower cloud transfer volume
+- **Accept**: Requires a native mobile SDK; device hardware variability; model distribution to millions of devices; larger app size
 
 Full detail: [solution-architecture.md § Concept B](docs/architecture/solution-architecture.md#concept-b-edge--ai-agent-enabled-operations)
 
@@ -157,16 +154,16 @@ Full detail: [solution-architecture.md § Concept C](docs/architecture/solution-
 
 | Aspect                    | A. Cloud-Centric Platform                     | B. Edge + AI Agent                                | C. Data Fabric / Intelligence Layer            |
 |---------------------------|-----------------------------------------------|---------------------------------------------------|-------------------------------------------------|
-| **Primary user**          | Online shopper                                | Store associate (HITL) + shopper                  | Merchandiser, data scientist                    |
-| **Where AI runs**         | Azure managed services                        | On-device + cloud fallback                        | Cloud (real-time + batch on Fabric)             |
-| **Human accountability**  | Shopper decides to buy                        | Associate decides what to recommend               | Analyst decides catalog & inventory changes     |
-| **Latency profile**       | < 5s p95, network bound                       | Sub-second on edge; cloud only on low confidence  | Real-time + batch; insight latency hours–days   |
+| **Primary user**          | Online shopper                                | Privacy-conscious home shopper (HITL)             | Merchandiser, data scientist                    |
+| **Where AI runs**         | Azure managed services                        | Smartphone on-device AI + cloud comparison        | Cloud (real-time + batch on Fabric)             |
+| **Human accountability**  | Shopper decides to buy                        | Shopper decides whether to trust and buy          | Analyst decides catalog & inventory changes     |
+| **Latency profile**       | < 5s p95, network bound                       | Sub-second on-device; cloud only for comparison   | Real-time + batch; insight latency hours–days   |
 | **Privacy posture**       | Strong — 60s TTL, opaque refs                 | **Strongest** — raw images never leave the device | Strong — full lineage + PII classification      |
-| **Time to value**         | **Months** (v1 today)                         | 1–2 years (device fleet, model distribution)      | 1–2 years (Fabric build-out, source onboarding) |
-| **Capex profile**         | Low — managed services, pay-per-use           | Higher — store hardware                           | Higher — Fabric capacity + data engineering     |
-| **Return-rate impact**    | 20–30% reduction (direct)                     | Incremental — improves in-store conversion        | Compounding — improves the catalog itself       |
+| **Time to value**         | **Months** (v1 today)                         | 1–2 years (mobile SDK, model distribution)        | 1–2 years (Fabric build-out, source onboarding) |
+| **Capex profile**         | Low — managed services, pay-per-use           | Higher — native SDK + model distribution          | Higher — Fabric capacity + data engineering     |
+| **Return-rate impact**    | 20–30% reduction (direct)                     | Incremental — unlocks privacy-sensitive shoppers  | Compounding — improves the catalog itself       |
 | **Vendor lock-in risk**   | High (Azure)                                  | Medium (edge runtime portable)                    | High (Microsoft Fabric)                         |
-| **AI failure mode**       | Graceful degrade to size chart                | Graceful degrade to associate judgment            | Stale data falls back to last good snapshot     |
+| **AI failure mode**       | Graceful degrade to size chart                | Graceful degrade to shopper judgment/size chart   | Stale data falls back to last good snapshot     |
 
 ---
 
@@ -174,7 +171,7 @@ Full detail: [solution-architecture.md § Concept C](docs/architecture/solution-
 
 1. **Now (v1) — Build Concept A.** Ship the cloud-centric API. Prove the 20–30% return-rate reduction, validate confidence thresholds, and build the audit trail. Concept A is implementation-ready today.
 2. **Next (v1.5) — Layer Concept C onto Concept A.** Land assessment outcomes and return transactions in Microsoft Fabric so the merchandising loop closes. Same governed data powers both real-time API and batch analytics.
-3. **Later (v2) — Extend with Concept B for physical retail.** Once edge model footprint is small enough and store device strategy is clear, push inference to in-store kiosks for the strongest privacy posture and the in-store associate copilot.
+3. **Later (v2) — Extend with Concept B into retailer mobile apps.** Once edge model footprint is small enough and the mobile SDK distribution strategy is clear, push measurement extraction onto shopper smartphones for the strongest privacy posture and an at-home native-app experience.
 
 The three concepts are **complementary, not exclusive** — they form a sequenced transformation roadmap: Cloud → Insight → Edge.
 

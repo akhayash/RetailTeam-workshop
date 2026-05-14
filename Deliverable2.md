@@ -14,7 +14,7 @@ For each concept below:
 - **How humans and AI work together**
 - **What new roles, workflows, or hybrid interfaces emerge**
 
-A single principle runs across all three: **AI augments the human; the human retains accountability.** The system produces confidence-scored recommendations with escalation paths — it never auto-executes a purchase, a store action, or a catalog change.
+A single principle runs across all three: **AI augments the human; the human retains accountability.** The system produces confidence-scored recommendations with escalation paths — it never auto-executes a purchase, silent trust in a recommendation, or a catalog change.
 
 Anchoring artifacts: [Deliverable 1](Deliverable1.md) · [Solution architecture — Persona-Driven AI Scenarios](docs/architecture/solution-architecture.md#persona-driven-ai-scenarios) · [Product definition](docs/Sessions/Product-definition.md)
 
@@ -65,50 +65,50 @@ Anchoring artifacts: [Deliverable 1](Deliverable1.md) · [Solution architecture 
 
 ---
 
-## Scenario B — Concept B: Store Associate + AI Copilot (Edge)
+## Scenario B — Concept B: Privacy-Conscious Home Shopper + On-Device AI
 
-> *An AI copilot that assists the **store associate** by synthesizing **real-time fitting-room measurements and in-store inventory data**, flagging **fit issues and stock gaps before the shopper tries the garment on**, and recommending **alternative sizes and similar-fit items currently in stock** — while the **associate retains accountability** for the styling advice given to the shopper.*
+> *An AI copilot that assists the **privacy-conscious home shopper** by synthesizing **on-device body measurements and cloud garment fit data**, flagging **poor fit areas and low-confidence predictions**, and recommending **the best size with explainable alternatives** — while the **shopper retains accountability** for whether to trust the recommendation and complete the purchase.*
 
 ### Filled framing template
 
-| Slot          | Specifics for this scenario                                                                                                    |
-|---------------|---------------------------------------------------------------------------------------------------------------------------------|
-| `<persona>`   | In-store associate ("AI-assisted stylist") on a mobile copilot app; secondary user is the shopper in the fitting room          |
-| `<data>`      | Edge-derived measurements (raw images never leave the kiosk), live inventory, garment fit intent, shopper preferences          |
-| `<risks>`     | Edge model drift; offline scenarios; biometric privacy in a physical space; over-trust in AI suggestions; advice liability     |
-| `<actions>`   | Suggest sizes to pull for try-on; flag likely-poor-fit items; recommend in-stock alternatives; escalate to cloud when uncertain |
+| Slot          | Specifics for this scenario                                                                                                     |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------|
+| `<persona>`   | Privacy-conscious shopper at home using the retailer's native shopping app with an embedded measurement SDK                     |
+| `<data>`      | On-device derived measurements (raw images never leave the phone), garment size chart, fit intent, shopper preferences          |
+| `<risks>`     | Device hardware variability; mobile model drift; low-confidence over-trust; offline-to-online handoff; larger app footprint    |
+| `<actions>`   | Extract measurements locally; recommend size; suggest alternatives; prompt a local retake; send only derived measurements to cloud comparison |
 
 ### What the AI agent does
 
-- Runs **local pose detection and measurement extraction** on the fitting-room camera or kiosk; raw images never leave the device
-- Caches garment data and inventory at the edge for offline operation
-- Sends **only derived measurements** (not images) to the cloud backend when edge confidence drops below threshold
-- Pushes a ranked try-on set to the associate's mobile app: *"Size M slim recommended; also pull Size M regular and Style #245 in M"*
-- Cross-references **live inventory** so suggestions reflect what is actually on the floor
+- Runs **local pose detection and measurement extraction** inside the retailer's native mobile app; raw images never leave the smartphone
+- Produces **derived measurements on-device** in sub-second time for the measurement step
+- Sends **only derived measurements** plus garment context to the cloud VirtualMirror API for fit comparison
+- Supports **offline measurement capture** and defers the comparison step until garment data can be reached in the cloud
+- Returns an explainable recommendation to the app: *"Size M regular recommended; low confidence at shoulders — retake if you want a stronger signal"*
 
 ### Decisions it supports (not replaces)
 
-- **Which sizes to pull from the floor for try-on** — the associate selects from the AI-ranked set
-- **Which alternative garments to suggest** — the associate weighs shopper preferences, brand knowledge, and styling judgment
-- **Whether to escalate** — for a difficult fit, the associate decides whether to engage a senior stylist or alterations service
+- **Whether to trust the recommendation** — the shopper decides if the confidence and explanation are sufficient
+- **Whether to retake the photo locally** — the shopper can improve lighting/pose without any image upload
+- **Which size to buy or whether to view alternatives** — the AI ranks options; the shopper chooses
 
 ### How humans and AI work together
 
-| Step | Human (shopper / associate)                              | AI (edge + cloud)                                                                  |
-|------|----------------------------------------------------------|-------------------------------------------------------------------------------------|
-| 1    | Shopper enters fitting room and opts in via signage      | Edge device captures pose; derives measurements locally; deletes frames immediately |
-| 2    | —                                                        | Sends measurements + garment context to associate copilot; cloud fallback if needed |
-| 3    | Associate reviews AI-ranked try-on set on mobile app     | Displays size + alternatives + confidence + inventory availability                   |
-| 4    | Associate explains recommendation in the shopper's words | Logs anonymized aggregate signals for store-ops analytics                            |
-| 5    | Shopper tries on and decides                              | Captures outcome (kept / swapped / declined) — no raw image, no biometric vector    |
+| Step | Human (shopper)                                           | AI (on-device + cloud)                                                                |
+|------|-----------------------------------------------------------|----------------------------------------------------------------------------------------|
+| 1    | Opens the retailer's native app at home and starts fit check | Embedded SDK activates smartphone camera and validates pose/lighting locally          |
+| 2    | Captures photo(s)                                         | Extracts measurements on-device; deletes frames locally after processing              |
+| 3    | Chooses to continue when connected or wait for connectivity | Sends only derived measurements to the cloud fit-comparison API                      |
+| 4    | Reviews recommendation, confidence, and fit explanation   | Displays size, alternatives, and a retake prompt when confidence is low              |
+| 5    | Decides to buy, switch size, retake, or abandon           | Logs anonymized measurement/result metadata — no raw image, no biometric vector      |
 
 ### New roles, workflows, or hybrid interfaces
 
-- **New role**: **"AI-Assisted Stylist"** — a store associate equipped with real-time fit intelligence on a mobile copilot
-- **New workflow**: fewer size runs ("let me bring you the next size"), more relationship selling and outfit building
-- **Hybrid interface**: an associate mobile app *and* an opt-in shopper-facing kiosk screen — the AI's suggestions are visible to both, building trust through transparency
-- **New ops role**: **Edge Fleet & Model Steward** — pushes model updates, monitors device health, validates drift across stores
-- **Escalation path**: when edge confidence is low, the flow transparently switches to the cloud pipeline and tells the associate so
+- **Hybrid interface**: the retailer's **native shopping app with an embedded measurement SDK** — on-device capture locally, cloud comparison remotely
+- **New workflow**: "measure privately at home on my phone, then decide" replaces "upload a body photo to the cloud or guess from a size chart"
+- **No new shopper-side role**: the human-in-the-loop is simply the shopper deciding whether to trust the AI
+- **New ops role**: **Mobile SDK & Model Distribution Engineer** — ships SDK releases, manages model rollout, and monitors device-class performance
+- **Escalation path**: low-confidence results prompt a retake, size-chart fallback, or a defer-until-online comparison rather than silently overconfident advice
 
 ---
 
@@ -161,18 +161,18 @@ Anchoring artifacts: [Deliverable 1](Deliverable1.md) · [Solution architecture 
 
 ## Cross-Concept Synthesis
 
-| Aspect                       | A. Cloud-Centric (Shopper)                          | B. Edge + AI Agent (Associate)                      | C. Data Fabric (Analyst)                           |
+| Aspect                       | A. Cloud-Centric (Shopper)                          | B. Edge + AI Agent (Home Shopper)                   | C. Data Fabric (Analyst)                           |
 |------------------------------|-----------------------------------------------------|------------------------------------------------------|-----------------------------------------------------|
-| **Primary persona**          | Online shopper                                       | Store associate (HITL gate) + shopper               | Merchandising analyst / catalog steward             |
-| **AI's job**                 | Predict per-area fit + recommend size               | Pre-filter try-on set + flag fit issues             | Correlate fit outcomes ↔ returns and propose fixes  |
-| **What stays human**         | The purchase decision                                | The styling advice and final recommendation         | The catalog and buying decisions                    |
-| **Decision horizon**         | Seconds (one purchase)                               | Minutes (one fitting-room session)                  | Days–weeks (next buying cycle)                      |
-| **Key risk to manage**       | Biometric privacy; low-confidence over-trust        | Edge drift; in-store privacy; advice liability      | Spurious correlations; biased models; PII spillover |
-| **Hybrid interface**         | PDP fit widget with per-area overlay                 | Associate mobile copilot + opt-in shopper kiosk     | Merchandising dashboard + drift-alert workbench     |
-| **New role(s)**              | Catalog Steward (light)                              | AI-Assisted Stylist; Edge Fleet & Model Steward     | Catalog Steward; Fit Data Scientist                 |
-| **Loop closes when**         | Shopper buys (or doesn't)                            | Associate adapts recommendation in real time        | Catalog updates feed back into the API for everyone |
+| **Primary persona**          | Online shopper                                       | Privacy-conscious home shopper (HITL gate)          | Merchandising analyst / catalog steward             |
+| **AI's job**                 | Predict per-area fit + recommend size               | Extract measurements on-device + recommend size     | Correlate fit outcomes ↔ returns and propose fixes  |
+| **What stays human**         | The purchase decision                                | Whether to trust, retake, or buy                    | The catalog and buying decisions                    |
+| **Decision horizon**         | Seconds (one purchase)                               | Seconds (one at-home fit check)                     | Days–weeks (next buying cycle)                      |
+| **Key risk to manage**       | Biometric privacy; low-confidence over-trust        | Device variability; on-device drift; over-trust     | Spurious correlations; biased models; PII spillover |
+| **Hybrid interface**         | PDP fit widget with per-area overlay                 | Native shopping app + embedded measurement SDK      | Merchandising dashboard + drift-alert workbench     |
+| **New role(s)**              | Catalog Steward (light)                              | Mobile SDK & Model Distribution Engineer            | Catalog Steward; Fit Data Scientist                 |
+| **Loop closes when**         | Shopper buys (or doesn't)                            | Shopper accepts, retakes, or abandons               | Catalog updates feed back into the API for everyone |
 
-A virtuous loop emerges across the three concepts: **Concept A** generates fit signal at scale, **Concept C** turns that signal into catalog improvements, and **Concept B** delivers the improved intelligence into physical retail — with a **human accountable at every gate**.
+A virtuous loop emerges across the three concepts: **Concept A** generates fit signal at scale, **Concept C** turns that signal into catalog improvements, and **Concept B** delivers the improved intelligence into the retailer's native mobile experience — with a **human accountable at every gate**.
 
 ---
 

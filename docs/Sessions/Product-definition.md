@@ -93,7 +93,7 @@ A standalone AI Fit Assessment Agent that accepts shopper-provided photo materia
 ### Out of Scope (v1)
 
 - Virtual try-on / augmented reality visualization.
-- Integration with in-store kiosks or POS systems.
+- Retailer-operated capture endpoints or POS integrations; Concept B instead assumes shopper-owned smartphones using on-device AI in the retailer app.
 - Automatic garment data ingestion from supplier feeds (manual catalog import for v1).
 - Support for non-clothing categories (shoes, accessories).
 
