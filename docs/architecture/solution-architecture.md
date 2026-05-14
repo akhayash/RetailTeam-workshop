@@ -172,29 +172,29 @@ graph TD
 
 This concept extends the platform into an **at-home, smartphone-native scenario** where an AI agent assists a privacy-conscious shopper inside the retailer's native mobile app. The smartphone camera captures the photo, **on-device AI performs pose detection and measurement extraction locally**, and only derived measurements are sent to the cloud for fit comparison.
 
-```text
-┌──────────────────────────────────────────────────────────────┐
-│                  EDGE + AI AGENT OPERATIONS                 │
-│                                                              │
-│  ┌────────────────────────────────────────────────────────┐ │
-│  │ Shopper Smartphone + Native Shopping App              │ │
-│  │ ├── On-device pose detection                          │ │
-│  │ ├── Local measurement extraction                      │ │
-│  │ ├── Raw images never leave the phone                  │ │
-│  │ └── Human-in-the-loop: shopper decides to trust       │ │
-│  └──────────────────────────────┬─────────────────────────┘ │
-│                                 │ derived measurements only │
-│                                 ▼                           │
-│  ┌────────────────────────────────────────────────────────┐ │
-│  │        VirtualMirror API (Cloud Comparison Plane)     │ │
-│  │  ├── Garment fit comparison                           │ │
-│  │  ├── Model distribution metadata for mobile SDK       │ │
-│  │  └── Aggregated mobile analytics                      │ │
-│  └────────────────────────────────────────────────────────┘ │
-│                                                              │
-│  Measurement extraction works offline on-device; cloud        │
-│  connectivity is only required for garment comparison.        │
-└──────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph "Concept B: Edge + AI Agent Operations"
+        subgraph "Shopper Smartphone + Native Shopping App"
+            Pose["On-device pose detection"]
+            Measure["Local measurement extraction"]
+            Privacy["Raw images never leave the phone"]
+            HITL["Human-in-the-loop:<br/>shopper decides to trust"]
+        end
+
+        Pose --> DataFlow
+        Measure --> DataFlow["Derived measurements only"]
+
+        subgraph "VirtualMirror API (Cloud Comparison Plane)"
+            Fit["Garment fit comparison"]
+            ModelDist["Model distribution metadata<br/>for mobile SDK"]
+            Analytics["Aggregated mobile analytics"]
+        end
+
+        DataFlow --> Fit
+    end
+
+    Note["Measurement extraction works offline on-device;<br/>cloud connectivity is only required for garment comparison."]
 ```
 
 **Agentic AI scenario**: An AI copilot assists the *privacy-conscious home shopper* by synthesizing *on-device body measurements and cloud garment fit data*, flagging *poor fit areas and low-confidence predictions*, and recommending *alternative sizes or garments* — while the **shopper retains accountability** for whether to trust the recommendation and complete the purchase.
@@ -372,18 +372,19 @@ graph TD
 
 ## Fit Comparison Engine
 
-```text
-For each body area:
-  delta = shopper_measurement - garment_measurement
+```mermaid
+flowchart TD
+    Input["For each body area:<br/>delta = shopper_measurement − garment_measurement"] --> TooTight{"delta < −tight_threshold"}
+    TooTight -->|Yes| R1["Too Tight"]
+    TooTight -->|No| SlightlyTight{"delta < −comfort_threshold"}
+    SlightlyTight -->|Yes| R2["Slightly Tight"]
+    SlightlyTight -->|No| GoodFit{"delta ≤ +comfort_threshold"}
+    GoodFit -->|Yes| R3["Good Fit"]
+    GoodFit -->|No| SlightlyLoose{"delta ≤ +loose_threshold"}
+    SlightlyLoose -->|Yes| R4["Slightly Loose"]
+    SlightlyLoose -->|No| R5["Too Loose"]
 
-  Too Tight:      delta < -tight_threshold
-  Slightly Tight: -tight_threshold ≤ delta < -comfort_threshold
-  Good Fit:       -comfort_threshold ≤ delta ≤ +comfort_threshold
-  Slightly Loose: +comfort_threshold < delta ≤ +loose_threshold
-  Too Loose:      delta > +loose_threshold
-
-  Overall recommendation = worst-scoring area (conservative)
-  Confidence = min(extraction_confidence, measurement_coverage_%)
+    R1 & R2 & R3 & R4 & R5 --> Overall["Overall recommendation = worst-scoring area (conservative)<br/>Confidence = min(extraction_confidence, measurement_coverage_%)"]
 ```
 
 Tolerance bands are configurable per tenant and garment category. System defaults: tight 4 cm, comfort 2 cm, loose 5 cm.
@@ -518,26 +519,33 @@ Full contract: [openapi.yaml](../specs/001-clothing-fit-assessment/contracts/ope
 
 ## Project Structure
 
-```text
-src/
-├── VirtualMirror.Api/              # ASP.NET Core Web API host
-├── VirtualMirror.Core/             # Domain models & interfaces (zero dependencies)
-├── VirtualMirror.Services/         # Business logic
-├── VirtualMirror.Infrastructure/   # Azure SDK integrations
-└── VirtualMirror.AppHost/          # .NET Aspire orchestrator
+```mermaid
+graph TD
+    subgraph "src/"
+        Api["VirtualMirror.Api<br/>ASP.NET Core Web API host"]
+        Services["VirtualMirror.Services<br/>Business logic"]
+        Core["VirtualMirror.Core<br/>Domain models & interfaces<br/>(zero dependencies)"]
+        Infra["VirtualMirror.Infrastructure<br/>Azure SDK integrations"]
+        AppHost["VirtualMirror.AppHost<br/>.NET Aspire orchestrator"]
+    end
 
-tests/
-├── VirtualMirror.Api.Tests/        # Integration (WebApplicationFactory)
-├── VirtualMirror.Core.Tests/       # Unit (domain logic)
-├── VirtualMirror.Services.Tests/   # Unit (services)
-├── VirtualMirror.Infrastructure.Tests/  # Integration (external deps)
-├── VirtualMirror.Contract.Tests/   # OpenAPI contract validation
-└── VirtualMirror.Load.Tests/       # NBomber performance
+    subgraph "tests/"
+        ApiTests["Api.Tests<br/>(Integration – WebApplicationFactory)"]
+        CoreTests["Core.Tests<br/>(Unit – domain logic)"]
+        SvcTests["Services.Tests<br/>(Unit – services)"]
+        InfraTests["Infrastructure.Tests<br/>(Integration – external deps)"]
+        ContractTests["Contract.Tests<br/>(OpenAPI validation)"]
+        LoadTests["Load.Tests<br/>(NBomber performance)"]
+    end
 
-infra/
-├── main.bicep                  # Root deployment
-├── modules/                    # Per-resource Bicep modules
-└── parameters/                 # dev.json, staging.json, prod.json
+    subgraph "infra/"
+        Bicep["main.bicep<br/>Root deployment"]
+        Modules["modules/<br/>Per-resource Bicep modules"]
+        Params["parameters/<br/>dev · staging · prod"]
+    end
+
+    Api --> Services --> Core
+    Infra --> Core
 ```
 
 **Architecture pattern**: Clean Architecture (Api → Services → Core ← Infrastructure). Core has zero external dependencies. Infrastructure depends on Core interfaces only.
