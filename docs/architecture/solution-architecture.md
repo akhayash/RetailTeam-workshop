@@ -151,32 +151,17 @@ Three personas represent the primary stakeholders affected by the architecture.
 
 This is the **primary v1 implementation concept** — a cloud-native API service on Azure with managed AI services, serverless container hosting, and governed multi-tenant data isolation.
 
-```text
-┌─────────────────────────────────────────────────────────────────────┐
-│                    CLOUD-CENTRIC PLATFORM                           │
-│                                                                     │
-│  ┌──────────────┐    ┌──────────────────────────────────────────┐  │
-│  │  Retail       │    │         Azure Container Apps             │  │
-│  │  Frontend     │───▶│  VirtualMirror API (.NET 8, 2-10 replicas) │  │
-│  │  (B2B OAuth)  │    │  ├── Auth Middleware (Entra ID JWT)     │  │
-│  │               │    │  ├── Rate Limiting (per tenant tier)    │  │
-│  └──────────────┘    │  └── OpenTelemetry (traces + metrics)   │  │
-│                       └───────┬──────────┬──────────┬───────────┘  │
-│                               │          │          │              │
-│  ┌────────────────────────────▼──┐  ┌────▼────┐  ┌─▼────────────┐│
-│  │  Azure AI Services (Managed)  │  │Cosmos DB│  │ Blob Storage ││
-│  │  ├── Florence-2 (Tier 1)      │  │(multi-  │  │ (60s TTL     ││
-│  │  ├── Content Safety (Tier 1)  │  │ tenant) │  │  auto-purge) ││
-│  │  ├── OpenAI GPT-5.2 (Tier 2)  │  │         │  │              ││
-│  │  └── AI Foundry (Tier 3, v2)  │  └─────────┘  └──────────────┘│
-│  └───────────────────────────────┘                                 │
-│                                                                     │
-│  ┌──────────────┐  ┌─────────────┐  ┌──────────────┐              │
-│  │ Service Bus   │  │ Key Vault   │  │ Azure Monitor│              │
-│  │ (async queue) │  │ (zero-      │  │ (OTel → AI)  │              │
-│  │               │  │  secret)    │  │              │              │
-│  └──────────────┘  └─────────────┘  └──────────────┘              │
-└─────────────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph "Concept A: Cloud-Centric Platform"
+        Frontend["Retail Frontend<br/>(B2B OAuth)"] -->|HTTPS| API["Azure Container Apps<br/>VirtualMirror API (.NET 8)<br/>2-10 replicas · multi-AZ<br/>Auth Middleware · Rate Limiting<br/>OpenTelemetry"]
+        API --> AI["Azure AI Services (Managed)<br/>• Florence-2 (Tier 1)<br/>• Content Safety (Tier 1)<br/>• OpenAI GPT-5.2 (Tier 2)<br/>• AI Foundry (Tier 3, v2)"]
+        API --> Cosmos["Cosmos DB<br/>(multi-tenant)"]
+        API --> Blob["Blob Storage<br/>(60s TTL auto-purge)"]
+        API --> Bus["Service Bus<br/>(async queue)"]
+        API --> KV["Key Vault<br/>(zero-secret)"]
+        API --> Monitor["Azure Monitor<br/>(OTel → AI)"]
+    end
 ```
 
 **Tradeoffs**: Maximum managed-service utilization reduces operational burden but creates vendor lock-in to Azure. Single-region v1 limits geographic reach.
@@ -187,33 +172,17 @@ This is the **primary v1 implementation concept** — a cloud-native API service
 
 This concept extends the platform into **in-store and real-time scenarios** where an AI agent assists shoppers and store associates at the point of decision — fitting rooms, kiosks, and mobile devices.
 
-```text
-┌──────────────────────────────────────────────────────────────┐
-│                  EDGE + AI AGENT OPERATIONS                   │
-│                                                               │
-│  ┌──────────────────────┐    ┌─────────────────────────────┐ │
-│  │  In-Store Kiosk /     │    │   Store Associate Mobile    │ │
-│  │  Fitting Room Camera  │    │   AI Copilot App            │ │
-│  │  ├── Local inference  │    │   ├── "This shopper needs   │ │
-│  │  │   (pose detection) │    │   │    a size M in slim"    │ │
-│  │  ├── Edge caching     │    │   ├── Inventory check       │ │
-│  │  │   (garment data)   │    │   └── Suggest alternatives  │ │
-│  │  └── Privacy: process │    └─────────────┬───────────────┘ │
-│  │      locally, send    │                  │                  │
-│  │      only measurements│                  │                  │
-│  └──────────┬───────────┘                  │                  │
-│             │                               │                  │
-│             ▼                               ▼                  │
-│  ┌──────────────────────────────────────────────────────────┐ │
-│  │            VirtualMirror API (Cloud Backend)                  │ │
-│  │  ├── Full AI pipeline (when edge confidence < threshold) │ │
-│  │  ├── Model updates pushed to edge devices                │ │
-│  │  └── Aggregated analytics for store operations           │ │
-│  └──────────────────────────────────────────────────────────┘ │
-│                                                               │
-│  Human-in-the-Loop: Store associate reviews AI suggestion     │
-│  before advising shopper. AI recommends — human decides.      │
-└──────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph "Concept B: Edge + AI Agent Operations"
+        subgraph "In-Store Edge"
+            Kiosk["Fitting Room Camera / Kiosk<br/>• Local inference (pose detection)<br/>• Edge caching (garment data)<br/>• Privacy: process locally,<br/>  send only measurements"]
+            Associate["Store Associate<br/>Mobile AI Copilot<br/>• 'Size M slim'<br/>• Inventory check<br/>• Suggest alternatives"]
+        end
+        Kiosk -->|"measurements only<br/>(not raw images)"| Backend["VirtualMirror API (Cloud Backend)<br/>• Full AI pipeline (when edge confidence < threshold)<br/>• Model updates pushed to edge devices<br/>• Aggregated analytics for store operations"]
+        Associate -->|"API call"| Backend
+    end
+    Note["Human-in-the-Loop: Store associate reviews AI suggestion<br/>before advising shopper. AI recommends — human decides."]
 ```
 
 **Agentic AI scenario**: An AI copilot assists the *store associate* by synthesizing *shopper body measurements and garment fit data*, flagging *poor fit areas and low-confidence predictions*, and recommending *alternative sizes or garments* — while the **human associate retains accountability** for the advice given to the shopper.
@@ -226,37 +195,22 @@ This concept extends the platform into **in-store and real-time scenarios** wher
 
 This concept positions the fit assessment data as part of a **unified retail intelligence layer** that connects shopper insights, garment analytics, and return predictions across the entire retail operation.
 
-```text
-┌──────────────────────────────────────────────────────────────┐
-│              DATA FABRIC / INTELLIGENCE LAYER                 │
-│                                                               │
-│  ┌─────────────┐  ┌──────────────┐  ┌─────────────────────┐ │
-│  │  Shopper     │  │  Garment     │  │  Return & Exchange  │ │
-│  │  Measurement │  │  Catalog     │  │  Transaction Data   │ │
-│  │  Profiles    │  │  (sizes,     │  │  (outcomes,         │ │
-│  │  (anonymized)│  │   materials) │  │   reasons, costs)   │ │
-│  └──────┬──────┘  └──────┬───────┘  └──────────┬──────────┘ │
-│         │                │                      │             │
-│         ▼                ▼                      ▼             │
-│  ┌──────────────────────────────────────────────────────────┐│
-│  │           Unified Semantic Layer (Microsoft Fabric)       ││
-│  │  ├── Data lineage: measurement → assessment → outcome    ││
-│  │  ├── Governance: PII classification, retention policies  ││
-│  │  ├── AI-ready data products (curated, cataloged)         ││
-│  │  └── Cross-domain joins (fit score ↔ return rate)        ││
-│  └──────────────────────────────────────────────────────────┘│
-│         │                │                      │             │
-│         ▼                ▼                      ▼             │
-│  ┌──────────────┐ ┌───────────────┐ ┌──────────────────────┐│
-│  │  VirtualMirror   │ │  Return       │ │  Merchandising       ││
-│  │  API         │ │  Prediction   │ │  Intelligence        ││
-│  │  (real-time  │ │  Model        │ │  (size distribution, ││
-│  │   assessment)│ │  (batch/ML)   │ │   trend analysis)    ││
-│  └──────────────┘ └───────────────┘ └──────────────────────┘│
-│                                                               │
-│  Fabric IQ: Trusted data foundation enables AI models and     │
-│  business intelligence to operate on the same governed data.  │
-└──────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph "Concept C: Data Fabric / Intelligence Layer"
+        subgraph "Source Domains"
+            Shopper["Shopper Measurement<br/>Profiles (anonymized)"]
+            Garment["Garment Catalog<br/>(sizes, materials)"]
+            Returns["Return & Exchange<br/>Transaction Data<br/>(outcomes, reasons, costs)"]
+        end
+        Shopper --> Fabric["Unified Semantic Layer (Microsoft Fabric)<br/>• Data lineage: measurement → assessment → outcome<br/>• Governance: PII classification, retention policies<br/>• AI-ready data products (curated, cataloged)<br/>• Cross-domain joins (fit score ↔ return rate)"]
+        Garment --> Fabric
+        Returns --> Fabric
+        Fabric --> API["VirtualMirror API<br/>(real-time assessment)"]
+        Fabric --> ReturnModel["Return Prediction<br/>Model (batch/ML)"]
+        Fabric --> Merch["Merchandising Intelligence<br/>(size distribution,<br/>trend analysis)"]
+    end
+    FabricIQ["Fabric IQ: Trusted data foundation enables AI models and<br/>business intelligence to operate on the same governed data."]
 ```
 
 **Tradeoffs**: Requires Microsoft Fabric investment and data engineering effort beyond the fit assessment scope. Maximum long-term value but slower time-to-insight for v1.
@@ -349,82 +303,59 @@ This concept positions the fit assessment data as part of a **unified retail int
 
 ## System Context
 
-```text
-┌─────────────────────────────────────────────────────────────────────┐
-│                        Retail Frontend Store                        │
-│  (e-commerce storefront — owns shopper auth, passes opaque refs)   │
-└──────────────────────────────┬──────────────────────────────────────┘
-                               │ REST API (OAuth 2.0 B2B)
-                               ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│                     VirtualMirror API (v1)                               │
-│  ASP.NET Core 8.0 · Azure Container Apps · Multi-tenant             │
-│                                                                     │
-│  ┌───────────┐  ┌──────────────┐  ┌────────────┐  ┌─────────────┐ │
-│  │ Assessments│  │   Profiles   │  │  Garments  │  │   Health    │ │
-│  │ Controller │  │  Controller  │  │ Controller │  │ Controller  │ │
-│  └─────┬─────┘  └──────┬───────┘  └─────┬──────┘  └─────────────┘ │
-│        │               │                │                           │
-│  ┌─────▼───────────────▼────────────────▼──────────────────────┐   │
-│  │                    Service Layer                             │   │
-│  │  VirtualMirrormentService · ImageValidator · BodyMeasurement-   │   │
-│  │  Extractor · FitComparisonEngine · ShopperProfileService ·  │   │
-│  │  GarmentService                                             │   │
-│  └─────┬───────────────────────────────────────────────────────┘   │
-│        │                                                            │
-│  ┌─────▼───────────────────────────────────────────────────────┐   │
-│  │                  Infrastructure Layer                        │   │
-│  │  FlorenceVisionClient · ContentSafetyClient · AzureOpenAI- │   │
-│  │  MeasurementClient · CosmosRepository<T> · BlobStorage-     │   │
-│  │  Service · AssessmentQueueService · AuditLogger             │   │
-│  └─────────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────────┘
-         │              │              │              │
-         ▼              ▼              ▼              ▼
-   ┌──────────┐  ┌───────────┐  ┌──────────┐  ┌──────────────┐
-   │ Azure AI │  │  Azure    │  │ Azure    │  │   Azure      │
-   │ Services │  │ Cosmos DB │  │ Blob     │  │ Service Bus  │
-   │          │  │           │  │ Storage  │  │              │
-   └──────────┘  └───────────┘  └──────────┘  └──────────────┘
+```mermaid
+graph TB
+    RetailFE["Retail Frontend Store<br/>(e-commerce storefront — owns shopper auth, passes opaque refs)"]
+    RetailFE -->|"REST API (OAuth 2.0 B2B)"| API
+
+    subgraph "VirtualMirror API (v1)"
+        direction TB
+        API["ASP.NET Core 8.0 · Azure Container Apps · Multi-tenant"]
+        subgraph Controllers
+            AC[Assessments Controller]
+            PC[Profiles Controller]
+            GC[Garments Controller]
+            HC[Health Controller]
+        end
+        subgraph "Service Layer"
+            SVC["VirtualMirrormentService · ImageValidator<br/>BodyMeasurementExtractor · FitComparisonEngine<br/>ShopperProfileService · GarmentService"]
+        end
+        subgraph "Infrastructure Layer"
+            INFRA["FlorenceVisionClient · ContentSafetyClient<br/>AzureOpenAIMeasurementClient · CosmosRepository‹T›<br/>BlobStorageService · AssessmentQueueService · AuditLogger"]
+        end
+        API --- Controllers
+        Controllers --- SVC
+        SVC --- INFRA
+    end
+
+    INFRA --> AIServices["Azure AI Services"]
+    INFRA --> CosmosDB["Azure Cosmos DB"]
+    INFRA --> BlobStorage["Azure Blob Storage"]
+    INFRA --> ServiceBus["Azure Service Bus"]
 ```
 
 ## Three-Tier AI Pipeline (Concept A Detail)
 
-```text
-┌──────────────────────────────────────────────────────────────────┐
-│  TIER 1 — Validation                                             │
-│                                                                  │
-│  ┌─────────────────────┐    ┌──────────────────────────────┐    │
-│  │ Florence-2 Foundry  │    │ Azure AI Content Safety      │    │
-│  │ • Person detection  │    │ • Minor/age detection        │    │
-│  │ • Multi-person reject│   │ • Inappropriate content      │    │
-│  │ • Bounding box check│    │ • Malware scan (Defender)    │    │
-│  └─────────┬───────────┘    └──────────────┬───────────────┘    │
-│            │ PASS                           │ PASS               │
-│            └───────────────┬────────────────┘                    │
-│                            ▼                                     │
-├──────────────────────────────────────────────────────────────────┤
-│  TIER 2 — Measurement Extraction                                 │
-│                                                                  │
-│  ┌──────────────────────────────────────────────────────┐       │
-│  │ Azure OpenAI GPT-5.2 Vision (Native Structured Output)│       │
-│  │ Input: Photo (bytes) + Height (cm)                   │       │
-│  │ Output: { shoulderWidth, chestCircumference,         │       │
-│  │           waistCircumference, hipCircumference,      │       │
-│  │           inseam, armLength, confidence }             │       │
-│  │ Prompt: version-controlled at Prompts/ directory     │       │
-│  └──────────────────────────────────────────────────────┘       │
-│                                                                  │
-├──────────────────────────────────────────────────────────────────┤
-│  TIER 3 — Future (v2)                                            │
-│                                                                  │
-│  ┌──────────────────────────────────────────────────────┐       │
-│  │ Custom SMPL Body Model on Azure AI Foundry            │       │
-│  │ • ±1-2cm accuracy (vs ±2-4cm under validation in GPT-5.2) │       │
-│  │ • Deterministic output                               │       │
-│  │ • Managed endpoint deployment                        │       │
-│  └──────────────────────────────────────────────────────┘       │
-└──────────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph "TIER 1 — Validation"
+        Florence["Florence-2 on Azure AI Foundry<br/>• Person detection<br/>• Multi-person reject<br/>• Bounding box check"]
+        Safety["Azure AI Content Safety<br/>• Minor/age detection<br/>• Inappropriate content<br/>• Malware scan (Defender)"]
+        Florence -->|PASS| Gate1{Both pass?}
+        Safety -->|PASS| Gate1
+    end
+
+    Gate1 -->|Yes| Tier2
+
+    subgraph "TIER 2 — Measurement Extraction"
+        Tier2["Azure OpenAI GPT-5.2 Vision<br/>(Native Structured Output)<br/>Input: Photo (bytes) + Height (cm)<br/>Output: shoulderWidth, chestCircumference,<br/>waistCircumference, hipCircumference,<br/>inseam, armLength, confidence"]
+    end
+
+    Tier2 --> Result[Fit Comparison Engine]
+
+    subgraph "TIER 3 — Future (v2)"
+        Tier3["Custom SMPL Body Model<br/>on Azure AI Foundry<br/>• ±1-2cm accuracy<br/>• Deterministic output<br/>• Managed endpoint"]
+    end
 ```
 
 ## Fit Comparison Engine
@@ -463,116 +394,96 @@ Tolerance bands are configurable per tenant and garment category. System default
 
 ## Multi-Tenant Data Architecture
 
-```text
-Cosmos DB Account
-│
-├── Database: virtualmirror
-│   │
-│   ├── Container: tenants
-│   │   Partition key: /id
-│   │   Entities: Tenant configuration, tolerance bands, rate limit tiers
-│   │
-│   ├── Container: garments
-│   │   Partition key: /tenantId
-│   │   Entities: Garment SKUs with per-size measurements (versioned)
-│   │
-│   ├── Container: profiles
-│   │   Partition key: /tenantId
-│   │   Entities: Shopper body measurements (derived, not photos)
-│   │   Deletion: Hard delete within 24h of request
-│   │
-│   ├── Container: assessments
-│   │   Partition key: /tenantId
-│   │   Entities: Fit assessment results with model version traceability
-│   │   TTL: 365 days (configurable per tenant)
-│   │
-│   └── Container: audit
-│       Partition key: /tenantId
-│       Entities: Immutable audit log entries (tamper-evident)
-│
-└── Hierarchical partition keys: /tenantId → /entityType → /entityId
+```mermaid
+graph TD
+    Account["Cosmos DB Account"]
+    Account --> DB["Database: virtualmirror"]
+
+    DB --> Tenants["Container: tenants<br/>PK: /id<br/>Entities: Tenant config, tolerance bands, rate limit tiers"]
+    DB --> Garments["Container: garments<br/>PK: /tenantId<br/>Entities: Garment SKUs with per-size measurements (versioned)"]
+    DB --> Profiles["Container: profiles<br/>PK: /tenantId<br/>Entities: Shopper body measurements (derived, not photos)<br/>Deletion: Hard delete within 24h of request"]
+    DB --> Assessments["Container: assessments<br/>PK: /tenantId<br/>Entities: Fit assessment results with model version traceability<br/>TTL: 365 days (configurable per tenant)"]
+    DB --> Audit["Container: audit<br/>PK: /tenantId<br/>Entities: Immutable audit log entries (tamper-evident)"]
+
+    HPK["Hierarchical partition keys:<br/>/tenantId → /entityType → /entityId"]
 ```
 
 **Isolation guarantee**: Repository base class enforces tenant scoping on every query. Queries without tenant context fail at compile time via generic constraints.
 
 ## Assessment Request Flow
 
-```text
-1. Frontend sends POST /api/v1/assessments
-   (shopperRef, garmentId, sizeLabel, heightCm, image, saveProfile?)
-                          │
-2. Middleware pipeline     │
-   ├── JWT validation (Entra ID)
-   ├── Tenant extraction from claims
-   ├── Correlation ID injection
-   ├── Rate limit check (per tenant tier)
-   └── Request validation (FluentValidation)
-                          │
-3. VirtualMirrormentService   │
-   ├── Check load → if queue depth > 50 or p95 > 4s:
-   │     enqueue to Service Bus, return HTTP 202 + poll URL
-   │
-   ├── Upload image to Blob (if > 4 MB) or stream in-memory
-   │
-   ├── TIER 1: Validate image
-   │   ├── Florence-2 on Azure AI Foundry: person detection,
-   │   │   multi-person reject, bounding box ≥ 70% frame height
-   │   ├── Content Safety: minor detection, inappropriate content
-   │   ├── Malware scan (Defender for Storage)
-   │   └── Local checks: format, size, MIME type, luminance ≥ 40
-   │
-   ├── TIER 2: Extract measurements
-   │   ├── Azure OpenAI GPT-5.2 Vision (native structured output + JSON schema validation)
-   │   ├── Input: photo bytes + heightCm as scale reference
-   │   └── Output: body measurements + confidence score
-   │
-   ├── Compare measurements vs garment data (FitComparisonEngine)
-   │   ├── Per-area 5-point scale using tolerance bands
-   │   └── Overall = worst-scoring area (conservative)
-   │
-   ├── If confidence < 70%: attach disclaimer + escalation URL
-   │
-   ├── Audit log: model version, tenant, shopperRef, correlationId
-   │
-   ├── If saveProfile=true: persist measurements to profiles container
-   │
-   └── Purge image from Blob (< 60s TTL enforced by lifecycle policy)
-                          │
-4. Return VirtualMirrormentResponse (200)
-   or FallbackResponse (503) if AI unavailable
+```mermaid
+sequenceDiagram
+    participant FE as Retail Frontend
+    participant MW as Middleware Pipeline
+    participant SVC as VirtualMirrormentService
+    participant Blob as Blob Storage
+    participant T1 as Tier 1 (Florence-2 + Content Safety)
+    participant T2 as Tier 2 (GPT-5.2 Vision)
+    participant FCE as FitComparisonEngine
+    participant DB as Cosmos DB
+
+    FE->>MW: POST /api/v1/assessments<br/>(shopperRef, garmentId, sizeLabel, heightCm, image, saveProfile?)
+    MW->>MW: JWT validation (Entra ID)
+    MW->>MW: Tenant extraction from claims
+    MW->>MW: Correlation ID injection
+    MW->>MW: Rate limit check (per tenant tier)
+    MW->>MW: Request validation (FluentValidation)
+    MW->>SVC: Forward validated request
+
+    alt Queue depth > 50 or p95 > 4s
+        SVC-->>FE: HTTP 202 + poll URL (enqueue to Service Bus)
+    end
+
+    opt Image > 4 MB
+        SVC->>Blob: Upload image
+    end
+
+    SVC->>T1: Validate image
+    Note over T1: Florence-2: person detection,<br/>multi-person reject, bounding box ≥ 70%
+    Note over T1: Content Safety: minor detection,<br/>inappropriate content
+    Note over T1: Malware scan (Defender for Storage)
+    Note over T1: Local: format, size, MIME, luminance ≥ 40
+    T1-->>SVC: Validation result
+
+    SVC->>T2: Extract measurements (photo + heightCm)
+    T2-->>SVC: Body measurements + confidence score
+
+    SVC->>FCE: Compare measurements vs garment data
+    Note over FCE: Per-area 5-point scale (tolerance bands)<br/>Overall = worst-scoring area (conservative)
+    FCE-->>SVC: Fit scores
+
+    alt Confidence < 70%
+        SVC->>SVC: Attach disclaimer + escalation URL
+    end
+
+    SVC->>DB: Audit log (model version, tenant, shopperRef, correlationId)
+
+    opt saveProfile = true
+        SVC->>DB: Persist measurements to profiles container
+    end
+
+    SVC->>Blob: Purge image (< 60s TTL)
+    SVC-->>FE: VirtualMirrormentResponse (200)<br/>or FallbackResponse (503) if AI unavailable
 ```
 
 ## Network and Security Architecture
 
-```text
-┌──────────────────────────────────────────────────────┐
-│  Internet                                             │
-│                                                       │
-│  Frontend Store ──── TLS 1.2+ ────┐                  │
-│                                    │                  │
-│                          ┌─────────▼──────────┐      │
-│                          │  ACA Ingress        │      │
-│                          │  (HTTPS only)       │      │
-│                          └─────────┬──────────┘      │
-│                                    │                  │
-│  ┌─────────────────────────────────▼───────────────┐ │
-│  │  Container Apps Environment (multi-AZ)          │ │
-│  │                                                  │ │
-│  │  ┌──────────────────────────────────────┐       │ │
-│  │  │  VirtualMirror API (2-10 replicas)       │       │ │
-│  │  │  • Managed Identity (no secrets)     │       │ │
-│  │  │  • Entra ID JWT validation           │       │ │
-│  │  │  • Rate limiting middleware          │       │ │
-│  │  └──────┬────────┬───────┬──────────────┘       │ │
-│  │         │        │       │                       │ │
-│  └─────────┼────────┼───────┼───────────────────────┘ │
-│            │        │       │                          │
-│  ┌─────────▼──┐ ┌───▼────┐ ┌▼──────────────────────┐ │
-│  │ Cosmos DB  │ │Key Vault│ │ Azure AI Services     │ │
-│  │ (private   │ │(private │ │ (managed identity     │ │
-│  │  endpoint) │ │endpoint)│ │  authentication)      │ │
-│  └────────────┘ └────────┘ └────────────────────────┘ │
-└──────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph Internet
+        FE["Frontend Store"]
+    end
+
+    FE -->|"TLS 1.2+"| Ingress["ACA Ingress<br/>(HTTPS only)"]
+
+    subgraph "Container Apps Environment (multi-AZ)"
+        Ingress --> API["VirtualMirror API (2-10 replicas)<br/>• Managed Identity (no secrets)<br/>• Entra ID JWT validation<br/>• Rate limiting middleware"]
+    end
+
+    API -->|"Managed Identity"| Cosmos["Cosmos DB<br/>(private endpoint)"]
+    API -->|"Managed Identity"| KV["Key Vault<br/>(private endpoint)"]
+    API -->|"Managed Identity"| AI["Azure AI Services<br/>(managed identity auth)"]
 ```
 
 **Zero-trust model**: Every service call authenticated via managed identity. No shared secrets. Private endpoints for data services.
@@ -621,24 +532,24 @@ infra/
 
 ## Deployment Pipeline
 
-```text
-Push to feature branch
-  │
-  ├── Lint + Build
-  ├── Unit Tests + Integration Tests
-  ├── Contract Tests (OpenAPI validation)
-  ├── SAST + SCA (dependency scan)
-  ├── Code Coverage Gates (≥ 80% business, ≥ 90% critical)
-  ├── SBOM Generation (CycloneDX)
-  ├── Container Build + Trivy Scan + Notation Sign
-  │
-  ├── Deploy to Staging
-  ├── DAST Scan (OWASP ZAP)
-  ├── E2E Smoke Tests
-  │
-  └── Deploy to Production (manual gate)
-      ├── Canary rollout via feature flags
-      └── Azure Monitor alerts for regression detection
+```mermaid
+graph TD
+    Push["Push to feature branch"] --> Lint["Lint + Build"]
+    Lint --> Unit["Unit Tests + Integration Tests"]
+    Unit --> Contract["Contract Tests (OpenAPI validation)"]
+    Contract --> SAST["SAST + SCA (dependency scan)"]
+    SAST --> Coverage["Code Coverage Gates<br/>≥ 80% business, ≥ 90% critical"]
+    Coverage --> SBOM["SBOM Generation (CycloneDX)"]
+    SBOM --> Container["Container Build + Trivy Scan + Notation Sign"]
+
+    Container --> DeployStaging["Deploy to Staging"]
+    DeployStaging --> DAST["DAST Scan (OWASP ZAP)"]
+    DAST --> E2E["E2E Smoke Tests"]
+
+    E2E --> Gate{"Manual Gate"}
+    Gate -->|Approved| DeployProd["Deploy to Production"]
+    DeployProd --> Canary["Canary rollout via feature flags"]
+    Canary --> Alerts["Azure Monitor alerts for regression detection"]
 ```
 
 **Environments**: dev → staging → production (identical Bicep, differing only in scale and secrets).
