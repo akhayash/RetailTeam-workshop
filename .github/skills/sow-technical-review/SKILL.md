@@ -8,7 +8,7 @@ description: "Perform an Azure architecture and technical review of a Statement 
 This skill produces a rigorous, evidence-based technical review of a Statement
 of Work (SOW) from an Azure Solution Architect perspective. The output is a
 single Markdown file modeled on
-[`docs/sow-review/technical-review.md`](../../../docs/sow-review/technical-review.md),
+[`docs/sow-review/virtual-mirror-sow-v0.2.0/technical-review.md`](../../../docs/sow-review/virtual-mirror-sow-v0.2.0/technical-review.md),
 which is the canonical reference example for tone, structure, severity model,
 and depth.
 
@@ -275,7 +275,7 @@ If any box is unchecked, fix the review before returning.
 ## Example reference
 
 The canonical example output of this skill is:
-[`docs/sow-review/technical-review.md`](../../../docs/sow-review/technical-review.md).
+[`docs/sow-review/virtual-mirror-sow-v0.2.0/technical-review.md`](../../../docs/sow-review/virtual-mirror-sow-v0.2.0/technical-review.md).
 Mirror its section ordering, table styles, severity model, and pre-signature
 action plan structure.
 

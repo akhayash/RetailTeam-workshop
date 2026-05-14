@@ -8,8 +8,8 @@ description: "Perform a compliance and security review of a Statement of Work (S
 This skill produces a rigorous, evidence-based compliance & security review of a
 Statement of Work (SOW) for engagements that touch AI/ML, biometric or
 PII-adjacent data, payments, or other regulated workloads. The output is a
-single Markdown file modeled on
-[`docs/sow-review/compliance-and-security-review.md`](../../../docs/sow-review/compliance-and-security-review.md),
+single Markdown file modeled on the latest SOW-specific example, such as
+[`docs/sow-review/virtual-mirror-sow-v0.2.0/compliance-and-security-review.md`](../../../docs/sow-review/virtual-mirror-sow-v0.2.0/compliance-and-security-review.md),
 which is the canonical reference example for tone, structure, and depth.
 
 ## When to use
@@ -195,7 +195,7 @@ maps to a top-level section in the output document.
 Write the review to
 `docs/sow-review/<sow-slug>-<version>/compliance-and-security-review.md`
 (create the folder if it does not exist). Use the structure of the reference example at
-[`docs/sow-review/compliance-and-security-review.md`](../../../docs/sow-review/compliance-and-security-review.md).
+[`docs/sow-review/virtual-mirror-sow-v0.2.0/compliance-and-security-review.md`](../../../docs/sow-review/virtual-mirror-sow-v0.2.0/compliance-and-security-review.md).
 
 The first table at the top of the document MUST capture:
 
@@ -273,7 +273,7 @@ If any box is unchecked, fix the review before returning.
 ## Example reference
 
 The canonical example output of this skill is:
-[`docs/sow-review/compliance-and-security-review.md`](../../../docs/sow-review/compliance-and-security-review.md).
+[`docs/sow-review/virtual-mirror-sow-v0.2.0/compliance-and-security-review.md`](../../../docs/sow-review/virtual-mirror-sow-v0.2.0/compliance-and-security-review.md).
 Mirror its section ordering, table styles, and the three-bucket
 (MUST-FIX / SHOULD-FIX / NICE-TO-HAVE) recommendation structure.
 

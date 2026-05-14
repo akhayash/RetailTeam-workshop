@@ -281,16 +281,16 @@ If any box is unchecked, fix the full review before returning.
   cite both sources.
 - **Do not let technical findings and compliance findings contradict each
   other.** If they do, call out the conflict explicitly.
-- **Do not say "Pass" if either detailed review has unresolved blockers.** Use
+- **Do not say "Pass" if any detailed review has unresolved blockers.** Use
   Conditional Pass or Fail until blockers are resolved or formally accepted.
 
 ## Example references
 
 Detailed review examples:
 
-- [`docs/sow-review/compliance-and-security-review.md`](../../../docs/sow-review/compliance-and-security-review.md)
-- [`docs/sow-review/technical-review.md`](../../../docs/sow-review/technical-review.md)
-- [`docs/sow-review/template-review.md`](../../../docs/sow-review/template-review.md)
+- [`docs/sow-review/virtual-mirror-sow-v0.2.0/compliance-and-security-review.md`](../../../docs/sow-review/virtual-mirror-sow-v0.2.0/compliance-and-security-review.md)
+- [`docs/sow-review/virtual-mirror-sow-v0.2.0/technical-review.md`](../../../docs/sow-review/virtual-mirror-sow-v0.2.0/technical-review.md)
+- [`docs/sow-review/virtual-mirror-sow-v0.2.0/template-review.md`](../../../docs/sow-review/virtual-mirror-sow-v0.2.0/template-review.md)
 
 The full synthesis output should be written to:
 

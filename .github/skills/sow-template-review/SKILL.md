@@ -9,7 +9,7 @@ This skill produces a structured template-alignment review of a Statement of
 Work (SOW) against the Microsoft Agile Sprint Delivery SOW template. The output
 is a Markdown file modeled on:
 
-- [`docs/sow-review/template-review.md`](../../../docs/sow-review/template-review.md)
+- [`docs/sow-review/virtual-mirror-sow-v0.2.0/template-review.md`](../../../docs/sow-review/virtual-mirror-sow-v0.2.0/template-review.md)
 
 The template document is the master for section order. Do not impose the
 technical-review section order on this review. Use the source template's
