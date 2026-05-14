@@ -1,0 +1,334 @@
+slide: 19
+title: "Business Value & IQ Framework"
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: "Business Value & IQ Framework"
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: "Value drivers aligned to Microsoft AI platform capabilities."
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+# LEFT pane header
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.1
+  width: 5.9
+  height: 0.55
+  name: Left Header
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Four Value Drivers"
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 2
+# Value Driver 1
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.75
+  width: 5.9
+  height: 0.8
+  name: VD1
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.12
+  margin_bottom: 0.08
+  vertical_anchor: middle
+  paragraphs:
+  - text: "Decision Velocity & Confidence"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 3.0
+  - text: "AI-assisted fit in < 5 s"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+  z_order: 3
+# Value Driver 2
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 3.65
+  width: 5.9
+  height: 0.8
+  name: VD2
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.12
+  margin_bottom: 0.08
+  vertical_anchor: middle
+  paragraphs:
+  - text: "Workforce Productivity"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 3.0
+  - text: "Associates augmented, not replaced"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+  z_order: 4
+# Value Driver 3
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 4.55
+  width: 5.9
+  height: 0.8
+  name: VD3
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.12
+  margin_bottom: 0.08
+  vertical_anchor: middle
+  paragraphs:
+  - text: "Operational Resilience & Risk"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 3.0
+  - text: "Multi-AZ, circuit breakers, auto-rollback"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+  z_order: 5
+# Value Driver 4
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 5.45
+  width: 5.9
+  height: 0.8
+  name: VD4
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.12
+  margin_bottom: 0.08
+  vertical_anchor: middle
+  paragraphs:
+  - text: "Growth Enablement"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 3.0
+  - text: "20–30% return reduction → conversion uplift"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+  z_order: 6
+# RIGHT pane header
+- type: shape
+  shape: rectangle
+  left: 6.9
+  top: 2.1
+  width: 5.933
+  height: 0.55
+  name: Right Header
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "IQ Framework Alignment"
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 7
+# IQ table rows
+- type: shape
+  shape: rectangle
+  left: 6.9
+  top: 2.75
+  width: 1.6
+  height: 0.9
+  name: IQ Work Label
+  fill: '#14366E'
+  margin_left: 0.15
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Work IQ"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 8
+- type: shape
+  shape: rectangle
+  left: 8.5
+  top: 2.75
+  width: 4.333
+  height: 0.9
+  name: IQ Work Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.2
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "In-workflow recommendations for shoppers and associates"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#1F1F1F'
+  alignment: left
+  z_order: 9
+- type: shape
+  shape: rectangle
+  left: 6.9
+  top: 3.75
+  width: 1.6
+  height: 0.9
+  name: IQ Foundry Label
+  fill: '#14366E'
+  margin_left: 0.15
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Foundry IQ"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 10
+- type: shape
+  shape: rectangle
+  left: 8.5
+  top: 3.75
+  width: 4.333
+  height: 0.9
+  name: IQ Foundry Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.2
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "The 3-tier AI pipeline (Vision + Content Safety + OpenAI)"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#1F1F1F'
+  alignment: left
+  z_order: 11
+- type: shape
+  shape: rectangle
+  left: 6.9
+  top: 4.75
+  width: 1.6
+  height: 0.9
+  name: IQ Fabric Label
+  fill: '#14366E'
+  margin_left: 0.15
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Fabric IQ"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 12
+- type: shape
+  shape: rectangle
+  left: 8.5
+  top: 4.75
+  width: 4.333
+  height: 0.9
+  name: IQ Fabric Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.2
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Governed data foundation, Concept C semantic layer"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#1F1F1F'
+  alignment: left
+  z_order: 13
+speaker_notes: "The IQ Framework maps our architecture to Microsoft AI platform capabilities. Work IQ is the consumer-facing experience. Foundry IQ is the AI pipeline. Fabric IQ is the data platform — initially Cosmos DB, evolving to Microsoft Fabric in Concept C. Source: solution-architecture.md Section 10."

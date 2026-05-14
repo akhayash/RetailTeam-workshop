@@ -1,0 +1,213 @@
+slide: 8
+title: Articulate the value of each architecture concept in each executive’s language
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 1.212
+  text: Deliverable 3  |  C-Suite Relevance  —  “So What?”
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 6.766
+  height: 0.337
+  text: Articulate the value of each architecture concept in each executive’s language
+  name: TextBox 4
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 1
+- type: textbox
+  left: 0.5
+  top: 2.03
+  width: 12.47
+  height: 1.432
+  text: 'CEO
+
+    Platform modernization, scalability, governance'
+  name: TextBox 6
+  margin_left: 1.4
+  margin_right: 0.1
+  margin_top: 0.0
+  margin_bottom: 0.0
+  vertical_anchor: middle
+  paragraphs:
+  - text: CEO
+    font: Segoe Sans Display
+    font_size: 18
+  - text: Platform modernization, scalability, governance
+    font: Segoe Sans Display
+    font_size: 14
+  font: Segoe Sans Display
+  font_size: 18
+  z_order: 2
+- type: textbox
+  left: 0.5
+  top: 3.629
+  width: 12.47
+  height: 1.432
+  text: 'Business / Operations Leader
+
+    Performance, reliability, speed, experience'
+  name: TextBox 8
+  margin_left: 1.4
+  margin_right: 0.1
+  margin_top: 0.0
+  margin_bottom: 0.0
+  vertical_anchor: middle
+  paragraphs:
+  - text: Business / Operations Leader
+    font: Segoe Sans Display
+    font_size: 18
+  - text: Performance, reliability, speed, experience
+    font: Segoe Sans Display
+    font_size: 14
+  font: Segoe Sans Display
+  font_size: 18
+  z_order: 3
+- type: textbox
+  left: 0.5
+  top: 5.228
+  width: 12.47
+  height: 1.432
+  text: 'Risk / Compliance / Sustainability Leader
+
+    Safety, trust, regulatory alignment'
+  name: TextBox 10
+  margin_left: 1.4
+  margin_right: 0.1
+  margin_top: 0.0
+  margin_bottom: 0.0
+  vertical_anchor: middle
+  paragraphs:
+  - text: Risk / Compliance / Sustainability Leader
+    font: Segoe Sans Display
+    font_size: 18
+  - text: Safety, trust, regulatory alignment
+    font: Segoe Sans Display
+    font_size: 14
+  font: Segoe Sans Display
+  font_size: 18
+  z_order: 4
+- type: textbox
+  left: 7.443
+  top: 2.527
+  width: 5.036
+  height: 0.643
+  text: “Modernize fragmented legacy systems with a scalable data foundation and AI-enabled
+    decision support.”
+  name: TextBox 12
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  line_spacing: 1.2
+  z_order: 5
+- type: textbox
+  left: 7.443
+  top: 4.092
+  width: 5.036
+  height: 0.643
+  text: Translate the architecture into operational outcomes the business actually
+    cares about.
+  name: TextBox 14
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  line_spacing: 1.2
+  z_order: 6
+- type: textbox
+  left: 7.443
+  top: 5.691
+  width: 5.036
+  height: 0.643
+  text: Show how the architecture strengthens controls, transparency, and defensibility.
+  name: TextBox 16
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  line_spacing: 1.2
+  z_order: 7
+- type: image
+  path: images/image-01.png
+  left: 0.721
+  top: 2.374
+  width: 0.886
+  height: 0.743
+  name: Picture 18
+  crop:
+    l: 732
+    t: 23143
+    r: 67269
+    b: 50000
+  z_order: 8
+- type: image
+  path: images/image-02.png
+  left: 0.721
+  top: 3.973
+  width: 0.886
+  height: 0.743
+  name: Picture 20
+  crop:
+    l: 35753
+    t: 23143
+    r: 32248
+    b: 50000
+  z_order: 9
+- type: image
+  path: images/image-03.png
+  left: 0.721
+  top: 5.641
+  width: 0.886
+  height: 0.743
+  name: Picture 22
+  crop:
+    l: 67167
+    t: 23143
+    r: 834
+    b: 50000
+  z_order: 10
+layout: 4_Title and Content

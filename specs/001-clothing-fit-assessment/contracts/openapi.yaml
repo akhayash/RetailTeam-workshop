@@ -1,0 +1,651 @@
+openapi: 3.0.3
+info:
+  title: VirtualMirror AI - Clothing Fit Assessment API
+  description: |
+    Multi-tenant AI-powered clothing fit assessment service. Accepts shopper photos,
+    extracts body measurements, and returns personalized fit recommendations per body area.
+  version: 1.0.0
+  contact:
+    name: VirtualMirror Engineering
+  license:
+    name: Proprietary
+
+servers:
+  - url: https://virtualmirror-api.{environment}.azurecontainerapps.io/api/v1
+    description: Azure Container Apps
+    variables:
+      environment:
+        default: prod
+        enum: [dev, staging, prod]
+
+security:
+  - entraId: [VirtualMirror.Read, VirtualMirror.Write]
+
+paths:
+  /assessments:
+    post:
+      operationId: createVirtualMirrorment
+      summary: Create a fit assessment from a shopper photo
+      description: |
+        Accepts a shopper photo and garment reference, extracts body measurements,
+        and returns a fit recommendation with per-area scores.
+      tags: [Assessments]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [shopperRef, garmentId, sizeLabel, heightCm, image]
+              properties:
+                shopperRef:
+                  type: string
+                  minLength: 32
+                  maxLength: 128
+                  description: Opaque hashed shopper identifier from frontend
+                garmentId:
+                  type: string
+                  maxLength: 100
+                  description: External garment SKU/product ID
+                sizeLabel:
+                  type: string
+                  maxLength: 20
+                  description: Size to assess (e.g., "M", "10", "32W")
+                heightCm:
+                  type: number
+                  format: double
+                  minimum: 100
+                  maximum: 250
+                  description: Shopper height in centimeters (mandatory scale reference for measurement extraction)
+                image:
+                  type: string
+                  format: binary
+                  description: Full-body photo (JPEG, PNG, or WebP; max 10 MB)
+                saveProfile:
+                  type: boolean
+                  default: false
+                  description: Whether to save derived measurements for future use
+      responses:
+        '200':
+          description: Fit assessment completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualMirrormentResponse'
+        '202':
+          description: Assessment queued (high load); poll for result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentQueued'
+        '400':
+          description: Invalid request (bad image, missing fields)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Missing or invalid authentication
+        '404':
+          description: Garment not found for the specified tenant
+        '413':
+          description: Image exceeds 10 MB size limit
+        '422':
+          description: Image quality insufficient (with guidance)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageQualityError'
+        '429':
+          description: Rate limit exceeded
+          headers:
+            Retry-After:
+              schema:
+                type: integer
+              description: Seconds until rate limit resets
+        '503':
+          description: AI model unavailable (graceful degradation)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FallbackResponse'
+
+  /assessments/{assessmentId}:
+    get:
+      operationId: getAssessment
+      summary: Retrieve a previous assessment result
+      tags: [Assessments]
+      parameters:
+        - name: assessmentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Assessment found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualMirrormentResponse'
+        '401':
+          description: Missing or invalid authentication
+        '404':
+          description: Assessment not found
+
+  /assessments/by-profile:
+    post:
+      operationId: createVirtualMirrormentFromProfile
+      summary: Create a fit assessment using a saved shopper profile
+      description: Uses previously stored body measurements instead of a new photo upload.
+      tags: [Assessments]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [shopperRef, garmentId, sizeLabel]
+              properties:
+                shopperRef:
+                  type: string
+                  minLength: 32
+                  maxLength: 128
+                garmentId:
+                  type: string
+                  maxLength: 100
+                sizeLabel:
+                  type: string
+                  maxLength: 20
+      responses:
+        '200':
+          description: Fit assessment completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualMirrormentResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Missing or invalid authentication
+        '404':
+          description: Shopper profile or garment not found
+
+  /profiles/{shopperRef}:
+    get:
+      operationId: getShopperProfile
+      summary: Retrieve a shopper's measurement profile
+      tags: [Profiles]
+      parameters:
+        - name: shopperRef
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 32
+            maxLength: 128
+      responses:
+        '200':
+          description: Profile found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShopperProfileResponse'
+        '401':
+          description: Missing or invalid authentication
+        '404':
+          description: No profile found for this shopper
+
+    delete:
+      operationId: deleteShopperProfile
+      summary: Delete a shopper's measurement profile (right to erasure)
+      tags: [Profiles]
+      parameters:
+        - name: shopperRef
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 32
+            maxLength: 128
+      responses:
+        '202':
+          description: Deletion accepted; will complete within 24 hours
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletionAccepted'
+        '401':
+          description: Missing or invalid authentication
+        '404':
+          description: No profile found for this shopper
+
+  /garments:
+    post:
+      operationId: upsertGarment
+      summary: Create or update garment measurement data
+      tags: [Garments]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GarmentUpsertRequest'
+      responses:
+        '200':
+          description: Garment updated (existing)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GarmentResponse'
+        '201':
+          description: Garment created (new)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GarmentResponse'
+        '400':
+          description: Validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+        '401':
+          description: Missing or invalid authentication
+
+    get:
+      operationId: listGarments
+      summary: List garments for the tenant
+      tags: [Garments]
+      parameters:
+        - name: category
+          in: query
+          schema:
+            $ref: '#/components/schemas/GarmentCategory'
+        - name: brand
+          in: query
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+        - name: continuationToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Garments retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GarmentListResponse'
+        '401':
+          description: Missing or invalid authentication
+
+  /garments/batch:
+    post:
+      operationId: batchUpsertGarments
+      summary: Bulk upsert garment data (max 100 items per request)
+      tags: [Garments]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [garments]
+              properties:
+                garments:
+                  type: array
+                  maxItems: 100
+                  items:
+                    $ref: '#/components/schemas/GarmentUpsertRequest'
+      responses:
+        '200':
+          description: Batch result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchUpsertResponse'
+        '401':
+          description: Missing or invalid authentication
+
+  /health:
+    get:
+      operationId: healthCheck
+      summary: Service health check
+      tags: [Operations]
+      security: []
+      responses:
+        '200':
+          description: Service healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '503':
+          description: Service unhealthy
+
+components:
+  securitySchemes:
+    entraId:
+      type: oauth2
+      description: Microsoft Entra ID OAuth 2.0 client credentials
+      flows:
+        clientCredentials:
+          tokenUrl: https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token
+          scopes:
+            VirtualMirror.Read: Read assessments and profiles
+            VirtualMirror.Write: Create assessments and manage garments
+            VirtualMirror.Admin: Manage tenant configuration
+
+  schemas:
+    FitScale:
+      type: string
+      enum: [TooTight, SlightlyTight, GoodFit, SlightlyLoose, TooLoose]
+
+    GarmentCategory:
+      type: string
+      enum: [Top, Bottom, Dress, Outerwear, Underwear]
+
+    GarmentFitType:
+      type: string
+      enum: [Slim, Regular, Relaxed]
+
+    AreaScores:
+      type: object
+      properties:
+        shoulders:
+          $ref: '#/components/schemas/FitScale'
+        chest:
+          $ref: '#/components/schemas/FitScale'
+        waist:
+          $ref: '#/components/schemas/FitScale'
+        hips:
+          $ref: '#/components/schemas/FitScale'
+        length:
+          $ref: '#/components/schemas/FitScale'
+
+    VirtualMirrormentResponse:
+      type: object
+      required: [assessmentId, overallRecommendation, areaScores, confidence, modelVersion, createdAt]
+      properties:
+        assessmentId:
+          type: string
+          format: uuid
+        shopperRef:
+          type: string
+        garmentId:
+          type: string
+        sizeLabel:
+          type: string
+        overallRecommendation:
+          $ref: '#/components/schemas/FitScale'
+        areaScores:
+          $ref: '#/components/schemas/AreaScores'
+        confidence:
+          type: number
+          format: double
+          minimum: 0
+          maximum: 1
+        isLowConfidence:
+          type: boolean
+          description: True if confidence < 0.70
+        disclaimer:
+          type: string
+          description: Present when isLowConfidence is true
+        escalationUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: Tenant-configured support URL for disputed or low-confidence results. Present when isLowConfidence is true.
+        modelVersion:
+          type: string
+        processingDurationMs:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+
+    AssessmentQueued:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        estimatedWaitSeconds:
+          type: integer
+        pollUrl:
+          type: string
+          format: uri
+
+    ShopperProfileResponse:
+      type: object
+      properties:
+        shopperRef:
+          type: string
+        measurements:
+          $ref: '#/components/schemas/BodyMeasurements'
+        extractionConfidence:
+          type: number
+          format: double
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    BodyMeasurements:
+      type: object
+      properties:
+        shoulderWidth:
+          type: number
+          format: double
+          description: cm
+        chestCircumference:
+          type: number
+          format: double
+          description: cm
+        waistCircumference:
+          type: number
+          format: double
+          description: cm
+        hipCircumference:
+          type: number
+          format: double
+          description: cm
+        height:
+          type: number
+          format: double
+          description: cm
+        inseam:
+          type: number
+          format: double
+          description: cm
+        armLength:
+          type: number
+          format: double
+          description: cm
+
+    GarmentMeasurements:
+      type: object
+      properties:
+        shoulderWidth:
+          type: number
+          format: double
+        chestCircumference:
+          type: number
+          format: double
+        waistCircumference:
+          type: number
+          format: double
+        hipCircumference:
+          type: number
+          format: double
+        length:
+          type: number
+          format: double
+        inseam:
+          type: number
+          format: double
+        sleeveLength:
+          type: number
+          format: double
+
+    GarmentUpsertRequest:
+      type: object
+      required: [garmentId, brand, category, sizeLabel, fitType, measurements]
+      properties:
+        garmentId:
+          type: string
+          maxLength: 100
+        brand:
+          type: string
+          maxLength: 100
+        category:
+          $ref: '#/components/schemas/GarmentCategory'
+        sizeLabel:
+          type: string
+          maxLength: 20
+        fitType:
+          $ref: '#/components/schemas/GarmentFitType'
+        measurements:
+          $ref: '#/components/schemas/GarmentMeasurements'
+
+    GarmentResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        garmentId:
+          type: string
+        brand:
+          type: string
+        category:
+          $ref: '#/components/schemas/GarmentCategory'
+        sizeLabel:
+          type: string
+        fitType:
+          $ref: '#/components/schemas/GarmentFitType'
+        measurements:
+          $ref: '#/components/schemas/GarmentMeasurements'
+        version:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    GarmentListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GarmentResponse'
+        continuationToken:
+          type: string
+          nullable: true
+        totalCount:
+          type: integer
+
+    BatchUpsertResponse:
+      type: object
+      properties:
+        succeeded:
+          type: integer
+        failed:
+          type: integer
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              garmentId:
+                type: string
+              sizeLabel:
+                type: string
+              error:
+                type: string
+
+    DeletionAccepted:
+      type: object
+      properties:
+        shopperRef:
+          type: string
+        deletionRequestId:
+          type: string
+          format: uuid
+        estimatedCompletionWithin:
+          type: string
+          example: "24 hours"
+
+    ImageQualityError:
+      type: object
+      properties:
+        code:
+          type: string
+          enum: [TooDark, PartialBody, MultiplePeople, MinorDetected, InvalidFormat, Blurry]
+        message:
+          type: string
+        guidance:
+          type: string
+          description: User-friendly instruction on how to fix the issue
+
+    FallbackResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        sizeChartUrl:
+          type: string
+          format: uri
+          description: Link to generic size chart for the garment
+        retryAfterSeconds:
+          type: integer
+
+    ValidationError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [Healthy, Degraded, Unhealthy]
+        version:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        checks:
+          type: object
+          properties:
+            cosmosDb:
+              type: string
+              enum: [Healthy, Unhealthy]
+            blobStorage:
+              type: string
+              enum: [Healthy, Unhealthy]
+            aiModel:
+              type: string
+              enum: [Healthy, Unhealthy]

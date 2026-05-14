@@ -1,0 +1,367 @@
+slide: 5
+title: System Context
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: System Context
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: External actors and the FitAssess API boundary.
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+# Actor boxes - top row
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.1
+  width: 3.5
+  height: 1.0
+  name: Actor Online Shopper
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.2
+  margin_right: 0.2
+  margin_top: 0.15
+  margin_bottom: 0.15
+  vertical_anchor: middle
+  paragraphs:
+  - text: Online Shopper
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 4.0
+  - text: (consumer)
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+  alignment: center
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 4.917
+  top: 2.1
+  width: 3.5
+  height: 1.0
+  name: Actor Retail Frontend
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.2
+  margin_right: 0.2
+  margin_top: 0.15
+  margin_bottom: 0.15
+  vertical_anchor: middle
+  paragraphs:
+  - text: Retail Frontend Store
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 4.0
+  - text: (B2B)
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+  alignment: center
+  z_order: 3
+- type: shape
+  shape: rectangle
+  left: 9.333
+  top: 2.1
+  width: 3.5
+  height: 1.0
+  name: Actor Operations Team
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.2
+  margin_right: 0.2
+  margin_top: 0.15
+  margin_bottom: 0.15
+  vertical_anchor: middle
+  paragraphs:
+  - text: Operations Team
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 4.0
+  - text: (catalog mgmt)
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+  alignment: center
+  z_order: 4
+# Arrow labels from actors
+- type: textbox
+  left: 1.2
+  top: 3.15
+  width: 1.6
+  height: 0.3
+  text: browser
+  font: Segoe Sans Display
+  font_size: 10
+  font_color: '#14366E'
+  italic: true
+  alignment: center
+  z_order: 5
+- type: textbox
+  left: 4.917
+  top: 3.15
+  width: 3.5
+  height: 0.3
+  text: REST/HTTPS OAuth 2.0 B2B
+  font: Segoe Sans Display
+  font_size: 10
+  font_color: '#14366E'
+  italic: true
+  alignment: center
+  z_order: 6
+- type: textbox
+  left: 9.333
+  top: 3.15
+  width: 3.5
+  height: 0.3
+  text: REST/HTTPS OAuth 2.0
+  font: Segoe Sans Display
+  font_size: 10
+  font_color: '#14366E'
+  italic: true
+  alignment: center
+  z_order: 7
+# Down arrows from actors to API
+- type: shape
+  shape: down_arrow
+  left: 2.0
+  top: 3.45
+  width: 0.3
+  height: 0.4
+  name: Arrow Actor1
+  fill: '#14366E'
+  z_order: 8
+- type: shape
+  shape: down_arrow
+  left: 6.417
+  top: 3.45
+  width: 0.3
+  height: 0.4
+  name: Arrow Actor2
+  fill: '#14366E'
+  z_order: 9
+- type: shape
+  shape: down_arrow
+  left: 10.833
+  top: 3.45
+  width: 0.3
+  height: 0.4
+  name: Arrow Actor3
+  fill: '#14366E'
+  z_order: 10
+# Central API box
+- type: shape
+  shape: rectangle
+  left: 2.0
+  top: 3.95
+  width: 9.333
+  height: 0.85
+  name: FitAssess API Box
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.3
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "FitAssess API (v1) — Multi-tenant, .NET 8, stateless"
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 11
+# Arrow from API to Azure services
+- type: shape
+  shape: down_arrow
+  left: 6.417
+  top: 4.85
+  width: 0.3
+  height: 0.4
+  name: Arrow API to Azure
+  fill: '#14366E'
+  z_order: 12
+- type: textbox
+  left: 5.0
+  top: 4.9
+  width: 1.4
+  height: 0.3
+  text: Managed Identity
+  font: Segoe Sans Display
+  font_size: 10
+  font_color: '#14366E'
+  italic: true
+  alignment: right
+  z_order: 13
+# Azure Service Plane container
+- type: shape
+  shape: rectangle
+  left: 1.0
+  top: 5.35
+  width: 11.333
+  height: 1.55
+  name: Azure Service Plane
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: top
+  text: "Azure Service Plane"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#0B5594'
+  text_bold: true
+  alignment: left
+  z_order: 14
+# Service boxes row 1
+- type: shape
+  shape: rectangle
+  left: 1.3
+  top: 5.7
+  width: 3.4
+  height: 0.45
+  name: Svc Azure AI
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: Azure AI Services
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 15
+- type: shape
+  shape: rectangle
+  left: 4.9
+  top: 5.7
+  width: 3.4
+  height: 0.45
+  name: Svc Cosmos DB
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: Cosmos DB
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 16
+- type: shape
+  shape: rectangle
+  left: 8.5
+  top: 5.7
+  width: 3.4
+  height: 0.45
+  name: Svc Blob Storage
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: Blob Storage
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 17
+# Service boxes row 2
+- type: shape
+  shape: rectangle
+  left: 1.3
+  top: 6.3
+  width: 3.4
+  height: 0.45
+  name: Svc Service Bus
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: Service Bus
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 18
+- type: shape
+  shape: rectangle
+  left: 4.9
+  top: 6.3
+  width: 3.4
+  height: 0.45
+  name: Svc Key Vault
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: Key Vault
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 19
+- type: shape
+  shape: rectangle
+  left: 8.5
+  top: 6.3
+  width: 3.4
+  height: 0.45
+  name: Svc Azure Monitor
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: Azure Monitor
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 20
+speaker_notes: "This C4 System Context diagram shows three external actors. Online Shoppers interact only through the Retail Frontend — never directly with the API. All downstream Azure services use managed identity (zero secrets). Source: solution-architecture.md Section 4."

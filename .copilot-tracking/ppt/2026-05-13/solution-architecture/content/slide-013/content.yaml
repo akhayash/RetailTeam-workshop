@@ -1,0 +1,224 @@
+slide: 13
+title: "Multi-Tenant Data Architecture"
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: "Multi-Tenant Data Architecture"
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: "Cosmos DB layout with hierarchical partition keys for tenant isolation."
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+# Outer container border
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.0
+  width: 12.333
+  height: 0.5
+  name: Cosmos Header
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Azure Cosmos DB Account — Database: fitassess (Autoscale 400–4000 RU/s)"
+  text_font: Segoe Sans Display
+  text_size: 14
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 2
+# Container 1 - tenants
+- type: shape
+  shape: rectangle
+  left: 0.7
+  top: 2.65
+  width: 5.8
+  height: 0.7
+  name: Container Tenants
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.2
+  margin_right: 0.15
+  margin_top: 0.08
+  margin_bottom: 0.08
+  vertical_anchor: middle
+  paragraphs:
+  - text: "tenants — PK: /id"
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 3.0
+  - text: "Tenant config, ToleranceBands, Rate limit tier"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+  z_order: 3
+# Container 2 - garments
+- type: shape
+  shape: rectangle
+  left: 6.7
+  top: 2.65
+  width: 5.9
+  height: 0.7
+  name: Container Garments
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.2
+  margin_right: 0.15
+  margin_top: 0.08
+  margin_bottom: 0.08
+  vertical_anchor: middle
+  paragraphs:
+  - text: "garments — PK: /tenantId"
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 3.0
+  - text: "Garment SKU (per tenant + size + version), Measurements"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+  z_order: 4
+# Container 3 - profiles
+- type: shape
+  shape: rectangle
+  left: 0.7
+  top: 3.5
+  width: 5.8
+  height: 0.7
+  name: Container Profiles
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.2
+  margin_right: 0.15
+  margin_top: 0.08
+  margin_bottom: 0.08
+  vertical_anchor: middle
+  paragraphs:
+  - text: "profiles — PK: /tenantId"
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 3.0
+  - text: "ShopperProfile (no PII), Opaque shopperRef, Hard delete ≤ 24 h"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+  z_order: 5
+# Container 4 - assessments
+- type: shape
+  shape: rectangle
+  left: 6.7
+  top: 3.5
+  width: 5.9
+  height: 0.7
+  name: Container Assessments
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.2
+  margin_right: 0.15
+  margin_top: 0.08
+  margin_bottom: 0.08
+  vertical_anchor: middle
+  paragraphs:
+  - text: "assessments — PK: /tenantId"
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 3.0
+  - text: "FitAssessment (result + modelVersion + correlationId), TTL: 365 days"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+  z_order: 6
+# Container 5 - audit
+- type: shape
+  shape: rectangle
+  left: 0.7
+  top: 4.35
+  width: 12.133
+  height: 0.7
+  name: Container Audit
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.2
+  margin_right: 0.15
+  margin_top: 0.08
+  margin_bottom: 0.08
+  vertical_anchor: middle
+  paragraphs:
+  - text: "audit — PK: /tenantId"
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 3.0
+  - text: "Tamper-evident log entries, Immutable (point-in-time restore)"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+  z_order: 7
+# Partition key note
+- type: textbox
+  left: 0.5
+  top: 5.3
+  width: 12.333
+  height: 0.5
+  text: "Hierarchical partition key: /tenantId → /entityType → /entityId. Repository<T> enforces tenant context — cross-tenant queries fail to compile."
+  font: Segoe Sans Display
+  font_size: 11
+  font_color: '#0B5594'
+  italic: true
+  alignment: left
+  z_order: 8
+speaker_notes: "Every container except tenants partitions by /tenantId for physical isolation. The tenants container uses /id because admin cross-tenant lookup is required. TTL on assessments enables automatic compliance. Audit entries are immutable and append-only. Source: ADR-002, data-model.md."
