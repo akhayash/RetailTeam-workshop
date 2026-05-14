@@ -1,0 +1,313 @@
+﻿=== FULL CONTENT ===
+Table of tables
+Table 1: Customer goals	 PAGEREF _Toc213430931 \h 3
+Table 2: Project objectives	 PAGEREF _Toc213430932 \h 4
+Table 3: Technology requirements	 PAGEREF _Toc213430933 \h 6
+Table 4: Environment requirements	 PAGEREF _Toc213430934 \h 7
+Table 5: Exclusions	 PAGEREF _Toc213430935 \h 8
+Table 6: Table of abbreviations	 PAGEREF _Toc213430936 \h 10
+Table 7: Project Initiation activities	 PAGEREF _Toc213430937 \h 14
+Table 8: Product Baseline Planning activities	 PAGEREF _Toc213430938 \h 16
+Table 9: Delivery sprints activities	 PAGEREF _Toc213430939 \h 19
+Table 10: Testing in scope	 PAGEREF _Toc213430940 \h 21
+Table 11: Outputs	 PAGEREF _Toc213430941 \h 23
+Table 12: Executive steering committee roles and responsibilities	 PAGEREF _Toc213430942 \h 26
+Table 13: Product council roles and responsibilities	 PAGEREF _Toc213430943 \h 27
+Table 14: Feature team roles and responsibilities	 PAGEREF _Toc213430944 \h 29
+Table 15: Initial product backlog	 PAGEREF _Toc213430945 \h 37
+Table of figures
+Figure 1: Platform Centric Approach	 PAGEREF _Toc222472756 \h 6
+Figure 2: Iterative delivery approach - Scrum process	 PAGEREF _Toc222472757 \h 16
+Figure 3: High-level timeline	 PAGEREF _Toc222472758 \h 29
+Figure 4: Product council	 PAGEREF _Toc222472759 \h 31
+This Statement of Work (SOW) and any exhibits, appendices, schedules, and attachments to it are made pursuant to Work Order (WO) [insert WO number] and describes the work to be performed (ôservicesö) by Microsoft (ôus,ö ôweö) for  (ô[Customer short name if any]ö, ôCustomerö, ôyouö, ôyourö) relating to  (ôProjectö).
+This SOW and the associated WO expire 30 days after their publication date (date Microsoft submits to the Customer) unless signed by both parties or formally extended in writing by Microsoft.
+[READ AND DELETE: PLEASE NOTE
+THIS SOW TEMPLATE IS USED FOR CATALOG, NON-CUSTOMIZED, CONSULTING
+OFFERS THAT ARE IN THE CATALOG AND AVAILABLE IN COMPASSONE.
+CUSTOM OFFERS WILL BE TREATED AS NON-MSO (MANAGED STANDARD OFFERING)
+AND WILL REQUIRE THE APPROPRIATE LEVEL OF REVIEW AS DERIVED THROUGH THE
+ENTERPRISE SERVICES AUTHORIZATION POLICY (ESAP)]
+### HEADING 1 ###Introduction
+Insert an executive summary that reflects the Customer context that has led to this project. This introduction should not focus on technology. The main objective is to set the tone for the SOW and why the Customer is willing to invest in its digital transformation using a product-centric organization model.
+Below are some examples. See the SOW Writing Guide on K360 for other examples.
+Identifying insights, completing routine tasks, and resolving customer issues across vast enterprise systems have traditionally relied on manual hand-offs, siloed data, and time-consuming business processes. For [Customer Name] to achieve its mission more efficiently, the organization needs a step-change in how employees and customers discover information and get work doneùbecause today, knowledge is fragmented across systems, work is routed through disconnected teams, and execution depends heavily on manual coordination. The result is predictable friction: duplicated effort, delayed decisions, inconsistent outcomes, and limited end-to-end visibility across workflows that span multiple applications and data estates. Moving forward, [Customer Name] can shift from an application-centric operating modelùwhere people navigate tools and stitch together processesùto an agent-centric (agentic) organization, where intelligent agents orchestrate work across systems with speed, consistency, and appropriate human oversight.
+This shift is the foundation of an agentic organization: one where AI agents evolve from information retrieval (finding and summarizing knowledge) to task completion (updating records, initiating workflows, resolving requests), and ultimately to assisted autonomy (planning multi-step work, coordinating across tools and teams, and escalating when human judgment is required). Agentic AI solutions are built on three foundational capabilities: reasoning, planning, and action. These systems combine large-language-model reasoning with structured planning and automated execution to deliver intelligent, goal-oriented outcomes. By orchestrating secure data retrieval, adaptive workflows, and enterprise tool integration, AI agents can interpret natural-language requests (reasoning), formulate multi-step strategies (planning), and autonomously execute tools to retrieve knowledge or perform tasks (via APIs and/or other integrations). This cohesive loop enables agents to deliver timely insights and complete complex tasks with precision and adaptability, transforming how work moves from request to outcome across the enterprise.
+This agentic approach underpins high-value solutions:
+Insert the Customer specific use-case scenarios below
+Enterprise Workflow Automation Agent û an internal assistant that streamlines business processes (e.g., onboarding, IT triage, report generation) by reasoning over corporate knowledge and safely executing back-end actions.
+Customer Support Conversational Agent û a multilingual chatbot that taps real-time CRM and knowledge-based data to answer queries, perform actions, recommend next steps, and escalate seamlessly to human agents.
+Microsoft will partner with [Customer Name] to establish a robust Agentic AI strategy through a platform-centric, layered approach not as a collection of disconnected agents, but as an enterprise foundation that brings agents in the flow of work where outcomes are created. This platform will be modularized, scalable, secure, and reusable by design, built as a set of composable building blocksùso agent capabilities, tools, prompts, and multi-agent orchestration patterns can be assembled, reused, and extended across teams and scenarios instead of reinvented for each use case. It will be anchored on Microsoft Azure AI Foundry, with a clear path to extend experiences through Copilot Studio and governed interoperability with third-party agentic platforms where appropriate enabling multi-agent workflows that coordinate across systems to move work from intent to execution. The objective is not just ôbuilding agentsö; the objective is improving business outcomes by embedding agentic capabilities in the flowùaccelerating cycle time, reducing operational friction, increasing consistency and compliance, and driving measurable gains in productivity and customer experience.
+This foundation aligns with MicrosoftÆs standardized Azure-native AI operating model, which is structured around four key pillars: (1) Tenancy and Subscription Architecture for scalable, secure isolation and governance across business units; (2) Azure AI Foundry Projects as the core delivery model for agentic solutions with built-in lifecycle and knowledge integration; (3) AI Gateway patterns for secure, policy-enforced cross-boundary access using MCP (Model Context Protocol) and A2A (Agent to Agent Protocol) protocols; and (4) Cosmos DB and Agent 365 for persistent agent memory, observability, and unified governance. These pillars ensure that each team can innovate autonomously while adhering to enterprise-wide standards for security, compliance, and operational excellence enabling a repeatable, governed, and future-ready AI platform.
+To deliver this foundation, Microsoft will provide a multidisciplinary teamùAI engineers, data engineers, solution architects, security specialists, and UX designersùworking side-by-side with [Customer Name] under a jointly prioritized backlog. Delivery will follow a clear phased approach: Product Strategy & Envisioning to align on target outcomes and priority workflows; Foundations & Feasibility to validate the baseline platform and initial agentic solution; Capabilities & Advancement to expand and strengthen what is needed to scale; and Productionize & Govern to harden for enterprise rollout with operational readiness and sustained governance. This phased model ensures each step builds durable capability so [Customer Name] can scale beyond initial use cases into a repeatable engine for future agentic workflows and measurable business value.
+Project objectives and scope
+In this template, there are section names and content that are different from the typical SOW. With the Leading Edge Delivery (LED) approach, there is a shift from outlining all scope details in the SOW and focusing on business outcomes and higher-level areas. The details of what Microsoft will consider for delivery will be captured in the product backlog and refined during delivery. For example, there are sections missing that are in other SOW templates, such as an Interfaces and integrations section. The details about any needed system integrations or interfaces can be added to the product backlog during delivery. There is also other guidance provided later in this template about adding details to the product backlog for different items.
+This project uses a capacity-based agile delivery model. Microsoft will provide [Insert name of Customer] with a delivery team staffed as defined in the Project staffing section and the Enterprise Services Work Order (ESWO). If additional capacity and/or skills are needed to deliver the desired project objectives or if additional project objectives need to be defined, the change management process will be followed.
+The delivery team will follow recommended agile practices (described further in the Delivery approach section) as Microsoft collaborates with [Insert name of Customer] to deliver a baseline Knowledge Mining solution for [Insert name of primary user community / business group].
+### HEADING 2 NUM ###Customer goals
+Customer goals related to this project are listed below. They are provided for business context for the project and are not statements of accountability or of Services to be performed by Microsoft. The project outcomes and Services to be performed are described within this section and within the remainder of this SOW.
+Update the table below with the goals and descriptions for the specific customer requirements of the project, below are examples.
+Table 1: Customer goals
+### HEADING 2 NUM ###Project objectives
+When filling in this section, do not go into more detail than epics and features. The focus is on business functional needs. A full list of detailed user stories should not be used here because it can create the expectation of fixed scope, as in, all of the user stories will be delivered as part of this project.
+This project will focus on the project objectives described below, which will be prioritized based on agreement between Microsoft and [Customer Name]. By the nature of agile, capacity-based delivery, project objectives are not always achieved in full. Microsoft and [Customer Name] will regularly review priorities and work together to deliver the most valuable outcomes within the available capacity. The agile delivery approach (described in the Delivery approach section) allows [Customer Name] to continually adapt the direction of the solution as new learnings emerge.
+At the core of this effort is a business-outcome-first delivery intent: Microsoft and [Customer Name] will use commercially reasonable efforts to establish a platform-centric, layered Agentic AI foundation that brings agents in the flow of workùso agentic capabilities can be embedded into prioritized workflows where value is realized. This intent guides how the backlog is shaped and prioritized; however, Microsoft does not warrant or guarantee the achievement of any specific business outcomes, as realized outcomes depend on multiple factors outside MicrosoftÆs control (including customer adoption, data readiness, operational decisions, process alignment, and governance approvals). Within the constraints of the capacity-based agile model, the work will focus on creating a modularized, scalable, secure, and reusable foundationùspanning core platform patterns, governance and controls, integration and orchestration approaches, evaluation and quality practices, and operational readinessùso the organization can enable initial scenarios and establish repeatable patterns for future use cases. The intended approach is illustrated in Figure 1 (Platform-Centric Approach), Figure 2 (Phased Approach), and Figure 3 (Architecture).
+Figure 1: Platform Centric Approach
+Figure 2: Phased Approach
+Figure 3: Architecture
+Table 2: Project objectives
+### HEADING 2 NUM ###Technology requirements
+Delete this section if software products (including subscriptions) and technologies are not in scope. If the tools below are not used, or if other Customer-requested tools are used, it may impact the productivity of the team and will require additional TQA reviews. Contact WWTQA for more information.
+The products and technology listed in the following table are required for the project. The Customer is responsible for obtaining all licenses, products, or subscriptions. This list is subject to change based on adjustments made to desired outcomes or direction of the project.
+At least one automation environment (Azure DevOps, GitHub, Jira, or Jenkins) should be defined in the table below. If the Customer is not using any of these options, the effort estimations may be impacted.
+Table SEQ Table \* ARABIC3: Technology requirements
+It is recommended that this table be used for the high-level product and technologies needed to deliver this project. If any detailed technology requirements are anticipated, please add them to the backlog, making sure to define product and technology item, version, and timeline (ready by).
+### HEADING 2 NUM ###Environment requirements
+Add or remove the items from the table as needed for your project. The list of environments may differ by legal requirements and geography. If an environment is not required and is the CustomerÆs responsibility, remove it from this table. Refer to the SOW Writing Guide for additional examples.
+The Customer will supply and maintain all environments used for the development and delivery lifecycle during this project. The Customer will obtain the required Azure subscriptions and provide Microsoft with administrative control to build the development and test environments, as needed.
+Make sure you pick one responsible party for configuration and maintenance and one party for subscription ownership. For production environments, optional text is still provided for the template to be flexible for the responsible party. Please note that LED projects should favor Microsoft deploying into environments in most cases, but it is understood many customers may still wish to retain that responsibility.
+Table SEQ Table \* ARABIC4: Environment requirements
+### HEADING 2 NUM ###Exclusions
+Any items we need the customer to provide or perform should be listed as a customer activity or responsibility elsewhere in the SOW, not listed here. Any items listed in the table below are by default excluded from the services provided in this project. If any items in the table below will be provided in your project, then delete them from the table.
+Any area not explicitly included in the sections above, describing the outcomes and requirements, will not be provided by Microsoft during this project. Exclusions from the Services provided by Microsoft for this project include the following.
+Table 5: Exclusions
+### HEADING 1 NUM ###Definitions and acronyms
+The following table lists terms, initialisms, and acronyms used in this document.
+Table 6: Table of abbreviations
+### HEADING 1 NUM ###Delivery approach, completion, and timeline
+This project uses an agile approach based on the scrum framework (http://scrumguides.org) for delivery.
+During baseline planning, Microsoft and the Customer will work together to elaborate and refine the product backlog to the level necessary to plan an initial product release for future delivery sprints.
+The goal should be to establish release capability as soon as possible.
+### HEADING 2 NUM ###Delivery approach
+### HEADING 3 NUM ###Sprint process
+Microsoft will undertake an iterative delivery approach that is based on a fixed-capacity, fixed-duration, variable-scope process known as the scrum process. The goal of each sprint is a product increment that can be released into production. The key tenets are as follows:
+Joint ownership of decisions
+Short implementation units (sprints)
+Prioritization of business and technical debt objectives in a product backlog
+Time-bound planning for each sprint
+Emphasis on the remaining work
+Sprints that produce a releasable product increment
+Sprint demonstrations that are time-restricted and have regular checkpoints
+An automated approach to build, deployment and configuration of the solution
+Regular retrospective meetings that may be used for course correction
+Figure 2: Iterative delivery approach - Scrum process
+[DELETE THIS NOTE. This information is here as background to help answer Customer questions about how we handle requirements.]
+Requirements will be captured in the form of personas, user journeys, epics, features, and user stories.
+Personas describe the roles of the people using the system.
+User journeys are simple descriptions of the work processes currently done by the personas, as well as desired future process changes. User journeys are optional and may be created during or after the Project Baseline Planning workshop to gain clarity on complex workflows.
+User stories are work items in the product backlog. They have the following elements, at a minimum:
+A single persona who is the primary stakeholder in the outcome of the user story.
+A simple description of what the system should do.
+A simple description of the value of the result.
+A set of acceptance criteria that define when the user story is complete.
+Optionally, wireframe documents may also be created to supplement user stories if the application requires a high degree of user interface design.
+A feature is a higher-level, more abstract description of what the system should do. The sole purpose of features is to categorize user stories. Epics are more abstract than features. The sole purpose of epics is to categorize features. Features and epics are optional and may be used to help organize a large number of user stories.
+At the end of each sprint, the Microsoft project manager, CPM, Customer product owner, and applicable Customer decision makers will review the progress made against the objectives to determine if any adjustments need to be made using the change management process.
+Due to the fixed-capacity, fixed-duration nature of the delivery, at the conclusion of the project, some backlog items may not be completed. The Microsoft team will rely on the Customer to keep an updated and prioritized set of objectives so that the most important backlog items can be completed during the project to support the most important outcomes.
+### HEADING 3 NUM ###Project initiation
+At the beginning of the project, the following prerequisites must be completed. These tasks must be completed before envisioning, baseline planning, and delivery sprints begin.
+Table 7: Project Initiation activities
+### HEADING 3 NUM ###Product Baseline Planning
+Even if there is already a valid, sufficiently detailed product backlog, many of the activities in this section may still be required, but less time may be spent. Note: Estimation of Custom AI Advisor for Knowledge Mining is based on 1 week for Project initiation, 1 week for Baseline Planning (Sprint 0) and two weeks for each subsequent delivery sprint.
+Baseline planning will be one week in duration.
+During baseline planning, the feature team will construct the initial product backlog for implementing the baseline solution, a high-level architecture and an initial release plan. At the completion of this exercise, the outcomes, assumptions, and dependencies will be verified.
+Should there be any material deviations from the initial estimated capacity and/or skills, these and their implications will be discussed. The impact of such changes will be addressed through the change management process.
+Table 8: Product Baseline Planning activities
+Each delivery sprint will last two weeks. Microsoft and the Customer will collaborate to determine the final duration for sprints during baseline planning.
+Before sprint planning starts, the product owner will collaborate with the feature team to define a sprint goal and a proposed sprint backlog. This sprint backlog will consist of a set of PBIs that the feature team estimates may be completed during the sprint.
+The first half-day of every sprint will be set aside to plan for that sprint. In some exceptional cases, planning may extend past the first half-day. The feature team, the product owner, and the Microsoft project manager will attend. During sprint planning the following activities will take place:
+The feature team will review each PBI. The feature team will determine if there is sufficient information to begin development. The Microsoft team may seek clarification from the product owner. If there is insufficient information to begin work on a PBI and the product owner cannot provide clarification during the meeting, the feature team may defer the story to a later sprint or the product backlog.
+The feature team will determine which PBIs can be accomplished during the sprint. If the proposed sprint backlog is too large, the team will collaborate with the product owner to defer PBIs to a later sprint or the product backlog. If the proposed scope is too small, the team will collaborate with the product owner to add PBIs. The PBIs selected for the sprint are solely determined by the feature team.
+The feature team will determine the technical feasibility of a PBI. If the technical feasibility of a user story requires further investigation, a corresponding PBI may be added to investigate potential solutions. If the feature team determines that a PBI is not feasible, the feature team can remove the story from the backlog.
+The feature team will work to decide how the work will be accomplished. This may include design discussions, updates to the architecture, and a breakdown of PBIs into tasks.
+During the delivery sprint, the feature teams will build out the solution with planned PBIs and architecture, which will be updated, if it is required. The feature team will hold daily standup meetings to keep everyone informed and to report any impediments.
+During the sprint, if the feature team determines that a PBI cannot be completed within the sprint, it will be deferred to a later sprint after consultation with the team and the product owner. If the feature team has extra capacity in a sprint, it will collaborate with the product owner to select PBIs to be added to the sprint backlog. Changes to the sprint backlog should not compromise the sprint goal. The Microsoft project manager is the sole decision maker on scope changes during the sprint.
+The last day of the sprint is usually dedicated to demonstrating the functionality that has been achieved and to carrying out a retrospective of the sprint. Microsoft and the Customer will review the delivered outcomes after every sprint to determine if changes are needed (for example, updates to the backlog/desired outcomes). Product changes during the sprint should be minimized so delivery times and sprint goals are not affected. Sprint retrospectives help determine where the team succeeded, and where improvements can be made. The product owner reviews the completed stories and marks them as Done or Not Done based on the Definition of Done.
+Table 9: Delivery sprints activities
+### HEADING 3 NUM ###Testing and defect remediation
+Standard test types are included in the following table. Add or remove items from the table as required for your project. Refer to the SOW Writing Guide for additional options.
+### HEADING 4 ###Testing
+The following kinds of testing are included in the project.
+Table 10: Testing in scope
+### HEADING 4 ###Defect remediation
+If possible, defects found by the feature team during a delivery sprint are fixed within the sprint itself. Defects that cannot be resolved during the sprint will be added to the product backlog. Defects found elsewhere will become part of the product backlog and be prioritized alongside other PBIs.
+### HEADING 2 NUM ###Outputs
+Given that this is an agile model with variable scope, be cautious about providing deliverables for acceptance in addition to the ones specified in this template.
+If you have additional deliverables that require acceptance, or you need to change acceptance required to ôYesö for any of the deliverable below, you will need to add the standard deliverable acceptance language to the Completion and definition of done section.
+Please consult with your manager and work with them to update the Completion and definition of done section accordingly.
+Microsoft will provide the following.
+Table 11: Outputs
+### HEADING 2 NUM ###Completion and definition of done
+### HEADING 3 NUM ###Sprint completion
+Sprints will end based on the calendar schedule defined during Baseline Planning. At the conclusion of each sprint, feature teams will conduct a sprint review and sprint retrospective. During the sprint review, completed work will be demonstrated. At the end of each sprint, Microsoft will provide a sprint completion report.
+Given that this is an agile model with variable scope, be cautious about providing deliverables for acceptance. If you have detailed knowledge of the scope and will be building to that with defined deliverables with milestones, then this is not the correct template to use.
+If you have additional deliverables that require acceptance, you will need to add the standard deliverable acceptance language after the Sprint completion section.
+### HEADING 3 NUM ###Backlog item completion
+Backlog items do not require formal sign-off or Customer acceptance when they are completed by the feature team.
+As part of each sprint review (Delivery sprints section), the Customer will review each backlog item (user story or defects) completed in the delivery sprint and confirm whether it is considered done using the Definition of Done agreed during Project Baseline Planning. Each backlog item that is done will be recorded as such in Azure DevOps. The results will also be captured as part of the sprint completion report.
+If the Customer does not agree to complete this within the current sprint review, you can consider including additional language like the text below to put a time limit on this activity. Be cautious that you do not allow too much time or project delays may be encountered.
+The status of each completed backlog item must be updated in Azure DevOps within five days after the sprint review meeting is complete.
+Items that are not considered done at the end of a sprint will be moved to the product backlog and prioritized alongside other backlog items during sprint planning.
+Any defects found in a finished backlog item will be added to the product backlog as a defect and prioritized alongside the other backlog items. A finished backlog item may also prompt the Customer product owner to include additional backlog items to enhance the software.
+If you have additional deliverables that require formal acceptance included in the Deliverables section, please consult with your SQA Lead to evaluate whether it is appropriate to include additional information in this section covering our typical deliverable acceptance process.
+### HEADING 2 NUM ###Timeline
+Customers may modify the project duration to work within the allocated budget. This does not change the approach or scope of work, but simply how long the team is engaged. If the Customer decides to shorten the duration, there likely will not be any change needed in the WO or SOW. However, if they want to extend the duration, a change to both the WO and SOW may be needed to extend the term and/or add capacity (hours) within the WO.
+Note that the language below specifies a maximum duration for the team, but also allows flexibility to utilize all available capacity defined in the WO. This should allow us to consume all hours in a Time and Materials project even if it goes longer than the duration specified here. The main thing to keep in mind is that we are working under a fixed capacity and the outcomes and backlog items we will be able to produce are variable, as explained elsewhere in the document.
+The timeline for this project is relative to the project start date. All dates and durations provided are estimates only. The specific timeline will be finalized during baseline planning and will be updated as part of core project planning activities.
+Microsoft will provide the Microsoft team described in the Project organization section for a period not to exceed <X weeks> or until the capacity defined in the WO is consumed. The Microsoft team will work on the highest priority outcomes, specified by the Customer, as described in the Project outcomes section.
+The high-level timeline of the project is depicted in the following image. (Several additional timeline examples, in different editable formats and easy to tailor are available at https://aka.ms/ISDRoadmaps)
+Figure 3: High-level timeline
+### HEADING 1 NUM ###Project organization
+### HEADING 2 NUM ###Project staffing
+The role descriptions for each area in the project organization are shown in the roles and responsibilities table in the sections that follow. The capacity available for each Microsoft resource is specified in the WO. If more resource capacity of any role is needed, it can be added through the change management process.
+As noted previously, this template is best suited for Time and Materials and was written with that in mind. If it is used for fixed fee, careful attention needs to be paid to the bounds on capacity implied throughout. The capacity for a fixed fee would need to be defined in terms of the team provided and the duration over which that team is provided. When the duration is reached, the team is out of available capacity.
+### HEADING 2 NUM ###Executive steering committee
+The executive steering committee provides overall senior management oversight and strategic direction for the project. In addition, it removes obstacles for the project team. The executive steering committee for the project will meet per the frequency defined in the communication plan and will include the roles listed in the table below.
+If necessary, include additional rows as appropriate. By default, all the roles listed below should be included in the SOW. A person may assume more than one role (persona).
+Table 12: Executive steering committee roles and responsibilities
+### HEADING 2 NUM ###Product council
+The product council is the primary mechanism for aligning stakeholders and dealing with competing priorities. It acts as the forum where the strategy is agreed upon so that all key decision makers understand what decisions are being made about the direction of the product and why. The product council allows the feature teams to maintain autonomy while simultaneously determining the overall priorities for business outcomes.
+Figure SEQ Figure \* ARABIC4: Product council
+Ultimately, the product council is formed to define and share the product strategy and roadmap. It also makes decisions needed to resolve any conflicting product priorities.
+In addition to the roles listed below, all product managers and technical leads from the individual feature teams are also members of the product council.
+Table 13: Product council roles and responsibilities
+### HEADING 2 NUM ###Feature team
+Following the scrum model, Microsoft uses a feature team approach to deliver an project. All scrum roles will be represented within the feature team. This team is an autonomous and empowered unit that has all the capabilities to design, develop, test, and release features to achieve the Customer outcomes. A feature team consists of a product manager, scrum master, technical lead, SMEs, and engineers with various development, test, deployment, infrastructure, security, data, and operation skills.
+The roles listed below are typical and representative for feature teams, though they may differ, depending on the project. The skill sets of the engineers will also be different, depending on the project.
+Table 14: Feature team roles and responsibilities
+### HEADING 1 NUM ###Project governance
+The governance structure and processes the team will abide by for the project are described in the following sections.
+### HEADING 2 NUM ###Project communication
+In addition to the communication mechanisms built into the delivery approach, the following will be used to communicate during the project:
+Communication plan: this document will describe the frequency, audience, and content of communication with the team and stakeholders. Microsoft and the Customer will develop it as part of project planning.
+Status reports: the Microsoft team will prepare and issue regular status reports to project stakeholders per the frequency defined in the communication plan.
+Status meetings: per the frequency defined in the communication plan, the Microsoft team will schedule regular status meetings to review the overall project status, available delivery data, [make sure these are in scope before including] (delivery metrics, SLOs, and SLIs), and open problems and risks.
+### HEADING 2 NUM ###Risk and issue management
+The following general procedure will be used to manage active project issues and risks during the project:
+Identify: identify and document project issues (current problems) and risks (potential events that could impact the project).
+Analyze and prioritize: assess the impact and determine the critical risks and issues that will be actively managed.
+Plan and schedule: determine how to manage critical risks and assign responsibility for risk management and issue resolution.
+Track and report: monitor and report the status of risks and issues.
+Escalate: escalate to project sponsors critical issues and risks the team is unable to resolve without assistance.
+Control: review the effectiveness of the risk and issue management actions.
+Active issues and risks will be monitored and reassessed every week.
+### HEADING 2 NUM ###Change management process
+The agile approach is set by design to handle changes to the product backlog if they can be handled within the capacity estimated in the WO and fall under the project outcomes as originally planned (defined in the Customer desired business outcomes section). General criteria to justify triggering the change management process include, but are not limited to:
+Original capacity is exhausted, or scheduled capacity is impacted and needs to be amended
+Changes to the resource labor category
+Project duration extensions (the team is needed longer than specified)
+Additional outcomes are defined, or existing outcomes defined in Section  are changed
+During the project, either party may request modifications to the Services described in this SOW. The agile approach, used by Microsoft, does not guarantee that all items defined in the product backlog will be completed, nor that all outcomes will be achieved. Should the Customer decide to continue work after project completion (described in the Project completion section), the Customer may request a change by following the process below.
+Requested changes take effect only when the proposed change is agreed upon by both parties. The change management process steps are:
+The change is documented: Microsoft will document all change requests in a Microsoft change request form. The change request form includes:
+A description of the change.
+The estimated effect of implementing the change.
+The change is submitted: Microsoft will provide the change request form to the Customer.
+The change is accepted or rejected: the Customer will accept or reject the change within three business days and confirm the following to Microsoft:
+Acceptance û the Customer must sign and return the change request form.
+Rejection û if the Customer does not want to proceed with the change or does not provide an approval within three business days, no changes will be performed.
+Delete the text below if not required. The following text is required for customers, such as those in the US public sector that require all changes to be in the form of amendments. If you require this text, delete all other text in this section except the first paragraph and use only this optional text.
+During the project, either party can request, in writing, additions, deletions, or modifications to the Services described in this SOW (ôchangeö). Approved changes will be managed through amendments, which may lead to additional costs and schedule impacts. Microsoft shall have no obligation to commence work in connection with any change until the details of the change are agreed upon in an amendment signed by the authorized signatories from both parties.
+Within three consecutive business days of receipt of the proposed amendment, the Customer must either indicate acceptance of the proposed change by signing the amendment or advise Microsoft not to perform the change. If you advise Microsoft not to perform the change, we will proceed with the original agreed-upon Services only. In the absence of the Customer acceptance or rejection within the previously noted time frame, Microsoft will not perform the proposed change.
+### HEADING 2 NUM ###Escalation path
+The product managers, executive sponsors, and other designees will work closely together to manage project issues, risks, and change requests as described previously. The Customer will provide reasonable access to the sponsor or sponsors to expedite resolution. The standard escalation path for review, approval, or dispute resolution is as follows:
+Feature team member
+Product manager and project managers
+Product council and delivery management executive
+Executive steering committee
+### HEADING 2 NUM ###Project completion
+If you need to provide a fixed fee, check with your SQA lead for guidance on language and payment terms (monthly capacity). This outcome-based offer is best suited for Time and Materials since the backlog is variable and there are no formal deliverables requiring acceptance.
+Microsoft will provide Services defined in this SOW to the extent of the fees available and the term specified in the WO. If additional Services are required, the change management process will be followed, and the contract modified. The project will be considered complete when at least one of the following conditions has been met:
+All available capacity has been utilized for Services delivered.
+The term of the project has expired.
+All Microsoft activities and product backlog items have been completed.
+The WO has been terminated.
+Due to the nature of agile delivery, not all backlog items or outcomes may be completed during the project. The Microsoft team will rely on the CPM in conjunction with the product council to determine priority of the product backlog so that the important backlog items can be completed during the project.
+### HEADING 1 NUM ###Customer responsibilities and project assumptions
+### HEADING 2 NUM ###Customer responsibilities
+These are general Customer responsibilities. Project-specific Customer responsibilities are included elsewhere in the SOW (typically the Project organization section). Do not repeat responsibilities listed elsewhere in the SOW within this section.
+The Customer is responsible for:
+Providing accurate, timely, and complete information within three business days or as mutually agreed upon.
+Providing access to people, including knowledgeable Customer personnel and business users as required.
+Providing sufficient Customer resources with the requisite skills for testing during the project.
+Providing all requisite information to relevant external parties to obtain clearances for all personnel actively participating in the project, if security clearances are required.
+Providing access to systems for both onsite and remote work.
+Providing a suitable work environment when onsite presence is required.
+Managing all Customer personnel and vendors who are not managed by Microsoft.
+Managing external dependencies for related projects or programs.
+Confirming regulatory compliance, if applicable.
+Providing standard product training for external systems as required.
+Overseeing organizational change management:
+Redesigning or re-engineering business processes.
+Designing or redesigning the functional organization.
+Planning or undertaking user communications.
+Other general Customer responsibilities.
+The Customer first responder organization is responsible for initial triaging after all releases.
+Providing application support.
+Fixing bugs and troubleshooting problems that are related to applications or other third-party software, hardware products, or applications that are not explicitly mentioned as being in scope.
+Preparing documentation about processes, standards, policies, and existing guidelines.
+Designing, configuring, integrating, deploying, or fixing issues in commercially available third-party software.
+Implementing modifications to third-party systems and external interfaces to support integration.
+### HEADING 2 NUM ###Project assumptions
+Insert additional items as required û do not repeat assumptions listed elsewhere in the SOW. Consider the following: technical assumptions, infrastructure assumptions, and project delivery assumptions. Refer to the SOW Writing Guide for additional options.
+Review all assumptions for accuracy with special attention to optional assumptions, which may be Customer-specific. For optional assumptions you wish to keep, change the style to ôBullet listö and indent as needed; otherwise delete optional items.
+The following are assumptions that apply to this project between the Customer and Microsoft. During the project, the information and assumptions in this document will be validated, and if a material difference is present, this could result in Microsoft initiating a change request to cover additional work or extending the project duration.
+Workday:
+Local Microsoft employees will follow the standard Microsoft (or appropriate subsidiary) workday and work week.
+If Microsoft Global Delivery factories are used, then the following also apply:
+The standard workday for the offshore Microsoft factory team is between 9:30 AM and 6:30 PM India standard time, Monday through Friday, except for scheduled holidays. Limited exceptions can be made with advanced planning to support production-level changes or to address a need that requires a meeting between an offshore resource and the Customer and which cannot be accomplished during the standard workday. Exceptions will be coordinated by the program manager.
+Offshore resources that are not part of the factory will be available between 7 AM and 10 PM India standard time over an eight-hour continuous window.
+Remote work:
+The Microsoft feature team may perform Services remotely.
+If the Microsoft feature team is required to be present at the Customer location every week, resources will typically be on site for three nights and four days, arriving on Monday and leaving on a Thursday.
+The place of performance under the SOW may be at a Microsoft facility, a Customer facility, a US government facility, or various remote and off-site locations (including Microsoft employee home offices).
+Language:
+All project communications and documentation will be in [insert language]. Local language support and translations will be provided by the Customer.
+Staffing:
+If necessary, Microsoft will make staffing changes. These may include, but are not limited to, resources and project roles.
+If a security clearance is required, all resources will have the appropriate level of security access required to complete project-related efforts.
+Resource mobilization for staffing the project will be [XX weeks].
+Informal knowledge transfer:
+No formal training materials will be developed or delivered as part of this project. All information transfer will be through informal knowledge transfer.
+Known standards:
+These assumptions may need to be updated, depending on the content in the Technology requirements and Environment requirements sections. Keep aligned.
+Microsoft expects to use Azure DevOps, Azure Pipelines and might use GitHub for a standard delivery.
+Time will be required to learn the Customer tooling if there are deviations from Microsoft standards. This time has not been included in project estimates.
+Microsoft will use standard Azure DevOps process templates, and other IP designed to speed up delivery, including, but not limited to, standard work items, pipelines, and document templates.
+Other assumptions:
+In addition to project team members, the Customer shall allow Microsoft internal systems to access the mutually accessible delivery platforms and tools used for this project.
+Microsoft will read, store, and share necessary delivery insights on the work artifacts and products generated as part of this project (for example, test cases, code base, and pipelines) that are hosted on mutually accessible delivery platforms, like Azure DevOps, Jira, and GitHub.
+Microsoft will make available to the Customer all data and insights gathered during the project. Microsoft will purge said data and insights upon explicit Customer request or at the end of the project.
+Holidays, vacations, and training time have not been factored into this SOW.
+All work is to be contiguously scheduled. Any breaks in the project calendar must be scheduled four weeks in advance, or the time will be billed without interruption.
+The Customer required compliance training for regulated industries is not included in the estimation. This includes:
+Security training
+Internal orientation
+Financial compliance training
+Healthcare compliance training
+Procedures outside of Microsoft standard compliance
+Background checks, fingerprinting, badging, and authentication
+Browser compatibility testing has not been included in the project. If desired, backlog items may be added and prioritized for this effort.
+The Customer will meet the necessary requirements to help make sure the solution design meets regulatory requirements.
+Add the next assumption if there is any AI component to the project.
+During the course of the project under this SOW, if the requested business outcome includes Microsoft developing or deploying an AI System for or with Customer which may be considered a sensitive use, Microsoft will conduct an internal responsible AI review, to include assessment of and requirements for the potential sensitive use. The outcome of the review will be discussed with the Customer and Microsoft will act in compliance with its responsible AI principles, including making any required modifications. For more information about MicrosoftÆs responsible AI principles please refer to https://aka.ms/RAI.
+If localization support is required to support additional languages, it may be added to the product backlog.
+Azure services and technology
+Azure services and Azure-supported Microsoft technologies will be used to develop the solution.
+The components to be developed by Microsoft will be cloud hosted.
+Microsoft will not modify any existing code base that was not produced by the Microsoft delivery team.
+Azure DevOps
+Either the Customer will provide a Microsoft Azure DevOps services account that is accessible by all team members, or Microsoft will provide an account (possibly with limited Customer access).
+Add this assumption if any non-GA product or technology is being proposed for use.
+If the Customer approves a solution design that uses a product that is not generally available, the Customer acknowledges this, and accepts that it may affect the project cost and timeline.
+Add an appropriately worded assumption after review from contracting and CELA if there are concerns over liability of PII or other similar breaches.
+When the Customer determines that Microsoft or its agents will have access to personal identifiable information, the Customer is obligated to inform Microsoft within <n> days that further access to that information requires the use of equipment owned or supplied by the Customer.
+The below bullet should be included for projects where GitHub is used for delivery and can be optional for other projects though recommended. To use, remove bold and change font color to black.
+Any purchased GitHub Consulting Services are provided by GitHub, Inc., a wholly owned subsidiary of Microsoft Corporation.  Notwithstanding anything to the contrary in your Work Order, the GitHub Privacy Statement available at https://aka.ms/github_privacy and the GitHub Data Protection Addendum and Security Exhibit located at https://aka.ms/github_dpa will apply to your procurement of GitHub Consulting Services.
+### HEADING 1 NUM ###Exhibits
+Delete this section if no additional exhibits are attached.
+### HEADING 2 NUM ###Initial product backlog
+This is an optional section only to be included when you have a well-defined offer, initial backlog, or more details at the beginning of the project to support the information in the Customer desired business outcomes section.
+The following table represents the initial product backlog to be validated and prioritized during product baseline planning. The backlog items may be revised at any time based on direction from the Customer, and they may not all be completed during the project. There may also be additional backlog items included during the project that have a greater priority for the Customer than those listed below. The product backlog is maintained and updated throughout the project based on priorities set by the Customer following the agile approach described in the Delivery approach, completion, and timeline section.
+Stay at the epic/feature level in this table. Do not go to user story level.
+Table SEQ Table \* ARABIC15: Initial product backlog
