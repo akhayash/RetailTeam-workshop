@@ -1,0 +1,33 @@
+{
+  "projectSlug": "fitassess",
+  "securityPlanFile": ".copilot-tracking/security-plans/fitassess/security-plan.md",
+  "currentPhase": 5,
+  "entryMode": "capture",
+  "bucketsCompleted": ["infra", "devops/platform-ops", "build", "messaging", "data", "web/UI/reporting", "identity/auth", "ai-ml"],
+  "standardsMapped": ["infra", "devops/platform-ops", "build", "messaging", "data", "web/UI/reporting", "identity/auth", "ai-ml"],
+  "riskSurfaceStarted": true,
+  "handoffGenerated": { "ado": false, "github": true },
+  "referencesProcessed": [
+    "specs/001-clothing-fit-assessment/spec.md",
+    "specs/001-clothing-fit-assessment/plan.md",
+    "specs/001-clothing-fit-assessment/data-model.md",
+    "specs/001-clothing-fit-assessment/research.md",
+    "specs/001-clothing-fit-assessment/contracts/openapi.yaml",
+    ".copilot-tracking/research/subagents/2026-05-14/fitassess-waf-caf-cis.md"
+  ],
+  "nextActions": [
+    "Phase 6: Review and validate completeness",
+    "User approval to create GitHub issues from backlog-handoff.md",
+    "RAI Planner recommendation (raiEnabled=true)"
+  ],
+  "userPreferences": { "autonomyTier": "partial" },
+  "raiEnabled": true,
+  "raiScope": "standard",
+  "raiTier": "standard",
+  "raiPlannerDispatched": false,
+  "aiComponents": [
+    "Azure AI Vision (image quality validation, person detection)",
+    "Azure AI Custom Vision / Azure ML (body landmark extraction)",
+    "Anthropometric measurement derivation from ML landmarks"
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json.schemastore.org/project-manifest",
+  "name": "VirtualMirror AI",
+  "description": "Multi-tenant AI-powered clothing fit assessment service that reduces online clothing returns through personalized fit recommendations.",
+  "version": "0.1.0",
+  "status": "design",
+  "repository": "https://github.com/PotocnikRobert/RetailTeam-workshop",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Robert Potocnik"
+    }
+  ],
+  "runtime": {
+    "language": "C#",
+    "framework": ".NET 8.0 (LTS)",
+    "platform": "linux-x64"
+  },
+  "features": [
+    {
+      "id": "001-clothing-fit-assessment",
+      "name": "AI Clothing Fit Assessment",
+      "branch": "001-clothing-fit-assessment",
+      "status": "in-progress",
+      "priority": "P1"
+    }
+  ],
+  "technologies": {
+    "backend": [
+      "ASP.NET Core Web API",
+      ".NET Aspire"
+    ],
+    "ai": [
+      "Azure OpenAI GPT-5.2 Vision",
+      "Florence-2 (Azure AI Foundry)",
+      "Azure AI Content Safety"
+    ],
+    "data": [
+      "Azure Cosmos DB",
+      "Azure Blob Storage"
+    ],
+    "infrastructure": [
+      "Azure Container Apps",
+      "Azure Service Bus",
+      "Azure Key Vault",
+      "Bicep (IaC)"
+    ],
+    "auth": [
+      "Microsoft Entra ID (OAuth 2.0 / OIDC)"
+    ],
+    "testing": [
+      "xUnit",
+      "FluentAssertions",
+      "NSubstitute",
+      "NBomber",
+      "Verify"
+    ],
+    "observability": [
+      "OpenTelemetry",
+      "Azure Monitor"
+    ]
+  },
+  "projects": [
+    {
+      "name": "VirtualMirror.Api",
+      "path": "src/VirtualMirror.Api",
+      "type": "web-api",
+      "description": "ASP.NET Core Web API host with controllers and middleware"
+    },
+    {
+      "name": "VirtualMirror.Core",
+      "path": "src/VirtualMirror.Core",
+      "type": "class-library",
+      "description": "Domain models, interfaces, and enums"
+    },
+    {
+      "name": "VirtualMirror.Services",
+      "path": "src/VirtualMirror.Services",
+      "type": "class-library",
+      "description": "Business logic for assessment and image processing"
+    },
+    {
+      "name": "VirtualMirror.Infrastructure",
+      "path": "src/VirtualMirror.Infrastructure",
+      "type": "class-library",
+      "description": "Azure integrations (Cosmos DB, Blob Storage, AI, Identity)"
+    },
+    {
+      "name": "VirtualMirror.AppHost",
+      "path": "src/VirtualMirror.AppHost",
+      "type": "aspire-host",
+      "description": ".NET Aspire orchestrator for local development"
+    }
+  ],
+  "testProjects": [
+    {
+      "name": "VirtualMirror.Api.Tests",
+      "path": "tests/VirtualMirror.Api.Tests",
+      "type": "integration"
+    },
+    {
+      "name": "VirtualMirror.Services.Tests",
+      "path": "tests/VirtualMirror.Services.Tests",
+      "type": "unit"
+    },
+    {
+      "name": "VirtualMirror.Contract.Tests",
+      "path": "tests/VirtualMirror.Contract.Tests",
+      "type": "contract"
+    },
+    {
+      "name": "VirtualMirror.Load.Tests",
+      "path": "tests/VirtualMirror.Load.Tests",
+      "type": "performance"
+    }
+  ],
+  "environments": {
+    "dev": {
+      "description": "Local and cloud development",
+      "infrastructure": "Cosmos DB emulator, Azurite, mocked AI services",
+      "url": "https://localhost:7001/api/v1"
+    },
+    "staging": {
+      "description": "Integration testing and pre-production validation",
+      "infrastructure": "Full Azure services, scaled down",
+      "url": "https://virtualmirror-api.staging.azurecontainerapps.io/api/v1"
+    },
+    "prod": {
+      "description": "Production workload",
+      "infrastructure": "Multi-AZ, auto-scaling 2-10 instances",
+      "url": "https://virtualmirror-api.prod.azurecontainerapps.io/api/v1"
+    }
+  },
+  "commands": {
+    "restore": "dotnet restore src/VirtualMirror.sln",
+    "build": "dotnet build src/VirtualMirror.sln",
+    "test": "dotnet test src/VirtualMirror.sln",
+    "run": "dotnet run --project src/VirtualMirror.AppHost",
+    "publish": "dotnet publish src/VirtualMirror.Api -c Release -o ./publish",
+    "infra:deploy:dev": "az deployment group create -g virtualmirror-dev -f infra/main.bicep -p infra/parameters/dev.json",
+    "infra:deploy:staging": "az deployment group create -g virtualmirror-staging -f infra/main.bicep -p infra/parameters/staging.json",
+    "infra:deploy:prod": "az deployment group create -g virtualmirror-prod -f infra/main.bicep -p infra/parameters/prod.json",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down"
+  },
+  "qualityGates": {
+    "latency_p95_ms": 5000,
+    "availability_slo": 0.999,
+    "min_confidence_threshold": 0.70,
+    "max_concurrent_assessments": 500,
+    "image_retention_seconds": 60,
+    "data_deletion_sla_hours": 24,
+    "max_upload_size_mb": 10
+  },
+  "documentation": {
+    "spec": "specs/001-clothing-fit-assessment/spec.md",
+    "plan": "specs/001-clothing-fit-assessment/plan.md",
+    "architecture": "docs/architecture/solution-architecture.md",
+    "dataModel": "docs/architecture/diagrams.md",
+    "apiContract": "specs/001-clothing-fit-assessment/contracts/openapi.yaml",
+    "research": "docs/research/ai-fit-assessment-feasibility.md",
+    "quickstart": "specs/001-clothing-fit-assessment/quickstart.md",
+    "decisions": "docs/architecture/decision-register.md",
+    "risks": "docs/architecture/risk-register.md"
+  }
+}

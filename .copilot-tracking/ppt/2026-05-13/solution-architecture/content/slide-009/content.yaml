@@ -1,0 +1,263 @@
+slide: 9
+title: "Concept B — Edge + AI Agent Operations"
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: "Concept B — Edge + AI Agent Operations"
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: "Future v2. Decisioning at the edge with store associate AI copilot."
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+# LEFT - Diagram
+# In-Store Edge container
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.1
+  width: 7.0
+  height: 0.45
+  name: Edge Container Label
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "In-Store Edge"
+  text_font: Segoe Sans Display
+  text_size: 14
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.55
+  width: 7.0
+  height: 2.1
+  name: Edge Container Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  z_order: 3
+# Inner box 1 - Kiosk
+- type: shape
+  shape: rectangle
+  left: 0.8
+  top: 2.7
+  width: 6.4
+  height: 0.8
+  name: Kiosk Box
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  margin_left: 0.2
+  margin_right: 0.2
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  paragraphs:
+  - text: "Fitting Room Camera / Kiosk"
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 3.0
+  - text: "Local pose detection, edge cache, privacy: local"
+    text_font: Segoe Sans Display
+    text_size: 10
+    text_color: '#1F1F1F'
+  alignment: center
+  z_order: 4
+# Inner box 2 - AI Copilot
+- type: shape
+  shape: rectangle
+  left: 0.8
+  top: 3.65
+  width: 6.4
+  height: 0.85
+  name: Copilot Box
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  margin_left: 0.2
+  margin_right: 0.2
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  paragraphs:
+  - text: "Store Associate Mobile AI Copilot"
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 3.0
+  - text: "Size recommendations, inventory check, alternatives, human decides"
+    text_font: Segoe Sans Display
+    text_size: 10
+    text_color: '#1F1F1F'
+  alignment: center
+  z_order: 5
+# Arrow down with label
+- type: shape
+  shape: down_arrow
+  left: 3.75
+  top: 4.75
+  width: 0.3
+  height: 0.4
+  name: Arrow Edge to Cloud
+  fill: '#14366E'
+  z_order: 6
+- type: textbox
+  left: 1.5
+  top: 4.8
+  width: 2.2
+  height: 0.3
+  text: "measurements only"
+  font: Segoe Sans Display
+  font_size: 10
+  font_color: '#14366E'
+  italic: true
+  alignment: right
+  z_order: 7
+- type: textbox
+  left: 1.0
+  top: 5.05
+  width: 2.7
+  height: 0.3
+  text: "(not raw images)"
+  font: Segoe Sans Display
+  font_size: 10
+  font_color: '#14366E'
+  italic: true
+  alignment: right
+  z_order: 8
+# Cloud backend box
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 5.3
+  width: 7.0
+  height: 0.8
+  name: Cloud Backend
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.2
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  paragraphs:
+  - text: "FitAssess API (Cloud Backend)"
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#FFFFFF'
+    text_bold: true
+    space_after: 2.0
+  - text: "Fallback, model updates, aggregated analytics"
+    text_font: Segoe Sans Display
+    text_size: 10
+    text_color: '#FFFFFF'
+  alignment: center
+  z_order: 9
+# RIGHT - Tradeoffs card
+- type: shape
+  shape: rectangle
+  left: 8.0
+  top: 2.1
+  width: 4.833
+  height: 0.6
+  name: Tradeoffs Header
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Tradeoffs"
+  text_font: Segoe Sans Display
+  text_size: 18
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 10
+- type: shape
+  shape: rectangle
+  left: 8.0
+  top: 2.7
+  width: 4.833
+  height: 3.4
+  name: Tradeoffs Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.25
+  margin_bottom: 0.15
+  vertical_anchor: top
+  paragraphs:
+  - text: "✓ Strongest privacy (local processing)"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#548235'
+    text_bold: true
+    space_after: 8.0
+  - text: "✓ Lower latency, in-store reach"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#548235'
+    text_bold: true
+    space_after: 8.0
+  - text: "✓ AI copilot augments associate, not replaces"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#548235'
+    text_bold: true
+    space_after: 14.0
+  - text: "△ Device fleet management"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#BF8F00'
+    space_after: 8.0
+  - text: "△ Model distribution complexity"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#BF8F00'
+    space_after: 8.0
+  - text: "△ Hardware capex investment"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#BF8F00'
+  z_order: 11
+speaker_notes: "Concept B extends into physical retail stores. Key principle: measurements only leave the store, never raw images. The store associate AI copilot recommends — the human decides. This is the strongest privacy posture. Source: solution-architecture.md Section 8.2."

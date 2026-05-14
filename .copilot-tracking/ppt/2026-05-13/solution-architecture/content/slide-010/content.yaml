@@ -1,0 +1,293 @@
+slide: 10
+title: "Concept C — Data Fabric / Intelligence Layer"
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: "Concept C — Data Fabric / Intelligence Layer"
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: "Long-term v3. Unified semantic layer for retail intelligence."
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+# LEFT - Diagram
+# Source domain boxes - top row
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.1
+  width: 2.1
+  height: 0.6
+  name: Source Shopper
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "Shopper Measurements"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 2.8
+  top: 2.1
+  width: 2.1
+  height: 0.6
+  name: Source Garment
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "Garment Catalog"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 3
+- type: shape
+  shape: rectangle
+  left: 5.1
+  top: 2.1
+  width: 2.4
+  height: 0.6
+  name: Source Returns
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "Return & Exchange Transactions"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 4
+# Arrows down
+- type: shape
+  shape: down_arrow
+  left: 3.7
+  top: 2.8
+  width: 0.25
+  height: 0.3
+  name: Arrow Sources Down
+  fill: '#14366E'
+  z_order: 5
+# Fabric box
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 3.2
+  width: 7.0
+  height: 0.5
+  name: Fabric Header
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Microsoft Fabric — Unified Semantic Layer"
+  text_font: Segoe Sans Display
+  text_size: 13
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 6
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 3.7
+  width: 7.0
+  height: 1.4
+  name: Fabric Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.15
+  margin_bottom: 0.1
+  vertical_anchor: top
+  paragraphs:
+  - text: "Lineage: measurement → assessment → outcome"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  - text: "Governance: PII classification, retention"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  - text: "AI-ready data products"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  - text: "Cross-domain joins"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+  z_order: 7
+# Arrow down from Fabric to outputs
+- type: shape
+  shape: down_arrow
+  left: 3.7
+  top: 5.2
+  width: 0.25
+  height: 0.3
+  name: Arrow Fabric Down
+  fill: '#14366E'
+  z_order: 8
+# Output boxes - bottom row
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 5.6
+  width: 2.1
+  height: 0.6
+  name: Output API
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "FitAssess API (real-time)"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 9
+- type: shape
+  shape: rectangle
+  left: 2.8
+  top: 5.6
+  width: 2.3
+  height: 0.6
+  name: Output Return Model
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "Return Prediction Model (batch)"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 10
+- type: shape
+  shape: rectangle
+  left: 5.3
+  top: 5.6
+  width: 2.2
+  height: 0.6
+  name: Output Merch
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "Merchandising Intelligence (trends)"
+  text_font: Segoe Sans Display
+  text_size: 10
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 11
+# RIGHT - Tradeoffs card
+- type: shape
+  shape: rectangle
+  left: 8.0
+  top: 2.1
+  width: 4.833
+  height: 0.6
+  name: Tradeoffs Header
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Tradeoffs"
+  text_font: Segoe Sans Display
+  text_size: 18
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 12
+- type: shape
+  shape: rectangle
+  left: 8.0
+  top: 2.7
+  width: 4.833
+  height: 3.5
+  name: Tradeoffs Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.25
+  margin_bottom: 0.15
+  vertical_anchor: top
+  paragraphs:
+  - text: "✓ Strategic data asset"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#548235'
+    text_bold: true
+    space_after: 8.0
+  - text: "✓ Cross-domain insights"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#548235'
+    text_bold: true
+    space_after: 8.0
+  - text: "✓ AI/BI on same governed data"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#548235'
+    text_bold: true
+    space_after: 14.0
+  - text: "△ Significant Fabric investment"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#BF8F00'
+    space_after: 8.0
+  - text: "△ Data engineering effort beyond fit"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#BF8F00'
+    space_after: 8.0
+  - text: "△ Longer time-to-value"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#BF8F00'
+  z_order: 13
+speaker_notes: "Concept C builds a unified retail intelligence layer. Fit assessment data joins with return transactions and garment catalogs to enable prediction and merchandising intelligence. AI copilot assists the merchandising analyst — the analyst retains accountability. Source: solution-architecture.md Section 8.3."

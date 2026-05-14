@@ -1,0 +1,293 @@
+slide: 4
+title: Retail Industry Personas
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: Retail Industry Personas
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: Three personas the architecture must serve.
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.301
+  width: 4.061
+  height: 0.65
+  name: Persona 1 Header
+  fill: '#14366E'
+  text: Online Shopper
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 18
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 4.759
+  top: 2.301
+  width: 4.061
+  height: 0.65
+  name: Persona 2 Header
+  fill: '#14366E'
+  text: Digital Transformation Leader
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 18
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 3
+- type: shape
+  shape: rectangle
+  left: 9.018
+  top: 2.301
+  width: 4.061
+  height: 0.65
+  name: Persona 3 Header
+  fill: '#14366E'
+  text: Risk / Compliance Officer
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 18
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 4
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.951
+  width: 4.061
+  height: 3.5
+  name: Persona 1 Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.35
+  margin_right: 0.25
+  margin_top: 0.35
+  margin_bottom: 0.15
+  vertical_anchor: top
+  paragraphs:
+  - text: '"Buy clothes that fit without leaving home."'
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    italic: true
+    space_after: 14.0
+  - text: 'Goal'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: Reduce sizing risk, avoid returns.
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 10.0
+  - text: 'Friction'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: High-return-rate, privacy-conscious, < 5s patience.
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 10.0
+  - text: 'How tech helps'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: 5-point fit per body area, in-flow, with disclaimer.
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 6.0
+  z_order: 5
+- type: shape
+  shape: rectangle
+  left: 4.759
+  top: 2.951
+  width: 4.061
+  height: 3.5
+  name: Persona 2 Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.35
+  margin_right: 0.25
+  margin_top: 0.35
+  margin_bottom: 0.15
+  vertical_anchor: top
+  paragraphs:
+  - text: '"Reduce returns, increase conversion."'
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    italic: true
+    space_after: 14.0
+  - text: 'Goal'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: Measurable ROI in 6 months.
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 10.0
+  - text: 'Friction'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: Legacy storefronts, brand fragmentation.
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 10.0
+  - text: 'How tech helps'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: Multi-tenant API + Cosmos hierarchical PK from day one.
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 6.0
+  z_order: 6
+- type: shape
+  shape: rectangle
+  left: 9.018
+  top: 2.951
+  width: 4.061
+  height: 3.5
+  name: Persona 3 Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.35
+  margin_right: 0.25
+  margin_top: 0.35
+  margin_bottom: 0.15
+  vertical_anchor: top
+  paragraphs:
+  - text: '"GDPR, EU AI Act, biometric exposure."'
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    italic: true
+    space_after: 14.0
+  - text: 'Goal'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: Defensible privacy posture, no surprises.
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 10.0
+  - text: 'Friction'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: Biometric ambiguity, regulator drift.
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 10.0
+  - text: 'How tech helps'
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: DPIA-ready privacy by design, explainable AI, 60s purge.
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 6.0
+  z_order: 7
+- type: textbox
+  left: 0.5
+  top: 6.65
+  width: 12.5
+  height: 0.337
+  text: AI augments shoppers and associates. Humans retain accountability for every purchase, recommendation, and policy decision.
+  name: Eyebrow Footer
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 13
+  font_color: '#B7410E'
+  italic: true
+  font_bold: true
+  alignment: center
+  z_order: 8
+layout: 4_Title and Content
+speaker_notes: |
+  Three personas frame the architecture. The Online Shopper wants a confident size pick in under five seconds without uploading something they will regret. The Digital Transformation Leader is on the hook for measurable return-rate reduction and demands a multi-tenant platform that won't lock the company to a single brand. The Risk / Compliance Officer needs the architecture to survive GDPR Article 30 and EU AI Act scrutiny without exposing biometric liability. The eyebrow line is the workshop discipline: AI augments, humans stay accountable. Source: solution-architecture.md §4 (Stakeholders & Personas).

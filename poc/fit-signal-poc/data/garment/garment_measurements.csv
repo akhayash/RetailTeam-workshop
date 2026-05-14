@@ -1,0 +1,31 @@
+garment_id,brand,name,category,size,fit_type,shoulder_width_cm,chest_width_cm,body_length_cm,sleeve_length_cm
+ATL-TEE-001,Atelier Fit,Pima Crew Tee,tops,XS,regular,40,46,64,19
+ATL-TEE-001,Atelier Fit,Pima Crew Tee,tops,S,regular,42,48,66,20
+ATL-TEE-001,Atelier Fit,Pima Crew Tee,tops,M,regular,44,50,68,21
+ATL-TEE-001,Atelier Fit,Pima Crew Tee,tops,L,regular,46,53,70,22
+ATL-TEE-001,Atelier Fit,Pima Crew Tee,tops,XL,regular,48,56,72,23
+ATL-OXF-002,Atelier Fit,Tailored Oxford Shirt,tops,XS,slim,42,50,68,60
+ATL-OXF-002,Atelier Fit,Tailored Oxford Shirt,tops,S,slim,44,52,70,61
+ATL-OXF-002,Atelier Fit,Tailored Oxford Shirt,tops,M,slim,46,55,72,62
+ATL-OXF-002,Atelier Fit,Tailored Oxford Shirt,tops,L,slim,48,58,74,63
+ATL-OXF-002,Atelier Fit,Tailored Oxford Shirt,tops,XL,slim,50,61,76,64
+ATL-KNT-003,Atelier Fit,Merino Crew Knit,tops,XS,regular,44,51,65,58
+ATL-KNT-003,Atelier Fit,Merino Crew Knit,tops,S,regular,46,54,67,59
+ATL-KNT-003,Atelier Fit,Merino Crew Knit,tops,M,regular,48,57,69,60
+ATL-KNT-003,Atelier Fit,Merino Crew Knit,tops,L,regular,50,60,71,61
+ATL-KNT-003,Atelier Fit,Merino Crew Knit,tops,XL,regular,52,63,73,62
+ATL-SWT-004,Atelier Fit,Heritage Crew Sweatshirt,tops,XS,relaxed,46,54,66,57
+ATL-SWT-004,Atelier Fit,Heritage Crew Sweatshirt,tops,S,relaxed,48,57,68,58
+ATL-SWT-004,Atelier Fit,Heritage Crew Sweatshirt,tops,M,relaxed,50,60,70,59
+ATL-SWT-004,Atelier Fit,Heritage Crew Sweatshirt,tops,L,relaxed,52,63,72,60
+ATL-SWT-004,Atelier Fit,Heritage Crew Sweatshirt,tops,XL,relaxed,54,66,74,61
+ATL-BLZ-005,Atelier Fit,Wool Blazer,outerwear,XS,slim,42,52,72,61
+ATL-BLZ-005,Atelier Fit,Wool Blazer,outerwear,S,slim,44,55,74,62
+ATL-BLZ-005,Atelier Fit,Wool Blazer,outerwear,M,slim,46,58,76,63
+ATL-BLZ-005,Atelier Fit,Wool Blazer,outerwear,L,slim,48,61,78,64
+ATL-BLZ-005,Atelier Fit,Wool Blazer,outerwear,XL,slim,50,64,80,65
+ATL-CAP-006,Atelier Fit,Quilted Capsule Coat,outerwear,XS,relaxed,46,58,86,60
+ATL-CAP-006,Atelier Fit,Quilted Capsule Coat,outerwear,S,relaxed,48,61,88,61
+ATL-CAP-006,Atelier Fit,Quilted Capsule Coat,outerwear,M,relaxed,50,64,90,62
+ATL-CAP-006,Atelier Fit,Quilted Capsule Coat,outerwear,L,relaxed,52,67,92,63
+ATL-CAP-006,Atelier Fit,Quilted Capsule Coat,outerwear,XL,relaxed,54,70,94,64

@@ -1,0 +1,166 @@
+slide: 20
+title: "Key Decisions & Top Risks"
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: "Key Decisions & Top Risks"
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: "Five decisions that shape v1 and five risks we are tracking."
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+# LEFT card - Decisions
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.1
+  width: 5.9
+  height: 0.6
+  name: Decisions Header
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Decisions That Shape v1"
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.7
+  width: 5.9
+  height: 3.7
+  name: Decisions Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.3
+  margin_right: 0.2
+  margin_top: 0.3
+  margin_bottom: 0.15
+  vertical_anchor: top
+  paragraphs:
+  - text: "ADR-001 · Three-tier AI pipeline (validated)"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 14.0
+  - text: "ADR-002 · Hierarchical partition keys for tenant isolation"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 14.0
+  - text: "ADR-004 · Entra ID + managed identity; APIM deferred"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 14.0
+  - text: "ADR-008 · Mandatory height for scale reference"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 14.0
+  - text: "ADR-011 · Clean Architecture with dependency inversion"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+  z_order: 3
+# RIGHT card - Risks
+- type: shape
+  shape: rectangle
+  left: 6.933
+  top: 2.1
+  width: 5.9
+  height: 0.6
+  name: Risks Header
+  fill: '#000000'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Risks We're Tracking"
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 4
+- type: shape
+  shape: rectangle
+  left: 6.933
+  top: 2.7
+  width: 5.9
+  height: 3.7
+  name: Risks Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.3
+  margin_right: 0.2
+  margin_top: 0.3
+  margin_bottom: 0.15
+  vertical_anchor: top
+  paragraphs:
+  - text: "R-001 · GPT-4o accuracy ceiling [CRITICAL]"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#C00000'
+    text_bold: true
+    space_after: 14.0
+  - text: "R-002 · Vision API deprecation Sep 2028 [HIGH]"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#BF8F00'
+    space_after: 14.0
+  - text: "R-003 · Non-deterministic LLM output [HIGH]"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#BF8F00'
+    space_after: 14.0
+  - text: "R-007 · Regulatory drift (EU AI Act) [HIGH]"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#BF8F00'
+    space_after: 14.0
+  - text: "R-005 · Multi-tenant data leakage [MEDIUM]"
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#548235'
+  z_order: 5
+speaker_notes: "ADR-001 is the foundational decision — the three-tier pipeline. ADR-008 (mandatory height) addresses H-1. The top risk is GPT-4o accuracy — mitigated by Tier 3 custom model path. Vision deprecation is mitigated by the IAIClient abstraction. Source: decision-register.md, risk-register.md."

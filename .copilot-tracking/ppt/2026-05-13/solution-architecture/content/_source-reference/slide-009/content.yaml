@@ -1,0 +1,268 @@
+slide: 9
+title: How teams move from research to defensible future-state
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: Workshop Flow & Quality Bar
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  font_size: 34
+  _placeholder: true
+  z_order: 0
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.272
+  width: 6.083
+  height: 4.104
+  name: Rectangle 36
+  fill:
+    type: solid
+    color: '#F5FAFD'
+    alpha: 46.7
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: 'Workshop Flow
+
+    Phase A  →  Research current state — 5 prompts, 5 lenses
+
+    Synthesize  →  Separate hypotheses from facts; identify gaps
+
+    Phase B  →  Design 3 future-state concepts
+
+    Persona  →  Map AI + human collaboration per concept
+
+    So What?  →  Translate to CIO / Ops / Risk language
+
+    Present  →  Defend choices and tradeoffs to peer teams'
+  margin_left: 0.4
+  margin_right: 0.2
+  margin_top: 0.4
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: Workshop Flow
+    text_font: Segoe Sans Display
+    text_size: 20
+    text_color: '#1F1F1F'
+    text_bold: true
+    space_after: 18.0
+  - text: Phase A  →  Research current state — 5 prompts, 5 lenses
+    text_size: 14
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 10.0
+    runs:
+    - text: 'Phase A  →  '
+      size: 14
+      color: '#0B5594'
+      bold: true
+    - text: Research current state — 5 prompts, 5 lenses
+      size: 14
+      color: '#1F1F1F'
+  - text: Synthesize  →  Separate hypotheses from facts; identify gaps
+    text_size: 14
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 10.0
+    runs:
+    - text: 'Synthesize  →  '
+      size: 14
+      color: '#0B5594'
+      bold: true
+    - text: Separate hypotheses from facts; identify gaps
+      size: 14
+      color: '#1F1F1F'
+  - text: Phase B  →  Design 3 future-state concepts
+    text_size: 14
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 10.0
+    runs:
+    - text: 'Phase B  →  '
+      size: 14
+      color: '#0B5594'
+      bold: true
+    - text: Design 3 future-state concepts
+      size: 14
+      color: '#1F1F1F'
+  - text: Persona  →  Map AI + human collaboration per concept
+    text_size: 14
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 10.0
+    runs:
+    - text: 'Persona  →  '
+      size: 14
+      color: '#0B5594'
+      bold: true
+    - text: Map AI + human collaboration per concept
+      size: 14
+      color: '#1F1F1F'
+  - text: So What?  →  Translate to CIO / Ops / Risk language
+    text_size: 14
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 10.0
+    runs:
+    - text: 'So What?  →  '
+      size: 14
+      color: '#0B5594'
+      bold: true
+    - text: Translate to CIO / Ops / Risk language
+      size: 14
+      color: '#1F1F1F'
+  - text: Present  →  Defend choices and tradeoffs to peer teams
+    text_size: 14
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 10.0
+    runs:
+    - text: 'Present  →  '
+      size: 14
+      color: '#0B5594'
+      bold: true
+    - text: Defend choices and tradeoffs to peer teams
+      size: 14
+      color: '#1F1F1F'
+  text_font: Segoe Sans Display
+  text_size: 20
+  text_color: '#1F1F1F'
+  text_bold: true
+  z_order: 1
+- type: shape
+  shape: rectangle
+  left: 6.933
+  top: 2.272
+  width: 6.083
+  height: 4.104
+  name: Rectangle 40
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 47.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: 'Quality Bar
+
+    Hypotheses clearly labeled vs facts
+
+    Sources cited where they exist
+
+    Industry realities show through (not generic)
+
+    Personas tied to real workflows
+
+    AI augments — human accountability preserved
+
+    Each concept has a clear “So What?” per executive
+
+    Tradeoffs named, not hidden'
+  margin_left: 0.4
+  margin_right: 0.2
+  margin_top: 0.4
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: Quality Bar
+    text_font: Segoe Sans Display
+    text_size: 20
+    text_color: '#1F1F1F'
+    text_bold: true
+    space_after: 18.0
+  - text: Hypotheses clearly labeled vs facts
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    space_after: 10.0
+    bullet_char: q
+    bullet_font: Wingdings
+    bullet_margin_left: 285750
+    bullet_indent: -285750
+  - text: Sources cited where they exist
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    space_after: 10.0
+    bullet_char: q
+    bullet_font: Wingdings
+    bullet_margin_left: 285750
+    bullet_indent: -285750
+  - text: Industry realities show through (not generic)
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    space_after: 10.0
+    bullet_char: q
+    bullet_font: Wingdings
+    bullet_margin_left: 285750
+    bullet_indent: -285750
+  - text: Personas tied to real workflows
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    space_after: 10.0
+    bullet_char: q
+    bullet_font: Wingdings
+    bullet_margin_left: 285750
+    bullet_indent: -285750
+  - text: AI augments — human accountability preserved
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    space_after: 10.0
+    bullet_char: q
+    bullet_font: Wingdings
+    bullet_margin_left: 285750
+    bullet_indent: -285750
+  - text: Each concept has a clear “So What?” per executive
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    space_after: 10.0
+    bullet_char: q
+    bullet_font: Wingdings
+    bullet_margin_left: 285750
+    bullet_indent: -285750
+  - text: Tradeoffs named, not hidden
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    space_after: 10.0
+    bullet_char: q
+    bullet_font: Wingdings
+    bullet_margin_left: 285750
+    bullet_indent: -285750
+  text_font: Segoe Sans Display
+  text_size: 20
+  text_color: '#1F1F1F'
+  text_bold: true
+  z_order: 2
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 5.06
+  height: 0.337
+  text: How teams move from research to defensible future-state
+  name: TextBox 6
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 3
+layout: 4_Title and Content
+speaker_notes: ''

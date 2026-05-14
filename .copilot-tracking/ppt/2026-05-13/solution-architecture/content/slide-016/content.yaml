@@ -1,0 +1,467 @@
+slide: 16
+title: "CI/CD Pipeline"
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: "CI/CD Pipeline"
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: "17-stage pipeline: build, test, scan, deploy."
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+# Row 1 label
+- type: textbox
+  left: 0.5
+  top: 2.0
+  width: 1.8
+  height: 0.35
+  text: "Build & Test"
+  font: Segoe Sans Display
+  font_size: 11
+  font_color: '#0B5594'
+  text_bold: true
+  alignment: left
+  z_order: 2
+# Row 1 boxes (6 stages)
+- type: shape
+  shape: rectangle
+  left: 2.3
+  top: 2.0
+  width: 1.7
+  height: 0.6
+  name: Stage 1
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "1. Lint/Format"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 3
+- type: shape
+  shape: rectangle
+  left: 4.1
+  top: 2.0
+  width: 1.7
+  height: 0.6
+  name: Stage 2
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "2. Build (dotnet)"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 4
+- type: shape
+  shape: rectangle
+  left: 5.9
+  top: 2.0
+  width: 1.7
+  height: 0.6
+  name: Stage 3
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "3. Unit Tests"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 5
+- type: shape
+  shape: rectangle
+  left: 7.7
+  top: 2.0
+  width: 1.7
+  height: 0.6
+  name: Stage 4
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "4. Integration Tests"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 6
+- type: shape
+  shape: rectangle
+  left: 9.5
+  top: 2.0
+  width: 1.7
+  height: 0.6
+  name: Stage 5
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "5. Contract Tests"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 7
+- type: shape
+  shape: rectangle
+  left: 11.3
+  top: 2.0
+  width: 1.5
+  height: 0.6
+  name: Stage 6
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "6. Coverage ≥80%"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 8
+# Row 2 label
+- type: textbox
+  left: 0.5
+  top: 2.85
+  width: 1.8
+  height: 0.35
+  text: "Security Scan"
+  font: Segoe Sans Display
+  font_size: 11
+  font_color: '#0B5594'
+  text_bold: true
+  alignment: left
+  z_order: 9
+# Row 2 boxes (3 stages)
+- type: shape
+  shape: rectangle
+  left: 2.3
+  top: 2.85
+  width: 2.5
+  height: 0.6
+  name: Stage 7
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "7. SAST (CodeQL/Semgrep)"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 10
+- type: shape
+  shape: rectangle
+  left: 4.95
+  top: 2.85
+  width: 2.5
+  height: 0.6
+  name: Stage 8
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "8. SCA (dependency scan)"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 11
+- type: shape
+  shape: rectangle
+  left: 7.6
+  top: 2.85
+  width: 2.5
+  height: 0.6
+  name: Stage 9
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "9. SBOM (CycloneDX)"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 12
+# Row 3 label
+- type: textbox
+  left: 0.5
+  top: 3.7
+  width: 1.8
+  height: 0.35
+  text: "Container"
+  font: Segoe Sans Display
+  font_size: 11
+  font_color: '#0B5594'
+  text_bold: true
+  alignment: left
+  z_order: 13
+# Row 3 boxes (2 stages)
+- type: shape
+  shape: rectangle
+  left: 2.3
+  top: 3.7
+  width: 2.8
+  height: 0.6
+  name: Stage 10
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "10. Container Build (Docker)"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 14
+- type: shape
+  shape: rectangle
+  left: 5.25
+  top: 3.7
+  width: 3.0
+  height: 0.6
+  name: Stage 11
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "11. Trivy Scan + Notation Sign"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 15
+# Row 4 label
+- type: textbox
+  left: 0.5
+  top: 4.55
+  width: 1.8
+  height: 0.35
+  text: "Staging Deploy"
+  font: Segoe Sans Display
+  font_size: 11
+  font_color: '#0B5594'
+  text_bold: true
+  alignment: left
+  z_order: 16
+# Row 4 boxes (3 stages)
+- type: shape
+  shape: rectangle
+  left: 2.3
+  top: 4.55
+  width: 2.8
+  height: 0.6
+  name: Stage 12
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "12. Bicep Deploy (what-if)"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 17
+- type: shape
+  shape: rectangle
+  left: 5.25
+  top: 4.55
+  width: 2.8
+  height: 0.6
+  name: Stage 13
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "13. DAST Scan (OWASP ZAP)"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 18
+- type: shape
+  shape: rectangle
+  left: 8.2
+  top: 4.55
+  width: 2.5
+  height: 0.6
+  name: Stage 14
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "14. E2E Smoke Tests"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 19
+# Manual gate arrow
+- type: shape
+  shape: down_arrow
+  left: 6.55
+  top: 5.25
+  width: 0.25
+  height: 0.25
+  name: Arrow Gate
+  fill: '#14366E'
+  z_order: 20
+- type: textbox
+  left: 7.0
+  top: 5.25
+  width: 1.5
+  height: 0.25
+  text: "manual gate"
+  font: Segoe Sans Display
+  font_size: 9
+  font_color: '#6B6B6B'
+  italic: true
+  alignment: left
+  z_order: 21
+# Row 5 label
+- type: textbox
+  left: 0.5
+  top: 5.65
+  width: 1.8
+  height: 0.35
+  text: "Prod Deploy"
+  font: Segoe Sans Display
+  font_size: 11
+  font_color: '#0B5594'
+  text_bold: true
+  alignment: left
+  z_order: 22
+# Row 5 boxes (3 stages)
+- type: shape
+  shape: rectangle
+  left: 2.3
+  top: 5.65
+  width: 3.0
+  height: 0.6
+  name: Stage 15
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "15. Bicep Deploy + Canary (10%)"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 23
+- type: shape
+  shape: rectangle
+  left: 5.45
+  top: 5.65
+  width: 3.3
+  height: 0.6
+  name: Stage 16
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "16. Feature Flag Progressive Rollout"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 24
+- type: shape
+  shape: rectangle
+  left: 8.9
+  top: 5.65
+  width: 3.6
+  height: 0.6
+  name: Stage 17
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "17. Azure Monitor (auto-rollback on SLO breach)"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 25
+speaker_notes: "Any failure short-circuits the pipeline. SAST, SCA, DAST, and SBOM are mandatory per the security constitution. Container images are signed with Notation — only signed images deploy to production. Canary deployment at 10% with auto-rollback on SLO regression. Source: solution-architecture.md Section 9."

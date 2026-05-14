@@ -1,0 +1,277 @@
+slide: 6
+title: ''
+elements:
+- type: textbox
+  left: 0.204
+  top: 1.714
+  width: 13.13
+  height: 0.483
+  text: Deliverable 1  |  Three Architecture Concept Diagrams
+  name: TextBox 10
+  margin_left: 0.4
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: none
+  vertical_anchor: middle
+  font: Calibri
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.606
+  text: Deliverable 1  |  Three Architecture Concept Diagrams
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 1
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.489
+  width: 4.061
+  height: 0.65
+  name: Rectangle 22
+  fill: '#14366E'
+  text: A.  Concept
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  space_after: 6.0
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 4.759
+  top: 2.489
+  width: 4.061
+  height: 0.65
+  name: Rectangle 28
+  fill: '#14366E'
+  text: B.  Concept
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 3
+- type: textbox
+  left: 0.5
+  top: 6.406
+  width: 12.579
+  height: 0.581
+  text: Show how agentic AI transforms workflows, decisions, safety, reliability,
+    or optimization — appropriate to your industry.
+  name: TextBox 34
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: none
+  vertical_anchor: middle
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#B7410E'
+  font_bold: true
+  italic: true
+  alignment: center
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 4
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 3.139
+  width: 4.061
+  height: 2.965
+  name: Rectangle 36
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: 'Cloud-Centric Platform Architecture
+
+    Modern data foundation, scalable services, governed AI/ML platform, integration
+    backbone.'
+  margin_left: 0.4
+  margin_right: 0.2
+  margin_top: 0.4
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: Cloud-Centric Platform Architecture
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_bold: true
+    space_after: 12.0
+  - text: Modern data foundation, scalable services, governed AI/ML platform, integration
+      backbone.
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_bold: true
+  z_order: 5
+- type: shape
+  shape: rectangle
+  left: 4.759
+  top: 3.139
+  width: 4.061
+  height: 2.965
+  name: Rectangle 40
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: 'Edge + AI Agent-Enabled Operations
+
+    Decisioning at the edge, agentic workflows, human-in-the-loop control, latency-
+    and safety-aware patterns.'
+  margin_left: 0.4
+  margin_right: 0.2
+  margin_top: 0.4
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: Edge + AI Agent-Enabled Operations
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_bold: true
+    space_after: 12.0
+  - text: Decisioning at the edge, agentic workflows, human-in-the-loop control, latency-
+      and safety-aware patterns.
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_bold: true
+  z_order: 6
+- type: shape
+  shape: rectangle
+  left: 9.018
+  top: 2.489
+  width: 4.061
+  height: 0.65
+  name: Rectangle 4
+  fill: '#14366E'
+  text: C.  Concept
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 7
+- type: shape
+  shape: rectangle
+  left: 9.018
+  top: 3.139
+  width: 4.061
+  height: 2.965
+  name: Rectangle 6
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "Data Fabric / Intelligence Layer\v\nUnified semantic layer, lineage + governance,\
+    \ AI-ready data products powering decisions across domains."
+  margin_left: 0.4
+  margin_right: 0.2
+  margin_top: 0.4
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: "Data Fabric / Intelligence Layer\v"
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_bold: true
+    space_after: 12.0
+  - text: Unified semantic layer, lineage + governance, AI-ready data products powering
+      decisions across domains.
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_bold: true
+  z_order: 8
+- type: image
+  path: images/image-01.png
+  left: 3.252
+  top: 4.966
+  width: 1.292
+  height: 1.138
+  name: Picture 8
+  crop:
+    l: 3542
+    t: 24432
+    r: 64069
+    b: 47048
+  z_order: 9
+- type: image
+  path: images/image-02.png
+  left: 7.528
+  top: 4.966
+  width: 1.292
+  height: 1.138
+  name: Picture 11
+  crop:
+    l: 35990
+    t: 24250
+    r: 31621
+    b: 47230
+  z_order: 10
+- type: image
+  path: images/image-03.png
+  left: 11.863
+  top: 5.049
+  width: 1.098
+  height: 0.967
+  name: Picture 13
+  crop:
+    l: 65126
+    t: 25159
+    r: 2485
+    b: 46321
+  z_order: 11
+layout: 4_Title and Content
+speaker_notes: ''

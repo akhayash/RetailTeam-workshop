@@ -1,0 +1,345 @@
+slide: 18
+title: "C-Suite — So What?"
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: "C-Suite — So What?"
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: "Each concept translated to executive language."
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+# Table header row (black fill)
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.1
+  width: 2.1
+  height: 0.55
+  name: Header Empty
+  fill: '#000000'
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 2.6
+  top: 2.1
+  width: 3.4
+  height: 0.55
+  name: Header CIO
+  fill: '#000000'
+  text: "CIO / VP Tech"
+  text_font: Segoe Sans Display
+  text_size: 13
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 3
+- type: shape
+  shape: rectangle
+  left: 6.0
+  top: 2.1
+  width: 3.4
+  height: 0.55
+  name: Header Business
+  fill: '#000000'
+  text: "Business / Ops"
+  text_font: Segoe Sans Display
+  text_size: 13
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 4
+- type: shape
+  shape: rectangle
+  left: 9.4
+  top: 2.1
+  width: 3.433
+  height: 0.55
+  name: Header Risk
+  fill: '#000000'
+  text: "Risk / Compliance"
+  text_font: Segoe Sans Display
+  text_size: 13
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 5
+# Row 1 - Concept A
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.75
+  width: 2.1
+  height: 1.2
+  name: Row1 Label
+  fill: '#14366E'
+  margin_left: 0.15
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "A. Cloud-Centric"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 6
+- type: shape
+  shape: rectangle
+  left: 2.6
+  top: 2.75
+  width: 3.4
+  height: 1.2
+  name: Row1 CIO
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "API-first, managed services, scalable"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#1F1F1F'
+  alignment: center
+  z_order: 7
+- type: shape
+  shape: rectangle
+  left: 6.0
+  top: 2.75
+  width: 3.4
+  height: 1.2
+  name: Row1 Business
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "20–30% return reduction, ROI in 6 months"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#1F1F1F'
+  alignment: center
+  z_order: 8
+- type: shape
+  shape: rectangle
+  left: 9.4
+  top: 2.75
+  width: 3.433
+  height: 1.2
+  name: Row1 Risk
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Privacy by design, DPIA-ready"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#1F1F1F'
+  alignment: center
+  z_order: 9
+# Row 2 - Concept B
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 4.05
+  width: 2.1
+  height: 1.2
+  name: Row2 Label
+  fill: '#14366E'
+  margin_left: 0.15
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "B. Edge + Agent"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 10
+- type: shape
+  shape: rectangle
+  left: 2.6
+  top: 4.05
+  width: 3.4
+  height: 1.2
+  name: Row2 CIO
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Extends digital into physical stores"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#1F1F1F'
+  alignment: center
+  z_order: 11
+- type: shape
+  shape: rectangle
+  left: 6.0
+  top: 4.05
+  width: 3.4
+  height: 1.2
+  name: Row2 Business
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Associates as AI-augmented stylists"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#1F1F1F'
+  alignment: center
+  z_order: 12
+- type: shape
+  shape: rectangle
+  left: 9.4
+  top: 4.05
+  width: 3.433
+  height: 1.2
+  name: Row2 Risk
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Strongest privacy posture (local)"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#1F1F1F'
+  alignment: center
+  z_order: 13
+# Row 3 - Concept C
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 5.35
+  width: 2.1
+  height: 1.2
+  name: Row3 Label
+  fill: '#14366E'
+  margin_left: 0.15
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "C. Data Fabric"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 14
+- type: shape
+  shape: rectangle
+  left: 2.6
+  top: 5.35
+  width: 3.4
+  height: 1.2
+  name: Row3 CIO
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Unified retail intelligence layer"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#1F1F1F'
+  alignment: center
+  z_order: 15
+- type: shape
+  shape: rectangle
+  left: 6.0
+  top: 5.35
+  width: 3.4
+  height: 1.2
+  name: Row3 Business
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Fit-informed merchandising"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#1F1F1F'
+  alignment: center
+  z_order: 16
+- type: shape
+  shape: rectangle
+  left: 9.4
+  top: 5.35
+  width: 3.433
+  height: 1.2
+  name: Row3 Risk
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.15
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Full lineage, GDPR Article 30"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#1F1F1F'
+  alignment: center
+  z_order: 17
+speaker_notes: "Every concept must translate to executive language. CIO cares about scalability and tech strategy. Business/Ops cares about measurable outcomes. Risk/Compliance cares about regulatory posture. Concept A delivers fastest ROI; B delivers strongest privacy; C delivers strategic data value. Source: solution-architecture.md Section 8."

@@ -1,0 +1,376 @@
+slide: 3
+title: Phase A · Five Research Lenses
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: Phase A · Five Research Lenses
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: Treat outputs as hypotheses. Separate likely from confirmed. Cite sources where possible.
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.061
+  width: 2.409
+  height: 2.803
+  name: Lens 1 Card
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.3
+  margin_right: 0.2
+  margin_top: 0.5
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: ''
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 6.0
+  - text: Uncover the Tech Stack
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 8.0
+  - text: .NET 8 · ASP.NET Core · Azure Container Apps · Cosmos DB · Azure OpenAI · Entra ID.
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 6.0
+  - text: '[Verified] — ADR-001, 007, 011'
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#0B5594'
+    italic: true
+    space_after: 6.0
+  z_order: 2
+- type: shape
+  shape: oval
+  left: 0.755
+  top: 2.209
+  width: 0.55
+  height: 0.55
+  name: Lens 1 Oval
+  fill: '#14366E'
+  text: '1'
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 22
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 3
+- type: shape
+  shape: rectangle
+  left: 3.023
+  top: 2.061
+  width: 2.409
+  height: 2.803
+  name: Lens 2 Card
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.3
+  margin_right: 0.2
+  margin_top: 0.5
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: ''
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 6.0
+  - text: Identify Limitations
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 8.0
+  - text: Azure AI Vision retires Sep 2028 · GPT-4o is non-deterministic · ±2–4 cm accuracy ceiling.
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 6.0
+  - text: '[Verified] — research.md R1'
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#0B5594'
+    italic: true
+    space_after: 6.0
+  z_order: 4
+- type: shape
+  shape: oval
+  left: 3.277
+  top: 2.209
+  width: 0.55
+  height: 0.55
+  name: Lens 2 Oval
+  fill: '#14366E'
+  text: '2'
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 22
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 5
+- type: shape
+  shape: rectangle
+  left: 5.545
+  top: 2.061
+  width: 2.409
+  height: 2.803
+  name: Lens 3 Card
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.3
+  margin_right: 0.2
+  margin_top: 0.5
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: ''
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 6.0
+  - text: Spot Patterns
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 8.0
+  - text: Clean Architecture · multi-tenant day one · zero-trust managed identity · async overflow queue.
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 6.0
+  - text: '[Verified]'
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#0B5594'
+    italic: true
+    space_after: 6.0
+  z_order: 6
+- type: shape
+  shape: oval
+  left: 5.8
+  top: 2.209
+  width: 0.55
+  height: 0.55
+  name: Lens 3 Oval
+  fill: '#14366E'
+  text: '3'
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 22
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 7
+- type: shape
+  shape: rectangle
+  left: 8.068
+  top: 2.061
+  width: 2.409
+  height: 2.803
+  name: Lens 4 Card
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.3
+  margin_right: 0.2
+  margin_top: 0.5
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: ''
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 6.0
+  - text: Map Owners → Domains
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 8.0
+  - text: Engineering → AI pipeline · Platform → Bicep · Data → Cosmos · Security → Entra/KV · Product → fit scale.
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 6.0
+  z_order: 8
+- type: shape
+  shape: oval
+  left: 8.323
+  top: 2.209
+  width: 0.55
+  height: 0.55
+  name: Lens 4 Oval
+  fill: '#14366E'
+  text: '4'
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 22
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 9
+- type: shape
+  shape: rectangle
+  left: 10.591
+  top: 2.061
+  width: 2.409
+  height: 2.803
+  name: Lens 5 Card
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.3
+  margin_right: 0.2
+  margin_top: 0.5
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: ''
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 6.0
+  - text: Profile the Personas
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 8.0
+  - text: Shopper · Digital Leader · Privacy Officer — preview of slide 4.
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 6.0
+  z_order: 10
+- type: shape
+  shape: oval
+  left: 10.845
+  top: 2.209
+  width: 0.55
+  height: 0.55
+  name: Lens 5 Oval
+  fill: '#14366E'
+  text: '5'
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 22
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 11
+- type: textbox
+  left: 0.5
+  top: 5.186
+  width: 12.5
+  height: 0.337
+  text: Five lenses, one synthesis — every claim is Verified, a Hypothesis, or an Assumption, with the source cited.
+  name: Eyebrow Footer
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 13
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: center
+  z_order: 12
+- type: textbox
+  left: 0.5
+  top: 6.7
+  width: 12.0
+  height: 0.337
+  text: Source — research.md (R1–R7) · decision-register.md (ADR-001/007/011) · solution-architecture.md §3
+  name: Source Footer
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 11
+  font_color: '#6B6B6B'
+  italic: true
+  alignment: left
+  z_order: 13
+layout: 4_Title and Content
+speaker_notes: |
+  This is the workshop Phase A frame: five lenses we ran the AI Clothing Fit Assessment Agent through. Walk the room left to right — Tech Stack (the Microsoft choices we made and ADRs that back them), Limitations (what hurts: Vision retirement, GPT-4o non-determinism, accuracy ceilings), Patterns (Clean Architecture and multi-tenant from day one — these are decided), Owners (who owns what across Engineering, Platform, Data, Security, and Product), and Personas (a preview of slide 4). Emphasize the discipline: every claim is labeled and cited. Source: research.md, decision-register.md, solution-architecture.md §3.

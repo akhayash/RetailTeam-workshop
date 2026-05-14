@@ -1,0 +1,562 @@
+slide: 21
+title: "Tradeoffs & Hypotheses"
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: "Tradeoffs & Hypotheses"
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: "Named hypotheses with status and validation method."
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+# Header row (black)
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.05
+  width: 0.8
+  height: 0.5
+  name: Hdr ID
+  fill: '#000000'
+  text: "ID"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 1.3
+  top: 2.05
+  width: 5.0
+  height: 0.5
+  name: Hdr Hypothesis
+  fill: '#000000'
+  text: "Hypothesis"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 3
+- type: shape
+  shape: rectangle
+  left: 6.3
+  top: 2.05
+  width: 1.7
+  height: 0.5
+  name: Hdr Status
+  fill: '#000000'
+  text: "Status"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 4
+- type: shape
+  shape: rectangle
+  left: 8.0
+  top: 2.05
+  width: 4.833
+  height: 0.5
+  name: Hdr Validation
+  fill: '#000000'
+  text: "Validation Method"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 5
+# Row 1 - H-1
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.6
+  width: 0.8
+  height: 0.65
+  name: R1 ID
+  fill: '#14366E'
+  text: "H-1"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 6
+- type: shape
+  shape: rectangle
+  left: 1.3
+  top: 2.6
+  width: 5.0
+  height: 0.65
+  name: R1 Hyp
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "GPT-4o + height delivers ±2–4 cm"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: left
+  z_order: 7
+- type: shape
+  shape: rectangle
+  left: 6.3
+  top: 2.6
+  width: 1.7
+  height: 0.65
+  name: R1 Status
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "[Hypothesis]"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#BF8F00'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 8
+- type: shape
+  shape: rectangle
+  left: 8.0
+  top: 2.6
+  width: 4.833
+  height: 0.65
+  name: R1 Val
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Integration testing vs ground-truth dataset"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: left
+  z_order: 9
+# Row 2 - H-2
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 3.3
+  width: 0.8
+  height: 0.65
+  name: R2 ID
+  fill: '#14366E'
+  text: "H-2"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 10
+- type: shape
+  shape: rectangle
+  left: 1.3
+  top: 3.3
+  width: 5.0
+  height: 0.65
+  name: R2 Hyp
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "70% confidence is the right trust threshold"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: left
+  z_order: 11
+- type: shape
+  shape: rectangle
+  left: 6.3
+  top: 3.3
+  width: 1.7
+  height: 0.65
+  name: R2 Status
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "[Hypothesis]"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#BF8F00'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 12
+- type: shape
+  shape: rectangle
+  left: 8.0
+  top: 3.3
+  width: 4.833
+  height: 0.65
+  name: R2 Val
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "A/B testing vs disclaimer escalation rate"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: left
+  z_order: 13
+# Row 3 - H-3
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 4.0
+  width: 0.8
+  height: 0.65
+  name: R3 ID
+  fill: '#14366E'
+  text: "H-3"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 14
+- type: shape
+  shape: rectangle
+  left: 1.3
+  top: 4.0
+  width: 5.0
+  height: 0.65
+  name: R3 Hyp
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Hierarchical PK prevents tenant leakage"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: left
+  z_order: 15
+- type: shape
+  shape: rectangle
+  left: 6.3
+  top: 4.0
+  width: 1.7
+  height: 0.65
+  name: R3 Status
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "[Verified]"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#548235'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 16
+- type: shape
+  shape: rectangle
+  left: 8.0
+  top: 4.0
+  width: 4.833
+  height: 0.65
+  name: R3 Val
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Schema + repository compile-time check"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: left
+  z_order: 17
+# Row 4 - H-4
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 4.7
+  width: 0.8
+  height: 0.65
+  name: R4 ID
+  fill: '#14366E'
+  text: "H-4"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 18
+- type: shape
+  shape: rectangle
+  left: 1.3
+  top: 4.7
+  width: 5.0
+  height: 0.65
+  name: R4 Hyp
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "60 s blob TTL satisfies privacy regulators"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: left
+  z_order: 19
+- type: shape
+  shape: rectangle
+  left: 6.3
+  top: 4.7
+  width: 1.7
+  height: 0.65
+  name: R4 Status
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "[Hypothesis]"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#BF8F00'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 20
+- type: shape
+  shape: rectangle
+  left: 8.0
+  top: 4.7
+  width: 4.833
+  height: 0.65
+  name: R4 Val
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "DPIA + counsel review"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: left
+  z_order: 21
+# Row 5 - H-5
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 5.4
+  width: 0.8
+  height: 0.65
+  name: R5 ID
+  fill: '#14366E'
+  text: "H-5"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 22
+- type: shape
+  shape: rectangle
+  left: 1.3
+  top: 5.4
+  width: 5.0
+  height: 0.65
+  name: R5 Hyp
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "ASP.NET rate limiting sufficient for v1"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: left
+  z_order: 23
+- type: shape
+  shape: rectangle
+  left: 6.3
+  top: 5.4
+  width: 1.7
+  height: 0.65
+  name: R5 Status
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "[Hypothesis]"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#BF8F00'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 24
+- type: shape
+  shape: rectangle
+  left: 8.0
+  top: 5.4
+  width: 4.833
+  height: 0.65
+  name: R5 Val
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Load test at 2× projected peak"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: left
+  z_order: 25
+# Row 6 - H-6
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 6.1
+  width: 0.8
+  height: 0.65
+  name: R6 ID
+  fill: '#14366E'
+  text: "H-6"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 26
+- type: shape
+  shape: rectangle
+  left: 1.3
+  top: 6.1
+  width: 5.0
+  height: 0.65
+  name: R6 Hyp
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Edge inference (B) cost-justified vs cloud"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: left
+  z_order: 27
+- type: shape
+  shape: rectangle
+  left: 6.3
+  top: 6.1
+  width: 1.7
+  height: 0.65
+  name: R6 Status
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "[Hypothesis]"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#BF8F00'
+  text_bold: true
+  alignment: center
+  vertical_anchor: middle
+  z_order: 28
+- type: shape
+  shape: rectangle
+  left: 8.0
+  top: 6.1
+  width: 4.833
+  height: 0.65
+  name: R6 Val
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.15
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Per-store TCO model + pilot"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: left
+  z_order: 29
+speaker_notes: "We explicitly name every hypothesis and its validation method. H-1 is the highest-risk — it determines whether GPT-4o Vision is sufficient for v1 or if we need to accelerate Tier 3. H-3 is the only verified hypothesis. Source: solution-architecture.md Section 11."

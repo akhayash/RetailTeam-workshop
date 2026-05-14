@@ -1,0 +1,294 @@
+slide: 7
+title: "Phase B · Three Architecture Concepts"
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: "Phase B · Three Architecture Concepts"
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: "Three concepts, one architecture. Concept A ships v1; B and C are evolution paths."
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+# Card 1 header
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.1
+  width: 3.8
+  height: 0.6
+  name: Concept A Header
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Concept A — Cloud-Centric"
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.7
+  width: 3.8
+  height: 2.4
+  name: Concept A Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.2
+  margin_bottom: 0.15
+  vertical_anchor: top
+  paragraphs:
+  - text: "v1 implementation. Modern data foundation, scalable managed services, governed AI/ML pipeline."
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: "[Verified] — current build target."
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#0B5594'
+    italic: true
+  z_order: 3
+# Card 2 header
+- type: shape
+  shape: rectangle
+  left: 4.767
+  top: 2.1
+  width: 3.8
+  height: 0.6
+  name: Concept B Header
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Concept B — Edge + AI Agent"
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 4
+- type: shape
+  shape: rectangle
+  left: 4.767
+  top: 2.7
+  width: 3.8
+  height: 2.4
+  name: Concept B Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.2
+  margin_bottom: 0.15
+  vertical_anchor: top
+  paragraphs:
+  - text: "v2 expansion. Decisioning at the edge, agentic workflows, in-store augmentation."
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: "[Hypothesis] — pending v1 shopper data."
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#0B5594'
+    italic: true
+  z_order: 5
+# Card 3 header
+- type: shape
+  shape: rectangle
+  left: 9.033
+  top: 2.1
+  width: 3.8
+  height: 0.6
+  name: Concept C Header
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Concept C — Data Fabric"
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 6
+- type: shape
+  shape: rectangle
+  left: 9.033
+  top: 2.7
+  width: 3.8
+  height: 2.4
+  name: Concept C Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.2
+  margin_bottom: 0.15
+  vertical_anchor: top
+  paragraphs:
+  - text: "v3 strategic. Unified semantic layer with lineage, AI-ready data products."
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: "[Hypothesis] — pending business value proof."
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#0B5594'
+    italic: true
+  z_order: 7
+# Timeline - horizontal line
+- type: shape
+  shape: rectangle
+  left: 1.0
+  top: 5.7
+  width: 11.333
+  height: 0.04
+  name: Timeline Line
+  fill: '#14366E'
+  z_order: 8
+# Timeline ovals
+- type: shape
+  shape: oval
+  left: 1.8
+  top: 5.45
+  width: 0.55
+  height: 0.55
+  name: Timeline V1 Oval
+  fill: '#14366E'
+  text: 'A'
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 9
+- type: shape
+  shape: oval
+  left: 6.39
+  top: 5.45
+  width: 0.55
+  height: 0.55
+  name: Timeline V2 Oval
+  fill: '#14366E'
+  text: 'B'
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 10
+- type: shape
+  shape: oval
+  left: 10.98
+  top: 5.45
+  width: 0.55
+  height: 0.55
+  name: Timeline V3 Oval
+  fill: '#14366E'
+  text: 'C'
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: center
+  z_order: 11
+# Timeline labels
+- type: textbox
+  left: 1.2
+  top: 6.1
+  width: 1.7
+  height: 0.3
+  text: "v1 (now)"
+  font: Segoe Sans Display
+  font_size: 12
+  font_color: '#1F1F1F'
+  text_bold: true
+  alignment: center
+  z_order: 12
+- type: textbox
+  left: 5.4
+  top: 6.1
+  width: 2.5
+  height: 0.3
+  text: "v2 (12–18 months)"
+  font: Segoe Sans Display
+  font_size: 12
+  font_color: '#1F1F1F'
+  alignment: center
+  z_order: 13
+- type: textbox
+  left: 10.0
+  top: 6.1
+  width: 2.5
+  height: 0.3
+  text: "v3 (24+ months)"
+  font: Segoe Sans Display
+  font_size: 12
+  font_color: '#1F1F1F'
+  alignment: center
+  z_order: 14
+speaker_notes: "Phase B applies the Design Thinking 'three concepts' framework. Each concept builds on the prior. Concept A is the v1 implementation target. B and C are documented evolution paths, not parallel builds. Source: solution-architecture.md Section 8."

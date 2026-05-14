@@ -1,0 +1,96 @@
+{
+  "projectSlug": "clothing-fit-assessment",
+  "raiPlanFile": ".copilot-tracking/rai-plans/clothing-fit-assessment/system-definition-pack.md",
+  "currentPhase": 6,
+  "entryMode": "from-prd",
+  "disclaimerShownAt": "2026-05-14T00:00:00Z",
+  "securityPlanRef": null,
+  "assessmentDepth": "comprehensive",
+  "standardsMapped": true,
+  "securityModelAnalysisStarted": true,
+  "raiThreatCount": 14,
+  "impactAssessmentGenerated": true,
+  "evidenceRegisterComplete": true,
+  "handoffGenerated": { "ado": true, "github": true },
+  "gateResults": {
+    "prohibitedUsesGate": {
+      "status": "pass",
+      "sourceFrameworks": ["azure-openai-code-of-conduct"],
+      "notes": "10 prohibited uses declared. Legal review needed on biometric/functional measurement boundary (CoC #10)."
+    }
+  },
+  "riskClassification": {
+    "framework": {
+      "id": "nist-ai-rmf",
+      "name": "NIST AI Risk Management Framework",
+      "version": "1.0",
+      "source": "rai-standards.instructions.md",
+      "replaceDefaultIndicators": false,
+      "replaceDefaultFramework": false
+    },
+    "indicators": {
+      "safety_reliability": {
+        "method": "binary",
+        "nistSource": ["MS-2.5", "MS-2.6"],
+        "activated": true,
+        "observation": "Psychological harm via body-related AI output; vulnerable populations with body image concerns",
+        "result": "activated"
+      },
+      "rights_fairness_privacy": {
+        "method": "categorical",
+        "nistSource": ["MS-2.8", "MS-2.10", "MS-2.11"],
+        "activated": true,
+        "observation": "Biometric-adjacent data processing; demographic accuracy parity concerns; GDPR Art. 9 implications",
+        "result": "activated"
+      },
+      "security_explainability": {
+        "method": "continuous",
+        "nistSource": ["MS-2.7", "MS-2.9"],
+        "activated": true,
+        "observation": "Black-box LLM; adversarial attack surface; limited explainability of measurement extraction",
+        "result": "activated"
+      }
+    },
+    "activatedCount": 3,
+    "riskScore": "high",
+    "suggestedDepthTier": "Comprehensive"
+  },
+  "runningObservations": [
+    { "phase": 1, "observation": "Biometric/functional measurement boundary requires legal review (Azure OpenAI CoC #10)", "flagLevel": "warning" },
+    { "phase": 1, "observation": "Florence-2 CoC coverage unknown — may have separate terms from Azure OpenAI", "flagLevel": "noted" },
+    { "phase": 2, "observation": "All 3 risk indicators activated — Comprehensive depth tier confirmed", "flagLevel": "noted" },
+    { "phase": 2, "observation": "Body image sensitivity is the dominant harm vector for this system", "flagLevel": "warning" }
+  ],
+  "principleTracker": {
+    "validReliable": { "suggestedStatus": "partially-addressed", "mappedInPhase3": true, "threatsIdentified": 3, "controlsEvaluated": 5, "nistSubcat": "MS-2.5", "openObservations": ["No validation dataset", "No demographic-segmented accuracy benchmarking", "Privacy-accuracy tradeoff accepted"] },
+    "safe": { "suggestedStatus": "partially-addressed", "mappedInPhase3": true, "threatsIdentified": 3, "controlsEvaluated": 4, "nistSubcat": "MS-2.6", "openObservations": ["No psychological safety testing", "No language review framework", "Safety-utility tradeoff accepted"] },
+    "secureResilient": { "suggestedStatus": "partially-addressed", "mappedInPhase3": true, "threatsIdentified": 3, "controlsEvaluated": 5, "nistSubcat": "MS-2.7", "openObservations": ["No adversarial AI testing", "No EXIF metadata stripping"] },
+    "accountableTransparent": { "suggestedStatus": "mostly-addressed", "mappedInPhase3": true, "threatsIdentified": 1, "controlsEvaluated": 3, "nistSubcat": "MS-2.8", "openObservations": ["No public-facing transparency note", "Transparency-IP tradeoff accepted"] },
+    "explainableInterpretable": { "suggestedStatus": "partially-addressed", "mappedInPhase3": true, "threatsIdentified": 2, "controlsEvaluated": 3, "nistSubcat": "MS-2.9", "openObservations": ["Black-box extraction process", "No dispute mechanism", "Explainability-performance tradeoff accepted"] },
+    "privacyEnhanced": { "suggestedStatus": "mostly-addressed", "mappedInPhase3": true, "threatsIdentified": 3, "controlsEvaluated": 6, "nistSubcat": "MS-2.10", "openObservations": ["DPIA not completed", "Consent boundary unclear"] },
+    "fairBiasManaged": { "suggestedStatus": "not-yet-addressed", "mappedInPhase3": true, "threatsIdentified": 3, "controlsEvaluated": 4, "nistSubcat": "MS-2.11", "openObservations": ["No bias methodology defined", "No parity thresholds", "No evaluation dataset", "Fairness-complexity tradeoff deferred"] }
+  },
+  "referencesProcessed": [
+    {
+      "filePath": ".copilot-tracking/rai-plans/references/azure-openai-code-of-conduct.md",
+      "type": "code-of-conduct",
+      "sourceDescription": "Azure OpenAI Service Code of Conduct v4.0 (2026-05-01)",
+      "processedInPhase": 1,
+      "status": "processed"
+    }
+  ],
+  "nextActions": ["assessment-complete"],
+  "signingRequested": false,
+  "signingManifestPath": null,
+  "userPreferences": {
+    "autonomyTier": "partial",
+    "outputDetailLevel": "standard",
+    "targetSystem": "both",
+    "audienceProfile": "mixed",
+    "includeOptionalArtifacts": {
+      "transparencyNote": false,
+      "monitoringSummary": false,
+      "artifactSigning": false
+    }
+  }
+}

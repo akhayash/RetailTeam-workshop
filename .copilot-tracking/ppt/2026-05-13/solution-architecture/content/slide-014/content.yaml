@@ -1,0 +1,336 @@
+slide: 14
+title: "Network & Security Topology"
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: "Network & Security Topology"
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: "Zero-trust architecture with private endpoints and managed identity."
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+# Layer 1 - Internet
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.0
+  width: 12.333
+  height: 0.55
+  name: Layer Internet
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  paragraphs:
+  - text: "Internet — Retail Frontend Store → TLS 1.2+ / OAuth 2.0 (Entra ID)"
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+  alignment: left
+  z_order: 2
+# Arrow
+- type: shape
+  shape: down_arrow
+  left: 6.417
+  top: 2.58
+  width: 0.25
+  height: 0.2
+  name: Arrow L1 L2
+  fill: '#14366E'
+  z_order: 3
+# Layer 2 - Public Surface
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.82
+  width: 12.333
+  height: 0.5
+  name: Layer Public
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Public Surface — ACA Ingress (HTTPS) — WAF / rate limit"
+  text_font: Segoe Sans Display
+  text_size: 12
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 4
+# Arrow
+- type: shape
+  shape: down_arrow
+  left: 6.417
+  top: 3.35
+  width: 0.25
+  height: 0.2
+  name: Arrow L2 L3
+  fill: '#14366E'
+  z_order: 5
+# Layer 3 - Container Apps Environment
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 3.6
+  width: 12.333
+  height: 0.9
+  name: Layer ACA
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.3
+  margin_right: 0.2
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: top
+  paragraphs:
+  - text: "Container Apps Environment (Private VNet, multi-AZ, /23 CIDR)"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: "FitAssess API — replicas 2-10, managed identity, JWT validation, tenant claims, rate limit"
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+  z_order: 6
+# Arrow
+- type: shape
+  shape: down_arrow
+  left: 6.417
+  top: 4.55
+  width: 0.25
+  height: 0.2
+  name: Arrow L3 L4
+  fill: '#14366E'
+  z_order: 7
+# Layer 4 - Private Endpoint Subnet
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 4.8
+  width: 12.333
+  height: 0.5
+  name: Layer Private Header
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Private Endpoint Subnet"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 8
+- type: shape
+  shape: rectangle
+  left: 3.5
+  top: 4.85
+  width: 2.0
+  height: 0.4
+  name: PE Cosmos
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "Cosmos DB (private)"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 9
+- type: shape
+  shape: rectangle
+  left: 5.7
+  top: 4.85
+  width: 2.0
+  height: 0.4
+  name: PE KeyVault
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "Key Vault (private)"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 10
+- type: shape
+  shape: rectangle
+  left: 7.9
+  top: 4.85
+  width: 2.0
+  height: 0.4
+  name: PE Blob
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "Blob Storage"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 11
+- type: shape
+  shape: rectangle
+  left: 10.1
+  top: 4.85
+  width: 2.0
+  height: 0.4
+  name: PE ServiceBus
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "Service Bus"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 12
+# Arrow
+- type: shape
+  shape: down_arrow
+  left: 6.417
+  top: 5.35
+  width: 0.25
+  height: 0.2
+  name: Arrow L4 L5
+  fill: '#14366E'
+  z_order: 13
+# Layer 5 - Azure AI Plane
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 5.6
+  width: 12.333
+  height: 0.5
+  name: Layer AI Header
+  fill: '#14366E'
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text: "Azure AI Plane (managed identity auth)"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 14
+- type: shape
+  shape: rectangle
+  left: 4.5
+  top: 5.65
+  width: 2.1
+  height: 0.4
+  name: AI OpenAI
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "OpenAI (MI)"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 15
+- type: shape
+  shape: rectangle
+  left: 6.8
+  top: 5.65
+  width: 2.1
+  height: 0.4
+  name: AI Vision
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "AI Vision (MI)"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 16
+- type: shape
+  shape: rectangle
+  left: 9.1
+  top: 5.65
+  width: 2.3
+  height: 0.4
+  name: AI ContentSafety
+  fill: '#FFFFFF'
+  line_color: '#14366E'
+  line_width: 0.5
+  text: "Content Safety (MI)"
+  text_font: Segoe Sans Display
+  text_size: 9
+  text_color: '#1F1F1F'
+  alignment: center
+  vertical_anchor: middle
+  z_order: 17
+# Layer 6 - Observability
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 6.2
+  width: 12.333
+  height: 0.6
+  name: Layer Observability
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.3
+  margin_right: 0.2
+  margin_top: 0.1
+  margin_bottom: 0.1
+  vertical_anchor: middle
+  text: "Observability — Azure Monitor (App Insights) · Log Analytics (90 d hot, 1 y cold)"
+  text_font: Segoe Sans Display
+  text_size: 11
+  text_color: '#1F1F1F'
+  alignment: left
+  z_order: 18
+speaker_notes: "Only ACA Ingress is internet-exposed. All data plane services use private endpoints. Managed identity replaces secrets everywhere. Tenant isolation is application-layer (JWT claims), not network-layer. NSG on private subnet denies all egress except Azure service IPs. Source: ADR-004, solution-architecture.md Section 7."

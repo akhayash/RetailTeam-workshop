@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.ipynb_checkpoints/
+
+# uv
+.uv/
+
+# Notebook outputs (commit clean notebooks)
+# Uncomment if you want to strip outputs entirely:
+# *.ipynb
+
+# Models (downloaded MediaPipe .task / large checkpoints)
+models/
+*.task
+*.tflite
+*.onnx
+*.pt
+*.pth
+*.safetensors
+
+# Data — never commit user photos / measurements (privacy)
+data/raw/**
+data/processed/**
+!data/raw/.gitkeep
+!data/raw/SOURCES.md
+!data/raw/front/.gitkeep
+!data/raw/side/.gitkeep
+
+# Snapshots from the Gesture Control demo — may contain real people
+output/snapshots/
+
+# Branding assets — third-party logos must not be committed (trademark)
+app/assets/*
+!app/assets/README.md
+!app/assets/.gitkeep
+!data/processed/.gitkeep
+# Garment measurement CSVs are OK to commit (no PII)
+!data/garment/**
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
