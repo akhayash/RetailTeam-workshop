@@ -2,6 +2,34 @@
 
 **Version**: 2.0.0 | **Date**: 2026-05-13 | **Status**: Approved for Implementation
 
+## Table of Contents
+
+- [Executive Summary](#executive-summary)
+- [Problem Statement](#problem-statement)
+- [Walmart Context: Current State & Industry Realities](#walmart-context-current-state--industry-realities)
+- [Retail Industry Personas](#retail-industry-personas)
+- [Three Architecture Concept Diagrams](#three-architecture-concept-diagrams)
+- [Persona-Driven AI Scenarios](#persona-driven-ai-scenarios)
+- [C-Suite Relevance — "So What?"](#c-suite-relevance--so-what)
+- [Business Value Driver Mapping](#business-value-driver-mapping)
+- [System Context](#system-context)
+- [Three-Tier AI Pipeline (Concept A Detail)](#three-tier-ai-pipeline-concept-a-detail)
+- [Fit Comparison Engine](#fit-comparison-engine)
+- [Azure Service Map](#azure-service-map)
+- [Multi-Tenant Data Architecture](#multi-tenant-data-architecture)
+- [Assessment Request Flow](#assessment-request-flow)
+- [Network and Security Architecture](#network-and-security-architecture)
+- [Threat Model Summary](#threat-model-summary)
+- [API Contract Summary](#api-contract-summary)
+- [Project Structure](#project-structure)
+- [Deployment Pipeline](#deployment-pipeline)
+- [SLOs and Operational Targets](#slos-and-operational-targets)
+- [Key Constraints](#key-constraints)
+- [Key Tradeoffs](#key-tradeoffs)
+- [Hypothesis Register](#hypothesis-register)
+
+---
+
 ## Executive Summary
 
 Multi-tenant AI-powered clothing fit assessment service that accepts shopper photos with mandatory height input, extracts body measurements using a three-tier Microsoft AI pipeline, compares them against garment size data, and returns a 5-point fit recommendation per body area. Deployed as a standalone .NET 8 Web API on Azure Container Apps.
