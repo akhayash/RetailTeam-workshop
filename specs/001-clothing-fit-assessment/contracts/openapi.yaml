@@ -1,17 +1,17 @@
 openapi: 3.0.3
 info:
-  title: FitAssess AI - Clothing Fit Assessment API
+  title: VirtualMirror AI - Clothing Fit Assessment API
   description: |
     Multi-tenant AI-powered clothing fit assessment service. Accepts shopper photos,
     extracts body measurements, and returns personalized fit recommendations per body area.
   version: 1.0.0
   contact:
-    name: FitAssess Engineering
+    name: VirtualMirror Engineering
   license:
     name: Proprietary
 
 servers:
-  - url: https://fitassess-api.{environment}.azurecontainerapps.io/api/v1
+  - url: https://virtualmirror-api.{environment}.azurecontainerapps.io/api/v1
     description: Azure Container Apps
     variables:
       environment:
@@ -19,12 +19,12 @@ servers:
         enum: [dev, staging, prod]
 
 security:
-  - entraId: [FitAssess.Read, FitAssess.Write]
+  - entraId: [VirtualMirror.Read, VirtualMirror.Write]
 
 paths:
   /assessments:
     post:
-      operationId: createFitAssessment
+      operationId: createVirtualMirrorment
       summary: Create a fit assessment from a shopper photo
       description: |
         Accepts a shopper photo and garment reference, extracts body measurements,
@@ -71,7 +71,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FitAssessmentResponse'
+                $ref: '#/components/schemas/VirtualMirrormentResponse'
         '202':
           description: Assessment queued (high load); poll for result
           content:
@@ -128,7 +128,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FitAssessmentResponse'
+                $ref: '#/components/schemas/VirtualMirrormentResponse'
         '401':
           description: Missing or invalid authentication
         '404':
@@ -136,7 +136,7 @@ paths:
 
   /assessments/by-profile:
     post:
-      operationId: createFitAssessmentFromProfile
+      operationId: createVirtualMirrormentFromProfile
       summary: Create a fit assessment using a saved shopper profile
       description: Uses previously stored body measurements instead of a new photo upload.
       tags: [Assessments]
@@ -164,7 +164,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FitAssessmentResponse'
+                $ref: '#/components/schemas/VirtualMirrormentResponse'
         '400':
           description: Invalid request
         '401':
@@ -341,9 +341,9 @@ components:
         clientCredentials:
           tokenUrl: https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token
           scopes:
-            FitAssess.Read: Read assessments and profiles
-            FitAssess.Write: Create assessments and manage garments
-            FitAssess.Admin: Manage tenant configuration
+            VirtualMirror.Read: Read assessments and profiles
+            VirtualMirror.Write: Create assessments and manage garments
+            VirtualMirror.Admin: Manage tenant configuration
 
   schemas:
     FitScale:
@@ -372,7 +372,7 @@ components:
         length:
           $ref: '#/components/schemas/FitScale'
 
-    FitAssessmentResponse:
+    VirtualMirrormentResponse:
       type: object
       required: [assessmentId, overallRecommendation, areaScores, confidence, modelVersion, createdAt]
       properties:

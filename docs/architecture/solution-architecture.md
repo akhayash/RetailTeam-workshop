@@ -27,12 +27,12 @@ AI augments shopper decision-making; **humans retain accountability** for purcha
 
 | Area | Current State | Integration Implication |
 |------|--------------|------------------------|
-| **Cloud strategy** | Multi-hybrid "triplet model": two vendor public clouds (Azure + Google Cloud) + Walmart-managed private cloud + edge clouds in stores | FitAssess deploys on Azure (confirmed strategic partner; $500M+ annual Azure spend). Cloud-agnostic internal platform means the API must integrate via standard REST/OAuth patterns, not Azure-specific bindings on the consumer side. |
-| **Developer platform** | Unified internal platform with Kubernetes, service mesh (Istio), Terraform/Pulumi IaC, golden-path CI/CD templates | FitAssess API must expose clean OpenAPI contracts consumable by Walmart's platform engineering team. Container-based deployment aligns with their Kubernetes-native approach. |
-| **Existing fit technology** | **Zeekit** (acquired 2021) — AI/AR virtual try-on platform. "Choose My Model" feature lets shoppers pick from 50+ body-type models. Covers apparel, beauty, eyewear. | FitAssess complements rather than replaces Zeekit. Zeekit is visualization ("how does it look?"); FitAssess is measurement ("will it fit?"). Integration opportunity: feed FitAssess measurements into Zeekit's model selection for personalized virtual try-on. |
-| **AI/ML maturity** | "Wallaby" proprietary LLM; GenAI search ("Sparky"); Azure OpenAI partnership; computer vision for shelf monitoring; ML for dynamic pricing, inventory prediction, fraud detection | Walmart has mature AI governance and MLOps. FitAssess model versioning, confidence thresholds, and audit trails align with their existing AI accountability patterns. |
+| **Cloud strategy** | Multi-hybrid "triplet model": two vendor public clouds (Azure + Google Cloud) + Walmart-managed private cloud + edge clouds in stores | VirtualMirror deploys on Azure (confirmed strategic partner; $500M+ annual Azure spend). Cloud-agnostic internal platform means the API must integrate via standard REST/OAuth patterns, not Azure-specific bindings on the consumer side. |
+| **Developer platform** | Unified internal platform with Kubernetes, service mesh (Istio), Terraform/Pulumi IaC, golden-path CI/CD templates | VirtualMirror API must expose clean OpenAPI contracts consumable by Walmart's platform engineering team. Container-based deployment aligns with their Kubernetes-native approach. |
+| **Existing fit technology** | **Zeekit** (acquired 2021) — AI/AR virtual try-on platform. "Choose My Model" feature lets shoppers pick from 50+ body-type models. Covers apparel, beauty, eyewear. | VirtualMirror complements rather than replaces Zeekit. Zeekit is visualization ("how does it look?"); VirtualMirror is measurement ("will it fit?"). Integration opportunity: feed VirtualMirror measurements into Zeekit's model selection for personalized virtual try-on. |
+| **AI/ML maturity** | "Wallaby" proprietary LLM; GenAI search ("Sparky"); Azure OpenAI partnership; computer vision for shelf monitoring; ML for dynamic pricing, inventory prediction, fraud detection | Walmart has mature AI governance and MLOps. VirtualMirror model versioning, confidence thresholds, and audit trails align with their existing AI accountability patterns. |
 | **Catalog/product data** | Dedicated Catalog Engineering domain within Walmart Global Tech (25,000+ engineers). PIM systems, taxonomy, vendor feed ingestion, attribute extraction | Garment data ingestion (US4) must align with Walmart's existing product data pipelines. Expect structured feeds via their catalog APIs rather than manual upload. SKU/size data will come from their PIM system. |
-| **Data processing** | 10 PB/day processed; unified data lakes; "Wally" analytics platform for merchandising/ops | FitAssess telemetry and assessment outcomes can feed into Walmart's analytics for return prediction and size curve optimization (Concept C path). |
+| **Data processing** | 10 PB/day processed; unified data lakes; "Wally" analytics platform for merchandising/ops | VirtualMirror telemetry and assessment outcomes can feed into Walmart's analytics for return prediction and size curve optimization (Concept C path). |
 | **Scale expectations** | 100K+ network devices; millions of concurrent users during peak (Black Friday, holiday) | 500 concurrent assessments is the v1 target; Walmart peak may require 5,000–10,000+. Architecture must demonstrate horizontal scaling path beyond v1. |
 
 ### Walmart-Specific Constraints & Challenges
@@ -42,14 +42,14 @@ AI augments shopper decision-making; **humans retain accountability** for purcha
 | **Garment data standardization** | Walmart sources from thousands of suppliers with inconsistent measurement formats (numeric sizes, alpha sizes, brand-specific offsets) | Garment ingestion pipeline must normalize heterogeneous size data. Tolerance bands configurable per brand/category. |
 | **Massive catalog scale** | 100M+ SKUs across all categories; clothing subset still represents millions of garment/size combinations | Cosmos DB partition design must handle high-cardinality garment data without hot partitions. Consider garment data caching layer. |
 | **Multi-brand size inconsistency** | A "Medium" from Brand A ≠ "Medium" from Brand B. Shoppers experience this as the core fit problem. | Fit comparison engine operates on actual measurements (cm), not size labels. This is architecturally sound — the challenge is data availability. |
-| **Existing Zeekit investment** | Walmart has already invested in virtual try-on. FitAssess must demonstrate additive value, not competition. | Position as complementary: Zeekit = visual confidence ("looks good on me"), FitAssess = measurement confidence ("will fit my body"). API enables Zeekit to consume measurement data. |
+| **Existing Zeekit investment** | Walmart has already invested in virtual try-on. VirtualMirror must demonstrate additive value, not competition. | Position as complementary: Zeekit = visual confidence ("looks good on me"), VirtualMirror = measurement confidence ("will fit my body"). API enables Zeekit to consume measurement data. |
 | **Privacy at Walmart scale** | Any body-image processing at Walmart's scale attracts regulatory scrutiny. CCPA (California), state-level privacy laws, potential FTC oversight. | 60s image purge, opaque IDs, no biometric storage aligns with Walmart's stated privacy posture. Must pass Walmart's internal privacy review (likely stricter than regulatory minimum). |
 | **Seasonal demand spikes** | Black Friday / Cyber Monday traffic can be 10–50x normal. Holiday returns surge in January. | Service Bus overflow queuing + auto-scale 2–10 instances is v1. Production at Walmart scale needs burst-to-50+ instances with pre-warming. |
-| **Cloud vendor alignment** | Walmart uses Azure as strategic cloud partner but maintains multi-cloud. Internal platform abstracts cloud. | FitAssess is Azure-native (aligned). Walmart's platform team consumes via REST API — they don't need to know it's Azure-hosted. No Azure-specific client SDK dependency exposed to consumer. |
+| **Cloud vendor alignment** | Walmart uses Azure as strategic cloud partner but maintains multi-cloud. Internal platform abstracts cloud. | VirtualMirror is Azure-native (aligned). Walmart's platform team consumes via REST API — they don't need to know it's Azure-hosted. No Azure-specific client SDK dependency exposed to consumer. |
 
 ### Owner → Domain Mapping (Hypothesized)
 
-| Architectural Domain | Walmart-Side Owner (Probable) | FitAssess Team Counterpart |
+| Architectural Domain | Walmart-Side Owner (Probable) | VirtualMirror Team Counterpart |
 |---------------------|-------------------------------|---------------------------|
 | E-commerce integration | Platform Engineering / Storefront Team | API & Integration Lead |
 | Garment measurement data | Catalog Engineering / PIM Team | Data Ingestion Engineer |
@@ -63,12 +63,12 @@ AI augments shopper decision-making; **humans retain accountability** for purcha
 
 | Pattern | Evaluated? | Decision | Rationale |
 |---------|-----------|----------|-----------|
-| **Virtual try-on / AR** (Zeekit approach) | ✅ Yes | Complementary, not competing | Walmart already invested. FitAssess provides measurement data that enhances Zeekit's model selection. |
+| **Virtual try-on / AR** (Zeekit approach) | ✅ Yes | Complementary, not competing | Walmart already invested. VirtualMirror provides measurement data that enhances Zeekit's model selection. |
 | **Collaborative filtering** (True Fit / Fit Analytics) | ✅ Yes | Not adopted for v1 | Requires large purchase history dataset. Measurement-based approach works from day one without historical data. Can add as v2 signal. |
 | **3D body modeling** (SMPL / digital twin) | ✅ Yes | Deferred to v2 (Tier 3) | Custom SMPL model on Azure AI Foundry planned for improved accuracy. Requires ML team and training data not available at launch. |
 | **Federated learning** (cross-retailer insights) | ✅ Yes | Not adopted | Privacy constraints prevent sharing body data across tenants. Each tenant's data is isolated by design. |
 | **Size recommendation from purchase history** | ✅ Yes | Future enhancement | Requires integration with Walmart's order/return history. Not available at API boundary in v1. High-value v2 feature. |
-| **AR body scanning** (Nike Fit approach) | ✅ Yes | Not adopted for v1 | Requires native mobile SDK integration. FitAssess is API-first (web-compatible). Could add mobile SDK in v2 for improved accuracy. |
+| **AR body scanning** (Nike Fit approach) | ✅ Yes | Not adopted for v1 | Requires native mobile SDK integration. VirtualMirror is API-first (web-compatible). Could add mobile SDK in v2 for improved accuracy. |
 
 ---
 
@@ -125,7 +125,7 @@ This is the **primary v1 implementation concept** — a cloud-native API service
 │                                                                     │
 │  ┌──────────────┐    ┌──────────────────────────────────────────┐  │
 │  │  Retail       │    │         Azure Container Apps             │  │
-│  │  Frontend     │───▶│  FitAssess API (.NET 8, 2-10 replicas) │  │
+│  │  Frontend     │───▶│  VirtualMirror API (.NET 8, 2-10 replicas) │  │
 │  │  (B2B OAuth)  │    │  ├── Auth Middleware (Entra ID JWT)     │  │
 │  │               │    │  ├── Rate Limiting (per tenant tier)    │  │
 │  └──────────────┘    │  └── OpenTelemetry (traces + metrics)   │  │
@@ -173,7 +173,7 @@ This concept extends the platform into **in-store and real-time scenarios** wher
 │             │                               │                  │
 │             ▼                               ▼                  │
 │  ┌──────────────────────────────────────────────────────────┐ │
-│  │            FitAssess API (Cloud Backend)                  │ │
+│  │            VirtualMirror API (Cloud Backend)                  │ │
 │  │  ├── Full AI pipeline (when edge confidence < threshold) │ │
 │  │  ├── Model updates pushed to edge devices                │ │
 │  │  └── Aggregated analytics for store operations           │ │
@@ -216,7 +216,7 @@ This concept positions the fit assessment data as part of a **unified retail int
 │         │                │                      │             │
 │         ▼                ▼                      ▼             │
 │  ┌──────────────┐ ┌───────────────┐ ┌──────────────────────┐│
-│  │  FitAssess   │ │  Return       │ │  Merchandising       ││
+│  │  VirtualMirror   │ │  Return       │ │  Merchandising       ││
 │  │  API         │ │  Prediction   │ │  Intelligence        ││
 │  │  (real-time  │ │  Model        │ │  (size distribution, ││
 │  │   assessment)│ │  (batch/ML)   │ │   trend analysis)    ││
@@ -325,7 +325,7 @@ This concept positions the fit assessment data as part of a **unified retail int
                                │ REST API (OAuth 2.0 B2B)
                                ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│                     FitAssess API (v1)                               │
+│                     VirtualMirror API (v1)                               │
 │  ASP.NET Core 8.0 · Azure Container Apps · Multi-tenant             │
 │                                                                     │
 │  ┌───────────┐  ┌──────────────┐  ┌────────────┐  ┌─────────────┐ │
@@ -335,7 +335,7 @@ This concept positions the fit assessment data as part of a **unified retail int
 │        │               │                │                           │
 │  ┌─────▼───────────────▼────────────────▼──────────────────────┐   │
 │  │                    Service Layer                             │   │
-│  │  FitAssessmentService · ImageValidator · BodyMeasurement-   │   │
+│  │  VirtualMirrormentService · ImageValidator · BodyMeasurement-   │   │
 │  │  Extractor · FitComparisonEngine · ShopperProfileService ·  │   │
 │  │  GarmentService                                             │   │
 │  └─────┬───────────────────────────────────────────────────────┘   │
@@ -434,7 +434,7 @@ Tolerance bands are configurable per tenant and garment category. System default
 ```text
 Cosmos DB Account
 │
-├── Database: fitassess
+├── Database: virtualmirror
 │   │
 │   ├── Container: tenants
 │   │   Partition key: /id
@@ -476,7 +476,7 @@ Cosmos DB Account
    ├── Rate limit check (per tenant tier)
    └── Request validation (FluentValidation)
                           │
-3. FitAssessmentService   │
+3. VirtualMirrormentService   │
    ├── Check load → if queue depth > 50 or p95 > 4s:
    │     enqueue to Service Bus, return HTTP 202 + poll URL
    │
@@ -506,7 +506,7 @@ Cosmos DB Account
    │
    └── Purge image from Blob (< 60s TTL enforced by lifecycle policy)
                           │
-4. Return FitAssessmentResponse (200)
+4. Return VirtualMirrormentResponse (200)
    or FallbackResponse (503) if AI unavailable
 ```
 
@@ -527,7 +527,7 @@ Cosmos DB Account
 │  │  Container Apps Environment (multi-AZ)          │ │
 │  │                                                  │ │
 │  │  ┌──────────────────────────────────────┐       │ │
-│  │  │  FitAssess API (2-10 replicas)       │       │ │
+│  │  │  VirtualMirror API (2-10 replicas)       │       │ │
 │  │  │  • Managed Identity (no secrets)     │       │ │
 │  │  │  • Entra ID JWT validation           │       │ │
 │  │  │  • Rate limiting middleware          │       │ │
@@ -549,14 +549,14 @@ Cosmos DB Account
 
 | Endpoint | Method | Purpose | Auth |
 |----------|--------|---------|------|
-| `/api/v1/assessments` | POST | Create fit assessment from photo | FitAssess.Write |
-| `/api/v1/assessments/{id}` | GET | Retrieve previous assessment | FitAssess.Read |
-| `/api/v1/assessments/by-profile` | POST | Assessment from saved profile | FitAssess.Write |
-| `/api/v1/profiles/{shopperRef}` | GET | Retrieve measurement profile | FitAssess.Read |
-| `/api/v1/profiles/{shopperRef}` | DELETE | Delete profile (24h fulfillment) | FitAssess.Write |
-| `/api/v1/garments` | POST | Upsert garment data | FitAssess.Write |
-| `/api/v1/garments` | GET | List garments (paginated) | FitAssess.Read |
-| `/api/v1/garments/batch` | POST | Bulk upsert (max 100) | FitAssess.Write |
+| `/api/v1/assessments` | POST | Create fit assessment from photo | VirtualMirror.Write |
+| `/api/v1/assessments/{id}` | GET | Retrieve previous assessment | VirtualMirror.Read |
+| `/api/v1/assessments/by-profile` | POST | Assessment from saved profile | VirtualMirror.Write |
+| `/api/v1/profiles/{shopperRef}` | GET | Retrieve measurement profile | VirtualMirror.Read |
+| `/api/v1/profiles/{shopperRef}` | DELETE | Delete profile (24h fulfillment) | VirtualMirror.Write |
+| `/api/v1/garments` | POST | Upsert garment data | VirtualMirror.Write |
+| `/api/v1/garments` | GET | List garments (paginated) | VirtualMirror.Read |
+| `/api/v1/garments/batch` | POST | Bulk upsert (max 100) | VirtualMirror.Write |
 | `/api/v1/health` | GET | Health check | None |
 
 Full contract: [openapi.yaml](../specs/001-clothing-fit-assessment/contracts/openapi.yaml)
@@ -565,19 +565,19 @@ Full contract: [openapi.yaml](../specs/001-clothing-fit-assessment/contracts/ope
 
 ```text
 src/
-├── FitAssess.Api/              # ASP.NET Core Web API host
-├── FitAssess.Core/             # Domain models & interfaces (zero dependencies)
-├── FitAssess.Services/         # Business logic
-├── FitAssess.Infrastructure/   # Azure SDK integrations
-└── FitAssess.AppHost/          # .NET Aspire orchestrator
+├── VirtualMirror.Api/              # ASP.NET Core Web API host
+├── VirtualMirror.Core/             # Domain models & interfaces (zero dependencies)
+├── VirtualMirror.Services/         # Business logic
+├── VirtualMirror.Infrastructure/   # Azure SDK integrations
+└── VirtualMirror.AppHost/          # .NET Aspire orchestrator
 
 tests/
-├── FitAssess.Api.Tests/        # Integration (WebApplicationFactory)
-├── FitAssess.Core.Tests/       # Unit (domain logic)
-├── FitAssess.Services.Tests/   # Unit (services)
-├── FitAssess.Infrastructure.Tests/  # Integration (external deps)
-├── FitAssess.Contract.Tests/   # OpenAPI contract validation
-└── FitAssess.Load.Tests/       # NBomber performance
+├── VirtualMirror.Api.Tests/        # Integration (WebApplicationFactory)
+├── VirtualMirror.Core.Tests/       # Unit (domain logic)
+├── VirtualMirror.Services.Tests/   # Unit (services)
+├── VirtualMirror.Infrastructure.Tests/  # Integration (external deps)
+├── VirtualMirror.Contract.Tests/   # OpenAPI contract validation
+└── VirtualMirror.Load.Tests/       # NBomber performance
 
 infra/
 ├── main.bicep                  # Root deployment

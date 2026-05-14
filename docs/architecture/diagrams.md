@@ -7,7 +7,7 @@ Index of canonical ASCII architecture diagrams. Each diagram is built from the a
 ## Diagrams in this document
 
 1. [System Context](#1-system-context)
-2. [Container View — FitAssess API](#2-container-view--fitassess-api)
+2. [Container View — VirtualMirror API](#2-container-view--virtualmirror-api)
 3. [Three-Tier AI Pipeline](#3-three-tier-ai-pipeline)
 4. [Assessment Request Sequence](#4-assessment-request-sequence)
 5. [Multi-Tenant Data Architecture](#5-multi-tenant-data-architecture)
@@ -23,7 +23,7 @@ Index of canonical ASCII architecture diagrams. Each diagram is built from the a
 
 ## 1. System Context
 
-External actors and the FitAssess API boundary.
+External actors and the VirtualMirror API boundary.
 
 ```text
 +=================================================================+
@@ -41,7 +41,7 @@ External actors and the FitAssess API boundary.
            |                     | OAuth 2.0 B2B       | OAuth 2.0
            |                     v                     v
            |          +------------------------------------+
-           +--------->|         FitAssess API (v1)         |
+           +--------->|         VirtualMirror API (v1)         |
                       |  Multi-tenant, .NET 8, stateless   |
                       +-----------------+------------------+
                                         |
@@ -71,22 +71,22 @@ External actors and the FitAssess API boundary.
 
 ### Key Relationships
 
-- Online Shopper interacts only through the Retail Frontend (never directly with FitAssess API)
-- Retail Frontend authenticates to FitAssess API via Entra ID B2B (OAuth 2.0)
+- Online Shopper interacts only through the Retail Frontend (never directly with VirtualMirror API)
+- Retail Frontend authenticates to VirtualMirror API via Entra ID B2B (OAuth 2.0)
 - Operations Team submits garment catalog data via the same API surface
-- FitAssess API uses managed identity for all downstream Azure service calls (zero secrets)
+- VirtualMirror API uses managed identity for all downstream Azure service calls (zero secrets)
 
 ---
 
-## 2. Container View — FitAssess API
+## 2. Container View — VirtualMirror API
 
 Logical layering inside the .NET 8 Web API following Clean Architecture.
 
 ```text
 +===================================================================+
-|                       FitAssess API (.NET 8)                       |
+|                       VirtualMirror API (.NET 8)                       |
 |                                                                    |
-|  :--- Presentation Layer (FitAssess.Api) -----------------------:  |
+|  :--- Presentation Layer (VirtualMirror.Api) -----------------------:  |
 |  :                                                              :  |
 |  :  +----------------+  +----------------+  +----------------+  :  |
 |  :  | Assessments    |  | Profiles       |  | Garments       |  :  |
@@ -103,10 +103,10 @@ Logical layering inside the .NET 8 Web API following Clean Architecture.
 |  :          | +------------------------------+                  :  |
 |  :----------v-------------------v-------------------v-----------:  |
 |                                                                    |
-|  :--- Service Layer (FitAssess.Services) -----------------------:  |
+|  :--- Service Layer (VirtualMirror.Services) -----------------------:  |
 |  :                                                              :  |
 |  :  +-------------------+  +-----------------------+            :  |
-|  :  | FitAssessment     |  | ShopperProfile        |            :  |
+|  :  | VirtualMirrorment     |  | ShopperProfile        |            :  |
 |  :  | Service           |  | Service               |            :  |
 |  :  +-------+-----------+  +-----------+-----------+            :  |
 |  :          |                          |                        :  |
@@ -119,14 +119,14 @@ Logical layering inside the .NET 8 Web API following Clean Architecture.
 |  :  +-------------------+                                       :  |
 |  :--------------+-----------------------------------------------:  |
 |                 |                                                  |
-|  :--- Core Layer (FitAssess.Core) - zero deps -----------------:   |
+|  :--- Core Layer (VirtualMirror.Core) - zero deps -----------------:   |
 |  :                                                              :  |
-|  :  Models: Tenant, ShopperProfile, Garment, FitAssessment      :  |
+|  :  Models: Tenant, ShopperProfile, Garment, VirtualMirrorment      :  |
 |  :  Interfaces: IRepository<T>, IAIClient, IBlobStore           :  |
 |  :  Enums: FitScale, GarmentCategory, AssessmentStatus          :  |
 |  :--------------+-----------------------------------------------:  |
 |                 ^                                                  |
-|  :--- Infrastructure Layer (FitAssess.Infrastructure) ---------:   |
+|  :--- Infrastructure Layer (VirtualMirror.Infrastructure) ---------:   |
 |  :                                                              :  |
 |  :  +--------------------+ +-------------------+               :   |
 |  :  | AzureAIVisionClient| | ContentSafety     |               :   |
@@ -324,7 +324,7 @@ Cosmos DB layout with hierarchical partition keys for tenant isolation.
 |                  Azure Cosmos DB Account                         |
 |                                                                  |
 |  +------------------------------------------------------------+  |
-|  |  Database: fitassess                                        | |
+|  |  Database: virtualmirror                                        | |
 |  |  (Autoscale 400-4000 RU/s shared throughput)                | |
 |  |                                                             | |
 |  |  :--- Container: tenants ----------------------------:      | |
@@ -354,7 +354,7 @@ Cosmos DB layout with hierarchical partition keys for tenant isolation.
 |  |  :--- Container: assessments -----------------------:       | |
 |  |  :  Partition key: /tenantId                          :     | |
 |  |  :  Entities:                                         :     | |
-|  |  :    * FitAssessment (result + modelVersion +        :     | |
+|  |  :    * VirtualMirrorment (result + modelVersion +        :     | |
 |  |  :      correlationId)                                :     | |
 |  |  :  TTL: 365 days (configurable per tenant)           :     | |
 |  |  :----------------------------------------------------:     | |
@@ -419,7 +419,7 @@ Zero-trust topology with private endpoints and managed identity.
 |  :  multi-AZ, /23 CIDR                                       :   |
 |  :                                                           :   |
 |  :  +---------------------------------------------+          :   |
-|  :  | FitAssess API   replicas 2-10               |          :   |
+|  :  | VirtualMirror API   replicas 2-10               |          :   |
 |  :  | * managed identity (no secrets in env)      |          :   |
 |  :  | * Entra ID JWT validation                   |          :   |
 |  :  | * tenant claim extraction                   |          :   |
@@ -642,7 +642,7 @@ Reference: this is the v1 implementation. See [solution-architecture.md](solutio
 |                                                                  |
 |  +--------------+        +---------------------------------+     |
 |  | Retail       |        |  Azure Container Apps           |     |
-|  | Frontend     |------->|  FitAssess API (.NET 8)         |     |
+|  | Frontend     |------->|  VirtualMirror API (.NET 8)         |     |
 |  | (B2B OAuth)  | HTTPS  |  * 2-10 replica auto-scale      |     |
 |  +--------------+        |  * managed identity             |     |
 |                          +--+----------+----------+--------+     |
@@ -693,7 +693,7 @@ Reference: future-state for in-store scenarios. See [solution-architecture.md](s
 |               | (not raw images)       |                         |
 |               v                        v                         |
 |  +-------------------------------------------------+             |
-|  |          FitAssess API (Cloud Backend)          |             |
+|  |          VirtualMirror API (Cloud Backend)          |             |
 |  |  * fallback when edge confidence < threshold    |             |
 |  |  * model updates pushed to edge                 |             |
 |  |  * aggregated analytics for store ops           |             |
@@ -740,7 +740,7 @@ Reference: long-term vision for unified retail intelligence. See [solution-archi
 |          |               |               |                       |
 |          v               v               v                       |
 |  +-------------+  +----------------+  +-----------------------+  |
-|  | FitAssess   |  | Return         |  | Merchandising         |  |
+|  | VirtualMirror   |  | Return         |  | Merchandising         |  |
 |  | API         |  | Prediction     |  | Intelligence          |  |
 |  | (real-time) |  | Model (batch)  |  | (size dist., trends)  |  |
 |  +-------------+  +----------------+  +-----------------------+  |
@@ -773,7 +773,7 @@ Domain entities and their relationships.
        v                          v
 +------+---------+        +---------------------+
 |                |        |                     |
-| ShopperProfile |------->|   FitAssessment     |
+| ShopperProfile |------->|   VirtualMirrorment     |
 |                |  1:N   |                     |
 |  /tenantId(PK) |        |  /tenantId (PK)     |
 |  shopperRef    |        |  shopperRef         |
@@ -806,8 +806,8 @@ Domain entities and their relationships.
 ### Key Relationships
 
 - One Tenant has many Garments and ShopperProfiles
-- One ShopperProfile produces many FitAssessments (one per garment evaluated)
-- Every FitAssessment writes an immutable AuditLog entry
+- One ShopperProfile produces many VirtualMirrorments (one per garment evaluated)
+- Every VirtualMirrorment writes an immutable AuditLog entry
 - `shopperRef` is an opaque hash provided by the frontend — never PII
 
 ---

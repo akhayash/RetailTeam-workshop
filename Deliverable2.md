@@ -146,7 +146,7 @@ Anchoring artifacts: [Deliverable 1](Deliverable1.md) · [Solution architecture 
 | 1    | Sets the question — "Which styles drive fit-related returns?"    | Runs cross-domain joins; surfaces ranked list with quantified return-cost impact            |
 | 2    | Inspects drill-down: per-size, per-region, per-cohort breakdowns | Provides lineage trail (raw measurement → assessment → return outcome) for every data point  |
 | 3    | Validates with supplier or commercial team                       | Holds a draft size-chart correction; tracks approval workflow                                |
-| 4    | Approves the change                                              | Promotes the new size chart to the FitAssess API and notifies dependent storefronts          |
+| 4    | Approves the change                                              | Promotes the new size chart to the VirtualMirror API and notifies dependent storefronts          |
 | 5    | Reviews post-change metrics after one cycle                      | Tracks lift on return rate and confidence score; auto-opens a follow-up if regression occurs |
 
 ### New roles, workflows, or hybrid interfaces

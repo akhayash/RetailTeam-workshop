@@ -39,7 +39,7 @@ This is the **primary v1 implementation concept** — a cloud-native, multi-tena
 |                                                                  |
 |  +--------------+        +---------------------------------+     |
 |  | Retail       |        |  Azure Container Apps           |     |
-|  | Frontend     |------->|  FitAssess API (.NET 8)         |     |
+|  | Frontend     |------->|  VirtualMirror API (.NET 8)         |     |
 |  | (B2B OAuth)  | HTTPS  |  * 2-10 replica auto-scale      |     |
 |  +--------------+        |  * managed identity             |     |
 |                          +--+----------+----------+--------+     |
@@ -106,7 +106,7 @@ This concept extends the platform into **in-store and real-time scenarios** — 
 |               | (not raw images)       |                         |
 |               v                        v                         |
 |  +-------------------------------------------------+             |
-|  |          FitAssess API (Cloud Backend)          |             |
+|  |          VirtualMirror API (Cloud Backend)          |             |
 |  |  * fallback when edge confidence < threshold    |             |
 |  |  * model updates pushed to edge                 |             |
 |  |  * aggregated analytics for store ops           |             |
@@ -169,7 +169,7 @@ This concept positions fit assessment data as part of a **unified retail intelli
 |          |               |               |                       |
 |          v               v               v                       |
 |  +-------------+  +----------------+  +-----------------------+  |
-|  | FitAssess   |  | Return         |  | Merchandising         |  |
+|  | VirtualMirror   |  | Return         |  | Merchandising         |  |
 |  | API         |  | Prediction     |  | Intelligence          |  |
 |  | (real-time) |  | Model (batch)  |  | (size dist., trends)  |  |
 |  +-------------+  +----------------+  +-----------------------+  |

@@ -16,7 +16,7 @@ graph TB
         OpsTeam[Operations Team<br/>catalog mgmt]
     end
 
-    API[FitAssess API v1<br/>.NET 8 · Multi-tenant · Stateless]
+    API[VirtualMirror API v1<br/>.NET 8 · Multi-tenant · Stateless]
 
     subgraph Azure Service Plane
         AIServices[Azure AI Services]
@@ -40,19 +40,19 @@ graph TB
 
 ---
 
-## 2. Container View — FitAssess API
+## 2. Container View — VirtualMirror API
 
 ```mermaid
 graph TB
-    subgraph Presentation Layer - FitAssess.Api
+    subgraph Presentation Layer - VirtualMirror.Api
         AC[Assessments Controller]
         PC[Profiles Controller]
         GC[Garments Controller]
         MW[Middleware Pipeline<br/>JWT · Tenant Claim · Correlation ID · Rate Limit · Validation]
     end
 
-    subgraph Service Layer - FitAssess.Services
-        FAS[FitAssessment Service]
+    subgraph Service Layer - VirtualMirror.Services
+        FAS[VirtualMirrorment Service]
         SPS[ShopperProfile Service]
         IV[ImageValidator]
         BME[BodyMeasurement Extractor]
@@ -60,13 +60,13 @@ graph TB
         GS[GarmentService]
     end
 
-    subgraph Core Layer - FitAssess.Core
-        Models[Models: Tenant · ShopperProfile · Garment · FitAssessment]
+    subgraph Core Layer - VirtualMirror.Core
+        Models[Models: Tenant · ShopperProfile · Garment · VirtualMirrorment]
         Interfaces[Interfaces: IRepository · IAIClient · IBlobStore]
         Enums[Enums: FitScale · GarmentCategory · AssessmentStatus]
     end
 
-    subgraph Infrastructure Layer - FitAssess.Infrastructure
+    subgraph Infrastructure Layer - VirtualMirror.Infrastructure
         VisionClient[AzureAIVisionClient<br/>people detection]
         SafetyClient[ContentSafety Client]
         OpenAIClient[AzureOpenAI MeasurementClient]
@@ -143,7 +143,7 @@ flowchart TB
 ```mermaid
 sequenceDiagram
     participant FE as Retail Frontend
-    participant API as FitAssess API
+    participant API as VirtualMirror API
     participant SVC as Service Layer
     participant T1 as AI Tier 1
     participant T2 as AI Tier 2 (GPT-5.2)
@@ -188,11 +188,11 @@ sequenceDiagram
 erDiagram
     Tenant ||--o{ Garment : "1:N"
     Tenant ||--o{ ShopperProfile : "1:N"
-    Tenant ||--o{ FitAssessment : "1:N"
+    Tenant ||--o{ VirtualMirrorment : "1:N"
     Tenant ||--o{ AuditLog : "1:N"
-    ShopperProfile ||--o{ FitAssessment : "1:N"
-    Garment ||--o{ FitAssessment : "referenced by"
-    FitAssessment ||--|| AuditLog : "writes to"
+    ShopperProfile ||--o{ VirtualMirrorment : "1:N"
+    Garment ||--o{ VirtualMirrorment : "referenced by"
+    VirtualMirrorment ||--|| AuditLog : "writes to"
 
     Tenant {
         string id PK
@@ -224,7 +224,7 @@ erDiagram
         datetime consentGrantedAt
     }
 
-    FitAssessment {
+    VirtualMirrorment {
         string id PK
         string tenantId FK
         string shopperRef
@@ -259,7 +259,7 @@ graph TB
         end
 
         subgraph Container Apps Environment - Private VNet
-            API[FitAssess API<br/>2-10 replicas<br/>Managed Identity<br/>JWT validation<br/>Tenant claim extraction]
+            API[VirtualMirror API<br/>2-10 replicas<br/>Managed Identity<br/>JWT validation<br/>Tenant claim extraction]
         end
 
         subgraph Private Endpoint Subnet
@@ -392,7 +392,7 @@ graph TB
     RetailFE[Retail Frontend<br/>B2B OAuth]
 
     subgraph Azure Container Apps
-        API[FitAssess API<br/>.NET 8 · 2-10 replicas<br/>Managed Identity]
+        API[VirtualMirror API<br/>.NET 8 · 2-10 replicas<br/>Managed Identity]
     end
 
     subgraph Azure AI Plane
@@ -431,7 +431,7 @@ graph TB
         Associate[Store Associate Mobile<br/>AI Copilot<br/>size recommendation<br/>inventory check<br/>suggest alternatives]
     end
 
-    API[FitAssess API<br/>Cloud Backend<br/>fallback when edge confidence < threshold<br/>model updates pushed to edge<br/>aggregated analytics]
+    API[VirtualMirror API<br/>Cloud Backend<br/>fallback when edge confidence < threshold<br/>model updates pushed to edge<br/>aggregated analytics]
 
     Kiosk -->|measurements only<br/>not raw images| API
     Associate -->|API call| API
@@ -456,7 +456,7 @@ graph TB
     Fabric[Microsoft Fabric<br/>Unified Semantic Layer<br/>data lineage · governance<br/>AI-ready data products<br/>cross-domain joins]
 
     subgraph Consumers
-        FitAPI[FitAssess API<br/>real-time assessment]
+        FitAPI[VirtualMirror API<br/>real-time assessment]
         ReturnModel[Return Prediction Model<br/>batch/ML]
         Merch[Merchandising Intelligence<br/>size distribution · trends]
     end

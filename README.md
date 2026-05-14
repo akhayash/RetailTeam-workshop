@@ -1,4 +1,4 @@
-# FitAssess AI — Clothing Fit Assessment Service
+# VirtualMirror AI — Clothing Fit Assessment Service
 
 > Reducing online clothing returns through AI-powered fit recommendations.
 
@@ -8,7 +8,7 @@ Online clothing returns cost retailers $10–30 per return, with "wrong fit" cit
 
 ## Solution
 
-FitAssess AI is a multi-tenant, standalone service that accepts a shopper's full-body photo and height, extracts body measurements using Azure OpenAI GPT-5.2 Vision, compares them against garment size data, and returns a **5-point fit recommendation** (Too Tight → Too Loose) per body area — all within 5 seconds.
+VirtualMirror AI is a multi-tenant, standalone service that accepts a shopper's full-body photo and height, extracts body measurements using Azure OpenAI GPT-5.2 Vision, compares them against garment size data, and returns a **5-point fit recommendation** (Too Tight → Too Loose) per body area — all within 5 seconds.
 
 ### Key Capabilities
 
@@ -41,17 +41,17 @@ docs/
 └── Inputs/                           # Reference materials
 
 src/                                  # (planned)
-├── FitAssess.Api/                    # ASP.NET Core Web API host
-├── FitAssess.Core/                   # Domain models & interfaces
-├── FitAssess.Services/               # Business logic (assessment, image processing)
-├── FitAssess.Infrastructure/         # Azure integrations (Cosmos, Blob, AI, Identity)
-└── FitAssess.AppHost/                # .NET Aspire orchestrator
+├── VirtualMirror.Api/                    # ASP.NET Core Web API host
+├── VirtualMirror.Core/                   # Domain models & interfaces
+├── VirtualMirror.Services/               # Business logic (assessment, image processing)
+├── VirtualMirror.Infrastructure/         # Azure integrations (Cosmos, Blob, AI, Identity)
+└── VirtualMirror.AppHost/                # .NET Aspire orchestrator
 
 tests/                                # (planned)
-├── FitAssess.Api.Tests/              # Integration tests
-├── FitAssess.Services.Tests/         # Unit tests
-├── FitAssess.Contract.Tests/         # API contract validation
-└── FitAssess.Load.Tests/             # Performance tests (NBomber)
+├── VirtualMirror.Api.Tests/              # Integration tests
+├── VirtualMirror.Services.Tests/         # Unit tests
+├── VirtualMirror.Contract.Tests/         # API contract validation
+└── VirtualMirror.Load.Tests/             # Performance tests (NBomber)
 
 infra/                                # (planned)
 ├── main.bicep                        # Root deployment
@@ -72,13 +72,13 @@ infra/                                # (planned)
 
 ```powershell
 # Restore dependencies
-dotnet restore src/FitAssess.sln
+dotnet restore src/VirtualMirror.sln
 
 # Start infrastructure (Cosmos DB emulator + Azurite)
 docker compose up -d
 
 # Run the Aspire AppHost
-dotnet run --project src/FitAssess.AppHost
+dotnet run --project src/VirtualMirror.AppHost
 ```
 
 API available at `https://localhost:7001/api/v1` · Aspire dashboard at `https://localhost:15888`
@@ -90,7 +90,7 @@ API available at `https://localhost:7001/api/v1` · Aspire dashboard at `https:/
 curl https://localhost:7001/api/v1/health
 
 # Run all tests
-dotnet test src/FitAssess.sln
+dotnet test src/VirtualMirror.sln
 ```
 
 ## Architecture Overview

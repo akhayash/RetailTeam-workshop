@@ -67,35 +67,35 @@ specs/001-clothing-fit-assessment/
 
 ```text
 src/
-├── FitAssess.Api/                    # ASP.NET Core Web API host
+├── VirtualMirror.Api/                    # ASP.NET Core Web API host
 │   ├── Controllers/                  # API controllers (v1)
 │   ├── Middleware/                    # Auth, rate limiting, correlation ID
 │   ├── Filters/                      # Validation, exception handling
 │   └── Program.cs                    # Host configuration
-├── FitAssess.Core/                   # Domain models & interfaces
-│   ├── Models/                       # Entities (ShopperProfile, Garment, FitAssessment, Tenant)
+├── VirtualMirror.Core/                   # Domain models & interfaces
+│   ├── Models/                       # Entities (ShopperProfile, Garment, VirtualMirrorment, Tenant)
 │   ├── Interfaces/                   # Service contracts
 │   └── Enums/                        # FitScale, GarmentCategory, etc.
-├── FitAssess.Services/               # Business logic
+├── VirtualMirror.Services/               # Business logic
 │   ├── Assessment/                   # Fit comparison engine
 │   ├── ImageProcessing/              # Image validation & measurement extraction
 │   ├── Garments/                     # Catalog management
 │   └── Profiles/                     # Shopper profile CRUD
-├── FitAssess.Infrastructure/         # External integrations
+├── VirtualMirror.Infrastructure/         # External integrations
 │   ├── AzureAI/                      # Azure OpenAI GPT-5.2 Vision (measurement extraction) + Florence-2 Foundry endpoint (validation) + Content Safety
 │   ├── Cosmos/                       # Cosmos DB repositories
 │   ├── BlobStorage/                  # Transient image storage
 │   ├── Messaging/                    # Azure Service Bus (async assessment queue)
 │   └── Configuration/               # App Config, Key Vault, Feature Flags
-└── FitAssess.AppHost/                # .NET Aspire orchestrator
+└── VirtualMirror.AppHost/                # .NET Aspire orchestrator
 
 tests/
-├── FitAssess.Api.Tests/              # Integration tests (WebApplicationFactory)
-├── FitAssess.Core.Tests/             # Unit tests (domain logic)
-├── FitAssess.Services.Tests/         # Unit tests (services)
-├── FitAssess.Infrastructure.Tests/   # Integration tests (external deps)
-├── FitAssess.Contract.Tests/         # API contract validation
-└── FitAssess.Load.Tests/             # NBomber performance tests
+├── VirtualMirror.Api.Tests/              # Integration tests (WebApplicationFactory)
+├── VirtualMirror.Core.Tests/             # Unit tests (domain logic)
+├── VirtualMirror.Services.Tests/         # Unit tests (services)
+├── VirtualMirror.Infrastructure.Tests/   # Integration tests (external deps)
+├── VirtualMirror.Contract.Tests/         # API contract validation
+└── VirtualMirror.Load.Tests/             # NBomber performance tests
 
 infra/
 ├── main.bicep                        # Root Bicep deployment

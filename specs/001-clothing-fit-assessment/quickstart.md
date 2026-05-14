@@ -1,4 +1,4 @@
-# Quickstart: FitAssess AI
+# Quickstart: VirtualMirror AI
 
 ## Prerequisites
 
@@ -16,13 +16,13 @@ cd RetailTeam-workshop
 git checkout 001-clothing-fit-assessment
 
 # Restore dependencies
-dotnet restore src/FitAssess.sln
+dotnet restore src/VirtualMirror.sln
 
 # Start infrastructure (Cosmos DB emulator + Azurite for Blob Storage)
 docker compose up -d
 
 # Run the Aspire AppHost (orchestrates all services locally)
-dotnet run --project src/FitAssess.AppHost
+dotnet run --project src/VirtualMirror.AppHost
 ```
 
 The API will be available at `https://localhost:7001/api/v1`.
@@ -35,7 +35,7 @@ Aspire dashboard at `https://localhost:15888`.
 curl https://localhost:7001/api/v1/health
 
 # Create a fit assessment (requires auth token)
-$token = az account get-access-token --resource api://fitassess-dev --query accessToken -o tsv
+$token = az account get-access-token --resource api://virtualmirror-dev --query accessToken -o tsv
 
 curl -X POST https://localhost:7001/api/v1/assessments `
   -H "Authorization: Bearer $token" `
@@ -49,26 +49,26 @@ curl -X POST https://localhost:7001/api/v1/assessments `
 
 | Project | Purpose |
 |---------|---------|
-| `FitAssess.Api` | ASP.NET Core Web API host |
-| `FitAssess.Core` | Domain models, interfaces, enums |
-| `FitAssess.Services` | Business logic (assessment, image processing) |
-| `FitAssess.Infrastructure` | Azure integrations (Cosmos, Blob, AI, Identity) |
-| `FitAssess.AppHost` | .NET Aspire orchestrator |
+| `VirtualMirror.Api` | ASP.NET Core Web API host |
+| `VirtualMirror.Core` | Domain models, interfaces, enums |
+| `VirtualMirror.Services` | Business logic (assessment, image processing) |
+| `VirtualMirror.Infrastructure` | Azure integrations (Cosmos, Blob, AI, Identity) |
+| `VirtualMirror.AppHost` | .NET Aspire orchestrator |
 
 ## Key Commands
 
 ```powershell
 # Run all tests
-dotnet test src/FitAssess.sln
+dotnet test src/VirtualMirror.sln
 
 # Run specific test project
-dotnet test tests/FitAssess.Api.Tests
+dotnet test tests/VirtualMirror.Api.Tests
 
 # Build for release
-dotnet publish src/FitAssess.Api -c Release -o ./publish
+dotnet publish src/VirtualMirror.Api -c Release -o ./publish
 
 # Deploy infrastructure (requires Azure subscription)
-az deployment group create -g fitassess-dev -f infra/main.bicep -p infra/parameters/dev.json
+az deployment group create -g virtualmirror-dev -f infra/main.bicep -p infra/parameters/dev.json
 ```
 
 ## Environment Variables

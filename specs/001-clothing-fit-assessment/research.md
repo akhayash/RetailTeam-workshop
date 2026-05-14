@@ -137,7 +137,7 @@ Tier 3 — Future Enhancement (Azure AI Foundry, v2):
 - **Third-party IdP (Auth0, Okta)**: Unnecessary cost and complexity when Entra ID is already the enterprise standard. Rejected.
 
 **Implementation approach**:
-1. Entra ID multi-tenant app registration for the FitAssess API
+1. Entra ID multi-tenant app registration for the VirtualMirror API
 2. Each tenant registered as a service principal with specific API permissions (scopes)
 3. JWT validation middleware in ASP.NET Core with tenant claim extraction
 4. Managed identity for all Azure resource access (zero secrets in config)
@@ -184,7 +184,7 @@ Tier 3 — Future Enhancement (Azure AI Foundry, v2):
 **Implementation approach**:
 1. OpenTelemetry SDK configured in Program.cs (traces, metrics, logs)
 2. Correlation ID propagated via `Activity` (W3C trace context)
-3. Custom metrics: `fitassess.assessment.duration`, `fitassess.assessment.confidence`, `fitassess.image.rejection_rate`
+3. Custom metrics: `virtualmirror.assessment.duration`, `virtualmirror.assessment.confidence`, `virtualmirror.image.rejection_rate`
 4. Azure Monitor alerts on: p95 > 5s, error rate > 0.1%, model confidence drift
 5. Runbooks linked to each alert in Azure Monitor action groups
 
