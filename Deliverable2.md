@@ -36,7 +36,7 @@ Anchoring artifacts: [Deliverable 1](Deliverable1.md) · [Solution architecture 
 ### What the AI agent does
 
 - Accepts one or two photos and a height value through the storefront's fit-assessment widget
-- Calls the three-tier AI pipeline (Azure AI Vision → GPT-4o Vision → AI Foundry v2) to extract body landmarks and derive measurements
+- Calls the three-tier AI pipeline (Florence-2 → GPT-5.2 Vision → AI Foundry v2) to extract body landmarks and derive measurements
 - Maps measurements against the garment's normalized size chart and fit intent
 - Returns a recommended size **and** a 5-point fit scale per body area (chest, waist, hips, inseam, shoulders)
 - Emits a `confidence` score and an `isLowConfidence` flag when below ~70%; substitutes a soft disclaimer for a hard recommendation

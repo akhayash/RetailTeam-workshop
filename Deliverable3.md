@@ -53,16 +53,17 @@ Anchoring artifacts: [Deliverable 1](Deliverable1.md) · [Deliverable 2](Deliver
 
 ### Why this matters to the Ops Leader
 
-- **Returns are an P&L line** — 25–40% return rates in apparel are the largest controllable cost in fulfillment and the largest source of poor reviews
+- **Returns are a P&L line** — at Walmart's $14.7B online apparel scale, even a 24–26% return rate with 53% fit-related means hundreds of millions in avoidable cost annually
 - **Conversion lift** — confidence at the moment of purchase reduces cart abandonment as well as returns
 - **Workforce focus** — store associates spend less time on size runs, more time on relationship selling and outfit building
 - **Catalog learning** — every assessment outcome (and every return reason) becomes signal that improves future size charts and buy decisions
+- **Zeekit synergy** — VirtualMirror measurements can feed Zeekit's model selection for a combined "see fit + know fit" experience
 
 ### Value of each concept in Ops Leader language
 
 | Concept                              | Operational outcome the business cares about                                                                                                                                                                              |
 |--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **A. Cloud-Centric Platform**        | **20–30% reduction in fit-driven returns** → **$2–6M annual savings** for a mid-size retailer. **< 5s p95 latency**, **99.9% SLO**, **20% of clothing PDPs** show an initiated assessment within 6 months of rollout.        |
+| **A. Cloud-Centric Platform**        | **20–30% reduction in fit-driven returns** → **$50–150M annual savings** at Walmart scale ($14.7B apparel revenue). **< 5s p95 latency**, **99.9% SLO**. Complements Zeekit (visualization) with measurement-based confidence. Integrates via REST/OAuth into Walmart's Kubernetes-native platform.        |
 | **B. Edge + AI Agent**               | Faster fitting-room turn time; fewer "let me grab the next size" trips; lifts in-store conversion and basket size via AI-suggested alternatives. Offline mode keeps stores selling during WAN outages.                       |
 | **C. Data Fabric / Intelligence**    | Catalog quality compounds over time — fewer wrongly-charted styles, smarter size-curve buys, less overstock, less air freight on emergency replenishment. Returns shift from cost center to strategic feedback loop.        |
 
@@ -70,7 +71,7 @@ Anchoring artifacts: [Deliverable 1](Deliverable1.md) · [Deliverable 2](Deliver
 
 | KPI                                          | Baseline               | Target (within 6 months of launch)        |
 |----------------------------------------------|------------------------|-------------------------------------------|
-| Fit-related return rate                      | 25–40% (industry)      | **-30% reduction**                        |
+| Fit-related return rate                      | 24–26% (Walmart est.)  | **≥ 20% reduction** (target: 30%)         |
 | Assessment adoption on clothing PDPs         | —                      | **≥ 20%** of PDPs show an initiated assessment |
 | Recommendation accuracy (shopper-reported)   | —                      | **≥ 85%** report satisfactory fit         |
 | Feature NPS                                  | —                      | **≥ 40**                                  |
@@ -83,7 +84,7 @@ Anchoring artifacts: [Deliverable 1](Deliverable1.md) · [Deliverable 2](Deliver
 | IQ layer       | What the Ops Leader sees                                                                                                                |
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | **Work IQ**    | Fit guidance appears in the shopper's existing PDP flow and in the associate's existing mobile workflow — no new tool to adopt          |
-| **Foundry IQ** | The three-tier AI pipeline (Vision → GPT-4o → AI Foundry v2) turns photos + height into measurements + confidence at production scale   |
+| **Foundry IQ** | The three-tier AI pipeline (Florence-2 → GPT-5.2 → AI Foundry v2) turns photos + height into measurements + confidence at production scale   |
 | **Fabric IQ** | Cosmos DB + Microsoft Fabric form the governed data foundation that makes the loop close: assessment → outcome → catalog improvement   |
 
 ---
