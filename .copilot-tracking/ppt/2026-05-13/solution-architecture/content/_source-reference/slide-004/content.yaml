@@ -1,0 +1,123 @@
+slide: 4
+title: Use these as your starting point. Substitute <Company Name> and <Industry>.
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.606
+  text: Phase A  |  Copilot Prompts
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 6.933
+  height: 0.337
+  text: Use these as your starting point. Substitute <Company Name> and <Industry>.
+  name: TextBox 4
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 1
+- type: table
+  left: 0.5
+  top: 1.94
+  width: 12.4
+  height: 4.765
+  name: Table 6
+  first_row: true
+  horz_banding: true
+  columns:
+  - width: 2.0
+  - width: 10.4
+  rows:
+  - cells:
+    - text: Step
+      vertical_anchor: middle
+      font_bold: true
+      font_color: '#FFFFFF'
+      font_size: 14
+    - text: Copilot Prompt
+      vertical_anchor: middle
+      font_bold: true
+      font_color: '#FFFFFF'
+      font_size: 14
+  - cells:
+    - text: 1. Tech Stack
+      vertical_anchor: middle
+      font_bold: true
+      font_color: '#0B5594'
+      font_size: 12
+    - text: “Summarize <Company Name>’s digital transformation architecture, including
+        core platforms, cloud strategy, enterprise systems (e.g., ERP), operational
+        or domain-specific systems, data platforms, and current use of AI/ML — within
+        the context of the <Industry> industry.”
+      vertical_anchor: middle
+      font_color: '#1F1F1F'
+      font_size: 10
+  - cells:
+    - text: 2. Limitations
+      vertical_anchor: middle
+      font_bold: true
+      font_color: '#0B5594'
+      font_size: 12
+    - text: “What challenges has <Company Name> faced in modernizing its technology
+        stack or operationalizing AI, given the constraints and realities of the <Industry>
+        industry?”
+      vertical_anchor: middle
+      font_color: '#1F1F1F'
+      font_size: 10
+  - cells:
+    - text: 3. Patterns
+      vertical_anchor: middle
+      font_bold: true
+      font_color: '#0B5594'
+      font_size: 12
+    - text: “What modern reference architectures and design patterns are emerging
+        in the <Industry> industry to improve scalability, resilience, decision-making,
+        or operational effectiveness?”
+      vertical_anchor: middle
+      font_color: '#1F1F1F'
+      font_size: 10
+  - cells:
+    - text: 4. Owners
+      vertical_anchor: middle
+      font_bold: true
+      font_color: '#0B5594'
+      font_size: 12
+    - text: “Who at <Company Name> likely leads digital transformation, core operations,
+        IT/platform engineering, and innovation? Map executive or leadership roles
+        to their architectural areas of focus.”
+      vertical_anchor: middle
+      font_color: '#1F1F1F'
+      font_size: 10
+  - cells:
+    - text: 5. Personas
+      vertical_anchor: middle
+      font_bold: true
+      font_color: '#0B5594'
+      font_size: 12
+    - text: “Create sample personas relevant to the <Industry> industry at <Company
+        Name>, including one frontline/operational role, one digital/transformation
+        leader, and one risk/compliance/sustainability role. Describe goals, constraints,
+        and how technology supports or hinders their work.”
+      vertical_anchor: middle
+      font_color: '#1F1F1F'
+      font_size: 10
+  z_order: 2
+layout: 4_Title and Content

@@ -1,0 +1,194 @@
+slide: 7
+title: For each architecture concept, describe how humans and AI work together
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: Deliverable 2  |  Persona-Driven Scenarios
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  font_size: 34
+  _placeholder: true
+  z_order: 0
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.272
+  width: 6.083
+  height: 4.104
+  name: Rectangle 36
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: 'For each concept, describe:
+
+
+    What an AI agent or copilot would do
+
+    What decisions it supports  (not replaces)
+
+    How humans and AI work together
+
+    What new roles, workflows, or hybrid interfaces emerge'
+  margin_left: 0.4
+  margin_right: 0.2
+  margin_top: 0.4
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: 'For each concept, describe:'
+    text_font: Segoe Sans Display
+    text_size: 20
+    text_color: '#1F1F1F'
+    text_bold: true
+    space_after: 8.0
+  - text: ''
+    text_font: Calibri
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 8.0
+  - text: What an AI agent or copilot would do
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    space_after: 8.0
+    bullet_char: •
+    bullet_font: Arial
+    bullet_margin_left: 342900
+    bullet_indent: -342900
+  - text: What decisions it supports  (not replaces)
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    space_after: 8.0
+    bullet_char: •
+    bullet_font: Arial
+    bullet_margin_left: 342900
+    bullet_indent: -342900
+  - text: How humans and AI work together
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    space_after: 8.0
+    bullet_char: •
+    bullet_font: Arial
+    bullet_margin_left: 342900
+    bullet_indent: -342900
+  - text: What new roles, workflows, or hybrid interfaces emerge
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    space_after: 8.0
+    bullet_char: •
+    bullet_font: Arial
+    bullet_margin_left: 342900
+    bullet_indent: -342900
+  text_font: Segoe Sans Display
+  text_size: 20
+  text_color: '#1F1F1F'
+  text_bold: true
+  z_order: 1
+- type: shape
+  shape: rectangle
+  left: 6.933
+  top: 2.272
+  width: 6.083
+  height: 4.104
+  name: Rectangle 40
+  fill:
+    type: solid
+    color: '#8064A2'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: "Example framing template\n\n“An AI copilot that assists <persona> by synthesizing\
+    \ <data>, flagging <risks>, and recommending <actions> — while the human retains\
+    \ accountability.”\nFill in your specifics:\n•  <persona>  →  \t____________________________________________\n\
+    •  <data>     →  \t____________________________________________\n•  <risks>  \
+    \  →  \t____________________________________________\n•  <actions>  →  \t____________________________________________"
+  margin_left: 0.4
+  margin_right: 0.2
+  margin_top: 0.4
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: Example framing template
+    text_font: Segoe Sans Display
+    text_size: 20
+    text_color: '#1F1F1F'
+    text_bold: true
+    space_after: 8.0
+  - text: ''
+    text_font: Calibri
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 8.0
+  - text: “An AI copilot that assists <persona> by synthesizing <data>, flagging <risks>,
+      and recommending <actions> — while the human retains accountability.”
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#14366E'
+    text_bold: true
+    italic: true
+    space_after: 18.0
+  - text: 'Fill in your specifics:'
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 8.0
+  - text: "•  <persona>  →  \t____________________________________________"
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    space_after: 6.0
+  - text: "•  <data>     →  \t____________________________________________"
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    space_after: 6.0
+  - text: "•  <risks>    →  \t____________________________________________"
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    space_after: 6.0
+  - text: "•  <actions>  →  \t____________________________________________"
+    text_font: Segoe Sans Display
+    text_size: 14
+    text_color: '#1F1F1F'
+    space_after: 6.0
+  text_font: Segoe Sans Display
+  text_size: 20
+  text_color: '#1F1F1F'
+  text_bold: true
+  z_order: 2
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 6.5
+  height: 0.337
+  text: For each architecture concept, describe how humans and AI work together
+  name: TextBox 6
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 3
+layout: 4_Title and Content
+speaker_notes: ''

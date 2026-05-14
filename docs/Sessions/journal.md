@@ -15,3 +15,13 @@
 **duration-ms:** 5
 
 ---
+
+## 2026-05-14T05:43:29 | WORK-002 | Ring-0 | @extension
+
+**Type:** WORK
+**action:** extension-activated
+**version:** 9.6.4
+**workspace:** RetailTeam-workshop
+**duration-ms:** 9
+
+---

@@ -1,0 +1,170 @@
+slide: 2
+title: What this exercise is — and what it is not
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.606
+  text: Context & Goal
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 3.689
+  height: 0.337
+  text: What this exercise is — and what it is not
+  name: TextBox 4
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 1
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.301
+  width: 6.083
+  height: 0.65
+  name: Rectangle 6
+  fill: '#000000'
+  text: The Setup
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 20
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 6.933
+  top: 2.301
+  width: 6.083
+  height: 0.65
+  name: Rectangle 8
+  fill: '#14366E'
+  text: The Real Goal
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 20
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  space_before: 0.0
+  space_after: 6.0
+  z_order: 3
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.951
+  width: 6.083
+  height: 3.28
+  name: Rectangle 10
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: 'Each team represents a different industry and is responsible for developing
+    a credible, industry-appropriate technical architecture point of view for a representative
+    company in that industry.
+
+    All teams run the same two-phase exercise. Only the industry and company change.'
+  margin_left: 0.4
+  margin_right: 0.1
+  margin_top: 0.4
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: Each team represents a different industry and is responsible for developing
+      a credible, industry-appropriate technical architecture point of view for a
+      representative company in that industry.
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: All teams run the same two-phase exercise. Only the industry and company
+      change.
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#1F1F1F'
+  z_order: 4
+- type: shape
+  shape: rectangle
+  left: 6.933
+  top: 2.951
+  width: 6.083
+  height: 3.28
+  name: Rectangle 12
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  text: 'The goal is NOT to become industry experts.
+
+    The goal IS to practice architectural synthesis, hypothesis-building, and future-state
+    design — using AI as an accelerator, not a crutch.
+
+    Treat all outputs as hypotheses, not facts. Clearly separate what is likely from
+    what is confirmed.'
+  margin_left: 0.4
+  margin_right: 0.1
+  margin_top: 0.4
+  margin_bottom: 0.05
+  vertical_anchor: top
+  paragraphs:
+  - text: The goal is NOT to become industry experts.
+    text_font: +mj-lt
+    text_size: 16
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: The goal IS to practice architectural synthesis, hypothesis-building, and
+      future-state design — using AI as an accelerator, not a crutch.
+    text_font: +mj-lt
+    text_size: 16
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: Treat all outputs as hypotheses, not facts. Clearly separate what is likely
+      from what is confirmed.
+    text_font: Segoe Sans Display
+    text_size: 16
+    text_color: '#1F1F1F'
+    italic: true
+    space_after: 12.0
+  text_font: +mj-lt
+  text_size: 16
+  text_color: '#1F1F1F'
+  z_order: 5
+layout: 4_Title and Content

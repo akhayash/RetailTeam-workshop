@@ -1,0 +1,245 @@
+slide: 6
+title: Concept A — Cloud-Centric Platform
+elements:
+- type: textbox
+  left: 0.5
+  top: 0.735
+  width: 12.185
+  height: 0.572
+  text: Concept A — Cloud-Centric Platform
+  name: Title 1
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  _placeholder: true
+  z_order: 0
+- type: textbox
+  left: 0.5
+  top: 1.472
+  width: 12.0
+  height: 0.337
+  text: v1 implementation · ships first · Microsoft-only managed services.
+  name: Subtitle
+  margin_left: 0.0
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 14
+  font_color: '#1F1F1F'
+  italic: true
+  alignment: left
+  z_order: 1
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.05
+  width: 7.5
+  height: 0.55
+  name: Pillars Header
+  fill: '#14366E'
+  text: Five Service Pillars
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 2
+- type: shape
+  shape: rectangle
+  left: 0.5
+  top: 2.6
+  width: 7.5
+  height: 4.0
+  name: Pillars Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.4
+  margin_right: 0.3
+  margin_top: 0.3
+  margin_bottom: 0.15
+  vertical_anchor: top
+  paragraphs:
+  - text: Azure Container Apps
+    text_font: Segoe Sans Display
+    text_size: 15
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: Multi-tenant .NET 8 Web API · scale 0–N · managed identity.
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: Cosmos DB (hierarchical PK)
+    text_font: Segoe Sans Display
+    text_size: 15
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: Tenant + body + assessment partitioning prevents cross-tenant queries at the engine level.
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: Blob Storage (60s TTL)
+    text_font: Segoe Sans Display
+    text_size: 15
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: Images held in memory or short-lived blob; auto-purged after assessment.
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: Azure AI Services
+    text_font: Segoe Sans Display
+    text_size: 15
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: Vision (people detection) + Content Safety (minor detection) + Azure OpenAI GPT-4o.
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: Service Bus (overflow)
+    text_font: Segoe Sans Display
+    text_size: 15
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: Async queue triggers at depth > 50 or p95 > 4s — keeps sync path under 5s SLA.
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#1F1F1F'
+    space_after: 6.0
+  z_order: 3
+- type: shape
+  shape: rectangle
+  left: 8.2
+  top: 2.05
+  width: 4.81
+  height: 0.55
+  name: Tradeoffs Header
+  fill: '#000000'
+  text: Tradeoffs
+  margin_left: 0.3
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  vertical_anchor: middle
+  text_font: Segoe Sans Display
+  text_size: 16
+  text_color: '#FFFFFF'
+  text_bold: true
+  alignment: left
+  z_order: 4
+- type: shape
+  shape: rectangle
+  left: 8.2
+  top: 2.6
+  width: 4.81
+  height: 2.5
+  name: Tradeoffs Body
+  fill:
+    type: solid
+    color: '#9BBB59'
+    alpha: 68.0
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.35
+  margin_right: 0.25
+  margin_top: 0.3
+  margin_bottom: 0.15
+  vertical_anchor: top
+  paragraphs:
+  - text: Gains
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#0B5594'
+    text_bold: true
+    space_after: 4.0
+  - text: Managed-service utilization · fast to ship · zero secrets (managed identity).
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 12.0
+  - text: Loses
+    text_font: Segoe Sans Display
+    text_size: 13
+    text_color: '#B7410E'
+    text_bold: true
+    space_after: 4.0
+  - text: Azure vendor lock-in · single-region in v1 · GPT-4o non-deterministic.
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#1F1F1F'
+    space_after: 6.0
+  z_order: 5
+- type: shape
+  shape: rectangle
+  left: 8.2
+  top: 5.2
+  width: 4.81
+  height: 1.4
+  name: Hypothesis Box
+  fill: '#FFFFFF'
+  line_color: '#DCE3EC'
+  line_width: 0.5
+  margin_left: 0.25
+  margin_right: 0.2
+  margin_top: 0.2
+  margin_bottom: 0.1
+  vertical_anchor: top
+  paragraphs:
+  - text: Hypotheses
+    text_font: Segoe Sans Display
+    text_size: 12
+    text_color: '#14366E'
+    text_bold: true
+    space_after: 6.0
+  - text: '[V] H-1 GPT-4o + height delivers ±2–4 cm — verified by integration testing.'
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  - text: '[H] H-2 70% confidence is the right shopper-trust threshold.'
+    text_font: Segoe Sans Display
+    text_size: 11
+    text_color: '#1F1F1F'
+    space_after: 4.0
+  z_order: 6
+- type: textbox
+  left: 0.5
+  top: 6.7
+  width: 12.0
+  height: 0.337
+  text: Source — solution-architecture.md §6.1 · ADR-001, ADR-002, ADR-008
+  name: Source Footer
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 11
+  font_color: '#6B6B6B'
+  italic: true
+  alignment: left
+  z_order: 7
+layout: 4_Title and Content
+speaker_notes: |
+  Concept A is what ships in v1. Walk through the five service pillars on the left — Container Apps for the API, Cosmos DB with hierarchical partition keys for multi-tenant safety, Blob with a 60-second TTL for privacy, the Microsoft AI trio for validation and extraction, and Service Bus for overflow when the synchronous path is too slow. On the right, name the tradeoffs honestly: we trade Azure portability for shipping speed, and we live with single-region in v1. Close on the hypothesis box: H-1 (accuracy) is verified by integration testing; H-2 (the 70% confidence threshold) is still a hypothesis we will validate with A/B testing. Source: solution-architecture.md §6.1, ADR-001, ADR-002, ADR-008.

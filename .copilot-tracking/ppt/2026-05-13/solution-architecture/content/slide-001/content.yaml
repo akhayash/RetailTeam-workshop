@@ -1,0 +1,114 @@
+slide: 1
+title: AI Clothing Fit Assessment Agent
+elements:
+- type: shape
+  shape: rectangle
+  left: 0.0
+  top: 0.0
+  width: 13.333
+  height: 7.5
+  name: Cover Background
+  fill: '#14366E'
+  z_order: 0
+- type: shape
+  shape: rectangle
+  left: 0.0
+  top: 0.0
+  width: 0.18
+  height: 7.5
+  name: Brand Rail
+  fill: '#4F81BD'
+  z_order: 1
+- type: textbox
+  left: 0.7
+  top: 1.2
+  width: 6.0
+  height: 0.32
+  text: SOLUTION ARCHITECTURE  •  RETAIL TEAM
+  name: Eyebrow
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 13
+  font_color: '#95C7E7'
+  font_bold: true
+  alignment: left
+  z_order: 2
+- type: textbox
+  left: 0.7
+  top: 1.95
+  width: 12.0
+  height: 1.4
+  text: AI Clothing Fit Assessment Agent
+  name: Brand Title
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 50
+  font_color: '#FFFFFF'
+  font_bold: true
+  alignment: left
+  z_order: 3
+- type: textbox
+  left: 0.7
+  top: 3.35
+  width: 12.0
+  height: 0.7
+  text: Phase A Research + Phase B Future-State Design
+  name: Subtitle
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 32
+  font_color: '#8DC8E8'
+  font_bold: true
+  alignment: left
+  z_order: 4
+- type: textbox
+  left: 0.7
+  top: 5.2
+  width: 11.5
+  height: 0.4
+  text: Microsoft AI stack, multi-tenant from day one, humans accountable for every decision.
+  name: Tagline
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 18
+  font_color: '#FFFFFF'
+  italic: true
+  alignment: left
+  z_order: 5
+- type: textbox
+  left: 0.7
+  top: 7.15
+  width: 9.0
+  height: 0.252
+  text: Solution Architecture v2.0.0  ·  2026-05-13
+  name: Footer
+  margin_left: 0.1
+  margin_right: 0.1
+  margin_top: 0.05
+  margin_bottom: 0.05
+  auto_size: fit
+  font: Segoe Sans Display
+  font_size: 10
+  font_color: '#6B6B6B'
+  italic: true
+  alignment: left
+  z_order: 6
+layout: Blank
+speaker_notes: |
+  Open with the brand framing: this is the Retail Team's Solution Architecture for the AI Clothing Fit Assessment Agent, v2.0.0 dated 2026-05-13. Frame the deck as the workshop output for Phase A (research) and Phase B (future-state design) following the workshop guidance deck. Set expectations that every claim is labelled Verified, Hypothesis, or Assumption, and that tradeoffs and personas are explicit. Source: docs/architecture/solution-architecture.md.
