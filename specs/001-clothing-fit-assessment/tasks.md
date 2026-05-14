@@ -54,7 +54,7 @@
 - [ ] T026 [P] Define ICosmosRepository<T> generic repository interface at src/FitAssess.Core/Interfaces/ICosmosRepository.cs
 - [ ] T027 [P] Define IImageValidator interface at src/FitAssess.Core/Interfaces/IImageValidator.cs
 - [ ] T028 [P] Define IBodyMeasurementExtractor interface at src/FitAssess.Core/Interfaces/IBodyMeasurementExtractor.cs
-- [ ] T028a [P] Define IOpenAIMeasurementClient interface for GPT-4o Vision measurement extraction at src/FitAssess.Core/Interfaces/IOpenAIMeasurementClient.cs
+- [ ] T028a [P] Define IOpenAIMeasurementClient interface for GPT-5.2 Vision measurement extraction at src/FitAssess.Core/Interfaces/IOpenAIMeasurementClient.cs
 - [ ] T028b [P] Define IContentSafetyClient interface for Azure AI Content Safety at src/FitAssess.Core/Interfaces/IContentSafetyClient.cs
 - [ ] T029 [P] Define IFitComparisonEngine interface at src/FitAssess.Core/Interfaces/IFitComparisonEngine.cs
 - [ ] T030 [P] Define IBlobStorageService interface at src/FitAssess.Core/Interfaces/IBlobStorageService.cs
@@ -93,9 +93,9 @@
 - [ ] T042c [US1] Integrate malware scanning for uploaded images (Microsoft Defender for Storage or ClamAV sidecar) before AI processing at src/FitAssess.Services/ImageProcessing/ImageValidator.cs
 - [ ] T043 [US1] Implement AzureAIVisionClient wrapper for people detection (bounding box, multi-person check) at src/FitAssess.Infrastructure/AzureAI/AzureAIVisionClient.cs
 - [ ] T043a [US1] Implement ContentSafetyClient wrapper for Azure AI Content Safety (minor detection, inappropriate content) at src/FitAssess.Infrastructure/AzureAI/ContentSafetyClient.cs
-- [ ] T043b [US1] Implement AzureOpenAIMeasurementClient wrapper for GPT-4o Vision structured output — sends photo + height, receives body measurements JSON at src/FitAssess.Infrastructure/AzureAI/AzureOpenAIMeasurementClient.cs
+- [ ] T043b [US1] Implement AzureOpenAIMeasurementClient wrapper for GPT-5.2 Vision native structured output — sends photo + height, receives body measurements JSON at src/FitAssess.Infrastructure/AzureAI/AzureOpenAIMeasurementClient.cs
 - [ ] T043c [US1] Create and version-control the measurement extraction prompt template (system + user prompt with structured output schema) at src/FitAssess.Infrastructure/AzureAI/Prompts/MeasurementExtractionPrompt.cs
-- [ ] T044 [US1] Implement BodyMeasurementExtractor that orchestrates GPT-4o call with height normalization and confidence calibration at src/FitAssess.Services/ImageProcessing/BodyMeasurementExtractor.cs
+- [ ] T044 [US1] Implement BodyMeasurementExtractor that orchestrates GPT-5.2 call with height normalization and confidence calibration at src/FitAssess.Services/ImageProcessing/BodyMeasurementExtractor.cs
 - [ ] T045 [US1] Implement FitComparisonEngine with tolerance band logic per fit type at src/FitAssess.Services/Assessment/FitComparisonEngine.cs
 - [ ] T046 [US1] Implement FitAssessmentService orchestrating the full assessment pipeline at src/FitAssess.Services/Assessment/FitAssessmentService.cs
 - [ ] T047 [US1] Implement AssessmentsController with POST /api/v1/assessments and GET /api/v1/assessments/{assessmentId} endpoints at src/FitAssess.Api/Controllers/AssessmentsController.cs
@@ -193,7 +193,7 @@
 - [ ] T095 [P] Create Bicep module for Key Vault at infra/modules/key-vault.bicep
 - [ ] T096 [P] Create Bicep module for Entra ID app registration at infra/modules/entra-app.bicep
 - [ ] T096a [P] Create Bicep module for Azure Service Bus namespace and queue at infra/modules/service-bus.bicep
-- [ ] T096b [P] Create Bicep module for Azure OpenAI resource with GPT-4o deployment at infra/modules/openai.bicep
+- [ ] T096b [P] Create Bicep module for Azure OpenAI resource with GPT-5.2 deployment at infra/modules/openai.bicep
 - [ ] T096c [P] Create Bicep module for Azure AI Content Safety resource at infra/modules/content-safety.bicep
 - [ ] T097 Create dev/staging/prod parameter files at infra/parameters/dev.json, staging.json, prod.json
 - [ ] T098 Create GitHub Actions CI workflow (build, test, SAST/SCA scan, DAST scan against staging, code coverage gates ≥ 80%/90% critical paths, SBOM generation via CycloneDX, container image scanning via Trivy, container signing via Notation/cosign, deploy) at .github/workflows/ci.yml
@@ -204,7 +204,7 @@
 - [ ] T102 Write NBomber load test simulating 500 concurrent assessments at tests/FitAssess.Load.Tests/ConcurrentAssessmentLoadTest.cs
 - [ ] T102a Write end-to-end smoke tests validating the full user journey (upload → assess → profile save → assess-by-profile) against staging environment at tests/FitAssess.Api.Tests/E2E/SmokeTests.cs
 - [ ] T103 Create README.md with project overview, setup instructions, and architecture diagram at README.md
-- [ ] T104 [P] Create model card for GPT-4o Vision measurement extraction documenting intended use, accuracy bounds (±2-4cm), limitations, known biases, and training data provenance at docs/model-card.md
+- [ ] T104 [P] Create model card for GPT-5.2 Vision measurement extraction documenting intended use, accuracy bounds (±2-4cm under validation, expected improvement with GPT-5.2), limitations, known biases, and training data provenance at docs/model-card.md
 - [ ] T105 [P] Apply data classification tags to all Azure resources in Bicep modules (Cosmos DB: Confidential, Blob Storage: Restricted, Logs: Internal, AI services: Confidential) at infra/modules/*.bicep
 - [ ] T106 [P] Create disaster recovery plan and test procedures documenting RPO/RTO validation at docs/dr-plan.md
 
@@ -249,4 +249,4 @@ Phase 7 (Polish) can start after Phase 2, runs in parallel with Phases 3-6
    - Sprint 2: Phase 3 (MVP — photo-based fit assessment)
    - Sprint 3: Phases 4 + 5 in parallel (profiles + integration polish)
    - Sprint 4: Phase 6 + Phase 7 (garment ingestion + production readiness)
-3. **Risk Mitigation**: GPT-4o Vision measurement accuracy is the highest technical risk — T043b/T044 should be spiked early in Sprint 1 to validate feasibility with known-height test images
+3. **Risk Mitigation**: GPT-5.2 Vision measurement accuracy is the highest technical risk — T043b/T044 should be spiked early in Sprint 1 to validate feasibility with known-height test images

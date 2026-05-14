@@ -23,27 +23,27 @@
 
 ## ADR-001: Body Measurement Extraction Approach
 
-**Context**: The system must extract body measurements from 2D shopper photos. Azure AI Vision 4.0 was initially considered as the primary extraction service.
+**Context**: The system must extract body measurements from 2D shopper photos and perform Tier 1 image validation before measurement extraction. The validation layer needs person detection, multi-person rejection, and bounding box quality checks with no near-term deprecation risk.
 
-**Problem**: Azure AI Vision 4.0 only provides people bounding boxes and confidence scores. It cannot extract body landmarks, skeleton joints, or anthropometric measurements. Azure Kinect Body Tracking requires physical depth-camera hardware (not a cloud API). Azure AI Vision is also retiring September 2028.
+**Problem**: Azure AI Vision 4.0 only provides people bounding boxes and confidence scores, cannot extract body landmarks or anthropometric measurements, and is retiring in September 2028. The architecture also needs a Tier 1 validator that fits the Microsoft AI Foundry ecosystem and can evolve beyond simple detection if requirements expand.
 
 **Decision**: Adopt a three-tier Microsoft AI pipeline:
 
-- **Tier 1 (Validation)**: Azure AI Vision 4.0 for people detection and bounding box quality; Azure AI Content Safety for minor detection and content moderation
-- **Tier 2 (Extraction)**: Azure OpenAI GPT-4o Vision with structured JSON output for measurement extraction, using mandatory height input as scale reference
+- **Tier 1 (Validation)**: Florence-2-large on an Azure AI Foundry managed online endpoint, invoked via `Azure.AI.Inference`, for person detection, object counting, multi-person rejection, and bounding box quality validation; Azure AI Content Safety for minor detection and content moderation
+- **Tier 2 (Extraction)**: Azure OpenAI GPT-5.2 Vision with native structured output (JSON schema validation) for measurement extraction, using mandatory height input as scale reference
 - **Tier 3 (v2 Future)**: Custom SMPL body model on Azure AI Foundry managed endpoint for improved accuracy (±1–2 cm vs ±2–4 cm)
 
 **Alternatives rejected**:
 
 | Alternative | Reason |
 |-------------|--------|
-| Azure AI Vision alone | Cannot extract measurements — only bounding boxes |
+| Azure AI Vision 4.0 | Retiring September 2028; legacy people-detection service when Florence-2 covers Tier 1 validation within Azure AI Foundry |
 | Azure AI Vision Custom Model | Only object detection/classification, not centimeter output |
 | MediaPipe Pose (Google) | Self-hosting required, GPU management, Google stack misalignment |
 | Third-party API (3DLOOK, Bold Metrics) | External dependency, per-call cost, privacy concerns (Constitution VII) |
 | Custom SMPL model immediately | 3–6 month development timeline, insufficient for MVP |
 
-**Consequences**: GPT-4o Vision is non-deterministic (LLM-based); confidence calibration and prompt versioning are required. Accuracy is ±2–4 cm, lower than dedicated body models. v2 upgrade path mitigates this.
+**Consequences**: GPT-5.2 Vision (successor to GPT-4o Vision, whose standard Azure OpenAI deployments retired in March 2026) remains non-deterministic (LLM-based), so confidence calibration and prompt versioning are still required. Florence-2 removes the Azure AI Vision retirement risk, keeps Tier 1 behind the existing `IImageValidator` abstraction, and adds future flexibility for richer vision tasks such as dense captioning or fine-tuning in Azure AI Foundry.
 
 ---
 

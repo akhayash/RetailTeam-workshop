@@ -84,10 +84,10 @@ A retail operations team needs to onboard their garment catalog into the fit ass
 ### Functional Requirements
 
 - **FR-001**: System MUST accept full-body photos from shoppers in JPEG, PNG, or WebP format up to 10 MB, along with the shopper's height in centimeters (mandatory input for measurement scale reference)
-- **FR-002**: System MUST extract body measurements from uploaded photos using multimodal AI analysis (Azure OpenAI GPT-4o Vision with structured output), using the provided height as the absolute scale reference for deriving all other measurements
+- **FR-002**: System MUST extract body measurements from uploaded photos using multimodal AI analysis (Azure OpenAI GPT-5.2 Vision with native structured output), using the provided height as the absolute scale reference for deriving all other measurements
 - **FR-003**: System MUST compare derived body measurements against garment size data to produce a fit recommendation per body area using a discrete 5-point scale: Too Tight, Slightly Tight, Good Fit, Slightly Loose, Too Loose — plus an overall recommendation
 - **FR-004**: System MUST return fit assessments with a confidence score indicating prediction reliability
-- **FR-005**: System MUST validate uploaded images for quality before processing and provide actionable feedback for rejected images. Validation criteria: (a) single person detected via Azure AI Vision people detection, (b) person bounding box covers ≥ 70% of frame height ("full body" = head-to-toe visible), (c) mean image luminance ≥ 40/255 (sufficient lighting), (d) supported format (JPEG, PNG, WebP) and size ≤ 10 MB, (e) MIME type validation beyond file extension, (f) malware scan passed
+- **FR-005**: System MUST validate uploaded images for quality before processing and provide actionable feedback for rejected images. Validation criteria: (a) single person detected via Florence-2 people detection, (b) person bounding box covers ≥ 70% of frame height ("full body" = head-to-toe visible), (c) mean image luminance ≥ 40/255 (sufficient lighting), (d) supported format (JPEG, PNG, WebP) and size ≤ 10 MB, (e) MIME type validation beyond file extension, (f) malware scan passed
 - **FR-006**: System MUST allow shoppers to save and delete their body measurement profiles with explicit consent
 - **FR-007**: System MUST expose a RESTful API with OpenAPI 3.x documentation for frontend integration
 - **FR-008**: System MUST authenticate all API consumers using OAuth 2.0 / OpenID Connect
@@ -139,7 +139,7 @@ A retail operations team needs to onboard their garment catalog into the fit ass
 - Garment measurement data is provided by the retail partner in a structured format; the system does not extract measurements from garment images
 - The service is multi-tenant from day one; each retail partner (tenant) has isolated garment catalogs, shopper profiles, and API credentials; cross-tenant data access is prohibited by design
 - Initial deployment targets a single geographic region; multi-region is out of scope for v1 but architecture supports future expansion
-- The AI model for body measurement extraction uses Azure OpenAI GPT-4o Vision with structured output for v1 (prompt-engineered, not fine-tuned); a custom fine-tuned model on Azure AI Foundry is planned for v2 to improve accuracy
+- The AI model for body measurement extraction uses Azure OpenAI GPT-5.2 Vision with native structured output for v1 (prompt-calibrated, not fine-tuned); a custom fine-tuned model on Azure AI Foundry is planned for v2 to improve accuracy
 - Internet connectivity is stable — offline assessment is out of scope
 - The retail partner's existing product catalog system can provide garment IDs that map to the ingested measurement data
 - Microsoft Entra ID will be used for service-to-service authentication (OAuth 2.0 / OIDC)

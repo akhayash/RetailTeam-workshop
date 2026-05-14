@@ -112,7 +112,7 @@ flowchart TB
     end
 
     subgraph "TIER 2 — Measurement Extraction (v1)"
-        GPT4o[Azure OpenAI GPT-4o Vision<br/>structured JSON output]
+        GPT52[Azure OpenAI GPT-5.2 Vision<br/>native structured output]
         Output2[shoulderWidth · chestCircumference<br/>waistCircumference · hipCircumference<br/>inseam · armLength · confidence · modelVersion]
     end
 
@@ -126,13 +126,13 @@ flowchart TB
     Input --> Safety
     Input --> Defender
     Input --> Local
-    Vision -->|PASS| GPT4o
-    Safety -->|PASS| GPT4o
-    Defender -->|PASS| GPT4o
-    Local -->|PASS| GPT4o
-    GPT4o --> Output2
+    Vision -->|PASS| GPT52
+    Safety -->|PASS| GPT52
+    Defender -->|PASS| GPT52
+    Local -->|PASS| GPT52
+    GPT52 --> Output2
     Output2 --> FCE
-    GPT4o -.->|v2 replacement| CustomModel
+    GPT52 -.->|v2 replacement| CustomModel
     CustomModel -.-> FCE
 ```
 
@@ -146,7 +146,7 @@ sequenceDiagram
     participant API as FitAssess API
     participant SVC as Service Layer
     participant T1 as AI Tier 1
-    participant T2 as AI Tier 2 (GPT-4o)
+    participant T2 as AI Tier 2 (GPT-5.2)
     participant DB as Cosmos DB
     participant Blob as Blob Storage
 
@@ -398,7 +398,7 @@ graph TB
     subgraph Azure AI Plane
         Vision[AI Vision - Tier 1]
         Safety[Content Safety - Tier 1]
-        GPT4o[OpenAI GPT-4o - Tier 2]
+        GPT52[OpenAI GPT-5.2 - Tier 2]
         Foundry[AI Foundry - Tier 3 v2]
     end
 
