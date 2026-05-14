@@ -10,6 +10,68 @@ AI augments shopper decision-making; **humans retain accountability** for purcha
 
 ---
 
+## Walmart Context: Current State & Industry Realities
+
+### Walmart at a Glance
+
+| Dimension | Detail | Source |
+|-----------|--------|--------|
+| **Weekly customers** | 240M+ across 10,500+ stores and e-commerce | Walmart corporate filings (2025) |
+| **Online apparel revenue** | $14.7B (2024) — 3rd largest U.S. apparel e-commerce retailer | Capital One Shopping Research |
+| **Apparel return rate** | ~24–26% for online clothing (industry benchmark; Walmart-specific not published) | NRF 2025 Retail Returns Landscape; Coresight Research |
+| **Primary return reason** | Fit/sizing cited in 53% of apparel returns | Prime-AI Industry Benchmarks 2025 |
+| **Cost per return** | $10–30 processing cost + lost revenue + environmental impact | NRF / Coresight estimates |
+| **"Bracketing" behavior** | Shoppers buy multiple sizes intending to return extras — increasingly common | Sales So eCommerce Return Statistics 2025 |
+
+### Walmart's Technology Landscape
+
+| Area | Current State | Integration Implication |
+|------|--------------|------------------------|
+| **Cloud strategy** | Multi-hybrid "triplet model": two vendor public clouds (Azure + Google Cloud) + Walmart-managed private cloud + edge clouds in stores | FitAssess deploys on Azure (confirmed strategic partner; $500M+ annual Azure spend). Cloud-agnostic internal platform means the API must integrate via standard REST/OAuth patterns, not Azure-specific bindings on the consumer side. |
+| **Developer platform** | Unified internal platform with Kubernetes, service mesh (Istio), Terraform/Pulumi IaC, golden-path CI/CD templates | FitAssess API must expose clean OpenAPI contracts consumable by Walmart's platform engineering team. Container-based deployment aligns with their Kubernetes-native approach. |
+| **Existing fit technology** | **Zeekit** (acquired 2021) — AI/AR virtual try-on platform. "Choose My Model" feature lets shoppers pick from 50+ body-type models. Covers apparel, beauty, eyewear. | FitAssess complements rather than replaces Zeekit. Zeekit is visualization ("how does it look?"); FitAssess is measurement ("will it fit?"). Integration opportunity: feed FitAssess measurements into Zeekit's model selection for personalized virtual try-on. |
+| **AI/ML maturity** | "Wallaby" proprietary LLM; GenAI search ("Sparky"); Azure OpenAI partnership; computer vision for shelf monitoring; ML for dynamic pricing, inventory prediction, fraud detection | Walmart has mature AI governance and MLOps. FitAssess model versioning, confidence thresholds, and audit trails align with their existing AI accountability patterns. |
+| **Catalog/product data** | Dedicated Catalog Engineering domain within Walmart Global Tech (25,000+ engineers). PIM systems, taxonomy, vendor feed ingestion, attribute extraction | Garment data ingestion (US4) must align with Walmart's existing product data pipelines. Expect structured feeds via their catalog APIs rather than manual upload. SKU/size data will come from their PIM system. |
+| **Data processing** | 10 PB/day processed; unified data lakes; "Wally" analytics platform for merchandising/ops | FitAssess telemetry and assessment outcomes can feed into Walmart's analytics for return prediction and size curve optimization (Concept C path). |
+| **Scale expectations** | 100K+ network devices; millions of concurrent users during peak (Black Friday, holiday) | 500 concurrent assessments is the v1 target; Walmart peak may require 5,000–10,000+. Architecture must demonstrate horizontal scaling path beyond v1. |
+
+### Walmart-Specific Constraints & Challenges
+
+| Challenge | Impact on Architecture | Mitigation |
+|-----------|----------------------|------------|
+| **Garment data standardization** | Walmart sources from thousands of suppliers with inconsistent measurement formats (numeric sizes, alpha sizes, brand-specific offsets) | Garment ingestion pipeline must normalize heterogeneous size data. Tolerance bands configurable per brand/category. |
+| **Massive catalog scale** | 100M+ SKUs across all categories; clothing subset still represents millions of garment/size combinations | Cosmos DB partition design must handle high-cardinality garment data without hot partitions. Consider garment data caching layer. |
+| **Multi-brand size inconsistency** | A "Medium" from Brand A ≠ "Medium" from Brand B. Shoppers experience this as the core fit problem. | Fit comparison engine operates on actual measurements (cm), not size labels. This is architecturally sound — the challenge is data availability. |
+| **Existing Zeekit investment** | Walmart has already invested in virtual try-on. FitAssess must demonstrate additive value, not competition. | Position as complementary: Zeekit = visual confidence ("looks good on me"), FitAssess = measurement confidence ("will fit my body"). API enables Zeekit to consume measurement data. |
+| **Privacy at Walmart scale** | Any body-image processing at Walmart's scale attracts regulatory scrutiny. CCPA (California), state-level privacy laws, potential FTC oversight. | 60s image purge, opaque IDs, no biometric storage aligns with Walmart's stated privacy posture. Must pass Walmart's internal privacy review (likely stricter than regulatory minimum). |
+| **Seasonal demand spikes** | Black Friday / Cyber Monday traffic can be 10–50x normal. Holiday returns surge in January. | Service Bus overflow queuing + auto-scale 2–10 instances is v1. Production at Walmart scale needs burst-to-50+ instances with pre-warming. |
+| **Cloud vendor alignment** | Walmart uses Azure as strategic cloud partner but maintains multi-cloud. Internal platform abstracts cloud. | FitAssess is Azure-native (aligned). Walmart's platform team consumes via REST API — they don't need to know it's Azure-hosted. No Azure-specific client SDK dependency exposed to consumer. |
+
+### Owner → Domain Mapping (Hypothesized)
+
+| Architectural Domain | Walmart-Side Owner (Probable) | FitAssess Team Counterpart |
+|---------------------|-------------------------------|---------------------------|
+| E-commerce integration | Platform Engineering / Storefront Team | API & Integration Lead |
+| Garment measurement data | Catalog Engineering / PIM Team | Data Ingestion Engineer |
+| AI model governance & approval | ML Platform / AI Ethics Board | ML Engineer / Product Owner |
+| Privacy & DPIA | Privacy Office / Legal | Security Architect |
+| Infrastructure & deployment | Cloud Platform Engineering | DevOps / SRE |
+| Shopper experience (UX) | Digital Product / CX Team | N/A (API-only; UX is Walmart's) |
+| Merchandising analytics | Merchandising Tech / Data Science | Data Engineer (telemetry feed) |
+
+### Emerging Industry Patterns Assessment
+
+| Pattern | Evaluated? | Decision | Rationale |
+|---------|-----------|----------|-----------|
+| **Virtual try-on / AR** (Zeekit approach) | ✅ Yes | Complementary, not competing | Walmart already invested. FitAssess provides measurement data that enhances Zeekit's model selection. |
+| **Collaborative filtering** (True Fit / Fit Analytics) | ✅ Yes | Not adopted for v1 | Requires large purchase history dataset. Measurement-based approach works from day one without historical data. Can add as v2 signal. |
+| **3D body modeling** (SMPL / digital twin) | ✅ Yes | Deferred to v2 (Tier 3) | Custom SMPL model on Azure AI Foundry planned for improved accuracy. Requires ML team and training data not available at launch. |
+| **Federated learning** (cross-retailer insights) | ✅ Yes | Not adopted | Privacy constraints prevent sharing body data across tenants. Each tenant's data is isolated by design. |
+| **Size recommendation from purchase history** | ✅ Yes | Future enhancement | Requires integration with Walmart's order/return history. Not available at API boundary in v1. High-value v2 feature. |
+| **AR body scanning** (Nike Fit approach) | ✅ Yes | Not adopted for v1 | Requires native mobile SDK integration. FitAssess is API-first (web-compatible). Could add mobile SDK in v2 for improved accuracy. |
+
+---
+
 ## Retail Industry Personas
 
 Three personas represent the primary stakeholders affected by the architecture.

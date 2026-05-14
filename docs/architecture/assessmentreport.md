@@ -138,7 +138,7 @@ The architecture is **strong on Phase B deliverables** (future-state concepts, p
 |------------------|-------|-------|
 | Hypotheses clearly labeled vs facts | 7/10 | Hypothesis register exists but architecture body mixes assertions without labels |
 | Sources cited where they exist | 4/10 | Research doc has sources; architecture doc does not carry them forward |
-| Industry realities show through | 6/10 | Return rate stats present; Walmart-specific realities absent |
+| Industry realities show through | 9/10 | Walmart-specific tech landscape, Zeekit context, scale constraints, and org mapping documented |
 | Personas tied to real workflows | 8/10 | Good workflow descriptions; could add Walmart org-specific context |
 | AI augments — human accountability preserved | 10/10 | Consistently stated and enforced |
 | Each concept has "So What?" per executive | 9/10 | Comprehensive mapping |
