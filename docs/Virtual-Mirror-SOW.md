@@ -3,7 +3,7 @@
 | Field | Value |
 |-------|-------|
 | **Document** | Virtual-Mirror-SOW.md |
-| **Version** | 0.2.0 |
+| **Version** | 0.3.0 |
 | **Status** | Draft for internal review |
 | **Date** | 2026-05-14 |
 | **Prepared for** | Walmart Digital — Apparel & Marketplace ("the Customer") |
