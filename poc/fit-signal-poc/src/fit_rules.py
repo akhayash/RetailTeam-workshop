@@ -19,7 +19,7 @@ FitPreference = Literal["tight", "regular", "loose"]
 # A garment's (chest|shoulder|body|sleeve) width close to body + ease is a good fit.
 EASE_TABLE: dict[FitPreference, dict[str, float]] = {
     "tight":   {"shoulder": 0.0, "chest": 2.0,  "body": 0.0, "sleeve": -1.0},
-    "regular": {"shoulder": 1.5, "chest": 6.0,  "body": 2.0, "sleeve":  1.0},
+    "regular": {"shoulder": 1.0, "chest": 4.0,  "body": 2.0, "sleeve":  1.0},
     "loose":   {"shoulder": 4.0, "chest": 12.0, "body": 5.0, "sleeve":  3.0},
 }
 
@@ -30,6 +30,13 @@ GRADING_STEP_CM = {
     "body": 1.5,
     "sleeve": 1.5,
 }
+
+LONG_SLEEVE_MIN_CM = 35.0
+TORSO_TO_GARMENT_LENGTH_RATIO = 1.35
+HEIGHT_TO_SHOULDER_WIDTH_RATIO = 0.245
+HEIGHT_TO_BODY_LENGTH_RATIO = 0.39
+BODY_LENGTH_TORSO_TOLERANCE_CM = 3.0
+HEIGHT_TO_ARM_LENGTH_RATIO = 0.36
 
 
 @dataclass
@@ -49,15 +56,31 @@ def _score_row(
     """Return (score, deltas, reasons) for one garment size row."""
     ease = EASE_TABLE[preference]
 
+    height_based_shoulder_width_cm = signals.user_height_cm * HEIGHT_TO_SHOULDER_WIDTH_RATIO
+    effective_shoulder_width_cm = max(
+        signals.shoulder_width_cm,
+        height_based_shoulder_width_cm,
+    )
+    height_based_body_length_cm = signals.user_height_cm * HEIGHT_TO_BODY_LENGTH_RATIO
+    torso_based_body_length_cm = signals.torso_length_cm * TORSO_TO_GARMENT_LENGTH_RATIO
+    effective_body_length_cm = max(
+        torso_based_body_length_cm,
+        height_based_body_length_cm - BODY_LENGTH_TORSO_TOLERANCE_CM,
+    )
+    effective_arm_length_cm = max(
+        signals.arm_length_cm,
+        signals.user_height_cm * HEIGHT_TO_ARM_LENGTH_RATIO,
+    )
+
     # The estimated "body chest width (cm) — front projection" is a rough
     # multiple of the shoulder width. Circumferences are out of PoC scope; we
     # compare width-level signals only.
-    body_chest_width_proxy = signals.shoulder_width_cm * 1.05
+    body_chest_width_proxy = effective_shoulder_width_cm * 1.05
 
     deltas: dict[str, float] = {}
     if "shoulder_width_cm" in row and pd.notna(row["shoulder_width_cm"]):
         deltas["shoulder"] = float(row["shoulder_width_cm"]) - (
-            signals.shoulder_width_cm + ease["shoulder"]
+            effective_shoulder_width_cm + ease["shoulder"]
         )
     if "chest_width_cm" in row and pd.notna(row["chest_width_cm"]):
         deltas["chest"] = float(row["chest_width_cm"]) - (
@@ -65,11 +88,18 @@ def _score_row(
         )
     if "body_length_cm" in row and pd.notna(row["body_length_cm"]):
         deltas["body"] = float(row["body_length_cm"]) - (
-            signals.torso_length_cm + ease["body"]
+            effective_body_length_cm + ease["body"]
         )
-    if "sleeve_length_cm" in row and pd.notna(row["sleeve_length_cm"]):
+
+    # A full arm fit signal is comparable to long sleeves, but not to short tee
+    # sleeve openings. Skip short sleeves instead of letting them dominate.
+    if (
+        "sleeve_length_cm" in row
+        and pd.notna(row["sleeve_length_cm"])
+        and float(row["sleeve_length_cm"]) >= LONG_SLEEVE_MIN_CM
+    ):
         deltas["sleeve"] = float(row["sleeve_length_cm"]) - (
-            signals.arm_length_cm + ease["sleeve"]
+            effective_arm_length_cm + ease["sleeve"]
         )
 
     # Normalized score: divide each axis by its grading step, then RMSE.
@@ -116,7 +146,7 @@ def recommend_size(
     scored = []
     for _, row in df.iterrows():
         score, deltas, reasons = _score_row(row, signals, preference)
-        scored.append((row["size"], score, deltas, reasons))
+        scored.append((str(row["size"]), score, deltas, reasons))
     scored.sort(key=lambda x: x[1])
 
     best_size, best_score, best_deltas, best_reasons = scored[0]

@@ -62,6 +62,7 @@ GARMENT_CSV = ROOT / "data" / "garment" / "garment_measurements.csv"
 SNAPSHOT_DIR = ROOT / "output" / "snapshots"
 
 PREFERENCES = ("tight", "regular", "loose")
+GESTURE_MISS_GRACE_SEC = 0.25
 
 
 def _logo_html(height_px: int = 40) -> str:
@@ -347,7 +348,7 @@ with st.sidebar:
     st.markdown("### 👕 Garment")
     if GARMENT_CSV.exists():
         garments = pd.read_csv(GARMENT_CSV)
-        garment_ids: list[str] = sorted(garments["garment_id"].unique().tolist())
+        garment_ids: list[str] = garments["garment_id"].drop_duplicates().tolist()
     else:
         garments = None
         garment_ids = []
@@ -361,8 +362,9 @@ with st.sidebar:
 
     st.markdown("### ✋ Gesture")
     enable_gestures = st.checkbox("Enable hands-free gestures", value=True)
-    gesture_hold_sec = st.slider("Gesture hold (s)", 0.2, 1.5, 0.6, step=0.1)
-    cooldown_sec = st.slider("Cooldown (s)", 0.5, 4.0, 1.2, step=0.1)
+    gesture_min_score = st.slider("Gesture min score", 0.1, 0.9, 0.35, step=0.05)
+    gesture_hold_sec = st.slider("Gesture hold (s)", 0.1, 1.5, 0.35, step=0.05)
+    cooldown_sec = st.slider("Cooldown (s)", 0.3, 4.0, 0.8, step=0.1)
 
 
 # =============================================================================
@@ -389,6 +391,8 @@ if "toast_msg" not in st.session_state:
     st.session_state.toast_msg = ""
 if "toast_until" not in st.session_state:
     st.session_state.toast_until = 0.0
+if "last_rec_log_at" not in st.session_state:
+    st.session_state.last_rec_log_at = 0.0
 
 
 # =============================================================================
@@ -401,25 +405,46 @@ class GestureBuffer:
         self.lock = Lock()
         self.current_label: str = "None"
         self.current_score: float = 0.0
+        self.streak_label: str = ""
         self.streak_started_at: float = 0.0
+        self.last_seen_at: float = 0.0
         self.last_fired_label: str = ""
         self.last_fired_at: float = 0.0
+        self.last_logged_at: float = 0.0
         self.pending: deque[tuple[str, float]] = deque(maxlen=16)
 
-    def feed(self, g: GestureResult, hold_sec: float, cooldown_sec: float) -> None:
+    def feed(
+        self,
+        g: GestureResult,
+        hold_sec: float,
+        cooldown_sec: float,
+        min_score: float,
+    ) -> None:
         now = time.time()
         with self.lock:
-            label = g.label if g.detected else "None"
+            label = g.label if g.detected and g.score >= min_score else "None"
             self.current_label = label
             self.current_score = g.score
 
             if label == "None" or label not in GESTURE_ACTIONS:
-                self.streak_started_at = 0.0
+                if now - self.last_seen_at > GESTURE_MISS_GRACE_SEC:
+                    self.streak_label = ""
+                    self.streak_started_at = 0.0
                 return
 
-            if self.streak_started_at == 0.0:
+            self.last_seen_at = now
+            if label != self.streak_label or self.streak_started_at == 0.0:
+                self.streak_label = label
                 self.streak_started_at = now
                 return
+
+            if now - self.last_logged_at > 1.0:
+                print(
+                    f"gesture_seen label={label} score={g.score:.2f} "
+                    f"held={now - self.streak_started_at:.2f}s",
+                    flush=True,
+                )
+                self.last_logged_at = now
 
             if now - self.streak_started_at < hold_sec:
                 return
@@ -431,6 +456,7 @@ class GestureBuffer:
                 return
 
             self.pending.append((label, now))
+            print(f"gesture_fired label={label} score={g.score:.2f}", flush=True)
             self.last_fired_label = label
             self.last_fired_at = now
             self.streak_started_at = now
@@ -651,7 +677,7 @@ def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
 
     pose_buf.update(pose, dt, img_bgr.copy())
     if enable_gestures:
-        gesture_buf.feed(gesture, gesture_hold_sec, cooldown_sec)
+        gesture_buf.feed(gesture, gesture_hold_sec, cooldown_sec, gesture_min_score)
 
     img_bgr = draw_overlay(
         img_bgr, pose,
@@ -897,6 +923,22 @@ def _render_recommendation(rec, locked_size: str | None) -> None:
     )
 
 
+def _log_recommendation(sig, rec, garment_id: str | None, preference: str) -> None:
+    now = time.time()
+    if rec is None or now - st.session_state.last_rec_log_at < 2.0:
+        return
+    st.session_state.last_rec_log_at = now
+    print(
+        "fit_recommendation "
+        f"garment={garment_id} preference={preference} size={rec.size} "
+        f"score={rec.score:.2f} confidence={rec.confidence:.2f} "
+        f"height={sig.user_height_cm:.1f} shoulder={sig.shoulder_width_cm:.1f} "
+        f"torso={sig.torso_length_cm:.1f} arm={sig.arm_length_cm:.1f} "
+        f"deltas={rec.per_dim_delta_cm} reasons={rec.reasons}",
+        flush=True,
+    )
+
+
 # Render the static gesture map once
 _render_gesture_map()
 
@@ -1000,6 +1042,7 @@ while ctx and ctx.state.playing:
 
     if sig is not None:
         _render_metrics(sig, fps)
+        _log_recommendation(sig, rec, current_garment, preference)
     _render_recommendation(rec, st.session_state.locked_size if st.session_state.size_locked else None)
 
     time.sleep(poll_interval)

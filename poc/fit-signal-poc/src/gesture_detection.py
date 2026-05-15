@@ -55,9 +55,9 @@ def build_gesture_recognizer(
     *,
     delegate: Literal["cpu", "gpu"] = "cpu",
     num_hands: int = 1,
-    min_hand_detection_confidence: float = 0.5,
-    min_hand_presence_confidence: float = 0.5,
-    min_tracking_confidence: float = 0.5,
+    min_hand_detection_confidence: float = 0.35,
+    min_hand_presence_confidence: float = 0.35,
+    min_tracking_confidence: float = 0.35,
 ):
     """Build a MediaPipe GestureRecognizer for IMAGE mode.
 
